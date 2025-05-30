@@ -32,7 +32,7 @@ public class AnvilDropping : MonoBehaviour
         {
             _playerCurrentPosition = playerInRoom.transform;
 
-            _targetDropPosition = new Vector3(_playerCurrentPosition.position.x, _playerCurrentPosition.position.y + 0.5f, _playerCurrentPosition.position.z);
+            _targetDropPosition = new Vector3(_playerCurrentPosition.position.x, _playerCurrentPosition.position.y + 0.3f, _playerCurrentPosition.position.z);
             if (!_isFalling)
             {
                 _isFalling = true;
