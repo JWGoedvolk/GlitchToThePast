@@ -809,7 +809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &597022163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1322,6 +1322,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameData.SaveSystemCaller, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3027,6 +3039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116ac64a78feea24f972fd0de85f1a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterSelection: {fileID: 597022162}
 --- !u!114 &2121457756
 MonoBehaviour:
   m_ObjectHideFlags: 0

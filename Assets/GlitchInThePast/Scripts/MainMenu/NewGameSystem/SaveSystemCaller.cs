@@ -9,12 +9,15 @@ namespace GameData
 
     public class SaveSystemCaller : MonoBehaviour
     {
+        [SerializeField] private GameObject CharacterSelection;
+
         #region Public Functions
         #region New Game Button
         public void StartNewGame()
         {
             GameSaveData newData = new GameSaveData();
             GameSaveSystem.SaveGame(newData);
+            CharacterSelection.SetActive(true); // TODO: Let there be a way to exit the selection screen which also results in deleting the new game file.
             // TODO: Load the first scene (Narrartive here)
         }
         #endregion
