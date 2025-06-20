@@ -58,16 +58,16 @@ public class InputConnectionManager : MonoBehaviour
             Player1InputType = InputType.Keyboard;
             Player2InputType = InputType.Controller1;
 
-            player1Input.SwitchCurrentControlScheme("Keyboard&Mouse", Keyboard.current, Mouse.current);
-            player2Input.SwitchCurrentControlScheme("Gamepad", controllers[0]);
+            player1Input.SwitchCurrentControlScheme("Keyboard", Keyboard.current);
+            player2Input.SwitchCurrentControlScheme("Controller", controllers[0]);
         }
         else if(controllers.Count == 2)
         {
             Player1InputType = InputType.Controller2;
             Player2InputType = InputType.Controller1;
 
-            player1Input.SwitchCurrentControlScheme("Gamepad", controllers[1]);
-            player2Input.SwitchCurrentControlScheme("Gamepad", controllers[0]);
+            player1Input.SwitchCurrentControlScheme("Keyboard", Keyboard.current);
+            player2Input.SwitchCurrentControlScheme("Controller", controllers[0]);
         }
 
         hasAssigned = true;
