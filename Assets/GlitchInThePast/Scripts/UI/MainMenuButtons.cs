@@ -1,18 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class MainMenuButtons : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    #region Variables
+
+    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject quitConfirmationPanel;
+
+    #endregion
+
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape) && quitConfirmationPanel.activeSelf != true) settingsPanel.SetActive(!settingsPanel.activeSelf);
     }
 
-    // Update is called once per frame
-    void Update()
+    // Options toggler with esc
+    #region Settings
+    public void SettingsToggler()
     {
-        
+        settingsPanel.SetActive(!settingsPanel.activeSelf);
     }
+    #endregion
+
+    // Quit button
+    #region Quitting
+    public void QuitGame()
+    {
+        quitConfirmationPanel.SetActive(true);
+    }
+
+    public void ConfirmQuit()
+    {
+        Application.Quit();
+    }
+
+    public void DismissQuit()
+    {
+        quitConfirmationPanel.SetActive(false);
+    }
+    #endregion
 }
