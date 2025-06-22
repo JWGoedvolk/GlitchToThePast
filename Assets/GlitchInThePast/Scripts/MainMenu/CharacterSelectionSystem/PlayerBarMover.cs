@@ -20,8 +20,8 @@ public class PlayerBarMover : MonoBehaviour
     private Vector2 targetAnchoredPos;
 
     // made it static so that p1 and p2 know where eachothers' positions are
-    private static int p1Index = 1;
-    private static int p2Index = 1;
+    public static int p1Index = 1;
+    public static int p2Index = 1;
     #endregion
 
     void Awake()
