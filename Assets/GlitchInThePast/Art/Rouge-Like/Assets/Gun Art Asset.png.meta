@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7602a8f0c48ad164dbf4221f5cf32e6c
+guid: acc1ce45100be564c964e63f110e43c7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,21 +34,21 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 800
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Level 1_Box_Chalk style (Animated)_0
+      name: Gun Art Asset_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1080
-        height: 1080
+        width: 2186
+        height: 2084
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8643fb2245f11ad43ac3c7708b4f46a4
-      internalID: 1971174075
+      spriteID: ee589fa0460803f4893bc08c9ccd6fc8
+      internalID: -935581469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Level 1_Box_Chalk style (Animated)_1
+      name: Gun Art Asset_1
       rect:
         serializedVersion: 2
-        x: 1080
+        x: 2186
         y: 0
-        width: 1080
-        height: 1080
+        width: 2186
+        height: 2084
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,113 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e3b897379db65b48811a4718ba8c0da
-      internalID: 1369655698
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level 1_Box_Chalk style (Animated)_2
-      rect:
-        serializedVersion: 2
-        x: 2160
-        y: 0
-        width: 1080
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00daa73f99457474da509ee40a06cebd
-      internalID: -804516248
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level 1_Box_Chalk style (Animated)_3
-      rect:
-        serializedVersion: 2
-        x: 3240
-        y: 0
-        width: 1080
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 74a5983cc1dd28a45ab696535eb35d05
-      internalID: -1008963453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level 1_Box_Chalk style (Animated)_4
-      rect:
-        serializedVersion: 2
-        x: 4320
-        y: 0
-        width: 1080
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f818be79e0de8ce4e9fe5d890a5a545a
-      internalID: 1667524139
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level 1_Box_Chalk style (Animated)_5
-      rect:
-        serializedVersion: 2
-        x: 5400
-        y: 0
-        width: 1080
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aff6a5741a231b04f9aec0584fbe0d4c
-      internalID: 1508924732
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level 1_Box_Chalk style (Animated)_6
-      rect:
-        serializedVersion: 2
-        x: 6480
-        y: 0
-        width: 1080
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d254f99f15c3f3041bf5c8a2d1694f5d
-      internalID: -348786200
+      spriteID: 4d3ee687ccc6cbf4fb665ab444b2171c
+      internalID: 293754159
       vertices: []
       indices: 
       edges: []
@@ -259,7 +154,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d8cc0c04a5f0f1143b616ab0aa6bddff
+    spriteID: 068995c5b4d40184a8b283ca993b03f0
     internalID: 0
     vertices: []
     indices: 
@@ -267,13 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Level 1_Box_Chalk style (Animated)_0: 1971174075
-      Level 1_Box_Chalk style (Animated)_1: 1369655698
-      Level 1_Box_Chalk style (Animated)_2: -804516248
-      Level 1_Box_Chalk style (Animated)_3: -1008963453
-      Level 1_Box_Chalk style (Animated)_4: 1667524139
-      Level 1_Box_Chalk style (Animated)_5: 1508924732
-      Level 1_Box_Chalk style (Animated)_6: -348786200
+      Gun Art Asset_0: -935581469
+      Gun Art Asset_1: 293754159
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
