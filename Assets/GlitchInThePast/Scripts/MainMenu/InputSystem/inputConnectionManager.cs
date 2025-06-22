@@ -1,30 +1,33 @@
 ﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 public class InputConnectionManager : MonoBehaviour
 {
     public enum InputType { None, Keyboard, Controller1, Controller2 }
     [HideInInspector] public static InputType Player1InputType, Player2InputType;
 
+    #region Variables
     public PlayerInput player1Input, player2Input;
     public GameObject characterSelectionPanel;
 
     bool hasAssigned = false;
+    #endregion
 
-    void OnEnable()
+    private void OnEnable()
     {
         InputSystem.onDeviceChange += OnDeviceChange;
         hasAssigned = false;
         TryAssignOnPanelOpen();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
-    void OnDeviceChange(InputDevice device, InputDeviceChange change)
+    private void OnDeviceChange(InputDevice device, InputDeviceChange change)
     {
         if (!hasAssigned && characterSelectionPanel.activeInHierarchy
             && device is Gamepad
@@ -34,7 +37,7 @@ public class InputConnectionManager : MonoBehaviour
         }
     }
 
-    void TryAssignOnPanelOpen()
+    private void TryAssignOnPanelOpen()
     {
         if (characterSelectionPanel.activeInHierarchy && !hasAssigned)
             AssignInputs();
@@ -42,35 +45,37 @@ public class InputConnectionManager : MonoBehaviour
 
     public void AssignInputs()
     {
-        var controllers = Gamepad.all.Where(g => g.added)  .GroupBy(g => g.description.product) .Select(grp => grp.First()) .ToList();
+        var controllers = Gamepad.all
+        .Where(g => g.added && g.description.interfaceName == "XInput")
+        .Take(2)
+        .ToList();
 
-        Debug.Log($"Connected Devices: {string.Join(", ", controllers.Select(g => g.description.product))}");
-
+        Debug.Log($"Found {controllers.Count} XInput pads: " + $"{string.Join(", ", controllers.Select(c => c.description.product))}");
+                  
         if (controllers.Count == 0)
         {
-            Player1InputType = Player2InputType = InputType.None;
-            Debug.LogError("You need at least one controller!"); //TODO: Reflect this through UI.
+            Debug.LogError("No gamepads found!");
             return;
         }
 
-        if (controllers.Count == 1)
+        if (controllers.Count <= 1)
         {
             Player1InputType = InputType.Keyboard;
             Player2InputType = InputType.Controller1;
 
-            player1Input.SwitchCurrentControlScheme("Keyboard", Keyboard.current);
+            player1Input.SwitchCurrentControlScheme("Keyboard", Keyboard.current, Mouse.current);
             player2Input.SwitchCurrentControlScheme("Controller", controllers[0]);
         }
-        else if(controllers.Count == 2)
+        else
         {
             Player1InputType = InputType.Controller2;
             Player2InputType = InputType.Controller1;
 
-            player1Input.SwitchCurrentControlScheme("Keyboard", Keyboard.current);
+            player1Input.SwitchCurrentControlScheme("Controller", controllers[1]);
             player2Input.SwitchCurrentControlScheme("Controller", controllers[0]);
         }
 
         hasAssigned = true;
-        Debug.Log($"[InputMgr] P1: {Player1InputType}, P2: {Player2InputType}");
+        Debug.Log($"P1: {Player1InputType}, P2: {Player2InputType}");
     }
 }
