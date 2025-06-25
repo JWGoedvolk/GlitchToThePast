@@ -6,9 +6,9 @@ public class CharacterSelectionPanel : MonoBehaviour
 {
     #region Variables
     [SerializeField] private InputConnectionManager inputConnectionManager;
-    [SerializeField] private GameObject[] characterPrefabs = new GameObject[2]; //TODO: publicise it when needed
+    [SerializeField] private GameObject[] characterPrefabs = new GameObject[2];  
 
-    bool p1Confirmed, p2Confirmed;
+    private bool p1Confirmed, p2Confirmed;
     #endregion
 
     void OnEnable()
@@ -20,13 +20,17 @@ public class CharacterSelectionPanel : MonoBehaviour
     #region Public Functions
     public void OnPlayer1Confirmed()
     {
-        p1Confirmed = true;
+        PlayerBarMover.P1Locked = !PlayerBarMover.P1Locked;
+        p1Confirmed = PlayerBarMover.P1Locked;
+        Debug.Log($"P1 {(p1Confirmed ? "Locked" : "Unlocked")} in slot {PlayerBarMover.p1Index}");
         TryStartGame();
     }
 
     public void OnPlayer2Confirmed()
     {
-        p2Confirmed = true;
+        PlayerBarMover.P2Locked = !PlayerBarMover.P2Locked;
+        p2Confirmed = PlayerBarMover.P2Locked;
+        Debug.Log($"P2 {(p2Confirmed ? "Locked" : "Unlocked")} in slot {PlayerBarMover.p2Index}");
         TryStartGame();
     }
     #endregion
