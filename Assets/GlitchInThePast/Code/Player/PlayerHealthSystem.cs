@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthSystem : MonoBehaviour
+public class PlayerHealthSystem : MonoBehaviour
 {
     //Player info
     public int currentHealth;
@@ -21,6 +21,10 @@ public class HealthSystem : MonoBehaviour
     //sprite for flashing
     private SpriteRenderer flashingEffect;
 
+
+    //for the spawn and checkpoint
+    public SpawningManager spawningManager;
+    public string playerID;
     void Start()
     {
         currentHealth = maxHealth;
@@ -30,6 +34,7 @@ public class HealthSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //timer since last dmg
         timeSinceLastDmg += Time.deltaTime;
 
@@ -73,7 +78,17 @@ public class HealthSystem : MonoBehaviour
     void Die()
     {
         // die
-        Debug.Log("player died");
+        Debug.Log(gameObject.tag + " died.");
+
+        gameObject.SetActive(false);
+
+        //adding the players to the hashset when they die
+        if (spawningManager != null)
+        {
+            spawningManager.deadplayers.Add(gameObject.tag);
+            spawningManager.HandleRespawning(gameObject.tag);
+        }
+            
     }
 
     //test to be changed
@@ -127,7 +142,7 @@ public class HealthSystem : MonoBehaviour
             currentHealth++;
             Debug.Log("health regan start" + currentHealth);
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(11f);
         }
 
         isRegenerating = false;
