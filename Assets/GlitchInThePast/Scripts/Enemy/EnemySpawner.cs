@@ -35,12 +35,12 @@ namespace Systems.Enemies
             if (meleeSpawnTimer >= meleeSpawnInterval)
             {
                 Instantiate(meleeEnemy, meleeSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
-                                                          // We make them children of the spawn point because it should help keep the hierarchy cleaner
+                meleeSpawnTimer = 0f;
             }
             if (rangedSpawnTimer >= rangedSpawnInterval)
             {
-                Instantiate(rangedSpawnPoint, rangedSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
-                                                                                 // We make them children of the spawn point because it should help keep the hierarchy cleaner
+                Instantiate(rangedEnemy, rangedSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
+                rangedSpawnTimer = 0f;
             }
         }
     }
