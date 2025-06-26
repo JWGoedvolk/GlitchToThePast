@@ -339,32 +339,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 589105167629486606, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
-      propertyPath: m_text
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3627370151923605532, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
-      propertyPath: playerControls.m_SingletonActionBindings.Array.data[1].m_Path
-      value: <Keyboard>/upArrow
-      objectReference: {fileID: 0}
-    - target: {fileID: 3627370151923605532, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
-      propertyPath: playerControls.m_SingletonActionBindings.Array.data[2].m_Path
-      value: <Keyboard>/downArrow
-      objectReference: {fileID: 0}
-    - target: {fileID: 3627370151923605532, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
-      propertyPath: playerControls.m_SingletonActionBindings.Array.data[3].m_Path
-      value: <Keyboard>/leftArrow
-      objectReference: {fileID: 0}
-    - target: {fileID: 3627370151923605532, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
-      propertyPath: playerControls.m_SingletonActionBindings.Array.data[4].m_Path
-      value: <Keyboard>/rightArrow
-      objectReference: {fileID: 0}
+    - target: {fileID: 1569574276213884313, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
+      propertyPath: spawningManager
+      value: 
+      objectReference: {fileID: 509695345}
     - target: {fileID: 5102593427144431319, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
       propertyPath: m_Name
-      value: Player2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5102593427144431319, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
-      propertyPath: m_TagString
       value: Player2
       objectReference: {fileID: 0}
     - target: {fileID: 8958076882502076336, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
@@ -410,10 +390,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5102593427144431319, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1333083196}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
 --- !u!1001 &905845728
 PrefabInstance:
@@ -629,24 +606,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5102593427144431319, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
   m_PrefabInstance: {fileID: 737813271}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1333083196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333083190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4244dc4ec515c4641b2991198d21a30e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 1
-  maxHealth: 1
-  isInvulerable: 0
-  invulerable: 3
-  spawningManager: {fileID: 509695345}
-  playerID: Player2
 --- !u!1 &1617701085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,24 +1058,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5102593427144431319, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
   m_PrefabInstance: {fileID: 4731589031216121370}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1848401883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848401877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4244dc4ec515c4641b2991198d21a30e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 1
-  maxHealth: 1
-  isInvulerable: 0
-  invulerable: 3
-  spawningManager: {fileID: 509695345}
-  playerID: Player1
 --- !u!1 &1980505751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,10 +1325,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5102593427144431319, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
-      propertyPath: m_TagString
-      value: Player1
-      objectReference: {fileID: 0}
+    - target: {fileID: 7083887633815904482, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
+      propertyPath: spawningManager
+      value: 
+      objectReference: {fileID: 509695345}
     - target: {fileID: 8958076882502076336, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1431,10 +1372,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5102593427144431319, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1848401883}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
 --- !u!1001 &5347789599408012465
 PrefabInstance:

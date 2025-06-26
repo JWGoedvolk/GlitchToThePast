@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 5314149056761362857}
   - component: {fileID: 5903888469742426985}
   - component: {fileID: 3635531384593983080}
+  - component: {fileID: 7083887633815904482}
+  - component: {fileID: 1569574276213884313}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +69,7 @@ MonoBehaviour:
       m_Flags: 4
     - m_Name: up
       m_Id: 77ad046c-762a-420f-a6c1-6741ad79966e
-      m_Path: <Keyboard>/w
+      m_Path: <Keyboard>/upArrow
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -75,7 +77,7 @@ MonoBehaviour:
       m_Flags: 8
     - m_Name: down
       m_Id: 8395d808-c73f-4ca0-89a5-d082ec522435
-      m_Path: <Keyboard>/s
+      m_Path: <Keyboard>/downArrow
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -83,7 +85,7 @@ MonoBehaviour:
       m_Flags: 8
     - m_Name: left
       m_Id: 6433b11c-b3a8-4031-9dde-0e3313486eb1
-      m_Path: <Keyboard>/a
+      m_Path: <Keyboard>/leftArrow
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -91,7 +93,7 @@ MonoBehaviour:
       m_Flags: 8
     - m_Name: right
       m_Id: f9c88a12-5848-49e9-8e11-c7c4c8c124b5
-      m_Path: <Keyboard>/d
+      m_Path: <Keyboard>/rightArrow
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -222,6 +224,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7083887633815904482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5102593427144431319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4244dc4ec515c4641b2991198d21a30e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 1
+  maxHealth: 1
+  isInvulerable: 0
+  invulerable: 3
+  spawningManager: {fileID: 0}
+  playerID: Player1
+--- !u!114 &1569574276213884313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5102593427144431319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4244dc4ec515c4641b2991198d21a30e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 1
+  maxHealth: 1
+  isInvulerable: 0
+  invulerable: 3
+  spawningManager: {fileID: 0}
+  playerID: Player2
 --- !u!1 &5185471318834824251
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +325,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
