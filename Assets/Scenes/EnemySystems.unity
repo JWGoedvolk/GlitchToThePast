@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &62441058
 Transform:
   m_ObjectHideFlags: 0
@@ -171,9 +171,9 @@ MonoBehaviour:
   isActive: 1
   meleeEnemy: {fileID: 6650723071496413354, guid: 47554c9d585059d4ba172b99d2e0136b, type: 3}
   meleeSpawnPoint: {fileID: 158962590}
-  meleeSpawnInterval: 1
+  meleeSpawnInterval: 4
   MeleeEnemyCount: 0
-  maxMeleeCount: 5
+  maxMeleeCount: -1
   rangedEnemy: {fileID: 6650723071496413354, guid: d3426c2fbb091b4469ad08cabaddde94, type: 3}
   rangedSpawnPoint: {fileID: 589185338}
   rangedSpawnInterval: 1
@@ -210,11 +210,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 62441058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &164314500 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 56005491746521886, guid: bd9d7db0c495e8a4ebc34aade0430e01, type: 3}
-  m_PrefabInstance: {fileID: 905845728}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &225226174
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,10 +672,10 @@ MonoBehaviour:
   onActivated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 164314500}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 62441059}
+        m_TargetAssemblyTypeName: Systems.Enemies.EnemySpawner, Assembly-CSharp
+        m_MethodName: DisableSpawner
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

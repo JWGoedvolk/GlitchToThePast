@@ -39,7 +39,7 @@ namespace Systems.Enemies
             // Check timers for spawn intervals
             if (meleeSpawnTimer >= meleeSpawnInterval)
             {
-                if (MeleeEnemyCount < maxMeleeCount)
+                if (MeleeEnemyCount < maxMeleeCount || maxMeleeCount < 0)
                 {
                     GameObject newMelee = Instantiate(meleeEnemy, meleeSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
                     EnemyHealth enemyHealth = newMelee.GetComponent<EnemyHealth>(); // Get the health system to set it up
@@ -50,7 +50,7 @@ namespace Systems.Enemies
                 }
                 meleeSpawnTimer = 0f;
             }
-            if (rangedSpawnTimer >= rangedSpawnInterval)
+            if (rangedSpawnTimer >= rangedSpawnInterval || maxRangedCount < 0)
             {
                 if (RangedEnemyCount < maxRangedCount)
                 {
@@ -63,6 +63,11 @@ namespace Systems.Enemies
                 }
                 rangedSpawnTimer = 0f;
             }
+        }
+
+        public void DisableSpawner()
+        {
+            isActive = false;
         }
     }
 }
