@@ -14,10 +14,9 @@ GameObject:
   - component: {fileID: 5903888469742426985}
   - component: {fileID: 3635531384593983080}
   - component: {fileID: 7083887633815904482}
-  - component: {fileID: 1569574276213884313}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player2
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,54 +50,119 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  playerControls:
-    m_Name: Player Controls
+  playerMovementControls:
+    m_Name: Player Movement Controls
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 578455ee-a56d-40c5-9f08-88aec2d65f83
+    m_Id: b591f3b8-222a-4637-8e59-46c3216bee06
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: Movement
-      m_Id: bc0aca70-a4ea-4145-b7b0-183f133ca243
+      m_Id: 26a8e757-6579-4953-9892-f980779ae3cb
       m_Path: 2DVector
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Player Controls
+      m_Action: Player Movement Controls
       m_Flags: 4
     - m_Name: up
-      m_Id: 77ad046c-762a-420f-a6c1-6741ad79966e
-      m_Path: <Keyboard>/upArrow
+      m_Id: 741823cf-c932-4f8b-b226-e1299e6456c3
+      m_Path: <Keyboard>/w
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Player Controls
+      m_Action: Player Movement Controls
       m_Flags: 8
     - m_Name: down
-      m_Id: 8395d808-c73f-4ca0-89a5-d082ec522435
-      m_Path: <Keyboard>/downArrow
+      m_Id: 1ae9295b-a4c3-422c-87f6-c58d9ade91e5
+      m_Path: <Keyboard>/s
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Player Controls
+      m_Action: Player Movement Controls
       m_Flags: 8
     - m_Name: left
-      m_Id: 6433b11c-b3a8-4031-9dde-0e3313486eb1
-      m_Path: <Keyboard>/leftArrow
+      m_Id: 20d6690d-ce73-494e-81ed-0562d75661a0
+      m_Path: <Keyboard>/a
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Player Controls
+      m_Action: Player Movement Controls
       m_Flags: 8
     - m_Name: right
-      m_Id: f9c88a12-5848-49e9-8e11-c7c4c8c124b5
-      m_Path: <Keyboard>/rightArrow
+      m_Id: f506aa64-699a-4fbd-beb4-ffef3aa54cf8
+      m_Path: <Keyboard>/d
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Player Controls
+      m_Action: Player Movement Controls
       m_Flags: 8
+    - m_Name: Movement
+      m_Id: 7215a66c-5361-4a2f-83d2-f4ffa6c2adfa
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement Controls
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 5255c4c8-ae19-44fe-9adb-247faa7aa32c
+      m_Path: <Gamepad>/leftStick/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement Controls
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 7d2855a9-ed81-4961-b1aa-1a0007d1bdee
+      m_Path: <Gamepad>/leftStick/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement Controls
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 77983901-87b7-43e0-ac67-366c7a7e61e7
+      m_Path: <Gamepad>/leftStick/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement Controls
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 0c7a125e-14d5-433e-abdd-d20ae8be0e94
+      m_Path: <Gamepad>/leftStick/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement Controls
+      m_Flags: 8
+    m_Flags: 0
+  playerInteractControls:
+    m_Name: Player Interact Controls
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 87268844-a544-46cc-bc8a-6a6ce45c63ec
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 018b08c6-cd92-4a44-9121-04e9672c6d13
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Interact Controls
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 507b1d26-a585-410c-a7f0-ca9dca45ceb4
+      m_Path: <Gamepad>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Interact Controls
+      m_Flags: 0
     m_Flags: 0
 --- !u!212 &5314149056761362857
 SpriteRenderer:
@@ -242,24 +306,6 @@ MonoBehaviour:
   invulerable: 3
   spawningManager: {fileID: 0}
   playerID: Player1
---- !u!114 &1569574276213884313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5102593427144431319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4244dc4ec515c4641b2991198d21a30e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 1
-  maxHealth: 1
-  isInvulerable: 0
-  invulerable: 3
-  spawningManager: {fileID: 0}
-  playerID: Player2
 --- !u!1 &5185471318834824251
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
