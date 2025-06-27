@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Systems.Enemies
@@ -50,14 +51,16 @@ namespace Systems.Enemies
                 }
                 meleeSpawnTimer = 0f;
             }
-            if (rangedSpawnTimer >= rangedSpawnInterval || maxRangedCount < 0)
+            if (rangedSpawnTimer >= rangedSpawnInterval)
             {
-                if (RangedEnemyCount < maxRangedCount)
+                if (RangedEnemyCount < maxRangedCount || maxRangedCount < 0)
                 {
                     GameObject newRanged = Instantiate(rangedEnemy, rangedSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
                     EnemyHealth enemyHealth = newRanged.GetComponent<EnemyHealth>(); // Get the health system to set it up
                     enemyHealth.spawner = this;
                     enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Ranged;
+                    RangedMovement movement = newRanged.GetComponent<RangedMovement>();
+                    movement.cruisingAltitude = rangedSpawnPoint.position.y;
                 
                     RangedEnemyCount++;
                 }
@@ -68,6 +71,14 @@ namespace Systems.Enemies
         public void DisableSpawner()
         {
             isActive = false;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(meleeSpawnPoint.position, 0.1f);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(rangedSpawnPoint.position, 0.1f);
         }
     }
 }
