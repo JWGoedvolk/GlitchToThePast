@@ -7,6 +7,7 @@ TagManager:
   - test
   - Player1
   - Player2
+  - Lever
   layers:
   - Default
   - TransparentFX
