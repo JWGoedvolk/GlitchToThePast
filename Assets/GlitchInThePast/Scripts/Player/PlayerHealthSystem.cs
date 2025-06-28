@@ -40,7 +40,6 @@ public class PlayerHealthSystem : MonoBehaviour
 
     void Update()
     {
-
         //timer since last dmg
         timeSinceLastDmg += Time.deltaTime;
 
