@@ -1,45 +1,43 @@
-using JetBrains.Annotations;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SpawningManager : MonoBehaviour
 {
-    public GameObject player1;
-    public GameObject player2;
-
     public float respawnDelay = 10f;
 
     //keeps track of the checkpoints before respawning the player (IF ONLY ONE IS DEAD)
-    private Dictionary  <string, Transform> currentCheckpoints = new Dictionary<string, Transform>();
+    private Dictionary<int, Transform> currentCheckpoints = new Dictionary<int, Transform>();
 
     //''    ''     '' which players courtine iswaitign for the respawn
-    private Dictionary  <string, Coroutine> respawnCoroutines = new Dictionary<string, Coroutine>();
+    private Dictionary<int, Coroutine> respawnCoroutines = new Dictionary<int, Coroutine>();
 
 
     public Transform deafultCheckpoint;
 
     //keeps list of which players are dead
-    public HashSet <string> deadplayers = new HashSet<string>();
+    private HashSet<int> deadplayers = new();
 
-    
 
-    public void HandleRespawning(string playerTag)
+    public void HandleRespawning(PlayerInput playerInput)
     {
-        if (deadplayers.Contains("Player1") && deadplayers.Contains("Player2")) 
+        int playerID = playerInput.playerIndex;
+        deadplayers.Add(playerID);
+
+        // if *both* are dead, cancel timers & immediately respawn both
+        if (deadplayers.Count == 2)
         {
-            foreach (var routine in respawnCoroutines.Values) 
-            {
-                if(routine != null)
-                    StopCoroutine(routine);
-            }
+            foreach (var ct in respawnCoroutines.Values)
+                if (ct != null) StopCoroutine(ct);
 
             //clar all stored coroutines
             respawnCoroutines.Clear();
 
             //Respawn both player immediately
-            Respawn("Player1");
-            Respawn("Player2");
+            Respawn(0);
+            Respawn(1);
 
 
             deadplayers.Clear();
@@ -48,60 +46,49 @@ public class SpawningManager : MonoBehaviour
         else
         {
             //if 1 player died then coniue as normal
-            if(!respawnCoroutines.ContainsKey(playerTag))
+            if (!respawnCoroutines.ContainsKey(playerID))
             {
-                Coroutine c = StartCoroutine(RespawnCour(playerTag));
-                respawnCoroutines.Add(playerTag, c);
+                respawnCoroutines[playerID] = StartCoroutine(RespawnCoroutine(playerInput));
             }
         }
     }
-    IEnumerator RespawnCour(string playerTag)
+
+    IEnumerator RespawnCoroutine(PlayerInput pi)
     {
         yield return new WaitForSeconds(respawnDelay);
 
-        Respawn(playerTag);
-        deadplayers.Remove(playerTag);
-        respawnCoroutines.Remove(playerTag);
-
+        Respawn(pi.playerIndex);
+        deadplayers.Remove(pi.playerIndex);
+        respawnCoroutines.Remove(pi.playerIndex);
     }
-    public void Respawn(string playerTag)
+
+    void Respawn(int playerIndex)
     {
-   
+        PlayerInput playerInput = PlayerInput.all.FirstOrDefault(p => p.playerIndex == playerIndex);
+        if (playerInput == null) return;
 
-        GameObject playerWaitingToRespawn = null;
+        GameObject gameObject = playerInput.gameObject;
 
-        if (playerTag == "Player1") playerWaitingToRespawn = player1;
-        else if (playerTag == "Player2") playerWaitingToRespawn = player2;
+        gameObject.SetActive(true);
 
-        if (playerWaitingToRespawn != null) 
+        if (currentCheckpoints.TryGetValue(playerIndex, out var savedCp))
         {
-            //checkpoint
-            Transform checkpoint = deafultCheckpoint;
-
-            if (currentCheckpoints.ContainsKey(playerTag)) 
-
-            checkpoint = currentCheckpoints[playerTag];
-
-           playerWaitingToRespawn.transform.position = checkpoint.position;
-           playerWaitingToRespawn.SetActive(true);           
-
-           PlayerHealthSystem hs = playerWaitingToRespawn.GetComponent<PlayerHealthSystem>();
-
-            if (hs != null) 
-            {
-                hs.currentHealth = hs.maxHealth;
-                hs.enabled = true;
-            }
-
-            Debug.Log(playerTag + "respawned");
+            gameObject.transform.position = savedCp.position;
         }
+        else
+        {
+            gameObject.transform.position = gameObject.transform.position;
+        }
+
+        PlayerHealthSystem hs = gameObject.GetComponent<PlayerHealthSystem>();
+        if (hs != null) hs.ResetHealth();
+
+        Debug.Log($"Player {playerIndex} respawned at {gameObject.transform.position}");
     }
 
-    public void UpdateCheckpoint(string playerTag, Transform checkpoint)
+
+    public void UpdateCheckpoint(int playerIndex, Transform checkpoint)
     {
-        if(currentCheckpoints.ContainsKey(playerTag))
-            currentCheckpoints[playerTag] = checkpoint;
-        else
-            currentCheckpoints.Add(playerTag, checkpoint);
+        currentCheckpoints[playerIndex] = checkpoint;
     }
 }

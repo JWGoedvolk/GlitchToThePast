@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
@@ -22,19 +22,25 @@ public class PlayerHealthSystem : MonoBehaviour
     private SpriteRenderer flashingEffect;
 
 
-    //for the spawn and checkpoint
+//for the spawn and checkpoint
+
     public SpawningManager spawningManager;
-    public string playerID;
+    private PlayerInput playerInput; // changed ID to refer to player index instead
+
+    void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+    }
+
     void Start()
     {
         currentHealth = maxHealth;
         flashingEffect = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
         //timer since last dmg
         timeSinceLastDmg += Time.deltaTime;
 
@@ -46,12 +52,12 @@ public class PlayerHealthSystem : MonoBehaviour
 
     }
 
-    void TakeDamage(int ammount) 
+    void TakeDamage(int ammount)
     {
         currentHealth -= ammount;
         Debug.Log("palyer is hit");
-        
-        if(currentHealth <= 0 ) 
+
+        if(currentHealth <= 0 )
         {
             Die();
             return;
@@ -60,17 +66,17 @@ public class PlayerHealthSystem : MonoBehaviour
         //resets the regan timer , stops and regan 
         timeSinceLastDmg = 0f;
 
-        if(reganCour != null ) 
+        if(reganCour != null )
         {
             StopCoroutine(reganCour);
             isRegenerating = false;
         }
-        
+
         if(invulCour != null )
         {
             StopCoroutine (invulCour);
         }
-       
+
         invulCour = StartCoroutine(Invulerablity());
 
     }
@@ -78,23 +84,21 @@ public class PlayerHealthSystem : MonoBehaviour
     void Die()
     {
         // die
-        Debug.Log(gameObject.tag + " died.");
+        Debug.Log($"Player {playerInput.playerIndex} died.");
 
         gameObject.SetActive(false);
 
-        //adding the players to the hashset when they die
         if (spawningManager != null)
         {
-            spawningManager.deadplayers.Add(gameObject.tag);
-            spawningManager.HandleRespawning(gameObject.tag);
+            // No need for hashset, we're now telling it which player to respawn (by their index)
+            spawningManager.HandleRespawning(playerInput);
         }
-            
+
     }
 
-    //test to be changed
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter(Collider collision) // 2.5d gameee regular works fine :D
     {
-        if(!isInvulerable && (collision.CompareTag("test")))
+        if (!isInvulerable && collision.CompareTag("test"))
         {
             TakeDamage(1);
         }
@@ -105,7 +109,7 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         isInvulerable = true;
 
-        float flashInterval = 0.2f;
+        float flashInterval = 0.2f;  
         float timer = 0f;
 
 
@@ -130,14 +134,13 @@ public class PlayerHealthSystem : MonoBehaviour
 
         isInvulerable = false;
 
-        yield break;
     }
-    
+
     IEnumerator Regan()
     {
         isRegenerating = true;
 
-        while (currentHealth < maxHealth) 
+        while (currentHealth < maxHealth)
         {
             currentHealth++;
             Debug.Log("health regan start" + currentHealth);
@@ -149,5 +152,18 @@ public class PlayerHealthSystem : MonoBehaviour
         reganCour = null;
     }
 
-    
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+
+        isInvulerable = false;
+        timeSinceLastDmg = 0f;
+        if (invulCour != null) StopCoroutine(invulCour);
+        if (reganCour != null) StopCoroutine(reganCour);
+        isRegenerating = false;
+        reganCour = null;
+        invulCour = null;
+
+        // if (flashingEffect != null) flashingEffect.enabled = true;
+    }
 }

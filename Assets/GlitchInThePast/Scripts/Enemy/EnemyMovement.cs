@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.InputSystem;
 
 namespace Systems.Enemies
 {
@@ -14,10 +14,31 @@ namespace Systems.Enemies
         protected virtual void Awake()
         {
             RB = GetComponent<Rigidbody2D>();
-            
-            SpawningManager spawningManager = FindObjectOfType<SpawningManager>();
-            Player1 = spawningManager.player1;
-            Player2 = spawningManager.player2;
+
+            foreach (var pi in PlayerInput.all)
+            {
+                if (pi.playerIndex == 0) Player1 = pi.gameObject;
+                else if (pi.playerIndex == 1) Player2 = pi.gameObject;
+            }
+        }
+
+        protected virtual void Update()
+        {
+            GameObject target = null;
+            if (Player1 != null && Player2 != null)
+            {
+                float d1 = Vector2.Distance(transform.position, Player1.transform.position);
+                float d2 = Vector2.Distance(transform.position, Player2.transform.position);
+                target = d1 < d2 ? Player1 : Player2;
+            }
+            else if (Player1 != null) target = Player1;
+            else if (Player2 != null) target = Player2;
+
+            if (target != null)
+            {
+                Vector2 dir = (target.transform.position - transform.position).normalized;
+                RB.velocity = dir * MoveSpeed;
+            }
         }
     }
 }

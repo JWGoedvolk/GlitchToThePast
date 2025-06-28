@@ -15,9 +15,11 @@ GameObject:
   - component: {fileID: 1474922228959563210}
   - component: {fileID: -1667628291648125389}
   - component: {fileID: 8520853062915068802}
+  - component: {fileID: -5837179421667479603}
+  - component: {fileID: 1269628808533936625}
   m_Layer: 0
   m_Name: P2
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,9 +149,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e48c07a83b47f4badbb1ff2c061aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpHeight: 2
-  gravity: -9.81
+  walkingSpeed: 5
+  runningSpeed: 1.5
+  dashSpeed: 12
+  dashDuration: 0.2
+  dashCooldown: 1
 --- !u!114 &8520853062915068802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,11 +203,50 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5a8db56b-8558-447e-b542-4486533aff8a
     m_ActionName: Gameplay/Move[/Keyboard/w,/Keyboard/a,/Keyboard/s,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0070ba91-9958-421a-922c-75a305716a62
+    m_ActionName: Gameplay/Run[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 115c150c-3b72-4299-bc51-4625f20ec253
+    m_ActionName: Gameplay/Dash[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &-5837179421667479603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777644233057218564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4244dc4ec515c4641b2991198d21a30e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 0
+  isInvulerable: 0
+  invulerable: 3
+  spawningManager: {fileID: 1269628808533936625}
+--- !u!114 &1269628808533936625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777644233057218564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbaa2d4a4caeda4ba2a0486d0fcac26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnDelay: 10
+  deafultCheckpoint: {fileID: 0}
 --- !u!1 &2747161769223174992
 GameObject:
   m_ObjectHideFlags: 0

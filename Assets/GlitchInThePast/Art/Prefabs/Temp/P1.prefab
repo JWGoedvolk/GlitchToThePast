@@ -15,9 +15,11 @@ GameObject:
   - component: {fileID: 5849175394712812477}
   - component: {fileID: -2738466684500915333}
   - component: {fileID: 6230387425360729084}
+  - component: {fileID: -2854676876281017167}
+  - component: {fileID: -973902796872497514}
   m_Layer: 0
   m_Name: P1
-  m_TagString: Untagged
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e48c07a83b47f4badbb1ff2c061aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  runMultiplier: 1.5
+  walkingSpeed: 5
+  runningSpeed: 1.5
   dashSpeed: 20
   dashDuration: 0.2
   dashCooldown: 1
@@ -214,6 +216,37 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &-2854676876281017167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3982303003054045252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4244dc4ec515c4641b2991198d21a30e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 0
+  isInvulerable: 0
+  invulerable: 3
+  spawningManager: {fileID: -973902796872497514}
+--- !u!114 &-973902796872497514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3982303003054045252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbaa2d4a4caeda4ba2a0486d0fcac26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnDelay: 10
+  deafultCheckpoint: {fileID: 0}
 --- !u!1 &8390149993924556420
 GameObject:
   m_ObjectHideFlags: 0

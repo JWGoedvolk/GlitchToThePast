@@ -1,21 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Checkpoints : MonoBehaviour
+public class CheckpointTrigger : MonoBehaviour
 {
-    
+    public SpawningManager spawningManager;
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        PlayerHealthSystem hs = collision.GetComponent<PlayerHealthSystem>();
-        if (hs != null && hs.spawningManager != null)
+    void OnTriggerEnter(Collider collision)
+    { 
+        var pi = collision.GetComponent<PlayerInput>(); // Changed it to use player index instead of tag
+        if (pi != null)
         {
-            string playerTag = collision.tag; 
-            hs.spawningManager.UpdateCheckpoint(playerTag, transform);
-            Debug.Log("Checkpoint updated for " + playerTag);
+            spawningManager.UpdateCheckpoint(pi.playerIndex, transform);
+            Debug.Log("Checkpoint updated for " + pi.playerIndex);
         }
-
     }
 }
-    
