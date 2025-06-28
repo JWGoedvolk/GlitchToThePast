@@ -169,14 +169,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 1
+  player1: {fileID: 1551797143}
+  player2: {fileID: 1767083964}
   meleeEnemy: {fileID: 6650723071496413354, guid: 47554c9d585059d4ba172b99d2e0136b, type: 3}
   meleeSpawnPoint: {fileID: 158962590}
   meleeSpawnInterval: 4
   MeleeEnemyCount: 0
-  maxMeleeCount: -1
+  maxMeleeCount: 0
   rangedEnemy: {fileID: 6650723071496413354, guid: d3426c2fbb091b4469ad08cabaddde94, type: 3}
   rangedSpawnPoint: {fileID: 589185338}
-  rangedSpawnInterval: 8
+  rangedSpawnInterval: 2
   RangedEnemyCount: 0
   maxRangedCount: -1
 --- !u!1 &158962589
@@ -440,6 +442,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 509695345}
     - target: {fileID: 3627370151923605532, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
+      propertyPath: interactRadius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3627370151923605532, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
+      propertyPath: whitelistedTags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3627370151923605532, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
+      propertyPath: whitelistedTags.Array.data[0]
+      value: Lever
+      objectReference: {fileID: 0}
+    - target: {fileID: 3627370151923605532, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
       propertyPath: playerControls.m_SingletonActionBindings.Array.data[1].m_Path
       value: <Keyboard>/upArrow
       objectReference: {fileID: 0}
@@ -455,13 +469,37 @@ PrefabInstance:
       propertyPath: playerControls.m_SingletonActionBindings.Array.data[4].m_Path
       value: <Keyboard>/rightArrow
       objectReference: {fileID: 0}
+    - target: {fileID: 3627370151923605532, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
+      propertyPath: playerMovementControls.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/upArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3627370151923605532, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
+      propertyPath: playerMovementControls.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Keyboard>/downArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3627370151923605532, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
+      propertyPath: playerMovementControls.m_SingletonActionBindings.Array.data[3].m_Path
+      value: <Keyboard>/leftArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3627370151923605532, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
+      propertyPath: playerMovementControls.m_SingletonActionBindings.Array.data[4].m_Path
+      value: <Keyboard>/rightArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635531384593983080, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635531384593983080, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5102593427144431319, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
     - target: {fileID: 5102593427144431319, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5102593427144431319, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
       propertyPath: m_TagString
@@ -650,7 +688,7 @@ Transform:
   m_GameObject: {fileID: 1040711069}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -723,7 +761,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1.09}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.28866667}
@@ -734,7 +772,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!1 &1061356294
 GameObject:
@@ -1847,7 +1885,7 @@ PrefabInstance:
       objectReference: {fileID: 509695345}
     - target: {fileID: 8958076882502076336, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.08
+      value: -4.56
       objectReference: {fileID: 0}
     - target: {fileID: 8958076882502076336, guid: 3733848f9270eaa4f8f9d391399f5c91, type: 3}
       propertyPath: m_LocalPosition.y

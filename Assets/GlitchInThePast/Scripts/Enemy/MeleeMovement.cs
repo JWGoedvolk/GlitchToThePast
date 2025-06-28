@@ -7,7 +7,7 @@ namespace Systems.Enemies
     {
         private void Update()
         {
-            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+            RB.velocity = new Vector2(MoveSpeed, RB.velocity.y);
         }
     }
 }

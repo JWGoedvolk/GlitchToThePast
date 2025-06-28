@@ -9,100 +9,111 @@ namespace Systems.Enemies
     {
         [Header("Movement")]
         public float cruisingAltitude; // This is the y position the enemies will try to fly at
+        public float cruisingAltitudeError = 0.1f;
         [SerializeField] private Vector2 movDir;
-        
-        [Header("Player detection")]
-        [SerializeField] private bool playerIsInRange = false;
-        [SerializeField] private float playerDetectionRadius = 3f;
-        [SerializeField] private List<Transform> playersInRange;
-        [SerializeField] private Transform playerTransform;
+        [Tooltip("This is the total distance of the strafe centered over the closest player's x position")]
+        [SerializeField] private float strafeDistance = 0.5f;
+        private bool isStrafingLeft = true;
+        [SerializeField] private Transform closestPlayer;
 
         protected override void Awake()
         {
             base.Awake();
             CircleCollider2D circleCollider = GetComponent<CircleCollider2D>();
             circleCollider.isTrigger = true;
-            circleCollider.radius = playerDetectionRadius;
+            
+            // Get the closest player in range
+            float player1Distance = Vector2.Distance(transform.position, Player1.transform.position);
+            float player2Distance = Vector2.Distance(transform.position, Player2.transform.position);
+            if (player2Distance < player1Distance)
+            {
+                Debug.Log("Player 2 is closer");
+                closestPlayer = Player2.transform;
+            }
+            else
+            {
+                Debug.Log("Player 1 is closer");
+                closestPlayer = Player1.transform;
+            }
         }
 
         void Update()
         {
-            // Check if a player is close enough to start divebombing
-            if (playerIsInRange)
+            // Get the closest player in range
+            float player1Distance = Vector2.Distance(transform.position, Player1.transform.position);
+            float player2Distance = Vector2.Distance(transform.position, Player2.transform.position);
+            if (player2Distance < player1Distance)
             {
-                Debug.Log("player is in range");
-                // Get the closest player in range
-                Transform closestPlayer = playerTransform;
-                foreach (Transform player in playersInRange)
-                {
-                    float distanceToClosestPlayer = Vector2.Distance(playerTransform.position, transform.position);
-                    float distanceToPlayer = Vector2.Distance(player.position, transform.position);
-                    if (distanceToPlayer < distanceToClosestPlayer)
-                    {
-                        closestPlayer = player;
-                        playerTransform = closestPlayer;
-                    }
-                }
-                movDir = playerTransform.position - transform.position;
-                movDir = movDir.normalized;
+                Debug.Log("Player 2 is closer");
+                closestPlayer = Player2.transform;
             }
-            else // If no player is in range
+            else
             {
-                Debug.Log("No player in range");
-                if (transform.position.y > cruisingAltitude - Single.Epsilon*2 && transform.position.y < cruisingAltitude + Single.Epsilon*2) // Check if we are close enough to cruising
-                {
-                    Debug.Log("Close enough to cruising altitude");
-                }
-                else if (transform.position.y < cruisingAltitude) // Too low so rise up
-                {
-                    movDir.y = 1f;
-                    Debug.Log("Rising up");
-                }
-                else if (transform.position.y > cruisingAltitude) // Too high so drop down
-                {
-                    movDir.y = -1f;
-                    Debug.Log("Dropping down");
-                }
+                Debug.Log("Player 1 is closer");
+                closestPlayer = Player1.transform;
+            }
+            
+            // Strafing thresholds
+            float distanceFromCenter = transform.position.x - closestPlayer.position.x;
+            Debug.Log("distanceFromCenter: " + distanceFromCenter);
 
+            // Custom PingPong based off distance and strafe direction
+            if (isStrafingLeft)
+            {
+                if (distanceFromCenter < -strafeDistance)
+                {
+                    isStrafingLeft = false;
+                }
+            }
+            else
+            {
+                if (distanceFromCenter > strafeDistance)
+                {
+                    isStrafingLeft = true;
+                }
+            }
+
+            // Moving in the strafe direction
+            if (isStrafingLeft)
+            {
                 movDir.x = -1f;
+            }
+            else
+            {
+                movDir.x = 1f;
+            }
+            
+            // Stay at cruising altitude
+            if (transform.position.y > cruisingAltitude - 0.1f && transform.position.y < cruisingAltitude + 0.1f) // Check if we are close enough to cruising
+            {
+                Debug.Log("Close enough to cruising altitude");
+                movDir.y = 0f;
+            }
+            else if (transform.position.y < cruisingAltitude) // Too low so rise up
+            {
+                movDir.y = 1f;
+                Debug.Log("Rising up");
+            }
+            else if (transform.position.y > cruisingAltitude) // Too high so drop down
+            {
+                movDir.y = -1f;
+                Debug.Log("Dropping down");
             }
             
             // Apply the movement on the normalized move direction
-            rb.velocity = movDir.normalized * moveSpeed;
+            RB.velocity = movDir.normalized * MoveSpeed;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnDrawGizmosSelected()
         {
-            if (other.CompareTag("Player") || other.CompareTag("Player1") || other.CompareTag("Player2"))
+            if (closestPlayer != null)
             {
-                playerIsInRange = true;
-                if (!playersInRange.Contains(other.transform))
-                {
-                    playersInRange.Add(other.transform);
-                    if (playerTransform == null) // Assign the triggering transform as the closest player if it isn't already set
-                    {
-                        playerTransform = other.transform;
-                    }
-                }
+                Debug.DrawLine(closestPlayer.position + Vector3.up * cruisingAltitude, closestPlayer.position + Vector3.left * strafeDistance + Vector3.up * cruisingAltitude, Color.red);
+                Debug.DrawLine(closestPlayer.position + Vector3.up * cruisingAltitude, closestPlayer.position - Vector3.left * strafeDistance + Vector3.up * cruisingAltitude, Color.red);
             }
-        }
 
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.CompareTag("Player") || other.CompareTag("Player1") || other.CompareTag("Player2"))
-            {
-                playersInRange.Remove(other.transform);
-                if (playersInRange.Count == 0)
-                {
-                    playerIsInRange = false;
-                }
-            }
-        }
-
-        private void OnDrawGizmos()
-        {
-            Debug.DrawRay(transform.position, movDir.normalized * moveSpeed, Color.red);
-            if (playerTransform != null) Debug.DrawLine(transform.position, playerTransform.position, Color.green);
+            Debug.DrawRay(transform.position, movDir.normalized * MoveSpeed, Color.cyan);
+            if (closestPlayer != null) Debug.DrawLine(transform.position, closestPlayer.position, Color.green);
         }
     }
 }

@@ -64,8 +64,9 @@ namespace JW.Movement
             }
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
+            Gizmos.color = Color.red;
             Gizmos.DrawWireCube(transform.position, Vector3.one * interactRadius);
         }
     }

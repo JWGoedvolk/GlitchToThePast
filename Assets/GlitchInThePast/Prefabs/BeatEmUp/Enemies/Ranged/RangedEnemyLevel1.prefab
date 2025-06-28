@@ -264,11 +264,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d18eed2210423199dd3848547847ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  rb: {fileID: 7413700127305226688}
+  MoveSpeed: 1
+  RB: {fileID: 0}
+  Player1: {fileID: 0}
+  Player2: {fileID: 0}
   cruisingAltitude: 3
+  cruisingAltitudeError: 0.01
   movDir: {x: 0, y: 0}
-  playerIsInRange: 0
-  playerDetectionRadius: 3
-  playersInRange: []
-  playerTransform: {fileID: 0}
+  strafeDistance: 1.5
+  closestPlayer: {fileID: 0}

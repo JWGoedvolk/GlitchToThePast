@@ -5,7 +5,12 @@ namespace Systems.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [Header("States")] [SerializeField] private bool isActive = true;
+        [Header("States")] 
+        [SerializeField] private bool isActive = true;
+
+        [Header("References For Enemies")] 
+        [SerializeField] private GameObject player1;
+        [SerializeField] private GameObject player2;
         
         [Header("Melee")]
         [SerializeField] private GameObject meleeEnemy;
@@ -73,12 +78,20 @@ namespace Systems.Enemies
             isActive = false;
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
+            // Spawn point visuals
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(meleeSpawnPoint.position, 0.1f);
             Gizmos.color = Color.yellow;
             Gizmos.DrawSphere(rangedSpawnPoint.position, 0.1f);
+            
+            // Cruising altitude visual
+            RangedMovement movement = rangedEnemy.GetComponent<RangedMovement>();
+            float cruisingVariance = movement.cruisingAltitudeError;
+            Debug.DrawRay(rangedSpawnPoint.position, Vector3.left * 100, Color.green);
+            Debug.DrawRay(rangedSpawnPoint.position + Vector3.up * cruisingVariance, Vector3.left * 100, new Color(0, 1, 0, 0.1f));
+            Debug.DrawRay(rangedSpawnPoint.position - Vector3.up * cruisingVariance, Vector3.left * 100, new Color(0, 1, 0, 0.1f));
         }
     }
 }
