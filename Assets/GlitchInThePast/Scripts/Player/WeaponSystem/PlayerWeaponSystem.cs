@@ -18,6 +18,7 @@ namespace GlitchInThePast.Scripts.Player
         [Header("General")]
         [SerializeField] private WeaponType weaponType;
         [SerializeField] private bool isRecharging = false;
+        [SerializeField] private bool isWeaponEnabled = true;
         [Header("Events")]
         [Header("Recharge")]
         [SerializeField] private UnityEvent onStartRecharge;
@@ -43,9 +44,9 @@ namespace GlitchInThePast.Scripts.Player
 
         public void OnAttack()
         {
-            if (isRecharging)
+            if (isRecharging || !isWeaponEnabled)
             {
-                Debug.Log($"Recharging...");
+                Debug.Log($"Recharging or weapon is disabled");
                 return;
             }
             
@@ -86,6 +87,16 @@ namespace GlitchInThePast.Scripts.Player
             Debug.Log("Done recharging");
             isRecharging = false;
             yield break;
+        }
+
+        public void EnableWeapon()
+        {
+            isWeaponEnabled = true;
+        }
+
+        public void DisableWeapon()
+        {
+            isWeaponEnabled = false;
         }
 
         private void OnDrawGizmos()
