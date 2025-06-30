@@ -37,7 +37,7 @@ namespace Systems.Enemies
             }
         }
 
-        void Update()
+        protected override void Update()
         {
             // Get the closest player in range
             float player1Distance = Vector2.Distance(transform.position, Player1.transform.position);

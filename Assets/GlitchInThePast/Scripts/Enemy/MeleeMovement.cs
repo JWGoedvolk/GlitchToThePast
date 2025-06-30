@@ -5,7 +5,7 @@ namespace Systems.Enemies
 {
     public class MeleeMovement : EnemyMovement
     {
-        private void Update()
+        protected override void Update()
         {
             RB.velocity = new Vector2(MoveSpeed, RB.velocity.y);
         }

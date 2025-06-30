@@ -91,4 +91,27 @@ public class SpawningManager : MonoBehaviour
     {
         currentCheckpoints[playerIndex] = checkpoint;
     }
+
+    public void ExplodeRespawnAll(Vector3 explosionPoint, Vector3 offset)
+    {
+        deadplayers.Clear();
+
+        foreach (Coroutine coroutine in respawnCoroutines.Values)
+        {
+            if (coroutine != null) StopCoroutine(coroutine);
+        }
+
+        respawnCoroutines.Clear();
+
+        foreach (PlayerInput pi in PlayerInput.all)
+        {
+            GameObject gameObjects = pi.gameObject;
+            gameObjects.SetActive(true);
+            gameObjects.transform.position = explosionPoint + offset;
+
+            PlayerHealthSystem healthSystem = gameObjects.GetComponent<PlayerHealthSystem>();
+            if (healthSystem != null) healthSystem.ResetHealth();
+        }
+        Debug.Log($"Respawned all at {explosionPoint + offset}");
+    }
 }

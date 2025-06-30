@@ -8,7 +8,7 @@ public class AnvilDropping : MonoBehaviour
     [SerializeField] private GameObject playerInRoom;
 
     [SerializeField] private float dropSpeed = 5f;
-    [SerializeField] private float resetHeight = 10f;
+    // [SerializeField] private float resetHeight = 10f;
 
     private Vector3 _anvilInitialPosition;
     private Vector3 _anvilLastFellPosition;

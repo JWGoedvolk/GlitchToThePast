@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/GlitchInThePast/Scenes/MainMenu.unity
     guid: 1f1b060873e02934d9dd1c508b5d699f
   - enabled: 1
-    path: Assets/GlitchInThePast/Scenes/PrototypeScenes/Jan_Prototypes/EnemySystems.unity
-    guid: c97914df903a00a44a0bf340a45d634d
+    path: Assets/GlitchInThePast/Scenes/PrototypeScenes/Dana_Prototypes/Explosives.unity
+    guid: 579ceb44770e2e64a91031b90c3aafe9
   - enabled: 1
     path: Assets/GlitchInThePast/Scenes/PrototypeScenes/Dana_Prototypes/FadeEffectPartTwo.unity
     guid: f293d9c3a36361d41a82cba70d8e3911
