@@ -1,3 +1,4 @@
+using GlitchInThePast.Scripts.Player;
 using TMPro;
 using UnityEngine;
 
@@ -37,12 +38,20 @@ namespace Systems.Enemies
                 }
                 
                 // Update health UI
-                healthUI.localScale = new Vector3(healthCurrent/healthMax, 1, 1);
+                healthUI.localScale = new Vector3((float)healthCurrent/healthMax, healthUI.localScale.y, healthUI.localScale.z);
             }
         }
         public EnemySpawner spawner; // We hold a reference to our spawner so we can keep track of how many of each enemy is currently alive
         
         [Header("UI")]
         [SerializeField] private Transform healthUI;
+
+        public void TakeDamage(int damage, PlayerWeaponSystem.WeaponType weaponType)
+        {
+            if (EnemyType == EnemyTypes.Melee && weaponType == PlayerWeaponSystem.WeaponType.Melee)
+            {
+                Health -= damage;
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4183937027507689170}
   - component: {fileID: 5503712719381612309}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HealthTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6005246739596911924}
   - component: {fileID: 1712338682114307313}
   - component: {fileID: 4318818368564780116}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MeleeEnemyLevel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,8 +201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114d21d4b3b74c70961d05b20ee235a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: -1
-  rb: {fileID: 0}
+  MoveSpeed: 0
+  RB: {fileID: 0}
+  Player1: {fileID: 0}
+  Player2: {fileID: 0}
 --- !u!50 &4318818368564780116
 Rigidbody2D:
   serializedVersion: 4
