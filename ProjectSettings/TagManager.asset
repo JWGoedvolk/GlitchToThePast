@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - test
+  - Player1
+  - Player2
+  - Lever
   layers:
   - Default
   - TransparentFX

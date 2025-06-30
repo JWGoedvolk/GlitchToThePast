@@ -20,17 +20,23 @@ public class CharacterSelectionPanel : MonoBehaviour
     #region Public Functions
     public void OnPlayer1Confirmed()
     {
+        if (PlayerBarMover.p1Index == 1) return;
+        
         PlayerBarMover.P1Locked = !PlayerBarMover.P1Locked;
         p1Confirmed = PlayerBarMover.P1Locked;
         Debug.Log($"P1 {(p1Confirmed ? "Locked" : "Unlocked")} in slot {PlayerBarMover.p1Index}");
+        // TODO: Showcase visual locking and unlocking.
         TryStartGame();
     }
 
     public void OnPlayer2Confirmed()
     {
+        if (PlayerBarMover.p2Index == 1) return;
+
         PlayerBarMover.P2Locked = !PlayerBarMover.P2Locked;
         p2Confirmed = PlayerBarMover.P2Locked;
         Debug.Log($"P2 {(p2Confirmed ? "Locked" : "Unlocked")} in slot {PlayerBarMover.p2Index}");
+        // TODO: Showcase visual locking and unlocking.
         TryStartGame();
     }
     #endregion

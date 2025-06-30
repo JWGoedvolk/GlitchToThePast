@@ -12,11 +12,11 @@ namespace JW.Roguelike.Objects
 
         [Header("Conditions")]
         [SerializeField] private bool isSensing = false;
-        [SerializeField] private bool requiresMinTimeSensed = false;
+        // [SerializeField] private bool requiresMinTimeSensed = false;
         [Header("Time Based")]
         [SerializeField] private float currentTimeSensed = 0f;
         [SerializeField] private float minTimeSensed = 0.5f;
-        [SerializeField] private float sensedCooldown = -1f;
+        // [SerializeField] private float sensedCooldown = -1f;
         
         [Header("Events")]
         [SerializeField] private UnityEvent onSensed;
