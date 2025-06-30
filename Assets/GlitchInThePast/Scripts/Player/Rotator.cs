@@ -6,30 +6,45 @@ namespace GlitchInThePast.Scripts.Player
 {
     public class Rotator : MonoBehaviour
     {
-        [SerializeField] private PlayerInput playerInput;
-        [SerializeField] private Vector2 aimInput;
-        [SerializeField] private Vector3 inNormal;
-        [SerializeField] private InputAction aim;
-
-        private void Awake()
-        {
-            aim = playerInput.actions.FindAction("Aim");
-        }
+        [Header("General")]
+        private Vector2 aimInput;
+        [SerializeField] private Transform target;
+        
+        [Header("Controller")]
+        [SerializeField] private bool isGamepad;
+        [SerializeField] private float controllerDeadZone = 0.01f;
+        [SerializeField] private float controllerRotationSmoothing = 1000f;
 
         private void Update()
         {
-            aimInput = aim.ReadValue<Vector2>();
-            Debug.Log(aimInput);
-            
-            Ray ray = Camera.main.ScreenPointToRay(aimInput);
-            Plane groundPlane = new Plane(inNormal, Vector3.zero);
-            float rayDistance;
-
-            if (groundPlane.Raycast(ray, out rayDistance))
+            if (!isGamepad)
             {
-                Vector3 point = ray.GetPoint(rayDistance);
-                transform.LookAt(point, Vector3.forward);
+                Ray ray = Camera.main.ScreenPointToRay(aimInput);
+                Plane groundPlane = new Plane(Vector3.forward, Vector3.zero);
+                float rayDistance;
+
+                if (groundPlane.Raycast(ray, out rayDistance))
+                {
+                    Vector3 point = ray.GetPoint(rayDistance);
+                    Vector3 heightCorrectedPoint = new Vector3(point.x, point.y, transform.position.z);
+                    transform.LookAt(heightCorrectedPoint, Vector3.forward);
+                }
             }
+            else
+            {
+                if (Mathf.Abs(aimInput.x) > controllerDeadZone || Mathf.Abs(aimInput.y) > controllerDeadZone)
+                {
+                    Vector3 playerDirection = Vector3.right * aimInput.x + Vector3.up * aimInput.y;
+
+                    if (playerDirection.sqrMagnitude > 0f)
+                    {
+                        Quaternion targetRotation = Quaternion.LookRotation(playerDirection, Vector3.forward);
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, controllerRotationSmoothing * Time.deltaTime);
+                    }
+                }
+            }
+            
+            target.position = transform.position + transform.forward * 1f; // The target transform is the transform from which our projectiles will come so it needs to always be updated
         }
 
         public void OnAim(Vector2 aim)
@@ -37,10 +52,16 @@ namespace GlitchInThePast.Scripts.Player
             aimInput = aim;
         }
 
+        public void OnDeviceChanged(PlayerInput playerInput)
+        {
+            isGamepad = playerInput.currentControlScheme == "Controller";
+        }
+
         void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
-            Debug.DrawLine(transform.position, aimInput);
+            Debug.DrawRay(transform.position, transform.forward);
+            Debug.DrawRay(target.position, target.forward);
         }
     }
 }

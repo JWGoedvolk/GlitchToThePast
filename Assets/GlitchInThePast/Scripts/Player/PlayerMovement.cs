@@ -73,8 +73,8 @@ namespace Player.GenericMovement
                 }
             }
             
-            Vector2 aimInput = playerInput.actions["Aim"].ReadValue<Vector2>();
-            Debug.Log(aimInput);
+            // Vector2 aimInput = playerInput.actions["Aim"].ReadValue<Vector2>();
+            // Debug.Log(aimInput);
         }
 
         private void FixedUpdate()
@@ -163,8 +163,8 @@ namespace Player.GenericMovement
 
         private void OnAim(InputAction.CallbackContext ctx)
         {
-            Debug.Log("Aiming");
-            // rotator.OnAim(ctx.ReadValue<Vector2>());
+            // Debug.Log("Aiming");
+            rotator.OnAim(ctx.ReadValue<Vector2>());
         }
 
         private void Dash()

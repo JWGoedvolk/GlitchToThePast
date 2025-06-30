@@ -32,11 +32,14 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private Transform meleeAttackTransform;
         [SerializeField] private float meleeAttackRange = 3f;
         [SerializeField] private float meleeRechargeTime = 3f;
+        [SerializeField] private int meleeDamage = 1;
 
         [Header("Ranged Attack")] 
         [SerializeField] private Transform rangedAttackSpawnPoint;
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private float rangedRechargeTime = 3f;
+        [SerializeField] private int rangedDamage = 1;
+        [SerializeField] private float projectileSpeed = 5f;
 
         public void OnAttack()
         {
@@ -58,7 +61,7 @@ namespace GlitchInThePast.Scripts.Player
                     EnemyHealth enemyHealth = hit.transform.GetComponent<EnemyHealth>();
                     if (enemyHealth != null)
                     {
-                        enemyHealth.TakeDamage(1, WeaponType.Melee);
+                        enemyHealth.TakeDamage(meleeDamage, WeaponType.Melee);
                     }
                 }
             }
@@ -66,7 +69,9 @@ namespace GlitchInThePast.Scripts.Player
             {
                 StartCoroutine(Recharge(rangedRechargeTime));
                 onRangedAttack?.Invoke();
-                Instantiate(projectilePrefab, rangedAttackSpawnPoint.position, rangedAttackSpawnPoint.rotation);
+                var projectile = Instantiate(projectilePrefab, rangedAttackSpawnPoint.position, rangedAttackSpawnPoint.rotation);
+                PlayerRangedProjectile projectileScript = projectile.GetComponent<PlayerRangedProjectile>();
+                projectileScript.Init(rangedDamage, projectileSpeed);
             }
         }
 

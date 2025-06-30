@@ -52,6 +52,10 @@ namespace Systems.Enemies
             {
                 Health -= damage;
             }
+            else if (EnemyType == EnemyTypes.Ranged && weaponType == PlayerWeaponSystem.WeaponType.Ranged)
+            {
+                Health -= damage;
+            }
         }
     }
 }

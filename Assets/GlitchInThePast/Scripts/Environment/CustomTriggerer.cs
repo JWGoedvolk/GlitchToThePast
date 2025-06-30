@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JW.Roguelike.Objects
 {
-    public class CustomCollider : MonoBehaviour
+    public class CustomTriggerer : MonoBehaviour
     {
         public List<string> Whitelist;
         public List<GameObject> TriggeringObjects;
@@ -15,6 +15,7 @@ namespace JW.Roguelike.Objects
                 if (!TriggeringObjects.Contains(other.gameObject))
                 {
                     TriggeringObjects.Add(other.gameObject);
+                    OnTrigger(other.gameObject);
                 }
             }
         }
@@ -26,6 +27,7 @@ namespace JW.Roguelike.Objects
                 if (TriggeringObjects.Contains(other.gameObject))
                 {
                     TriggeringObjects.Remove(other.gameObject);
+                    OnTriggerExit(other.gameObject);
                 }
             }
         }
