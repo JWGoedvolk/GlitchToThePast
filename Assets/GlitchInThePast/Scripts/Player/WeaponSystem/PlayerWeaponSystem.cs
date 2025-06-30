@@ -15,17 +15,28 @@ namespace GlitchInThePast.Scripts.Player
             Melee,
             Ranged
         }
+        [Header("General")]
         [SerializeField] private WeaponType weaponType;
-        [SerializeField] private GameObject projectilePrefab;
-        [SerializeField] private float rechargeTime = 3f;
         [SerializeField] private bool isRecharging = false;
+        [Header("Events")]
+        [Header("Recharge")]
         [SerializeField] private UnityEvent onStartRecharge;
-        [SerializeField] private UnityAction onRecharging;
+        [SerializeField] private UnityEvent onRecharging;
         [SerializeField] private UnityEvent onEndRecharge;
+        [Header("Melee")]
+        [SerializeField] private UnityEvent onMeleeAttack;
+        [Header("Ranged")] 
+        [SerializeField] private UnityEvent onRangedAttack;
 
         [Header("Melee Attack")]
-        [SerializeField] private float meleeAttackRange = 3f;
         [SerializeField] private Transform meleeAttackTransform;
+        [SerializeField] private float meleeAttackRange = 3f;
+        [SerializeField] private float meleeRechargeTime = 3f;
+
+        [Header("Ranged Attack")] 
+        [SerializeField] private Transform rangedAttackSpawnPoint;
+        [SerializeField] private GameObject projectilePrefab;
+        [SerializeField] private float rangedRechargeTime = 3f;
 
         public void OnAttack()
         {
@@ -34,11 +45,12 @@ namespace GlitchInThePast.Scripts.Player
                 Debug.Log($"Recharging...");
                 return;
             }
-            StartCoroutine(Recharge());
             
             Debug.Log("Player attacking from weapon system script");
             if (weaponType == WeaponType.Melee)
             {
+                StartCoroutine(Recharge(meleeRechargeTime));
+                onMeleeAttack?.Invoke();
                 var hits = Physics.RaycastAll(meleeAttackTransform.position, meleeAttackTransform.forward, meleeAttackRange, LayerMask.GetMask("Enemy"));
                 foreach (var hit in hits)
                 {
@@ -50,15 +62,21 @@ namespace GlitchInThePast.Scripts.Player
                     }
                 }
             }
+            else if (weaponType == WeaponType.Ranged)
+            {
+                StartCoroutine(Recharge(rangedRechargeTime));
+                onRangedAttack?.Invoke();
+                Instantiate(projectilePrefab, rangedAttackSpawnPoint.position, rangedAttackSpawnPoint.rotation);
+            }
         }
 
-        private IEnumerator Recharge()
+        private IEnumerator Recharge(float time)
         {
             // Start recharging
             isRecharging = true;
             onStartRecharge?.Invoke();
             Debug.Log("Starting recharge");
-            yield return new WaitForSeconds(rechargeTime);
+            yield return new WaitForSeconds(time);
             onEndRecharge?.Invoke();
             Debug.Log("Done recharging");
             isRecharging = false;
