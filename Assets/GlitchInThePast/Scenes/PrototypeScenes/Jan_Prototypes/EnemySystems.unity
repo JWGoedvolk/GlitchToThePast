@@ -169,8 +169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 1
-  player1: {fileID: 0}
-  player2: {fileID: 0}
   meleeEnemy: {fileID: 6650723071496413354, guid: 47554c9d585059d4ba172b99d2e0136b, type: 3}
   meleeSpawnPoint: {fileID: 158962590}
   meleeSpawnInterval: 4
@@ -375,8 +373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbaa2d4a4caeda4ba2a0486d0fcac26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
   respawnDelay: 3
   deafultCheckpoint: {fileID: 2286091957288483791}
 --- !u!4 &509695346
@@ -425,6 +421,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 62441058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &796974749
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1277676373348698392, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277676373348698392, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900171943438104666, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982303003054045252, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_Name
+      value: Bob
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276517022794321912, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.031603
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276517022794321912, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.92223716
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276517022794321912, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276517022794321912, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276517022794321912, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276517022794321912, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276517022794321912, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276517022794321912, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276517022794321912, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276517022794321912, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
 --- !u!1001 &905845728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1488,10 +1553,8 @@ MonoBehaviour:
   target: {fileID: 0}
   sensorDistance: 0
   isSensing: 0
-  requiresMinTimeSensed: 0
   currentTimeSensed: 0
   minTimeSensed: 0.5
-  sensedCooldown: -1
   onSensed:
     m_PersistentCalls:
       m_Calls:
@@ -1598,7 +1661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1878161285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1643,8 +1706,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbaa2d4a4caeda4ba2a0486d0fcac26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 3982303003054045252, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
-  player2: {fileID: 1777644233057218564, guid: 89a3a5190ad3dde43ab8dfb40c1c9349, type: 3}
   respawnDelay: 10
   deafultCheckpoint: {fileID: 2286091957288483791}
 --- !u!1 &1980505751
@@ -1978,3 +2039,4 @@ SceneRoots:
   - {fileID: 958232609}
   - {fileID: 1206619951}
   - {fileID: 1878161286}
+  - {fileID: 796974749}

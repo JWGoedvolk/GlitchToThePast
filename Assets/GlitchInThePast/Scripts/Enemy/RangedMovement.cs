@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Systems.Enemies
 {
-    [RequireComponent(typeof(CircleCollider2D))]
+    [RequireComponent(typeof(SphereCollider))]
     public class RangedMovement : EnemyMovement
     {
         [Header("Movement")]
@@ -19,39 +19,15 @@ namespace Systems.Enemies
         protected override void Awake()
         {
             base.Awake();
-            CircleCollider2D circleCollider = GetComponent<CircleCollider2D>();
+            SphereCollider circleCollider = GetComponent<SphereCollider>();
             circleCollider.isTrigger = true;
-            
-            // Get the closest player in range
-            float player1Distance = Vector2.Distance(transform.position, Player1.transform.position);
-            float player2Distance = Vector2.Distance(transform.position, Player2.transform.position);
-            if (player2Distance < player1Distance)
-            {
-                Debug.Log("Player 2 is closer");
-                closestPlayer = Player2.transform;
-            }
-            else
-            {
-                Debug.Log("Player 1 is closer");
-                closestPlayer = Player1.transform;
-            }
         }
 
         protected override void Update()
         {
-            // Get the closest player in range
-            float player1Distance = Vector2.Distance(transform.position, Player1.transform.position);
-            float player2Distance = Vector2.Distance(transform.position, Player2.transform.position);
-            if (player2Distance < player1Distance)
-            {
-                Debug.Log("Player 2 is closer");
-                closestPlayer = Player2.transform;
-            }
-            else
-            {
-                Debug.Log("Player 1 is closer");
-                closestPlayer = Player1.transform;
-            }
+            // Update the closest player
+            base.Update();
+            closestPlayer = ClosestPlayer;
             
             // Strafing thresholds
             float distanceFromCenter = transform.position.x - closestPlayer.position.x;
