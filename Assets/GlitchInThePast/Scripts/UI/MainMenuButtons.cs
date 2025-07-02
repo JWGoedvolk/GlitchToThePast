@@ -16,6 +16,9 @@ public class MainMenuButtons : MonoBehaviour
 
     [SerializeField] private TMP_Text sizeLabel;
 
+    //button locker
+    [SerializeField] UIBlocker buttonLocker;
+
     private bool subtitlesOn;
     private string[] sizes = new string[3];
     private int selectedSize = 0;
@@ -26,11 +29,24 @@ public class MainMenuButtons : MonoBehaviour
         sizes[0] = "SMALL";
         sizes[1] = "MEDIUM";
         sizes[2] = "LARGE";
+
+        //auto assigning the buttons since they are seralized
+        if (buttonLocker == null)
+        {
+            buttonLocker = GetComponent<UIBlocker>();
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && quitConfirmationPanel.activeSelf != true) settingsPanel.SetActive(!settingsPanel.activeSelf); // TODO: Use new InputSytem.
+        if (Input.GetKeyDown(KeyCode.Escape) && quitConfirmationPanel.activeSelf != true)
+        {
+            settingsPanel.SetActive(!settingsPanel.activeSelf); // TODO: Use new InputSytem.
+
+            //reagarding ui blockers
+            UpdateButtonState();
+
+        }
     }
 
     // Options toggler with esc
@@ -38,6 +54,11 @@ public class MainMenuButtons : MonoBehaviour
     public void SettingsToggler()
     {
         settingsPanel.SetActive(!settingsPanel.activeSelf);
+
+
+        // calling the fucntion
+        UpdateButtonState(); 
+       
     }
 
     public void GoToPreviousSize()
@@ -77,6 +98,9 @@ public class MainMenuButtons : MonoBehaviour
     public void QuitGame()
     {
         quitConfirmationPanel.SetActive(true);
+
+        // calling the fucntion
+        UpdateButtonState();
     }
 
     public void ConfirmQuit()
@@ -87,6 +111,28 @@ public class MainMenuButtons : MonoBehaviour
     public void DismissQuit()
     {
         quitConfirmationPanel.SetActive(false);
+
+        // calling the fucntion
+        UpdateButtonState();        
+    }
+    #endregion
+
+    #region UIBlocking
+
+    private void UpdateButtonState()
+    {
+        //checks if any pannels are active
+        bool anyPannelActive = settingsPanel.activeSelf || quitConfirmationPanel.activeSelf;
+        if (anyPannelActive) 
+        {
+            //if they are then call the fucntion from UIBlocker.cs
+            buttonLocker?.LockButton();
+        }
+        else 
+        {
+            //if they are not then call........
+            buttonLocker?.UnlockButton();
+        }
     }
     #endregion
 }
