@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameData
 {
@@ -9,17 +10,7 @@ namespace GameData
 
     public class SaveSystemCaller : MonoBehaviour
     {
-        [SerializeField] private GameObject CharacterSelection;
-
         #region Public Functions
-        #region New Game Button
-        public void StartNewGame()
-        {
-            CharacterSelection.SetActive(true); // TODO: Let there be a way to exit the selection screen which also results in deleting the new game file.
-            // TODO: Load the first scene (Narrartive here)
-        }
-        #endregion
-
         #region Load Game Button
         public void LoadSavedGame()
         {

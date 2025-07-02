@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -14,6 +15,15 @@ public class MainMenuButtons : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && quitConfirmationPanel.activeSelf != true) settingsPanel.SetActive(!settingsPanel.activeSelf);
     }
+
+    // Starts NarrativeLevel
+    #region New Game Button
+    public void StartNewGame()
+    {
+        // CharacterSelection.SetActive(true); // TODO: Let there be a way to exit the selection screen which also results in deleting the new game file.
+        SceneManager.LoadScene(1);
+    }
+    #endregion
 
     // Options toggler with esc
     #region Settings
