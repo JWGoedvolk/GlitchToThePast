@@ -8,12 +8,22 @@ public class MainMenuButtons : MonoBehaviour
 
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject quitConfirmationPanel;
-
+    [SerializeField] UIBlocker buttonLocker;
     #endregion
+
+    private void Start()
+    {
+        if (buttonLocker == null) buttonLocker = GetComponent<UIBlocker>();
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && quitConfirmationPanel.activeSelf != true) settingsPanel.SetActive(!settingsPanel.activeSelf);
+        if (Input.GetKeyDown(KeyCode.Escape) && quitConfirmationPanel.activeSelf != true)
+        {
+            settingsPanel.SetActive(!settingsPanel.activeSelf);
+
+            UpdateButtonState();
+        }
     }
 
     // Starts NarrativeLevel
@@ -30,6 +40,7 @@ public class MainMenuButtons : MonoBehaviour
     public void SettingsToggler()
     {
         settingsPanel.SetActive(!settingsPanel.activeSelf);
+        UpdateButtonState();
     }
     #endregion
 
@@ -38,6 +49,7 @@ public class MainMenuButtons : MonoBehaviour
     public void QuitGame()
     {
         quitConfirmationPanel.SetActive(true);
+        UpdateButtonState();
     }
 
     public void ConfirmQuit()
@@ -48,6 +60,25 @@ public class MainMenuButtons : MonoBehaviour
     public void DismissQuit()
     {
         quitConfirmationPanel.SetActive(false);
+        UpdateButtonState();
+    }
+    #endregion
+
+    #region UIBlocking
+    private void UpdateButtonState()
+    {
+        //checks if any pannels are active
+        bool anyPannelActive = settingsPanel.activeSelf || quitConfirmationPanel.activeSelf;
+        if (anyPannelActive)
+        {
+            //if they are then call the fucntion from UIBlocker.cs
+            buttonLocker?.LockButton();
+        }
+        else
+        {
+            //if they are not then call........
+            buttonLocker?.UnlockButton();
+        }
     }
     #endregion
 }
