@@ -73,7 +73,7 @@ public class CharacterSelectionPanel : MonoBehaviour
         GameSaveSystem.SaveGame(save);
         #endregion
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
     #endregion
 }
