@@ -472,8 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4606c4da6a73d084d92e397cce11288c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  irisMask: {fileID: 1381588734}
-  transitionTime: 1.5
+  blackCircle: {fileID: 1381588734}
 --- !u!1 &2118394592
 GameObject:
   m_ObjectHideFlags: 0
