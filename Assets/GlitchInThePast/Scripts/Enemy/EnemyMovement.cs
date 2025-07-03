@@ -3,17 +3,18 @@ using UnityEngine.InputSystem;
 
 namespace Systems.Enemies
 {
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Rigidbody))]
     public class EnemyMovement : MonoBehaviour
     {
         public float MoveSpeed;
-        public Rigidbody2D RB;
+        public Rigidbody RB;
         public GameObject Player1;
         public GameObject Player2;
+        protected Transform ClosestPlayer;
 
         protected virtual void Awake()
         {
-            RB = GetComponent<Rigidbody2D>();
+            RB = GetComponent<Rigidbody>();
 
             foreach (var pi in PlayerInput.all)
             {
@@ -34,11 +35,7 @@ namespace Systems.Enemies
             else if (Player1 != null) target = Player1;
             else if (Player2 != null) target = Player2;
 
-            if (target != null)
-            {
-                Vector2 dir = (target.transform.position - transform.position).normalized;
-                RB.velocity = dir * MoveSpeed;
-            }
+            ClosestPlayer = target.transform;
         }
     }
 }

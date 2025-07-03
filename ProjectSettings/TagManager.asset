@@ -8,6 +8,7 @@ TagManager:
   - Player1
   - Player2
   - Lever
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
