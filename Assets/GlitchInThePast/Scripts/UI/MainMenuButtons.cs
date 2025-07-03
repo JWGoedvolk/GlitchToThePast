@@ -55,7 +55,7 @@ public class MainMenuButtons : MonoBehaviour
     {
         if (settingsPanel == null || quitConfirmationPanel == null) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !quitConfirmationPanel.activeSelf || Input.GetButtonDown("Submit") && !quitConfirmationPanel.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) && !quitConfirmationPanel.activeSelf || Input.GetKeyDown(KeyCode.Joystick2Button7) && !quitConfirmationPanel.activeSelf)
         {
             settingsPanel.SetActive(!settingsPanel.activeSelf);
 
