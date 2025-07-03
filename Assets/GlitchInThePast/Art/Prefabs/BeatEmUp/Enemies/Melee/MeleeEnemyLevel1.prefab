@@ -239,6 +239,7 @@ MonoBehaviour:
   RB: {fileID: 0}
   Player1: {fileID: 0}
   Player2: {fileID: 0}
+  standOffDistance: 1.5
 --- !u!65 &7507275030360714662
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -258,5 +259,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.2}
+  m_Size: {x: 2.1, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
