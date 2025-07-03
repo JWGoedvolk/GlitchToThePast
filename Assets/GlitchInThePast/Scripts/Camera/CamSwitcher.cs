@@ -1,39 +1,42 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class CamSwitcher : MonoBehaviour
+namespace CameraScripts
 {
-    #region Variables
-    [SerializeField] private Camera cameraToEnable;
-    [SerializeField] private Camera cameraToDisable;
-
-    private HashSet<GameObject> playersInside = new HashSet<GameObject>();
-    private int totalPlayers = 2;
-    #endregion
-
-    private void OnTriggerEnter(Collider other)
+    public class CamSwitcher : MonoBehaviour
     {
-        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+        #region Variables
+        [SerializeField] private Camera cameraToEnable;
+        [SerializeField] private Camera cameraToDisable;
+
+        private HashSet<GameObject> playersInside = new HashSet<GameObject>();
+        private int totalPlayers = 2;
+        #endregion
+
+        private void OnTriggerEnter(Collider other)
         {
-            playersInside.Add(other.gameObject);
+            if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+            {
+                playersInside.Add(other.gameObject);
+            }
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+        private void OnTriggerExit(Collider other)
         {
-            playersInside.Remove(other.gameObject);
-            CheckForSwitch();
+            if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+            {
+                playersInside.Remove(other.gameObject);
+                CheckForSwitch();
+            }
         }
-    }
 
-    private void CheckForSwitch()
-    {
-        if (playersInside.Count == 0 && !cameraToEnable.gameObject.activeSelf)
+        private void CheckForSwitch()
         {
-            cameraToEnable.gameObject.SetActive(true);
-            cameraToDisable.gameObject.SetActive(false);
+            if (playersInside.Count == 0 && !cameraToEnable.gameObject.activeSelf)
+            {
+                cameraToEnable.gameObject.SetActive(true);
+                cameraToDisable.gameObject.SetActive(false);
+            }
         }
     }
 }

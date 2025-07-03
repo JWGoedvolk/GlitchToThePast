@@ -5574,7 +5574,7 @@ Transform:
   m_GameObject: {fileID: 1181646817}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.01, y: 0, z: 0.62}
+  m_LocalPosition: {x: -20.68, y: 0, z: 0.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9048,7 +9048,7 @@ Transform:
   m_GameObject: {fileID: 1843668886}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.39, y: 0, z: -0.63}
+  m_LocalPosition: {x: -18.36, y: 0, z: -0.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9446,6 +9446,7 @@ GameObject:
   - component: {fileID: 2006036886}
   - component: {fileID: 2006036885}
   - component: {fileID: 2006036884}
+  - component: {fileID: 2006036887}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9495,8 +9496,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 5.57
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -9520,13 +9521,32 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006036883}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.67, y: 4.31, z: -10}
+  m_LocalRotation: {x: 0.15806071, y: -0, z: -0, w: 0.98742944}
+  m_LocalPosition: {x: 12.97, y: 6.82, z: -8.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 18.189, y: 0, z: 0}
+--- !u!114 &2006036887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006036883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56949a613fd337d4da64debe477a07dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1Tag: Player1
+  player2Tag: Player2
+  smoothTime: 0.2
+  minX: -Infinity
+  maxX: Infinity
+  player1: {fileID: 0}
+  player2: {fileID: 0}
 --- !u!1001 &2037729867
 PrefabInstance:
   m_ObjectHideFlags: 0
