@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
+    public static System.Action<int, PlayerHealthSystem> OnPlayerSpawned;
+    private HealthDisplayUI healthUI;
+
     //Player info
     [Header("Health")]
     public int currentHealth;
@@ -26,11 +29,11 @@ public class PlayerHealthSystem : MonoBehaviour
 
     //sprite for flashing
     private SpriteRenderer flashingEffect;
-    
-    
 
 
-//for the spawn and checkpoint
+
+
+    //for the spawn and checkpoint
 
     public SpawningManager spawningManager;
     private PlayerInput playerInput; // changed ID to refer to player index instead
@@ -44,7 +47,21 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         currentHealth = maxHealth;
         flashingEffect = GetComponent<SpriteRenderer>();
+        OnPlayerSpawned?.Invoke(playerInput.playerIndex, this);
+
+        HealthDisplayUI[] allDisplays = FindObjectsOfType<HealthDisplayUI>();
+        foreach (var display in allDisplays)
+        {
+            if ((int)display.playerID == playerInput.playerIndex)
+            {
+                healthUI = display;
+                break;
+            }
+        }
+
+        UpdateUI();
     }
+
 
     void Update()
     {
@@ -52,19 +69,25 @@ public class PlayerHealthSystem : MonoBehaviour
         timeSinceLastDmg += Time.deltaTime;
 
         //starts rgean hlth after last dmg if not full hlth (duration to be changed)
-        if(currentHealth < maxHealth && !isRegenerating && timeSinceLastDmg >= 3f)
+        if (currentHealth < maxHealth && !isRegenerating && timeSinceLastDmg >= 3f)
         {
             StartCoroutine(Regan());
         }
 
     }
+    private void UpdateUI()
+    {
+        if (healthUI != null)
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+    }
 
     void TakeDamage(int ammount)
     {
         currentHealth -= ammount;
+        UpdateUI();
         Debug.Log("palyer is hit");
 
-        if(currentHealth <= 0 )
+        if (currentHealth <= 0)
         {
             Die();
             return;
@@ -73,15 +96,15 @@ public class PlayerHealthSystem : MonoBehaviour
         //resets the regan timer , stops and regan 
         timeSinceLastDmg = 0f;
 
-        if(reganCour != null )
+        if (reganCour != null)
         {
             StopCoroutine(reganCour);
             isRegenerating = false;
         }
 
-        if(invulCour != null )
+        if (invulCour != null)
         {
-            StopCoroutine (invulCour);
+            StopCoroutine(invulCour);
         }
 
         invulCour = StartCoroutine(Invulerablity());
@@ -116,7 +139,7 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         isInvulerable = true;
 
-        float flashInterval = 0.2f;  
+        float flashInterval = 0.2f;
         float timer = 0f;
 
 
@@ -146,6 +169,7 @@ public class PlayerHealthSystem : MonoBehaviour
     IEnumerator Regan()
     {
         isRegenerating = true;
+        UpdateUI();
 
         while (currentHealth < maxHealth)
         {
@@ -162,6 +186,7 @@ public class PlayerHealthSystem : MonoBehaviour
     public void ResetHealth()
     {
         currentHealth = maxHealth;
+        UpdateUI();
 
         isInvulerable = false;
         timeSinceLastDmg = 0f;
@@ -173,4 +198,11 @@ public class PlayerHealthSystem : MonoBehaviour
 
         // if (flashingEffect != null) flashingEffect.enabled = true;
     }
+
+    public void AssignUI(HealthDisplayUI ui)
+    {
+        healthUI = ui;
+        UpdateUI();
+    }
+
 }
