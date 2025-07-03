@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 7307085920574121977}
   - component: {fileID: 5923738833927002674}
   - component: {fileID: 1277676373348698392}
+  - component: {fileID: 6761702809571675758}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Player1
@@ -308,6 +309,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 115c150c-3b72-4299-bc51-4625f20ec253
     m_ActionName: Gameplay/Dash[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 866e37dd-815a-49a0-aae6-c0e6e338e72f
+    m_ActionName: Gameplay/Interact[/Keyboard/e,/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -400,3 +405,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6761702809571675758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579127009673012924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96dbf1ab8884b44940e732143b7ee4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
+  interactingObject: {fileID: 0}
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
