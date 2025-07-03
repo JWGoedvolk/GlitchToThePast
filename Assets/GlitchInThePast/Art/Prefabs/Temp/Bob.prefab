@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 42270690061297230}
   - component: {fileID: 8323151278664853343}
   m_Layer: 0
-  m_Name: MenuLayout
+  m_Name: BobSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,8 +277,8 @@ Transform:
   m_GameObject: {fileID: 8390149993924556420}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.408, z: 0}
-  m_LocalScale: {x: 0.05603089, y: 0.1663109, z: 0.13489826}
+  m_LocalPosition: {x: 0, y: 0.445, z: 0}
+  m_LocalScale: {x: 0.05117739, y: 0.07561059, z: 0.12321312}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6390881012933782396}
@@ -324,8 +324,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7e078b05fda6587428ce9e442065e993, type: 3}
-  m_Color: {r: 0, g: 0.9103844, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 29cea9b28fc5c38429515bdebfac0dd2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -344,7 +344,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390881012933782396}
-  - component: {fileID: 3900171943438104666}
   - component: {fileID: 8697966249229336715}
   - component: {fileID: 7183805979929903416}
   - component: {fileID: 7307085920574121977}
@@ -376,27 +375,6 @@ Transform:
   - {fileID: 874621403081017318}
   m_Father: {fileID: 7276517022794321912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3900171943438104666
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8579127009673012924}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8697966249229336715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,6 +473,7 @@ MonoBehaviour:
   maxHealth: 3
   isInvulerable: 0
   invulerable: 3
+  damageableTags: []
   spawningManager: {fileID: 8804729871716658839}
 --- !u!143 &7307085920574121977
 CharacterController:
@@ -515,8 +494,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.11
+  m_Radius: 0.32
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -564,8 +543,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

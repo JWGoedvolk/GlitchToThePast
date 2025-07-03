@@ -2699,7 +2699,7 @@ MonoBehaviour:
   - {fileID: 3982303003054045252, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
   - {fileID: 3982303003054045252, guid: fd83ca4060de4384a9075e0ec350ee4b, type: 3}
   playerOneSpawn: {fileID: 1181646818}
-  player2Spawn: {fileID: 1843668887}
+  playerTwoSpawn: {fileID: 1843668887}
 --- !u!1 &517264195
 GameObject:
   m_ObjectHideFlags: 0
@@ -9033,7 +9033,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1843668887}
   m_Layer: 0
-  m_Name: p2Spawn
+  m_Name: P2Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
