@@ -1,16 +1,39 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CamSwitcher : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private void Start()
+    #region Variables
+    [SerializeField] private Camera cameraToEnable;
+    [SerializeField] private Camera cameraToDisable;
+
+    private HashSet<GameObject> playersInside = new HashSet<GameObject>();
+    private int totalPlayers = 2;
+    #endregion
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+        {
+            playersInside.Add(other.gameObject);
+        }
     }
 
-    // Update is called once per frame
-    private void Update()
+    private void OnTriggerExit(Collider other)
     {
-        
+        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+        {
+            playersInside.Remove(other.gameObject);
+            CheckForSwitch();
+        }
+    }
+
+    private void CheckForSwitch()
+    {
+        if (playersInside.Count == 0 && !cameraToEnable.gameObject.activeSelf)
+        {
+            cameraToEnable.gameObject.SetActive(true);
+            cameraToDisable.gameObject.SetActive(false);
+        }
     }
 }
