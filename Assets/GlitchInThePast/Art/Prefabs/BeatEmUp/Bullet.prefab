@@ -122,7 +122,7 @@ MonoBehaviour:
   Whitelist:
   - Enemy
   TriggeringObjects: []
-  Damage: 0
+  Damage: 1
   OnEnemyHit:
     m_PersistentCalls:
       m_Calls:

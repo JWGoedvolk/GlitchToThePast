@@ -1,3 +1,4 @@
+using System;
 using GlitchInThePast.Scripts.Player;
 using TMPro;
 using UnityEngine;
@@ -34,12 +35,12 @@ namespace Systems.Enemies
                 {
                     if (EnemyType == EnemyTypes.Melee)
                     {
-                        spawner.MeleeEnemyCount--;
+                        if (spawner != null) spawner.MeleeEnemyCount--;
                         OnDeath?.Invoke();
                     }
                     else if (EnemyType == EnemyTypes.Ranged)
                     {
-                        spawner.RangedEnemyCount--;
+                        if (spawner != null) spawner.RangedEnemyCount--;
                         OnDeath?.Invoke();
                     }
                 }
@@ -48,8 +49,9 @@ namespace Systems.Enemies
                 healthUI.localScale = new Vector3((float)healthCurrent/healthMax, healthUI.localScale.y, healthUI.localScale.z);
             }
         }
+        public int HealthMax => healthMax;
         public EnemySpawner spawner; // We hold a reference to our spawner so we can keep track of how many of each enemy is currently alive
-        
+
         [Header("UI")]
         [SerializeField] private Transform healthUI;
 

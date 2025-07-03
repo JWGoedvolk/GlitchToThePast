@@ -55,7 +55,7 @@ namespace GlitchInThePast.Scripts.Player
             {
                 StartCoroutine(Recharge(meleeRechargeTime));
                 onMeleeAttack?.Invoke();
-                var hits = Physics.RaycastAll(meleeAttackTransform.position, meleeAttackTransform.forward, meleeAttackRange, LayerMask.GetMask("Enemy"));
+                var hits = Physics.RaycastAll(meleeAttackTransform.position, meleeAttackTransform.forward, meleeAttackRange);
                 foreach (var hit in hits)
                 {
                     Debug.Log(hit.transform.name);
@@ -101,7 +101,7 @@ namespace GlitchInThePast.Scripts.Player
 
         private void OnDrawGizmos()
         {
-            Debug.DrawLine(meleeAttackTransform.position, meleeAttackTransform.position + meleeAttackTransform.forward * meleeAttackRange);
+            if (weaponType == WeaponType.Melee) Debug.DrawLine(meleeAttackTransform.position, meleeAttackTransform.position + meleeAttackTransform.forward * meleeAttackRange);
         }
     }
 }
