@@ -84,6 +84,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3884393075431909462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1119427245241221705}
+  m_Layer: 0
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1119427245241221705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884393075431909462}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7193135073888279521}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6650723071496413354
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,6 +127,7 @@ GameObject:
   - component: {fileID: 1772180890220995112}
   - component: {fileID: 6005246739596911924}
   - component: {fileID: 4721818341627086875}
+  - component: {fileID: 2023504370222550526}
   - component: {fileID: 2568709844751585825}
   - component: {fileID: 8200913619389201417}
   m_Layer: 6
@@ -119,6 +151,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4183937027507689170}
+  - {fileID: 1119427245241221705}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1772180890220995112
@@ -188,6 +221,12 @@ MonoBehaviour:
   healthMax: 3
   healthCurrent: 3
   EnemyType: 1
+  OnDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
   spawner: {fileID: 0}
   healthUI: {fileID: 4183937027507689170}
 --- !u!114 &4721818341627086875
@@ -211,6 +250,27 @@ MonoBehaviour:
   movDir: {x: 0, y: 0}
   strafeDistance: 1.5
   closestPlayer: {fileID: 0}
+--- !u!114 &2023504370222550526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6650723071496413354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4a8ad687424941973e94417b7b3614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 1994459397597907849, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
+  projectileSpawn: {fileID: 1119427245241221705}
+  fireRate: 3
+  reloadTime: 0
+  projectileSpeed: 2
+  attackRange: 3
+  movement: {fileID: 0}
+  spawnPreviewColor: {r: 0, g: 1, b: 1, a: 1}
+  rangePreviewColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!135 &2568709844751585825
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ namespace Systems.Enemies
         [Tooltip("This is the total distance of the strafe centered over the closest player's x position")]
         [SerializeField] private float strafeDistance = 0.5f;
         private bool isStrafingLeft = true;
-        [SerializeField] private Transform closestPlayer;
+        public Transform closestPlayer;
 
         protected override void Awake()
         {

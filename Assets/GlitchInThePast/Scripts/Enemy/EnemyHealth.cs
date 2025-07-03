@@ -1,6 +1,7 @@
 using GlitchInThePast.Scripts.Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Systems.Enemies
 {
@@ -17,6 +18,10 @@ namespace Systems.Enemies
         [SerializeField] private int healthMax = 3;
         [SerializeField] private int healthCurrent = 3;
         public EnemyTypes EnemyType = EnemyTypes.Melee;
+        
+        [Header("Events")]
+        [SerializeField] public UnityEvent OnDamageTaken;
+        [SerializeField] public UnityEvent OnDeath;
         public int Health
         {
             get { return healthCurrent; }
@@ -30,10 +35,12 @@ namespace Systems.Enemies
                     if (EnemyType == EnemyTypes.Melee)
                     {
                         spawner.MeleeEnemyCount--;
+                        OnDeath?.Invoke();
                     }
                     else if (EnemyType == EnemyTypes.Ranged)
                     {
                         spawner.RangedEnemyCount--;
+                        OnDeath?.Invoke();
                     }
                 }
                 
@@ -51,10 +58,12 @@ namespace Systems.Enemies
             if (EnemyType == EnemyTypes.Melee && weaponType == PlayerWeaponSystem.WeaponType.Melee)
             {
                 Health -= damage;
+                OnDamageTaken?.Invoke();
             }
             else if (EnemyType == EnemyTypes.Ranged && weaponType == PlayerWeaponSystem.WeaponType.Ranged)
             {
                 Health -= damage;
+                OnDamageTaken?.Invoke();
             }
         }
     }

@@ -1,16 +1,22 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
     //Player info
+    [Header("Health")]
     public int currentHealth;
     public int maxHealth;
 
+    [Header("Invulnerability")]
     public bool isInvulerable = false;
     public float invulerable = 3f;
 
+    [Header("Damage")]
+    [SerializeField] private List<string> damageableTags = new List<string>();
+    // Regen
     private bool isRegenerating = false;
     private float timeSinceLastDmg;
 
@@ -20,6 +26,8 @@ public class PlayerHealthSystem : MonoBehaviour
 
     //sprite for flashing
     private SpriteRenderer flashingEffect;
+    
+    
 
 
 //for the spawn and checkpoint
@@ -95,9 +103,9 @@ public class PlayerHealthSystem : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider collision) // 2.5d gameee regular works fine :D
+    void OnTriggerEnter(Collider collision) // 2.5d game regular works fine :D
     {
-        if (!isInvulerable && collision.CompareTag("test"))
+        if (!isInvulerable && damageableTags.Contains(collision.tag))
         {
             TakeDamage(1);
         }
