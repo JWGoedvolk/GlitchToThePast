@@ -13,7 +13,10 @@ namespace Systems.Enemies
             Vector3 dir = targetPosition - rb.position;
             rb.velocity = dir.normalized * speed;
         }
-        
-        
+
+        public override void OnTrigger(GameObject other)
+        {
+            Destroy(gameObject);
+        }
     }
 }

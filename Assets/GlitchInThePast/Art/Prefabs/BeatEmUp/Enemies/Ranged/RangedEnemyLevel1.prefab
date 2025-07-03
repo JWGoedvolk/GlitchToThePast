@@ -267,7 +267,7 @@ MonoBehaviour:
   fireRate: 3
   reloadTime: 0
   projectileSpeed: 2
-  attackRange: 3
+  attackRange: 5
   movement: {fileID: 0}
   spawnPreviewColor: {r: 0, g: 1, b: 1, a: 1}
   rangePreviewColor: {r: 1, g: 0, b: 0, a: 1}

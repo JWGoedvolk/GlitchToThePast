@@ -171,14 +171,14 @@ MonoBehaviour:
   isActive: 1
   meleeEnemy: {fileID: 6650723071496413354, guid: 47554c9d585059d4ba172b99d2e0136b, type: 3}
   meleeSpawnPoint: {fileID: 158962590}
-  meleeSpawnInterval: 4
+  meleeSpawnInterval: 1
   MeleeEnemyCount: 0
-  maxMeleeCount: 0
+  maxMeleeCount: 1
   rangedEnemy: {fileID: 6650723071496413354, guid: d3426c2fbb091b4469ad08cabaddde94, type: 3}
   rangedSpawnPoint: {fileID: 589185338}
-  rangedSpawnInterval: 2
+  rangedSpawnInterval: 10
   RangedEnemyCount: 0
-  maxRangedCount: -1
+  maxRangedCount: 0
 --- !u!1 &158962589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,7 +1521,7 @@ Transform:
   m_GameObject: {fileID: 1732355972}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.03, y: -3.85, z: 0.34}
+  m_LocalPosition: {x: 1.03, y: -3.23, z: 0.34}
   m_LocalScale: {x: 25.691057, y: 5.1432767, z: 4.6552124}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1966,63 +1966,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &1717820160875283095
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1994459397597907849, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
-      propertyPath: m_Name
-      value: EnemyProjectile
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554703165351278711, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554703165351278711, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554703165351278711, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554703165351278711, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554703165351278711, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554703165351278711, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554703165351278711, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554703165351278711, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554703165351278711, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554703165351278711, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 53cd5ad07388e894f80a8db628557427, type: 3}
 --- !u!4 &2286091957288483791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4761406700353199469, guid: acd1f9d4edbe570429e3fdac18fed696, type: 3}
@@ -2105,4 +2048,3 @@ SceneRoots:
   - {fileID: 1206619951}
   - {fileID: 1878161286}
   - {fileID: 796974749}
-  - {fileID: 1717820160875283095}
