@@ -1876,6 +1876,7 @@ GameObject:
   - component: {fileID: 2121457755}
   - component: {fileID: 2121457756}
   - component: {fileID: 2121457757}
+  - component: {fileID: 2121457758}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -1910,6 +1911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116ac64a78feea24f972fd0de85f1a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterSelection: {fileID: 597022162}
 --- !u!114 &2121457756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1925,7 +1927,7 @@ MonoBehaviour:
   inputConnectionManager: {fileID: 2121457757}
   characterPrefabs:
   - {fileID: 3982303003054045252, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
-  - {fileID: 1777644233057218564, guid: 89a3a5190ad3dde43ab8dfb40c1c9349, type: 3}
+  - {fileID: 3982303003054045252, guid: fd83ca4060de4384a9075e0ec350ee4b, type: 3}
 --- !u!114 &2121457757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1941,6 +1943,30 @@ MonoBehaviour:
   player1Input: {fileID: 1500997248}
   player2Input: {fileID: 1649447724}
   characterSelectionPanel: {fileID: 597022162}
+--- !u!114 &2121457758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121457753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1128a3a5f77a8c6428b3137de1e9797a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsPanel: {fileID: 0}
+  quitConfirmationPanel: {fileID: 0}
+  firstSettingsButton: {fileID: 0}
+  firstQuitPanelButton: {fileID: 0}
+  firstMainMenuButton: {fileID: 0}
+  charactersSelectionpanel: {fileID: 597022162}
+  substitlesToggleImage: {fileID: 0}
+  subtitlesOnImage: {fileID: 0}
+  SpritesubtitlesOffImage: {fileID: 0}
+  sizeLabel: {fileID: 0}
+  isSelectingCharacters: 1
+  buttonLocker: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

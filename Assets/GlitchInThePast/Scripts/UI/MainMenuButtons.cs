@@ -2,6 +2,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -12,12 +13,15 @@ public class MainMenuButtons : MonoBehaviour
     [SerializeField] private GameObject firstSettingsButton;
     [SerializeField] private GameObject firstQuitPanelButton;
     [SerializeField] private GameObject firstMainMenuButton;
+    [SerializeField] private GameObject charactersSelectionpanel;
 
     [SerializeField] private Image substitlesToggleImage;
     [SerializeField] private Sprite subtitlesOnImage;
     [SerializeField] private Sprite SpritesubtitlesOffImage;
 
     [SerializeField] private TMP_Text sizeLabel;
+
+    [SerializeField] private bool isSelectingCharacters;
 
     //button locker
     [SerializeField] UIBlocker buttonLocker;
@@ -29,6 +33,13 @@ public class MainMenuButtons : MonoBehaviour
 
     private void Start()
     {
+        if (isSelectingCharacters)
+        {
+            charactersSelectionpanel.SetActive(true);
+            return;
+        }
+
+        if (sizes is null) return;
         sizes[0] = "SMALL";
         sizes[1] = "MEDIUM";
         sizes[2] = "LARGE";
@@ -42,6 +53,8 @@ public class MainMenuButtons : MonoBehaviour
 
     private void Update()
     {
+        if (settingsPanel == null || quitConfirmationPanel == null) return;
+
         if (Input.GetKeyDown(KeyCode.Escape) && !quitConfirmationPanel.activeSelf || Input.GetButtonDown("Submit") && !quitConfirmationPanel.activeSelf)
         {
             settingsPanel.SetActive(!settingsPanel.activeSelf);
@@ -57,6 +70,13 @@ public class MainMenuButtons : MonoBehaviour
 
     }
 
+    #region Start Button
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+    #endregion
+
     // Options toggler with esc
     #region Settings
     public void SettingsToggler()
@@ -64,7 +84,7 @@ public class MainMenuButtons : MonoBehaviour
         bool settingsActive = !settingsPanel.activeSelf;
         settingsPanel.SetActive(settingsActive);
 
-        EventSystem.current.SetSelectedGameObject(null); 
+        EventSystem.current.SetSelectedGameObject(null);
 
         if (settingsActive)
         {

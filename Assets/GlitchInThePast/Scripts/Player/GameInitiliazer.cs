@@ -12,7 +12,7 @@ public class GameInitializer : MonoBehaviour
     [Tooltip("Empty objects in scene where the players spawn into when they load into the game.")]
     public Transform playerOneSpawn;
     [Tooltip("Empty objects in scene where the players spawn into when they load into the game.")]
-    public Transform player2Spawn;
+    public Transform playerTwoSpawn;
 
     private string keyboardScheme = "Keyboard";
     private string gamepadScheme = "Controller";
@@ -67,7 +67,7 @@ public class GameInitializer : MonoBehaviour
         playerOneGameobject.transform.position = playerOneSpawn.position;
 
         PlayerInput playerTwoGameObject = PlayerInput.Instantiate(characterPrefabs[i2], controlScheme: (secondType == InputConnectionManager.InputType.Keyboard) ? keyboardScheme : gamepadScheme, pairWithDevices: secondDevice);
-        playerTwoGameObject.transform.position = player2Spawn.position;
+        playerTwoGameObject.transform.position = playerTwoSpawn.position;
         #endregion
     }
 }
