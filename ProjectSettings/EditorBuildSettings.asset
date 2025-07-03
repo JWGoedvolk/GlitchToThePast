@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/GlitchInThePast/Scenes/MainMenu.unity
-    guid: 1f1b060873e02934d9dd1c508b5d699f
+    guid: 66f465a941ec2ea4789c7b55cdd9bd46
   - enabled: 1
     path: Assets/GlitchInThePast/Scenes/CharacterSelection.unity
     guid: 3b557a4dd95396540ade3afe98b09824
