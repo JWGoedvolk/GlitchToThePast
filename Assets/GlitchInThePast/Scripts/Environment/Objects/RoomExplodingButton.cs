@@ -11,7 +11,7 @@ public class RoomExplodingButton : MonoBehaviour
     [Tooltip("How long does it take for the explosion to take place?")]
     public float countdownTime = 5f;
     [Tooltip("When they respawn, ofsset them from the button's position by whatever value is given.")]
-    public Vector3 respawnOffset = new Vector3(-2f, 0f, 0f);
+    public Vector3 respawnOffset = new Vector3(-4f, 0f, 0f);
 
     [Header("UI References")]
     [Tooltip("UI Text element to show the ticking countdown")]
@@ -35,7 +35,6 @@ public class RoomExplodingButton : MonoBehaviour
 
         if (other.tag == "Player1" || other.tag == "Player2")
         {
-            Debug.Log(other.name);
             PlayerInput playerInput = other.GetComponent<PlayerInput>();
             if (playerInput != null)
             {

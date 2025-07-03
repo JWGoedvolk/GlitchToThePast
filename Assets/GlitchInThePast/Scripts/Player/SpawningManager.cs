@@ -14,12 +14,10 @@ public class SpawningManager : MonoBehaviour
     //''    ''     '' which players courtine iswaitign for the respawn
     private Dictionary<int, Coroutine> respawnCoroutines = new Dictionary<int, Coroutine>();
 
-
     public Transform deafultCheckpoint;
 
     //keeps list of which players are dead
     private HashSet<int> deadplayers = new();
-
 
     public void HandleRespawning(PlayerInput playerInput)
     {
@@ -39,9 +37,7 @@ public class SpawningManager : MonoBehaviour
             Respawn(0);
             Respawn(1);
 
-
             deadplayers.Clear();
-
         }
         else
         {
@@ -69,23 +65,23 @@ public class SpawningManager : MonoBehaviour
 
         GameObject gameObject = playerInput.gameObject;
 
-        gameObject.SetActive(true);
-
+        Vector3 respawnPos = gameObject.transform.position;
         if (currentCheckpoints.TryGetValue(playerIndex, out var savedCp))
         {
-            gameObject.transform.position = savedCp.position;
+            respawnPos = savedCp.position;
         }
-        else
+        else if (deafultCheckpoint != null)
         {
-            gameObject.transform.position = gameObject.transform.position;
+            respawnPos = deafultCheckpoint.position;
         }
+
+        TeleportPlayer(gameObject, respawnPos);
 
         PlayerHealthSystem hs = gameObject.GetComponent<PlayerHealthSystem>();
         if (hs != null) hs.ResetHealth();
 
         Debug.Log($"Player {playerIndex} respawned at {gameObject.transform.position}");
     }
-
 
     public void UpdateCheckpoint(int playerIndex, Transform checkpoint)
     {
@@ -103,15 +99,52 @@ public class SpawningManager : MonoBehaviour
 
         respawnCoroutines.Clear();
 
-        foreach (PlayerInput pi in PlayerInput.all)
-        {
-            GameObject gameObjects = pi.gameObject;
-            gameObjects.SetActive(true);
-            gameObjects.transform.position = explosionPoint + offset;
+        Vector3 basePosition = explosionPoint + offset;
 
-            PlayerHealthSystem healthSystem = gameObjects.GetComponent<PlayerHealthSystem>();
+        int i = 0;
+        foreach (PlayerInput pi in PlayerInput.all.OrderBy(p => p.playerIndex))
+        {
+            GameObject go = pi.gameObject;
+
+            Vector3 spawnPos = basePosition + new Vector3(i * 1.2f, 0f, 0f); 
+            i++;
+
+            TeleportPlayer(go, spawnPos);
+
+            PlayerHealthSystem healthSystem = go.GetComponent<PlayerHealthSystem>();
             if (healthSystem != null) healthSystem.ResetHealth();
         }
-        Debug.Log($"Respawned all at {explosionPoint + offset}");
+    }
+    public void RespawnSinglePlayerAtPosition(PlayerInput playerInput, Vector3 position)
+    {
+        if (playerInput == null) return;
+
+        GameObject gameObject = playerInput.gameObject;
+
+        TeleportPlayer(gameObject, position);
+
+        if (gameObject.TryGetComponent(out PlayerHealthSystem healthSystem))
+        {
+            healthSystem.ResetHealth();
+        }
+
+        Debug.Log($"Player {playerInput.playerIndex} respawned at {position} (Laser hit)");
+    }
+    private void TeleportPlayer(GameObject gameObject, Vector3 position)
+    {
+        if (gameObject.TryGetComponent(out CharacterController cc))
+        {
+            cc.enabled = false;
+        }
+
+        gameObject.SetActive(false);
+        gameObject.transform.position = position;
+        gameObject.transform.rotation = Quaternion.identity;
+        gameObject.SetActive(true);
+
+        if (gameObject.TryGetComponent(out CharacterController ccEnable))
+        {
+            ccEnable.enabled = true;
+        }
     }
 }
