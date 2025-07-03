@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TextMeshPro nameText;
-    public TextMeshPro dialogueText;
+    public TMP_Text nameText;
+    public TMP_Text dialogueText;
+
+    public Animator animator;
     private Queue<string> sentences; // Restricted List First in first out
 
     void Start()
@@ -17,7 +19,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-      //Debug.Log("Staring dialogue with" + dialogue.name);
+        animator.SetBool("isOpen", true);    
+      Debug.Log("Staring dialogue with" + dialogue.name);
        nameText.text = dialogue.name;
         sentences.Clear();
 
@@ -36,17 +39,29 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
-
-
         string sentence = sentences.Dequeue();
-        dialogueText.text = sentence;
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
+        
+
+        IEnumerator TypeSentence (string sentence)
+        {
+            dialogueText.text = "";
+            foreach (char letter in sentence.ToCharArray())
+                {
+                dialogueText.text += letter;
+                yield return null;
+            }
+        }
+      
+
         void EndDialogue()
         {
-            Debug.Log("End");
+            animator.SetBool("isOpen",false);
         }
 
 
-       
+
         {
 
         }
