@@ -2198,6 +2198,10 @@ MonoBehaviour:
   characterPrefabs:
   - {fileID: 3982303003054045252, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
   - {fileID: 3982303003054045252, guid: fd83ca4060de4384a9075e0ec350ee4b, type: 3}
+  p1SpriteRenderer: {fileID: 777582407}
+  p2SpriteRenderer: {fileID: 396022269}
+  lockedColor: {r: 0.57547164, g: 1, b: 0.7836376, a: 0.3882353}
+  unlockedColor: {r: 1, g: 1, b: 1, a: 0.39215687}
 --- !u!114 &2121457757
 MonoBehaviour:
   m_ObjectHideFlags: 0

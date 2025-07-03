@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using GameData;
+using UnityEngine.UI;
 
 public class CharacterSelectionPanel : MonoBehaviour
 {
     #region Variables
     [SerializeField] private InputConnectionManager inputConnectionManager;
-    [SerializeField] private GameObject[] characterPrefabs = new GameObject[2];  
+    [SerializeField] private GameObject[] characterPrefabs = new GameObject[2];
+    [SerializeField] private Image p1SpriteRenderer;
+    [SerializeField] private Image p2SpriteRenderer;
+
+    [SerializeField] private Color lockedColor = Color.green;
+    [SerializeField] private Color unlockedColor = Color.white;
 
     private bool p1Confirmed, p2Confirmed;
     #endregion
@@ -21,11 +27,12 @@ public class CharacterSelectionPanel : MonoBehaviour
     public void OnPlayer1Confirmed()
     {
         if (PlayerBarMover.p1Index == 1) return;
-        
+
         PlayerBarMover.P1Locked = !PlayerBarMover.P1Locked;
         p1Confirmed = PlayerBarMover.P1Locked;
-        Debug.Log($"P1 {(p1Confirmed ? "Locked" : "Unlocked")} in slot {PlayerBarMover.p1Index}");
-        // TODO: Showcase visual locking and unlocking.
+
+        if (p1SpriteRenderer != null) p1SpriteRenderer.color = p1Confirmed ? lockedColor : unlockedColor;
+
         TryStartGame();
     }
 
@@ -35,8 +42,9 @@ public class CharacterSelectionPanel : MonoBehaviour
 
         PlayerBarMover.P2Locked = !PlayerBarMover.P2Locked;
         p2Confirmed = PlayerBarMover.P2Locked;
-        Debug.Log($"P2 {(p2Confirmed ? "Locked" : "Unlocked")} in slot {PlayerBarMover.p2Index}");
-        // TODO: Showcase visual locking and unlocking.
+
+        if (p2SpriteRenderer != null) p2SpriteRenderer.color = p2Confirmed ? lockedColor : unlockedColor;
+
         TryStartGame();
     }
     #endregion
