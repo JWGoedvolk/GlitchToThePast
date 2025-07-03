@@ -42,7 +42,7 @@ public class MainMenuButtons : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !quitConfirmationPanel.activeSelf || Input.GetButtonDown("Cancel") && !quitConfirmationPanel.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) && !quitConfirmationPanel.activeSelf || Input.GetButtonDown("Submit") && !quitConfirmationPanel.activeSelf)
         {
             settingsPanel.SetActive(!settingsPanel.activeSelf);
 
