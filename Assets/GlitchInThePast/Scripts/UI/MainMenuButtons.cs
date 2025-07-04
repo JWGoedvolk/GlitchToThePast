@@ -10,9 +10,11 @@ public class MainMenuButtons : MonoBehaviour
 
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject quitConfirmationPanel;
+    [SerializeField] private GameObject loadFeaturePanel;
     [SerializeField] private GameObject firstSettingsButton;
     [SerializeField] private GameObject firstQuitPanelButton;
     [SerializeField] private GameObject firstMainMenuButton;
+    [SerializeField] private GameObject firstSceneButton;
     [SerializeField] private GameObject charactersSelectionpanel;
 
     [SerializeField] private Image substitlesToggleImage;
@@ -180,6 +182,27 @@ public class MainMenuButtons : MonoBehaviour
             //if they are not then call........
             buttonLocker?.UnlockButton();
         }
+    }
+    #endregion
+
+    #region TEMP
+    public void TempFeaturesLoadToggler()
+    {
+        bool isLoadFeaturePanel = !loadFeaturePanel.activeSelf;
+        loadFeaturePanel.SetActive(isLoadFeaturePanel);
+
+        EventSystem.current.SetSelectedGameObject(null);
+
+        if (isLoadFeaturePanel)
+        {
+            EventSystem.current.SetSelectedGameObject(firstSceneButton);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(firstSceneButton);
+        }
+
+        UpdateButtonState();
     }
     #endregion
 }
