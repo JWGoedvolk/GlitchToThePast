@@ -1399,6 +1399,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Temp_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6189546245051425722, guid: ee9da33b9e2827548a8bec11f018a705, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
