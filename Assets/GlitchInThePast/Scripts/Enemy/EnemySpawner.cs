@@ -7,6 +7,10 @@ namespace Systems.Enemies
     {
         [Header("States")] 
         [SerializeField] private bool isActive = true;
+
+        [Header("References For Enemies")] 
+        [SerializeField] private GameObject player1;
+        [SerializeField] private GameObject player2;
         
         [Header("Melee")]
         [SerializeField] private GameObject meleeEnemy;
