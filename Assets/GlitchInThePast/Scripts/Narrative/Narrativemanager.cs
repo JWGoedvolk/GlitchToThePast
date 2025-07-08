@@ -36,6 +36,7 @@ namespace Narrative
         private NarrativeSequence currentSequence;
         private int currentIndex = 0;
         private bool isWaitingForInput = false;
+        private bool autoContinueAfterTyping = false;
         #endregion
 
         private void Awake()
@@ -126,7 +127,7 @@ namespace Narrative
             }
             else
             {
-                StartCoroutine(AutoContinue(autoContinueDuration));
+                autoContinueAfterTyping = true;
             }
 
             currentIndex++;
@@ -145,6 +146,12 @@ namespace Narrative
             }
             narrativeText.text = text;
             typewriterCoroutine = null;
+
+            if (autoContinueAfterTyping)
+            {
+                autoContinueAfterTyping = false;
+                StartCoroutine(AutoContinue(autoContinueDuration));
+            }
         }
 
         private IEnumerator AutoContinue(float waitTime)
@@ -177,10 +184,15 @@ namespace Narrative
         {
             Debug.Log("[Narrative] Sequence ended.");
             narrativePanel.SetActive(false);
+            if (currentSequence != null && currentSequence.OnSequenceEnd != null)
+            {
+                currentSequence.OnSequenceEnd.Invoke();
+            }
             currentSequence = null;
             currentIndex = 0;
             isWaitingForInput = false;
         }
+
 
         #region Safe getter to avoid 'out of range'' issues
         private T SafelyGet<T>(List<T> list, int index)

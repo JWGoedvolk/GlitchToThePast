@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Narrative
 {
@@ -27,5 +28,7 @@ namespace Narrative
         public List<bool> isTooltip = new List<bool>();
         [Tooltip("")]
         public List<float> tooltipDurations = new List<float>();
+
+        public UnityEvent OnSequenceEnd;
     }
 }

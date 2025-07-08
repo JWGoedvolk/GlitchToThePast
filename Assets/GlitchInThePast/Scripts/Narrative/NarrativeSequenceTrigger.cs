@@ -5,6 +5,7 @@ namespace Narrative
     public class NarrativeSequenceTrigger : MonoBehaviour
     {
         public NarrativeSequence sequenceToPlay;
+        [SerializeField] private bool playSequenceAtStart = false;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -12,6 +13,14 @@ namespace Narrative
             {
                 NarrativeManager.Instance.PlaySequence(sequenceToPlay);
                 Destroy(this);
+            }
+        }
+
+        private void Start()
+        {
+            if (playSequenceAtStart is true)
+            {
+                NarrativeManager.Instance.PlaySequence(sequenceToPlay);
             }
         }
     }
