@@ -9,9 +9,11 @@ namespace Narrative
     {
         [Tooltip("How big is the narrative list? After how many steps will the narrative end?")]
         public int stepCount = 1;
+        [Tooltip("")]
+        public List<bool> isSkippable = new List<bool>();
 
         [Header("Narrative")]
-        [Tooltip("")]
+        [Tooltip("What will each narrative frame say? You can leave it empty if you do not want any narrative")]
         public List<string> narrativeTexts = new List<string>();
 
         [Tooltip("")]
@@ -22,8 +24,6 @@ namespace Narrative
         public List<AudioClip> voiceOvers = new List<AudioClip>();
 
         [Header("Tooltips")]
-        [Tooltip("")]
-        public List<bool> isSkippable = new List<bool>();
         [Tooltip("")]
         public List<bool> isTooltip = new List<bool>();
         [Tooltip("")]

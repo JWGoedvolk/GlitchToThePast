@@ -3024,6 +3024,7 @@ GameObject:
   - component: {fileID: 512772802}
   - component: {fileID: 512772803}
   - component: {fileID: 512772804}
+  - component: {fileID: 512772805}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -3118,6 +3119,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0ff219404a06ae4a8f322b8057c020e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneInt: 0
+--- !u!114 &512772805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512772798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0486e6fdbbd4a449697beddd9891bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sequenceToPlay: {fileID: 11400000, guid: ef7104bbe095e4643a27a256e89af75f, type: 2}
+  playSequenceAtStart: 1
+  OnSequenceEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &517264195
 GameObject:
   m_ObjectHideFlags: 0

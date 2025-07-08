@@ -30,7 +30,7 @@ namespace Narrative
 
         [Tooltip("Set how many letters in the narrative should appear per second.")]
         public float lettersPerSecond = 20f;
-        private float autoContinueDuration = 3f; // TODO: Auto continue only when the entire text is displayed.
+        private float autoContinueDuration = 3f;
         private Coroutine typewriterCoroutine;
 
         private NarrativeSequence currentSequence;
@@ -44,6 +44,7 @@ namespace Narrative
             if (Instance == null)
             {
                 Instance = this;
+                DontDestroyOnLoad(Instance);
             }
             else
             {
@@ -150,7 +151,7 @@ namespace Narrative
             if (autoContinueAfterTyping)
             {
                 autoContinueAfterTyping = false;
-                StartCoroutine(AutoContinue(autoContinueDuration));
+                // StartCoroutine(AutoContinue(autoContinueDuration));
             }
         }
 
@@ -182,7 +183,6 @@ namespace Narrative
 
         private void EndSequence()
         {
-            Debug.Log("[Narrative] Sequence ended.");
             narrativePanel.SetActive(false);
             if (currentSequence != null && currentSequence.OnSequenceEnd != null)
             {

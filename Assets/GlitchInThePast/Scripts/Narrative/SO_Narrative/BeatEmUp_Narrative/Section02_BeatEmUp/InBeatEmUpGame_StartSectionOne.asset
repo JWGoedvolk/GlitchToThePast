@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
+  m_Name: InBeatEmUpGame_StartSectionOne
+  m_EditorClassIdentifier: 
+  stepCount: 14
+  isSkippable: 0101010101010101010101010100
+  narrativeTexts:
+  - Bob and Tob wake up inside of the first game they need to debug and fix.
+  - "Ugh what the\u2026.. Where the hell am I?"
+  - Who are you?
+  - "Me? Who are YOU. I wasn\u2019t told that I would be fixing games with someone
+    else."
+  - "Well the email did not say it\u2019s solo work, it said former employees, with
+    an s at the end"
+  - "So you are a former employee? I\u2019m Bob, I\u2019ve worked for this com-"
+  - "BOB? No, I\u2019m opting out of this right now."
+  - "I\u2019m sorry what?"
+  - "Of course you didn\u2019t recognise me, to think that I ever seen you as a friend"
+  - 'First of all you are a game character right now so it is impossible to recognise
+    you '
+  - Second of all, A friend? I was friends with everyone at the company. Who are
+    you exactly?
+  - I am someone that is trying to figure out a way to play this game and get out
+    of it as soon as possible.
+  - "Right. I\u2019m not letting you off the hook for now.."
+  - 'Game Announcement: Welcome to the first game.  Game Name - #####. Genre - Beat
+    em up.  '
+  speakerIcons:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 29cea9b28fc5c38429515bdebfac0dd2, type: 3}
+  - {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
+  - {fileID: 21300000, guid: 29cea9b28fc5c38429515bdebfac0dd2, type: 3}
+  - {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
+  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
+  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
+  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
+  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 0}
+  optionalImages:
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  voiceOvers: []
+  isTooltip: 
+  tooltipDurations: []
+  OnSequenceEnd:
+    m_PersistentCalls:
+      m_Calls: []

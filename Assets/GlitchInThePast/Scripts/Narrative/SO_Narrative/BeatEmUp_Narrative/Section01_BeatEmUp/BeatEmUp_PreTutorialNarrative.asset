@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
+  m_Name: BeatEmUp_PreTutorialNarrative
+  m_EditorClassIdentifier: 
+  stepCount: 27
+  isSkippable: 010101010101010101010101010101010101010101010101010101
+  narrativeTexts:
+  - <Bob's Apartment>
+  - Dear Former PixelRise Developer
+  - 'We invite you to assist in fixing some legacy game projects. This is a time-sensitive
+    opportunity with a generous payout and a chance to return to the company. '
+  - Please respond to this email as soon as possible..
+  - Huh...
+  - Did not think I'd ever hear that name again.
+  - Bob starts to scroll through the email to check the legitimacy of it.
+  - Freelancing is a grind, maybe this is the break I need
+  - A pause. Hesitantly, He accepts the offer, but his fingers hover over the send
+    button.
+  - With a deep sigh, He sends an email back.
+  - <Tob's Apartment>
+  - Tob lounges on his couch with a face mask on a tablet in one hand, and his phone
+    starts to buzz. It is a notification from his email.
+  - PixeRise? They want me back? After all that they put me through?  Really?
+  - But money talks. Can't say no to cash when freelancing so damn unstable
+  - 'Without any hesitation, He accepts the offer. '
+  - <At PixeRise>
+  - '?: Welcome back bob. I knew you''d say yes'
+  - "Wait what is this? Where's PixeRise\u2019s owner? Who's running this?"
+  - A scoff can be heard from the anonymous speaker before sounding calm.
+  - "?:  You\u2019ll see soon enough. Sit tight. It's all part of the onboarding
+    process"
+  - Suddenly, the lights flicker, and the room goes dark.
+  - Two figures back Bob into sitting in one of the unoccupied machines, causing
+    it to shut close on him.
+  - 'His screen flashes with a message:'
+  - PLAYER VERIFIED. IMMERSION IN PROGRESS
+  - Hey- What is this??? STOP!!!
+  - The screen displays Bob and Tob seated across from one another, inside separate
+    machines that are connected to each other.
+  - '?: You will be prompted soon to choose your characters.'
+  speakerIcons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: eae943968ccde594e883347e4b5ce339, type: 3}
+  - {fileID: 21300000, guid: eae943968ccde594e883347e4b5ce339, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 0}
+  optionalImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 433c46335ee73dd48934da094b542644, type: 3}
+  voiceOvers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  isTooltip: 
+  tooltipDurations: []
+  OnSequenceEnd:
+    m_PersistentCalls:
+      m_Calls: []

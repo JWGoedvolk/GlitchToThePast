@@ -37,7 +37,6 @@ public class MainMenuButtons : MonoBehaviour
     {
         if (isSelectingCharacters)
         {
-            charactersSelectionpanel.SetActive(true);
             return;
         }
 
@@ -79,7 +78,6 @@ public class MainMenuButtons : MonoBehaviour
     }
     #endregion
 
-    // Options toggler with esc
     #region Settings
     public void SettingsToggler()
     {
@@ -123,6 +121,13 @@ public class MainMenuButtons : MonoBehaviour
     }
     #endregion
 
+    #region Characters Selection
+    public void EnableCharacterSelectionPanel()
+    {
+        charactersSelectionpanel.SetActive(true);
+    }
+    #endregion
+
     #region Subtitles Toggler
     // Just a visual changer
     public void OnSubtitlesToggle()
@@ -134,7 +139,7 @@ public class MainMenuButtons : MonoBehaviour
         }
     }
     #endregion
-    // Quit button
+   
     #region Quitting
     public void QuitGame()
     {
