@@ -56,7 +56,7 @@ namespace Narrative
         {
             if (!isWaitingForInput) return;
 
-            if (Keyboard.current?.spaceKey.wasPressedThisFrame == true || Gamepad.current?.buttonSouth.wasPressedThisFrame == true)
+            if (Keyboard.current?.enterKey.wasPressedThisFrame == true || Gamepad.current?.buttonSouth.wasPressedThisFrame == true)
             {
                 if (typewriterCoroutine != null)
                 {
@@ -151,7 +151,7 @@ namespace Narrative
             if (autoContinueAfterTyping)
             {
                 autoContinueAfterTyping = false;
-                // StartCoroutine(AutoContinue(autoContinueDuration));
+                StartCoroutine(AutoContinue(autoContinueDuration));
             }
         }
 

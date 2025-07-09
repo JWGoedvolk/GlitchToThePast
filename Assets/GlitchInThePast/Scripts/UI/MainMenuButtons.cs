@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -56,7 +57,10 @@ public class MainMenuButtons : MonoBehaviour
     {
         if (settingsPanel == null || quitConfirmationPanel == null) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !quitConfirmationPanel.activeSelf || Input.GetKeyDown(KeyCode.Joystick2Button7) && !quitConfirmationPanel.activeSelf)
+        bool escapePressed = Keyboard.current?.escapeKey.wasPressedThisFrame == true;
+        bool controllerMenuPressed = Gamepad.current?.startButton.wasPressedThisFrame == true;
+
+        if ((escapePressed || controllerMenuPressed) && !quitConfirmationPanel.activeSelf)
         {
             settingsPanel.SetActive(!settingsPanel.activeSelf);
 
@@ -68,7 +72,6 @@ public class MainMenuButtons : MonoBehaviour
 
             UpdateButtonState();
         }
-
     }
 
     #region Start Button
@@ -98,7 +101,6 @@ public class MainMenuButtons : MonoBehaviour
         // Calling the function.
         UpdateButtonState();
     }
-
 
     public void GoToPreviousSize()
     {
@@ -204,7 +206,7 @@ public class MainMenuButtons : MonoBehaviour
         }
         else
         {
-            EventSystem.current.SetSelectedGameObject(firstSceneButton);
+            EventSystem.current.SetSelectedGameObject(firstMainMenuButton);
         }
 
         UpdateButtonState();

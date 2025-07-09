@@ -36,11 +36,7 @@ public class PlayerBarMover : MonoBehaviour
 
     void Update()
     {
-        barRt.anchoredPosition = Vector2.Lerp(
-            barRt.anchoredPosition,
-            targetAnchoredPos,
-            Time.deltaTime * glideSpeed
-        );
+        barRt.anchoredPosition = Vector2.Lerp(barRt.anchoredPosition, targetAnchoredPos, Time.deltaTime * glideSpeed);
     }
 
     #region Movement Functions
