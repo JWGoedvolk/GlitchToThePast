@@ -10,11 +10,11 @@ namespace JW.Movement
 {
     public class PlayerControlsRogueLike : MonoBehaviour
     {
-        [Header("Movement")] [SerializeField] private float speed;
+        [Header("Movement")][SerializeField] private float speed;
         [SerializeField] private InputAction playerMovementControls;
         private Vector2 movDir;
         private Rigidbody2D rb;
-        
+
         [Header("Lever")]
         [SerializeField] private InputAction playerInteractControls;
         [SerializeField] private float interactRadius = 1f;
@@ -40,9 +40,9 @@ namespace JW.Movement
             movDir = playerMovementControls.ReadValue<Vector2>();
             movDir.Normalize();
             movDir *= speed;
-            
+
             rb.velocity = movDir;
-            
+
             // Interaction
             if (playerInteractControls.triggered)
             {
@@ -59,7 +59,7 @@ namespace JW.Movement
                         }
                         Debug.Log(item.collider.name);
                     }
-                    
+
                 }
             }
         }

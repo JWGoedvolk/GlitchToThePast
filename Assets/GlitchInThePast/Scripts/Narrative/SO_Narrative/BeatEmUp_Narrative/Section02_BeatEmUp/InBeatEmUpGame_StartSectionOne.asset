@@ -32,7 +32,7 @@ MonoBehaviour:
     you exactly?
   - I am someone that is trying to figure out a way to play this game and get out
     of it as soon as possible.
-  - "Right. I\u2019m not letting you off the hook for now.."
+  - "Right. I\u2019m going to let you off the hook for now.."
   - 'Game Announcement: Welcome to the first game.  Game Name - #####. Genre - Beat
     em up.  '
   speakerIcons:
@@ -51,20 +51,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
   - {fileID: 0}
   optionalImages:
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
   voiceOvers: []
   isTooltip: 
   tooltipDurations: []

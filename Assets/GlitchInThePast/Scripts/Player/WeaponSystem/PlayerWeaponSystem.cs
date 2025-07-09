@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 
 namespace GlitchInThePast.Scripts.Player
 {
-    public class PlayerWeaponSystem : MonoBehaviour
+    public class PlayerWeaponSystem : MonoBehaviour, IPauseable
     {
         public enum WeaponType
         {
@@ -41,6 +41,15 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private float rangedRechargeTime = 3f;
         [SerializeField] private int rangedDamage = 1;
         [SerializeField] private float projectileSpeed = 5f;
+        void Start()
+        {
+            GamePauser.Instance?.RegisterPauseable(this);
+        }
+
+        void OnDestroy()
+        {
+            GamePauser.Instance?.UnregisterPauseable(this);
+        }
 
         public void OnAttack()
         {
@@ -103,5 +112,18 @@ namespace GlitchInThePast.Scripts.Player
         {
             if (weaponType == WeaponType.Melee) Debug.DrawLine(meleeAttackTransform.position, meleeAttackTransform.position + meleeAttackTransform.forward * meleeAttackRange);
         }
+
+
+        #region IPauseable functions
+        public void OnPause()
+        {
+            enabled = false;
+        }
+
+        public void OnUnpause()
+        {
+            enabled = true;
+        }
+        #endregion
     }
 }

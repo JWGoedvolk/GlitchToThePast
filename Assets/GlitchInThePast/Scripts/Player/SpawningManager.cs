@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SpawningManager : MonoBehaviour
+public class SpawningManager : MonoBehaviour, IPauseable
 {
     public float respawnDelay = 10f;
 
@@ -18,6 +18,16 @@ public class SpawningManager : MonoBehaviour
 
     //keeps list of which players are dead
     private HashSet<int> deadplayers = new();
+
+    void Start()
+    {
+        GamePauser.Instance?.RegisterPauseable(this);
+    }
+
+    void OnDestroy()
+    {
+        GamePauser.Instance?.UnregisterPauseable(this);
+    }
 
     public void HandleRespawning(PlayerInput playerInput)
     {
@@ -106,7 +116,7 @@ public class SpawningManager : MonoBehaviour
         {
             GameObject go = pi.gameObject;
 
-            Vector3 spawnPos = basePosition + new Vector3(i * 1.2f, 0f, 0f); 
+            Vector3 spawnPos = basePosition + new Vector3(i * 1.2f, 0f, 0f);
             i++;
 
             TeleportPlayer(go, spawnPos);
@@ -147,4 +157,16 @@ public class SpawningManager : MonoBehaviour
             ccEnable.enabled = true;
         }
     }
+
+    #region IPauseable functions
+    public void OnPause()
+    {
+        enabled = false;
+    }
+
+    public void OnUnpause()
+    {
+        enabled = true;
+    }
+    #endregion
 }

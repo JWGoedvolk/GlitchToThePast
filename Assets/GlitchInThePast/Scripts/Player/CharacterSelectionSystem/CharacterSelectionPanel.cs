@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using GameData;
 using UnityEngine.UI;
@@ -81,7 +82,22 @@ public class CharacterSelectionPanel : MonoBehaviour
         GameSaveSystem.SaveGame(save);
         #endregion
 
-        SceneManager.LoadScene(2);
+        StartCoroutine(ConfirmAndFade());
     }
+
+    private IEnumerator ConfirmAndFade()
+    {
+        yield return new WaitForSeconds(1.0f); // One second grace period to show the locked in state
+
+        if (UI.FadingEffect.ScreenFader.Instance != null)
+        {
+            UI.FadingEffect.ScreenFader.Instance.FadeTransition("SectionOne", 1.0f, 0.3f);
+        }
+        else
+        {
+            SceneManager.LoadScene(2);
+        }
+    }
+
     #endregion
 }

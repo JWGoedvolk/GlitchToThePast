@@ -2146,6 +2146,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: NarrativeManagerScript
       objectReference: {fileID: 0}
+    - target: {fileID: 3578432828814044803, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578432828814044803, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578432828814044803, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213797579907183903, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6653867953680229465, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2185,10 +2201,6 @@ PrefabInstance:
     - target: {fileID: 6653867953680229465, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8284324344269227174, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

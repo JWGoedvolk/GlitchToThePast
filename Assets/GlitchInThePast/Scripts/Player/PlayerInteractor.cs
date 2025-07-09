@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace GlitchInThePast.Scripts.Player
 {
-    public class PlayerInteractor : MonoBehaviour
+    public class PlayerInteractor : MonoBehaviour, IPauseable
     {
         // PlayerInput
         [Header("Player Input")]
@@ -18,6 +18,16 @@ namespace GlitchInThePast.Scripts.Player
         
         [Header("Events")]
         public UnityEvent OnInteract;
+
+        void Start()
+        {
+            GamePauser.Instance?.RegisterPauseable(this);
+        }
+
+        void OnDestroy()
+        {
+            GamePauser.Instance?.UnregisterPauseable(this);
+        }
 
         private void Awake()
         {
@@ -42,5 +52,17 @@ namespace GlitchInThePast.Scripts.Player
                 OnInteract?.Invoke();
             }
         }
+
+        #region IPauseable functions
+        public void OnPause()
+        {
+            enabled = false;
+        }
+
+        public void OnUnpause()
+        {
+            enabled = true;
+        }
+        #endregion
     }
 }

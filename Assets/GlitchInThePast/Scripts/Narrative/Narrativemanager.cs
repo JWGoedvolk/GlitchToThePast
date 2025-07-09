@@ -75,6 +75,7 @@ namespace Narrative
         #region Public Functions
         public void PlaySequence(NarrativeSequence sequence)
         {
+            GamePauser.Instance?.PauseGame();
             currentSequence = sequence;
             currentIndex = 0;
             isWaitingForInput = false;
@@ -191,6 +192,8 @@ namespace Narrative
             currentSequence = null;
             currentIndex = 0;
             isWaitingForInput = false;
+
+            GamePauser.Instance?.UnpauseGame();
         }
 
 

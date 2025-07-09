@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 namespace Player.GenericMovement
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IPauseable
     {
         #region Variables
         [Tooltip("Walking speed")]
@@ -36,6 +36,16 @@ namespace Player.GenericMovement
         [SerializeField] private PlayerWeaponSystem weaponSystem;
         [SerializeField] private Transform attackTransformHolder;
         #endregion
+
+        void Start()
+        {
+            GamePauser.Instance?.RegisterPauseable(this);
+        }
+
+        void OnDestroy()
+        {
+            GamePauser.Instance?.UnregisterPauseable(this);
+        }
 
         private void Awake()
         {
@@ -188,5 +198,17 @@ namespace Player.GenericMovement
                 attackTransformHolder.localRotation = Quaternion.Euler(0, -90, 0);
             }
         }
+
+        #region IPauseable functions
+        public void OnPause()
+        {
+            enabled = false;
+        }
+
+        public void OnUnpause()
+        {
+            enabled = true;
+        }
+        #endregion
     }
 }

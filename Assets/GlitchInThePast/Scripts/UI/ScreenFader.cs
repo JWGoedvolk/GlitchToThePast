@@ -25,15 +25,15 @@ namespace UI.FadingEffect
             }
         }
 
-        private void Update() // This is just for demonstration purposes. Naturally you'd call the FadeTransition scene when needed.
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                // Instance.FadeTransition("FadeEffectPartTwo", 1.5f, 1f); // You can test it with a scene
+        //private void Update() // This is just for demonstration purposes. Naturally you'd call the FadeTransition scene when needed.
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Space))
+        //    {
+        //        // Instance.FadeTransition("FadeEffectPartTwo", 1.5f, 1f); // You can test it with a scene
 
-                Instance.FadeTransition(null, 1.5f, 1f); // You can use it without providing a scene name too ^^
-            }
-        }
+        //        Instance.FadeTransition(null, 1.5f, 1f); // You can use it without providing a scene name too ^^
+        //    }
+        //}
 
         #region Public Functions
         /// <summary>
