@@ -4,10 +4,20 @@ using UnityEngine.Events;
 
 namespace JW.Roguelike.Objects
 {
+    [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
     public class CustomTriggerer : MonoBehaviour
     {
+        // TODO: Make these variables private and expose them with public getters
+        [Header("Collision Filtering")]
         public List<string> Whitelist;
+        
+        [Header("States")]
         public List<GameObject> TriggeringObjects;
+        public bool IsTriggering = false;
+        
+        [Header("Events")]
+        [SerializeField] private UnityEvent onTrigger;
+        [SerializeField] private UnityEvent onUnTrigger;
 
         public void OnTriggerEnter(Collider other)
         {
@@ -17,6 +27,8 @@ namespace JW.Roguelike.Objects
                 {
                     TriggeringObjects.Add(other.gameObject);
                     OnTrigger(other.gameObject);
+                    IsTriggering = true;
+                    onTrigger?.Invoke();
                 }
             }
         }
@@ -29,6 +41,12 @@ namespace JW.Roguelike.Objects
                 {
                     TriggeringObjects.Remove(other.gameObject);
                     OnTriggerExit(other.gameObject);
+                    
+                    if (TriggeringObjects.Count == 0)
+                    {
+                        IsTriggering = TriggeringObjects.Count > 0;
+                        onUnTrigger?.Invoke();
+                    }
                 }
             }
         }
