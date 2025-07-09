@@ -15,6 +15,7 @@ namespace Systems.Enemies
         [Header("Stats")] 
         [SerializeField] private int healthMax = 3;
         [SerializeField] private int healthCurrent = 3;
+        public int HealthMax { get => healthMax; }
         public EnemyTypes EnemyType = EnemyTypes.Melee;
         public int Health
         {
