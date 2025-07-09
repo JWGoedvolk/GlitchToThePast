@@ -109,8 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 1
-  player1: {fileID: 0}
-  player2: {fileID: 0}
   meleeEnemy: {fileID: 6650723071496413354, guid: 47554c9d585059d4ba172b99d2e0136b, type: 3}
   meleeSpawnPoint: {fileID: 5637945916931918053}
   meleeSpawnInterval: 10
