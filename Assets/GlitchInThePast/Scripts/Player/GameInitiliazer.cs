@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using GameData;
+using Player.GenericMovement;
 
 public class GameInitializer : MonoBehaviour
 {
@@ -64,10 +65,14 @@ public class GameInitializer : MonoBehaviour
 
         #region Players' instantiation
         PlayerInput playerOneGameobject = PlayerInput.Instantiate(characterPrefabs[i1], controlScheme: (firstType == InputConnectionManager.InputType.Keyboard) ? keyboardScheme : gamepadScheme, pairWithDevices: firstDevice);
-        playerOneGameobject.transform.position = playerOneSpawn.position;
+        PlayerMovement playerMovementOne = playerOneGameobject.GetComponent<PlayerMovement>();
+
+        playerMovementOne.SetupAtSpawn(playerOneSpawn.position);
 
         PlayerInput playerTwoGameObject = PlayerInput.Instantiate(characterPrefabs[i2], controlScheme: (secondType == InputConnectionManager.InputType.Keyboard) ? keyboardScheme : gamepadScheme, pairWithDevices: secondDevice);
-        playerTwoGameObject.transform.position = playerTwoSpawn.position;
+        PlayerMovement playerMovementTwo = playerTwoGameObject.GetComponent<PlayerMovement>();
+
+        playerMovementTwo.SetupAtSpawn(playerTwoSpawn.position);
         #endregion
     }
 }

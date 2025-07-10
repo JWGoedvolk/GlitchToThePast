@@ -323,7 +323,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 686190289503579459}
   - component: {fileID: 4511008773222892832}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: TobbysCollider
   m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,6 +453,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f72c216e-470d-4461-a042-54668c8f8c58
     m_ActionName: Gameplay/Aim[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8ed789ef-800e-496b-b758-06188669ced5
+    m_ActionName: Gameplay/Interact[/XInputControllerWindows/buttonWest,/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

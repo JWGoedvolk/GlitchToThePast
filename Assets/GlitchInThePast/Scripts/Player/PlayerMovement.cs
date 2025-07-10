@@ -31,7 +31,7 @@ namespace Player.GenericMovement
         private float verticalVel;
 
         private SpriteRenderer spriteRenderer;
-        
+
         // Added by JW
         [SerializeField] private PlayerWeaponSystem weaponSystem;
         [SerializeField] private Transform attackTransformHolder;
@@ -82,7 +82,7 @@ namespace Player.GenericMovement
                     FlipAttackTransform(-1);
                 }
             }
-            
+
             // Vector2 aimInput = playerInput.actions["Aim"].ReadValue<Vector2>();
             // Debug.Log(aimInput);
         }
@@ -133,7 +133,7 @@ namespace Player.GenericMovement
                 Debug.Log("Adding 'Attack' action to input");
                 action["Attack"].performed += _ => weaponSystem.OnAttack();
             }
-            
+
             #endregion
         }
 
@@ -164,6 +164,24 @@ namespace Player.GenericMovement
                 Debug.Log("Adding 'Attack' action to input");
                 action["Attack"].performed -= _ => weaponSystem.OnAttack();
             }
+        }
+
+        public void SetupAtSpawn(Vector3 spawnPos)
+        {
+            if (characterController == null)
+            {
+                characterController = GetComponent<CharacterController>();
+            }
+
+            characterController.enabled = false;
+
+            transform.position = spawnPos;
+            transform.rotation = Quaternion.identity;
+
+            characterController.enabled = true;
+
+            verticalVel = 0f;
+            isDashing = false;
         }
 
         private void OnMove(InputAction.CallbackContext ctx)

@@ -14,8 +14,8 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Player1") player1Inside = true;
-        if (other.name == "Player2") player2Inside = true;
+        if (other.name.StartsWith("BobsCollider")) player1Inside = true;
+        if (other.name.StartsWith("TobbysCollider")) player2Inside = true;
 
         if (player1Inside && player2Inside && !hasLoaded)
         {
@@ -26,7 +26,7 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name == "Player1") player1Inside = false;
-        if (other.name == "Player2") player2Inside = false;
+        if (other.name.StartsWith("BobsCollider")) player1Inside = false;
+        if (other.name.StartsWith("TobbysCollider")) player2Inside = false;
     }
 }
