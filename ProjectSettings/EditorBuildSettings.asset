@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/GlitchInThePast/Scenes/CharacterSelection.unity
     guid: 3b557a4dd95396540ade3afe98b09824
   - enabled: 1
-    path: Assets/GlitchInThePast/Scenes/Section1.unity
+    path: Assets/GlitchInThePast/Scenes/Section Zero.unity
     guid: f3e1a409f9f23d74685485a0225a6186
   - enabled: 1
     path: Assets/GlitchInThePast/Scenes/PrototypeScenes/Dana_Prototypes/CameraSwitchEffectShowcase.unity
