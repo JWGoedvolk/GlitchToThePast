@@ -183,8 +183,8 @@
                     "id": "fde1fe39-89cd-4350-8943-989f65584ea4",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "processors": "StickDeadzone",
+                    "groups": ";Controller",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -315,8 +315,8 @@
                     "id": "5ff23d58-84db-4d6d-be8b-451b956d6718",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "processors": "StickDeadzone",
+                    "groups": ";Controller",
                     "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false

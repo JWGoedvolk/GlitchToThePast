@@ -29,10 +29,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     //sprite for flashing
     private SpriteRenderer flashingEffect;
-
-
-
-
+    
     //for the spawn and checkpoint
 
     public SpawningManager spawningManager;
@@ -133,6 +130,16 @@ public class PlayerHealthSystem : MonoBehaviour
             TakeDamage(1);
         }
 
+    }
+
+    public void StartInvulnerability()
+    {
+        isInvulerable = true;
+    }
+
+    public void StopInvulnerability()
+    {
+        isInvulerable = false;
     }
 
     IEnumerator Invulerablity()

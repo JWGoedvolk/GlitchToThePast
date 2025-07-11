@@ -44,20 +44,11 @@ namespace Systems.Enemies
                         OnDeath?.Invoke();
                     }
                 }
-                
-                // Update health UI
-                if (healthUI != null)
-                {
-                    healthUI.localScale = new Vector3((float)healthCurrent/healthMax, healthUI.localScale.y, healthUI.localScale.z);
-                }
             }
         }
         public int HealthMax => healthMax;
         public EnemySpawner spawner; // We hold a reference to our spawner so we can keep track of how many of each enemy is currently alive
-
-        [Header("UI")]
-        [SerializeField] private Transform healthUI;
-
+        
         public void TakeDamage(int damage, PlayerWeaponSystem.WeaponType weaponType)
         {
             if (EnemyType == EnemyTypes.Melee && weaponType == PlayerWeaponSystem.WeaponType.Melee)

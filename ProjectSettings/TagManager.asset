@@ -9,6 +9,7 @@ TagManager:
   - Player2
   - Lever
   - Enemy
+  - Hazard
   layers:
   - Default
   - TransparentFX

@@ -478,7 +478,9 @@ MonoBehaviour:
   maxHealth: 3
   isInvulerable: 0
   invulerable: 3
-  damageableTags: []
+  damageableTags:
+  - Enemy
+  - Hazard
   spawningManager: {fileID: 8804729871716658839}
 --- !u!143 &7307085920574121977
 CharacterController:
@@ -521,11 +523,43 @@ MonoBehaviour:
   walkingSpeed: 5
   runningSpeed: 1.5
   dashSpeed: 20
-  dashDuration: 0.2
+  dashDistance: 3
   dashCooldown: 1
+  dashStartPosition: {x: 0, y: 0, z: 0}
+  dashEndPosition: {x: 0, y: 0, z: 0}
   rotator: {fileID: 5416515543891542906}
   weaponSystem: {fileID: 686190289503579459}
   attackTransformHolder: {fileID: 2280682363573972676}
+  onDashStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7183805979929903416}
+        m_TargetAssemblyTypeName: PlayerHealthSystem, Assembly-CSharp
+        m_MethodName: StartInvulnerability
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDashEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7183805979929903416}
+        m_TargetAssemblyTypeName: PlayerHealthSystem, Assembly-CSharp
+        m_MethodName: StopInvulnerability
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &1277676373348698392
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -567,7 +601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 1
   isRecharging: 0
-  isWeaponEnabled: 1
+  isWeaponEnabled: 0
   onStartRecharge:
     m_PersistentCalls:
       m_Calls: []

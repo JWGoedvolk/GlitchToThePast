@@ -1,5 +1,7 @@
+using System;
 using GlitchInThePast.Scripts.Player;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
@@ -13,12 +15,15 @@ namespace Player.GenericMovement
         public float walkingSpeed = 5f;
         [Tooltip("This number gets multiplied to the walking speed")]
         public float runningSpeed = 1.5f;
+        
+        // Dashing
         [Tooltip("Dashing speed")]
-        public float dashSpeed = 12f;
+        [SerializeField] private float dashSpeed = 12f;
         [Tooltip("How long it takes players to dash (in seconds)")]
-        public float dashDuration = 0.2f;
+        [SerializeField] private float dashDistance = 0.2f;
         [Tooltip("How long till players are premitted to dash again aka dash cooldown (in seconds)")]
-        public float dashCooldown = 1f;
+        [SerializeField] private float dashCooldown = 1f;
+        [SerializeField] private Vector3 dashStartPosition;
 
         public static float MaxXDistance = 16f;
         public static float MaxZDistance = 11f;
@@ -30,7 +35,6 @@ namespace Player.GenericMovement
         [SerializeField] private Rotator rotator;
         private bool isRunning;
         private bool isDashing;
-        private float dashTimer;
         private float dashCooldownTimer;
         private float verticalVel;
 
@@ -39,6 +43,10 @@ namespace Player.GenericMovement
         // Added by JW
         [SerializeField] private PlayerWeaponSystem weaponSystem;
         [SerializeField] private Transform attackTransformHolder;
+        
+        // Events
+        [SerializeField] private UnityEvent onDashStart;
+        [SerializeField] private UnityEvent onDashEnd;
         #endregion
 
         void Start()
@@ -66,12 +74,19 @@ namespace Player.GenericMovement
 
         private void Update()
         {
+            // Update dash cooldown countdown
             dashCooldownTimer -= Time.deltaTime;
+            
+            // If we are dashing, check if we've reached our end position yet
             if (isDashing)
             {
-                dashTimer -= Time.deltaTime;
-                if (dashTimer <= 0f)
-                    isDashing = false;
+                float distanceDashed = Vector3.Distance(transform.position, dashStartPosition);
+                Debug.Log(distanceDashed);
+                if (distanceDashed >= dashDistance) // If we are at the end of our dash
+                {
+                    onDashEnd?.Invoke();
+                    isDashing = false; // Stop dashing
+                }
             }
 
             if (spriteRenderer)
@@ -188,7 +203,6 @@ namespace Player.GenericMovement
                 action["Dash"].performed -= _ => Dash();
             if (action["Attack"] != null)
             {
-                Debug.Log("Adding 'Attack' action to input");
                 action["Attack"].performed -= _ => weaponSystem.OnAttack();
             }
         }
@@ -213,6 +227,10 @@ namespace Player.GenericMovement
 
         private void OnMove(InputAction.CallbackContext ctx)
         {
+            if (isDashing)
+            {
+                return;
+            }
             moveInput = ctx.ReadValue<Vector2>();
         }
 
@@ -239,8 +257,11 @@ namespace Player.GenericMovement
             if (!isDashing && dashCooldownTimer <= 0f && moveInput.sqrMagnitude > 0.1f)
             {
                 isDashing = true;
-                dashTimer = dashDuration;
                 dashCooldownTimer = dashCooldown;
+                
+                dashStartPosition = characterController.transform.position;
+                
+                onDashStart?.Invoke();
             }
         }
 
@@ -254,6 +275,13 @@ namespace Player.GenericMovement
             {
                 attackTransformHolder.localRotation = Quaternion.Euler(0, -90, 0);
             }
+        }
+
+        private void OnDrawGizmos()
+        {
+            //Gizmos.DrawWireSphere(transform.position + transform.right * dashDistance, 0.1f);
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(dashStartPosition, 0.1f);
         }
 
         #region IPauseable functions
