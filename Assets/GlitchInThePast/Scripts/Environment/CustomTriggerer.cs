@@ -8,6 +8,7 @@ namespace JW.Roguelike.Objects
     {
         public List<string> Whitelist;
         public List<GameObject> TriggeringObjects;
+        public bool IsTriggering => TriggeringObjects != null && TriggeringObjects.Count > 0;
 
         public void OnTriggerEnter(Collider other)
         {

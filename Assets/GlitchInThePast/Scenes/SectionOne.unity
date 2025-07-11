@@ -539,7 +539,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -961,7 +961,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1485,19 +1485,7 @@ MonoBehaviour:
       m_Calls: []
   OnDeath:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 354893211}
-        m_TargetAssemblyTypeName: Systems.Enemies.EnemyRespawner, Assembly-CSharp
-        m_MethodName: Respawn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   spawner: {fileID: 0}
   healthUI: {fileID: 0}
 --- !u!1 &373884546
@@ -2349,7 +2337,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3422,6 +3410,7 @@ GameObject:
   - component: {fileID: 759583925}
   - component: {fileID: 759583924}
   - component: {fileID: 759583923}
+  - component: {fileID: 759583927}
   m_Layer: 0
   m_Name: BridgeCollider
   m_TagString: Untagged
@@ -3444,7 +3433,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3518,6 +3507,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 497219697}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &759583927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759583922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46541fe4d2be48f1913baa27cc5cb9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button1: {fileID: 7538731288980327583}
+  button2: {fileID: 1778309384}
+  onBothButtonsPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 759583923}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_isTrigger
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onBothButtonsReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  isBothButtonsPressedTriggered: 0
 --- !u!1 &803027489
 GameObject:
   m_ObjectHideFlags: 0
@@ -3618,7 +3640,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4322,7 +4344,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4578,19 +4600,7 @@ MonoBehaviour:
       m_Calls: []
   OnDeath:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 999995849}
-        m_TargetAssemblyTypeName: Systems.Enemies.EnemyRespawner, Assembly-CSharp
-        m_MethodName: Respawn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   spawner: {fileID: 0}
   healthUI: {fileID: 0}
 --- !u!1 &1004966363
@@ -4798,7 +4808,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -6867,7 +6877,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -7386,7 +7396,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -7961,7 +7971,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -8247,7 +8257,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -8563,7 +8573,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -10200,13 +10210,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5543007943047546469, guid: 39b522ae1bb32224a8abf348659aa90d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1778309384}
   m_SourcePrefab: {fileID: 100100000, guid: 39b522ae1bb32224a8abf348659aa90d, type: 3}
 --- !u!4 &1778309382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5163210910859582687, guid: 39b522ae1bb32224a8abf348659aa90d, type: 3}
   m_PrefabInstance: {fileID: 1778309381}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1778309383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5543007943047546469, guid: 39b522ae1bb32224a8abf348659aa90d, type: 3}
+  m_PrefabInstance: {fileID: 1778309381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1778309384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778309383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331ba9493f0a4f4980fb8466c7a0778a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Whitelist:
+  - Player1
+  - Player2
+  TriggeringObjects: []
 --- !u!1 &1806504092
 GameObject:
   m_ObjectHideFlags: 0
@@ -10705,7 +10739,7 @@ MonoBehaviour:
   - {fileID: 3982303003054045252, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
   - {fileID: 3982303003054045252, guid: fd83ca4060de4384a9075e0ec350ee4b, type: 3}
   playerOneSpawn: {fileID: 1858618178}
-  playerTwoSpawn: {fileID: 1080483839}
+  playerTwoSpawn: {fileID: 0}
 --- !u!114 &1981149627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11408,7 +11442,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -11644,13 +11678,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5543007943047546469, guid: 39b522ae1bb32224a8abf348659aa90d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7538731288980327583}
   m_SourcePrefab: {fileID: 100100000, guid: 39b522ae1bb32224a8abf348659aa90d, type: 3}
 --- !u!4 &7538731288980327581 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5163210910859582687, guid: 39b522ae1bb32224a8abf348659aa90d, type: 3}
   m_PrefabInstance: {fileID: 7538731288980327580}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7538731288980327582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5543007943047546469, guid: 39b522ae1bb32224a8abf348659aa90d, type: 3}
+  m_PrefabInstance: {fileID: 7538731288980327580}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7538731288980327583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7538731288980327582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331ba9493f0a4f4980fb8466c7a0778a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Whitelist:
+  - Player1
+  - Player2
+  TriggeringObjects: []
 --- !u!1001 &9011750816191326297
 PrefabInstance:
   m_ObjectHideFlags: 0
