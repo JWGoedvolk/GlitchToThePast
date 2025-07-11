@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Template name="Interactibles" src="project://database/Assets/Interactibles.uxml?fileID=9197481963319205126&amp;guid=d6b5affe92b42364ea9f72494d705342&amp;type=3#Interactibles" />
+    <ui:Instance template="Interactibles" name="Interactibles" />
+</ui:UXML>

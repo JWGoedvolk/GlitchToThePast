@@ -9,12 +9,10 @@ namespace GlitchInThePast.Scripts.Player
     public class PlayerInteractor : MonoBehaviour
     {
         // PlayerInput
-        [Header("Player Input")]
-        [SerializeField] private PlayerInput playerInput;
+        private PlayerInput playerInput;
         
         // Range
-        [Header("Interaction")]
-        public Interactible interactingObject;
+        [HideInInspector] public Interactible interactingObject;
         
         [Header("Events")]
         public UnityEvent OnInteract;

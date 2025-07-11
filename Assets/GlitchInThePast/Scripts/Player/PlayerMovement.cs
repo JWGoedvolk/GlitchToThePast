@@ -1,5 +1,8 @@
+using GlitchInThePast.Scripts.Player;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Player.GenericMovement
 {
@@ -21,6 +24,7 @@ namespace Player.GenericMovement
         private CharacterController characterController;
         private PlayerInput playerInput;
         private Vector2 moveInput;
+        private Rotator rotator;
         private bool isRunning;
         private bool isDashing;
         private float dashTimer;
@@ -28,6 +32,17 @@ namespace Player.GenericMovement
         private float verticalVel;
 
         private SpriteRenderer spriteRenderer;
+        
+        // Added by JW
+        // Weapon Systems
+        private PlayerWeaponSystem weaponSystem;
+        [SerializeField] private Transform attackTransformHolder;
+        // Events
+        [SerializeField] private UnityEvent onDashStart;
+        [SerializeField] private UnityEvent onDashEnd;
+        [SerializeField] private UnityEvent onSprintStart;
+        [SerializeField] private UnityEvent onSprintEnd;
+
         #endregion
 
         private void Awake()
@@ -38,6 +53,9 @@ namespace Player.GenericMovement
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             if (spriteRenderer == null)
                 Debug.LogError("There is no sprite Renderer, can't flip the sprite! ADD ONE NOW");
+
+            weaponSystem = GetComponent<PlayerWeaponSystem>();
+            rotator = GetComponentInChildren<Rotator>();
         }
 
         private void Update()
@@ -48,13 +66,25 @@ namespace Player.GenericMovement
                 dashTimer -= Time.deltaTime;
                 if (dashTimer <= 0f)
                     isDashing = false;
+                onDashEnd?.Invoke();
             }
 
             if (spriteRenderer)
             {
-                if (moveInput.x > 0.1f) spriteRenderer.flipX = false;
-                else if (moveInput.x < -0.1f) spriteRenderer.flipX = true;
+                if (moveInput.x > 0.1f)
+                {
+                    spriteRenderer.flipX = false;
+                    FlipAttackTransform(1);
+                }
+                else if (moveInput.x < -0.1f)
+                {
+                    spriteRenderer.flipX = true;
+                    FlipAttackTransform(-1);
+                }
             }
+            
+            // Vector2 aimInput = playerInput.actions["Aim"].ReadValue<Vector2>();
+            // Debug.Log(aimInput);
         }
 
         private void FixedUpdate()
@@ -81,15 +111,35 @@ namespace Player.GenericMovement
             #region Player input actions assignment
             if (action["Move"] != null)
             {
+                Debug.Log("Adding 'Move' action to input");
                 action["Move"].performed += OnMove;
                 action["Move"].canceled += OnMove;
             }
+            if (action["Aim"] != null)
+            {
+                Debug.Log("Adding 'Aim' action to input");
+                action["Aim"].performed += OnAim;
+                action["Aim"].canceled += OnAim;
+            }
             if (action["Run"] != null)
             {
+                Debug.Log("Adding 'Run' action to input");
                 action["Run"].performed += _ => isRunning = true;
                 action["Run"].canceled += _ => isRunning = false;
+                action["Run"].started += _ => onSprintStart?.Invoke();
+                action["Run"].canceled += _ => onSprintEnd?.Invoke();
             }
-            if (action["Dash"] != null) action["Dash"].performed += _ => Dash();
+            if (action["Dash"] != null)
+            {
+                action["Dash"].started += _ => onDashStart?.Invoke();
+                action["Dash"].performed += _ => Dash();
+            }
+            if (action["Attack"] != null)
+            {
+                Debug.Log("Adding 'Attack' action to input");
+                action["Attack"].performed += _ => weaponSystem.OnAttack();
+            }
+            
             #endregion
         }
 
@@ -103,18 +153,39 @@ namespace Player.GenericMovement
                 action["Move"].performed -= OnMove;
                 action["Move"].canceled -= OnMove;
             }
+            if (action["Aim"] != null)
+            {
+                action["Aim"].performed -= OnAim;
+                action["Aim"].canceled -= OnAim;
+            }
             if (action["Run"] != null)
             {
                 action["Run"].performed -= _ => isRunning = true;
                 action["Run"].canceled -= _ => isRunning = false;
+                action["Run"].started -= _ => onSprintStart?.Invoke();
+                action["Run"].canceled -= _ => onSprintEnd?.Invoke();
             }
             if (action["Dash"] != null)
+            {
+                action["Dash"].started -= _ => onDashStart?.Invoke();
                 action["Dash"].performed -= _ => Dash();
+            }
+            if (action["Attack"] != null)
+            {
+                Debug.Log("Adding 'Attack' action to input");
+                action["Attack"].performed -= _ => weaponSystem.OnAttack();
+            }
         }
 
         private void OnMove(InputAction.CallbackContext ctx)
         {
             moveInput = ctx.ReadValue<Vector2>();
+        }
+
+        private void OnAim(InputAction.CallbackContext ctx)
+        {
+            // Debug.Log("Aiming");
+            rotator.OnAim(ctx.ReadValue<Vector2>());
         }
 
         private void Dash()
@@ -124,6 +195,18 @@ namespace Player.GenericMovement
                 isDashing = true;
                 dashTimer = dashDuration;
                 dashCooldownTimer = dashCooldown;
+            }
+        }
+
+        private void FlipAttackTransform(int direction)
+        {
+            if (direction == 1)
+            {
+                attackTransformHolder.localRotation = Quaternion.Euler(0, 90, 0);
+            }
+            else if (direction == -1)
+            {
+                attackTransformHolder.localRotation = Quaternion.Euler(0, -90, 0);
             }
         }
     }

@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="Vars" style="flex-grow: 1;">
+        <ui:Foldout text="Walking" name="Walking" value="false">
+            <uie:PropertyField binding-path="walkingSpeed" />
+        </ui:Foldout>
+        <ui:Foldout text="Running" name="Running" value="false">
+            <uie:PropertyField binding-path="runningSpeed" />
+        </ui:Foldout>
+        <ui:Foldout text="Dashing" name="Dashing" value="false">
+            <uie:PropertyField binding-path="dashSpeed" name="PropertyField" />
+            <uie:PropertyField binding-path="dashDuration" name="PropertyField" />
+            <uie:PropertyField binding-path="dashCooldown" name="PropertyField" />
+        </ui:Foldout>
+        <ui:Foldout text="Weapon Transforms" name="WeaponSystem" value="false">
+            <uie:PropertyField binding-path="attackTransformHolder" />
+        </ui:Foldout>
+    </ui:VisualElement>
+    <ui:VisualElement name="Events" style="flex-grow: 1;">
+        <ui:Foldout text="Events" name="Events" value="false">
+            <ui:Foldout text="Dashing" name="Dash" value="false">
+                <uie:PropertyField binding-path="onDashStart" />
+                <uie:PropertyField binding-path="onDashEnd" />
+            </ui:Foldout>
+            <ui:Foldout text="Running" name="Run" value="false">
+                <uie:PropertyField binding-path="onSprintStart" />
+                <uie:PropertyField binding-path="onSprintEnd" />
+            </ui:Foldout>
+        </ui:Foldout>
+    </ui:VisualElement>
+</ui:UXML>

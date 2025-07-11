@@ -1,0 +1,43 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement name="Vars" style="flex-grow: 1;">
+            <uie:PropertyField binding-path="weaponType" name="WeaponType" />
+            <ui:Foldout text="States" name="States" value="false">
+                <uie:PropertyField binding-path="isRecharging" />
+                <uie:PropertyField binding-path="isWeaponEnabled" />
+            </ui:Foldout>
+            <ui:VisualElement name="MeleeAttack" style="flex-grow: 1; display: flex;">
+                <ui:Foldout text="Melee" name="Melee" value="false">
+                    <uie:PropertyField binding-path="meleeAttackTransform" />
+                    <uie:PropertyField binding-path="meleeAttackRange" />
+                    <uie:PropertyField binding-path="meleeRechargeTime" />
+                    <uie:PropertyField binding-path="meleeDamage" />
+                </ui:Foldout>
+            </ui:VisualElement>
+            <ui:VisualElement name="RangedAttack" style="flex-grow: 1; display: flex;">
+                <ui:Foldout text="Ranged" name="Ranged">
+                    <uie:PropertyField binding-path="rangedAttackSpawnPoint" />
+                    <uie:PropertyField binding-path="projectilePrefab" />
+                    <uie:PropertyField binding-path="rangedRechargeTime" />
+                    <uie:PropertyField binding-path="rangedDamage" />
+                    <uie:PropertyField binding-path="projectileSpeed" />
+                </ui:Foldout>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Events" style="flex-grow: 1;">
+            <ui:Foldout text="Events">
+                <ui:Foldout text="Recharge" name="Recharge">
+                    <uie:PropertyField binding-path="onStartRecharge" />
+                    <uie:PropertyField binding-path="onRecharging" />
+                    <uie:PropertyField binding-path="onEndRecharge" />
+                </ui:Foldout>
+                <ui:Foldout text="Melee" name="Melee">
+                    <uie:PropertyField binding-path="onMeleeAttack" />
+                </ui:Foldout>
+                <ui:Foldout text="Ranged" name="Ranged">
+                    <uie:PropertyField binding-path="onRangedAttack" />
+                </ui:Foldout>
+            </ui:Foldout>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

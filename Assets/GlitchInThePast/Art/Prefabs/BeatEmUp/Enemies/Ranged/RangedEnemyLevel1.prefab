@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 1114131328367325955}
   - component: {fileID: 7413700127305226688}
   - component: {fileID: 4721818341627086875}
+  - component: {fileID: 1133086493446996851}
   m_Layer: 0
   m_Name: RangedEnemyLevel1
   m_TagString: Untagged
@@ -188,6 +189,12 @@ MonoBehaviour:
   healthMax: 3
   healthCurrent: 3
   EnemyType: 1
+  OnDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
   spawner: {fileID: 0}
   healthUI: {fileID: 4183937027507689170}
 --- !u!58 &1114131328367325955
@@ -273,3 +280,23 @@ MonoBehaviour:
   movDir: {x: 0, y: 0}
   strafeDistance: 1.5
   closestPlayer: {fileID: 0}
+--- !u!114 &1133086493446996851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6650723071496413354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4a8ad687424941973e94417b7b3614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 0}
+  projectileSpawn: {fileID: 0}
+  fireRate: 0
+  reloadTime: 0
+  projectileSpeed: 0
+  attackRange: 0
+  spawnPreviewColor: {r: 0, g: 0, b: 0, a: 0}
+  rangePreviewColor: {r: 0, g: 0, b: 0, a: 0}

@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerHealthSystem : MonoBehaviour
@@ -11,9 +13,14 @@ public class PlayerHealthSystem : MonoBehaviour
     public int currentHealth;
     public int maxHealth;
 
+    // Invulnerability
     public bool isInvulerable = false;
     public float invulerable = 3f;
 
+    //Damage Detection
+    [SerializeField] private List<string> damageableTags = new List<string>();
+    
+    // Regen
     private bool isRegenerating = false;
     private float timeSinceLastDmg;
 
@@ -24,13 +31,16 @@ public class PlayerHealthSystem : MonoBehaviour
     //sprite for flashing
     private SpriteRenderer flashingEffect;
 
-
-
-
     //for the spawn and checkpoint
-
     public SpawningManager spawningManager;
     private PlayerInput playerInput; // changed ID to refer to player index instead
+    
+    // Events
+    [SerializeField] private UnityEvent onDamageTaken;
+    [SerializeField] private UnityEvent onHealthRegained;
+    [SerializeField] private UnityEvent onPlayerDeath;
+    [SerializeField] private UnityEvent onInvulnerabilityStart; 
+    [SerializeField] private UnityEvent onInvulnerabilityEnd; 
 
     void Awake()
     {
@@ -78,6 +88,7 @@ public class PlayerHealthSystem : MonoBehaviour
     void TakeDamage(int ammount)
     {
         currentHealth -= ammount;
+        onDamageTaken?.Invoke();
         UpdateUI();
         Debug.Log("palyer is hit");
 
@@ -109,7 +120,7 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         // die
         Debug.Log($"Player {playerInput.playerIndex} died.");
-
+        onPlayerDeath?.Invoke();
         gameObject.SetActive(false);
 
         if (spawningManager != null)
@@ -120,9 +131,9 @@ public class PlayerHealthSystem : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider collision) // 2.5d gameee regular works fine :D
+    void OnTriggerEnter(Collider collision) // 2.5d game regular works fine :D
     {
-        if (!isInvulerable && collision.CompareTag("test"))
+        if (!isInvulerable && damageableTags.Contains(collision.tag))
         {
             TakeDamage(1);
         }
@@ -132,7 +143,7 @@ public class PlayerHealthSystem : MonoBehaviour
     IEnumerator Invulerablity()
     {
         isInvulerable = true;
-
+        onInvulnerabilityStart?.Invoke();
         float flashInterval = 0.2f;
         float timer = 0f;
 
@@ -157,7 +168,7 @@ public class PlayerHealthSystem : MonoBehaviour
         }
 
         isInvulerable = false;
-
+        onInvulnerabilityEnd?.Invoke();
     }
 
     IEnumerator Regan()
@@ -168,6 +179,7 @@ public class PlayerHealthSystem : MonoBehaviour
         while (currentHealth < maxHealth)
         {
             currentHealth++;
+            onHealthRegained?.Invoke();
             Debug.Log("health regan start" + currentHealth);
 
             yield return new WaitForSeconds(11f);
