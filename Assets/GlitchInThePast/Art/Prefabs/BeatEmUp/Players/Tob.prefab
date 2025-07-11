@@ -481,6 +481,8 @@ MonoBehaviour:
   damageableTags:
   - Enemy
   - Hazard
+  healableTags:
+  - HealthUp
   spawningManager: {fileID: 8804729871716658839}
 --- !u!143 &7307085920574121977
 CharacterController:
@@ -526,7 +528,6 @@ MonoBehaviour:
   dashDistance: 3
   dashCooldown: 1
   dashStartPosition: {x: 0, y: 0, z: 0}
-  dashEndPosition: {x: 0, y: 0, z: 0}
   rotator: {fileID: 5416515543891542906}
   weaponSystem: {fileID: 686190289503579459}
   attackTransformHolder: {fileID: 2280682363573972676}

@@ -17,8 +17,9 @@ public class PlayerHealthSystem : MonoBehaviour
     public bool isInvulerable = false;
     public float invulerable = 3f;
 
-    [Header("Damage")]
+    [Header("Collision Tags")]
     [SerializeField] private List<string> damageableTags = new List<string>();
+    [SerializeField] private List<string> healableTags = new List<string>();
     // Regen
     private bool isRegenerating = false;
     private float timeSinceLastDmg;
@@ -129,7 +130,10 @@ public class PlayerHealthSystem : MonoBehaviour
         {
             TakeDamage(1);
         }
-
+        else if (healableTags.Contains(collision.tag))
+        {
+            TakeDamage(-1); // Heal by 1
+        }
     }
 
     public void StartInvulnerability()
