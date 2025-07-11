@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
   m_Name: TEMP_SectionTwo
   m_EditorClassIdentifier: 
-  stepCount: 2
-  isSkippable: 0000
+  stepCount: 3
+  isSkippable: 000000
   narrativeTexts:
   - Every time I wake up in here, it's like the world has gotten rebooted in grayscale
   - The transition was uncomfortable! I think I can get used to this...

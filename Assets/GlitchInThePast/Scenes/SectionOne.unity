@@ -10523,7 +10523,6 @@ GameObject:
   - component: {fileID: 1981149625}
   - component: {fileID: 1981149626}
   - component: {fileID: 1981149627}
-  - component: {fileID: 1981149628}
   - component: {fileID: 1981149629}
   - component: {fileID: 1981149630}
   m_Layer: 0
@@ -10580,20 +10579,6 @@ MonoBehaviour:
   healthUIs:
   - {fileID: 1231199480}
   - {fileID: 1231199479}
---- !u!114 &1981149628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1981149624}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8b47982ca4a88748af8eb8a085d3443, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxXDistance: 7
-  maxZDistance: 10
 --- !u!114 &1981149629
 MonoBehaviour:
   m_ObjectHideFlags: 0

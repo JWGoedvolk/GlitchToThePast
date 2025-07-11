@@ -20,6 +20,10 @@ namespace Player.GenericMovement
         [Tooltip("How long till players are premitted to dash again aka dash cooldown (in seconds)")]
         public float dashCooldown = 1f;
 
+        public static float MaxXDistance = 16f;
+        public static float MaxZDistance = 11f;
+
+        private PlayerMovement otherPlayer;
         private CharacterController characterController;
         private PlayerInput playerInput;
         private Vector2 moveInput;
@@ -40,6 +44,7 @@ namespace Player.GenericMovement
         void Start()
         {
             GamePauser.Instance?.RegisterPauseable(this);
+            AssignOtherPlayer();
         }
 
         void OnDestroy()
@@ -99,6 +104,28 @@ namespace Player.GenericMovement
             Vector3 horizontal = new Vector3(moveInput.x, 0, moveInput.y).normalized;
             Vector3 velocity = isDashing ? horizontal * dashSpeed : horizontal * speed;
             velocity.y = verticalVel;
+
+            if (otherPlayer == null || otherPlayer == this)
+                AssignOtherPlayer();
+
+            if (otherPlayer != null)
+            {
+                Vector3 nextPosition = transform.position + (velocity * Time.fixedDeltaTime);
+                Vector3 otherPos = otherPlayer.transform.position;
+                Vector3 delta = nextPosition - otherPos;
+
+                if (Mathf.Abs(delta.x) > MaxXDistance || Mathf.Abs(delta.z) > MaxZDistance)
+                {
+                    Vector3 currentDelta = transform.position - otherPos;
+                    bool movingFurtherX = Mathf.Abs(delta.x) > Mathf.Abs(currentDelta.x);
+                    bool movingFurtherZ = Mathf.Abs(delta.z) > Mathf.Abs(currentDelta.z);
+
+                    if ((MaxXDistance > 0 && movingFurtherX && Mathf.Abs(delta.x) > MaxXDistance) || (MaxZDistance > 0 && movingFurtherZ && Mathf.Abs(delta.z) > MaxZDistance))
+                    {
+                        return;
+                    }
+                }
+            }
 
             characterController.Move(velocity * Time.fixedDeltaTime);
         }
@@ -187,6 +214,18 @@ namespace Player.GenericMovement
         private void OnMove(InputAction.CallbackContext ctx)
         {
             moveInput = ctx.ReadValue<Vector2>();
+        }
+
+        private void AssignOtherPlayer()
+        {
+            foreach (var pm in FindObjectsOfType<PlayerMovement>())
+            {
+                if (pm != this)
+                {
+                    otherPlayer = pm;
+                    break;
+                }
+            }
         }
 
         private void OnAim(InputAction.CallbackContext ctx)
