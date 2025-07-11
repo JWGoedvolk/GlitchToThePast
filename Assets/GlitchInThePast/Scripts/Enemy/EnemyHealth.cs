@@ -46,7 +46,10 @@ namespace Systems.Enemies
                 }
                 
                 // Update health UI
-                healthUI.localScale = new Vector3((float)healthCurrent/healthMax, healthUI.localScale.y, healthUI.localScale.z);
+                if (healthUI != null)
+                {
+                    healthUI.localScale = new Vector3((float)healthCurrent/healthMax, healthUI.localScale.y, healthUI.localScale.z);
+                }
             }
         }
         public int HealthMax => healthMax;

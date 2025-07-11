@@ -1351,6 +1351,8 @@ GameObject:
   - component: {fileID: 354893209}
   - component: {fileID: 354893208}
   - component: {fileID: 354893210}
+  - component: {fileID: 354893212}
+  - component: {fileID: 354893211}
   m_Layer: 0
   m_Name: Enemy_Ranged
   m_TagString: Untagged
@@ -1440,12 +1442,64 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 3.26, y: 4.39, z: 1.91}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &354893211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354893207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de47f9a9432473496989ea837a8aa2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RespawnPoint: {fileID: 354893209}
+  respawnDelay: 0
+  onRespawn:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &354893212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354893207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4ffdad56f543c0bf8a024735a4a718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 3
+  healthCurrent: 3
+  EnemyType: 1
+  OnDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 354893211}
+        m_TargetAssemblyTypeName: Systems.Enemies.EnemyRespawner, Assembly-CSharp
+        m_MethodName: Respawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  spawner: {fileID: 0}
+  healthUI: {fileID: 0}
 --- !u!1 &373884546
 GameObject:
   m_ObjectHideFlags: 0
@@ -4390,6 +4444,8 @@ GameObject:
   - component: {fileID: 999995847}
   - component: {fileID: 999995846}
   - component: {fileID: 999995848}
+  - component: {fileID: 999995850}
+  - component: {fileID: 999995849}
   m_Layer: 0
   m_Name: Enemy_Melee
   m_TagString: Untagged
@@ -4479,12 +4535,64 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 3.5400004, y: 4.72, z: 1.26}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &999995849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999995845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de47f9a9432473496989ea837a8aa2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RespawnPoint: {fileID: 999995847}
+  respawnDelay: 0
+  onRespawn:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &999995850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999995845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4ffdad56f543c0bf8a024735a4a718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 3
+  healthCurrent: 3
+  EnemyType: 0
+  OnDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 999995849}
+        m_TargetAssemblyTypeName: Systems.Enemies.EnemyRespawner, Assembly-CSharp
+        m_MethodName: Respawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  spawner: {fileID: 0}
+  healthUI: {fileID: 0}
 --- !u!1 &1004966363
 GameObject:
   m_ObjectHideFlags: 0
@@ -5835,6 +5943,7 @@ GameObject:
   - component: {fileID: 1155879643}
   - component: {fileID: 1155879642}
   - component: {fileID: 1155879641}
+  - component: {fileID: 1155879645}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -5857,12 +5966,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 15.725727, z: 8.854302}
+  m_Center: {x: 7.649582e-11, y: -0.9498626, z: -0.035516065}
 --- !u!23 &1155879642
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5930,6 +6039,22 @@ Transform:
   - {fileID: 739388522}
   m_Father: {fileID: 497219697}
   m_LocalEulerAnglesHint: {x: -23.856, y: 14.683, z: -6.049}
+--- !u!114 &1155879645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155879640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754c89aa69e74210be3deea6cd9932af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Whitelist:
+  - Player1
+  TriggeringObjects: []
+  isEnabler: 1
 --- !u!1 &1176127495
 GameObject:
   m_ObjectHideFlags: 0
@@ -7625,6 +7750,7 @@ GameObject:
   - component: {fileID: 1489535549}
   - component: {fileID: 1489535548}
   - component: {fileID: 1489535547}
+  - component: {fileID: 1489535551}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -7647,12 +7773,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 8.519437, y: 1, z: 17.999537}
+  m_Center: {x: 4.2864e-10, y: -0.0000011221064, z: 0.49266088}
 --- !u!23 &1489535548
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7719,6 +7845,22 @@ Transform:
   - {fileID: 844730890}
   m_Father: {fileID: 497219697}
   m_LocalEulerAnglesHint: {x: 22.467, y: -4.254, z: 10.19}
+--- !u!114 &1489535551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489535546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754c89aa69e74210be3deea6cd9932af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Whitelist:
+  - Player2
+  TriggeringObjects: []
+  isEnabler: 1
 --- !u!1 &1494807530
 GameObject:
   m_ObjectHideFlags: 0
