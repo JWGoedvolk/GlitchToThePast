@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5745
+      value: 1.5745001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5745
+      value: 1.5745001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.511
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
       propertyPath: m_LocalPosition.y
@@ -42,11 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e77b96c5e85fe84489761d1daf67dd9, type: 2}
     - target: {fileID: 919132149155446097, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
       propertyPath: m_Name
       value: TEMP_Button
@@ -67,5 +71,88 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6148147900214794562}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2981322617886131463}
   m_SourcePrefab: {fileID: 100100000, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
+--- !u!1 &5543007943047546469 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
+  m_PrefabInstance: {fileID: 4624582786446637876}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6148147900214794562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543007943047546469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331ba9493f0a4f4980fb8466c7a0778a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Whitelist:
+  - Player1
+  - Player2
+  TriggeringObjects: []
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6335513727783872432}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_material
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: cb558e25dec58fa4cbb2b0be7bd6682a, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onUnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6335513727783872432}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_material
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 7e77b96c5e85fe84489761d1daf67dd9, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!65 &2981322617886131463
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543007943047546469}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.95254934, y: 0.9525496, z: 0.5556253}
+  m_Center: {x: 0, y: 0, z: 0.25893235}
+--- !u!23 &6335513727783872432 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 90fd491eacd8ffe40a0142c766441c28, type: 3}
+  m_PrefabInstance: {fileID: 4624582786446637876}
+  m_PrefabAsset: {fileID: 0}

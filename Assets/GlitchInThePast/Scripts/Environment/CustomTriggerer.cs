@@ -9,6 +9,8 @@ namespace JW.Roguelike.Objects
         public List<string> Whitelist;
         public List<GameObject> TriggeringObjects;
         public bool IsTriggering => TriggeringObjects != null && TriggeringObjects.Count > 0;
+        [SerializeField] private UnityEvent onTrigger;
+        [SerializeField] private UnityEvent onUnTrigger;
 
         public void OnTriggerEnter(Collider other)
         {
@@ -18,6 +20,7 @@ namespace JW.Roguelike.Objects
                 {
                     TriggeringObjects.Add(other.gameObject);
                     OnTrigger(other.gameObject);
+                    onTrigger?.Invoke();
                 }
             }
         }
@@ -30,6 +33,7 @@ namespace JW.Roguelike.Objects
                 {
                     TriggeringObjects.Remove(other.gameObject);
                     OnTriggerExit(other.gameObject);
+                    onUnTrigger?.Invoke();
                 }
             }
         }
