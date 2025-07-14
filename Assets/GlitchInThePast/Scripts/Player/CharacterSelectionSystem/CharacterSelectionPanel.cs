@@ -51,8 +51,13 @@ public class CharacterSelectionPanel : MonoBehaviour
     #endregion
 
     #region Private Functions
+    private bool hasStartedFade = false; // Added this because the try start game function was being called by both players
+                                         // since they both confirm their choices causing the fader to duplicate!
+
     private void TryStartGame()
     {
+        if (hasStartedFade) return; 
+
         if (!p1Confirmed || !p2Confirmed)
             return;
 
@@ -65,6 +70,8 @@ public class CharacterSelectionPanel : MonoBehaviour
             Debug.LogWarning("Both players must choose opposite characters to start");
             return;
         }
+
+        hasStartedFade = true; 
 
         #region Save Selection
         int char1Id = (slot1 == 0) ? 0 : 1;
