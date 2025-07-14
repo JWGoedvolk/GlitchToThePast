@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -32,6 +33,9 @@ public class MainMenuButtons : MonoBehaviour
     private bool subtitlesOn;
     private string[] sizes = new string[3];
     private int selectedSize = 0;
+
+    //Music BG
+    [SerializeField] public AudioSource backgroundMusic;
     #endregion
 
     private void Start()
@@ -39,6 +43,12 @@ public class MainMenuButtons : MonoBehaviour
         if (isSelectingCharacters)
         {
             return;
+        }
+
+        //music only plays once and doesnt restart when somehting else activates
+        if (backgroundMusic != null && !backgroundMusic.isPlaying)
+        {
+            backgroundMusic.Play();
         }
 
         if (sizes is null) return;
@@ -51,6 +61,7 @@ public class MainMenuButtons : MonoBehaviour
         {
             buttonLocker = GetComponent<UIBlocker>();
         }
+
     }
 
     private void Update()
@@ -77,7 +88,9 @@ public class MainMenuButtons : MonoBehaviour
     #region Start Button
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+
+        StartCoroutine(MusicAndStart());
+
     }
     #endregion
 
@@ -141,7 +154,7 @@ public class MainMenuButtons : MonoBehaviour
         }
     }
     #endregion
-   
+
     #region Quitting
     public void QuitGame()
     {
@@ -210,6 +223,35 @@ public class MainMenuButtons : MonoBehaviour
         }
 
         UpdateButtonState();
+    }
+    #endregion
+
+    #region Music
+    IEnumerator MusicFadingOut()
+    {
+        //saves og volume so i can rstror later
+        float ogVolume = backgroundMusic.volume;
+
+        //as long as the volume is 0 , keep the bg music on
+        while (backgroundMusic.volume > 0)
+        {
+            backgroundMusic.volume -= ogVolume * Time.deltaTime;
+            yield return null;
+        }
+
+        //once its zero stop THEN reset it next time
+        backgroundMusic.Stop();
+        backgroundMusic.volume = ogVolume;
+
+    }
+
+    private IEnumerator MusicAndStart()
+    {
+
+        yield return StartCoroutine(MusicFadingOut());
+
+        SceneManager.LoadScene(1);
+
     }
     #endregion
 }
