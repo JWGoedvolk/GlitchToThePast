@@ -36,6 +36,7 @@ public class MainMenuButtons : MonoBehaviour
 
     //Music BG
     [SerializeField] public AudioSource backgroundMusic;
+    [SerializeField] [Range(0f, 1f)] private float fadeOutRate = 0.2f;
     #endregion
 
     private void Start()
@@ -230,18 +231,18 @@ public class MainMenuButtons : MonoBehaviour
     IEnumerator MusicFadingOut()
     {
         //saves og volume so i can rstror later
-        float ogVolume = backgroundMusic.volume;
+        float origonalVolume = backgroundMusic.volume;
 
         //as long as the volume is 0 , keep the bg music on
         while (backgroundMusic.volume > 0)
         {
-            backgroundMusic.volume -= ogVolume * Time.deltaTime;
+            backgroundMusic.volume -= fadeOutRate * Time.deltaTime;
             yield return null;
         }
 
         //once its zero stop THEN reset it next time
         backgroundMusic.Stop();
-        backgroundMusic.volume = ogVolume;
+        backgroundMusic.volume = origonalVolume;
 
     }
 
