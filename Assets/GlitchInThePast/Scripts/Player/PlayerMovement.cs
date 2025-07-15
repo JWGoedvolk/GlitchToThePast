@@ -35,6 +35,8 @@ namespace Player.GenericMovement
         [SerializeField] private Rotator rotator;
         private bool isRunning;
         private bool isDashing;
+        public bool IsDashing => isDashing;
+
         private float dashCooldownTimer;
         private float verticalVel;
 

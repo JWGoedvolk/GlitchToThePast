@@ -447,7 +447,6 @@ GameObject:
   - component: {fileID: 2506175397775215973}
   - component: {fileID: 6406667974514859915}
   - component: {fileID: 3550275934329795150}
-  - component: {fileID: 6977588198565309673}
   m_Layer: 0
   m_Name: TEMP_LaserClownHead
   m_TagString: Untagged
@@ -545,19 +544,3 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.64842314
   m_Center: {x: 0, y: 0.14842312, z: 0}
---- !u!114 &6977588198565309673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9117204691979291400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c2cf45fb48719245bf857899ad13c3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeTime: 3
-  inactiveTime: 2
-  laserVisual: {fileID: 8506975465960175350}
-  laser: {fileID: 2728994732849985942}

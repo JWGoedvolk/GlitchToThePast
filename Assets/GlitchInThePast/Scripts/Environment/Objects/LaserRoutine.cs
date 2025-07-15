@@ -42,7 +42,7 @@ public class LaserRoutine : MonoBehaviour
 
     private void SetLaserState(bool active)
     {
-        laser.isLaserActive = active;
+        // laser.isLaserActive = active;
         if (laserVisual != null) laserVisual.SetActive(active);
     }
 }

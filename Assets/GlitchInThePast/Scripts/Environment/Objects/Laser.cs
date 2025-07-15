@@ -7,8 +7,6 @@ public class Laser : MonoBehaviour
     #region Variables
     public Vector3 respawnOffset = new Vector3(-5f, 0f, 0f);
 
-    public bool isLaserActive = false;
-
     private SpawningManager spawningManager;
     #endregion
 
@@ -19,11 +17,16 @@ public class Laser : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isLaserActive) return;
-
         if (other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
-            PlayerInput playerInput = other.GetComponent<PlayerInput>();
+            var playerInput = other.GetComponent<PlayerInput>();
+            var movement = other.GetComponent<Player.GenericMovement.PlayerMovement>();
+
+            if (movement != null && movement.IsDashing)
+            {
+                return;
+            }
+
             if (playerInput != null && spawningManager != null)
             {
                 Vector3 spawnPos = transform.position + respawnOffset;
