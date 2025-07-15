@@ -7,39 +7,70 @@ namespace UI.FadingEffect.Temp
 {
     public class MaterialStateChanger : MonoBehaviour
     {
-        public float ChangeTime = 0.5f;
-        public Material StartingMaterial;
-        public Material ChangeToMaterial;
+        [Tooltip("Material to switch to during the flash.")]
+        [SerializeField] private Material flashMaterial;
+
+        [Tooltip("Duration of the flash.")]
+        [SerializeField] private float duration;
+        
+        [SerializeField] private bool isLooping = false;
+        
+        // The SpriteRenderer that should flash.
         private MeshRenderer meshRenderer;
-        Coroutine flashRoutine;
+        
+        // The material that was in use, when the script started.
+        private Material originalMaterial;
 
-        void OnEnable()
+        // The currently running coroutine.
+        private Coroutine flashRoutine;
+
+        void Start()
         {
+            // Get the SpriteRenderer to be used,
+            // alternatively you could set it from the inspector.
             meshRenderer = GetComponent<MeshRenderer>();
-        }
 
-        private void Update()
-        {
-            if (flashRoutine != null && meshRenderer.material != ChangeToMaterial) // Flip the coroutine to null when finished
-            {
-                flashRoutine = null;
-            }
+            // Get the material that the SpriteRenderer uses, 
+            // so we can switch back to it after the flash ended.
+            originalMaterial = meshRenderer.material;
         }
 
         public void PlayMaterialChange()
         {
-            if (flashRoutine == null) // Only run the coroutine if it is not running now
+            // If the flashRoutine is not null, then it is currently running.
+            if (flashRoutine != null)
             {
-                flashRoutine = StartCoroutine(nameof(MaterialChange));
+                // In this case, we should stop it first.
+                // Multiple FlashRoutines the same time would cause bugs.
+                return; // so return
+            }
+            else
+            {
+                // Start the Coroutine, and store the reference for it.
+                flashRoutine = StartCoroutine(FlashRoutine());
             }
         }
 
-        private IEnumerator MaterialChange()
+        private IEnumerator FlashRoutine()
         {
-            StartingMaterial = meshRenderer.material;
-            meshRenderer.material = ChangeToMaterial;
-            yield return new WaitForSeconds(ChangeTime);
-            meshRenderer.material = StartingMaterial;
+            // Swap to the flashMaterial.
+            meshRenderer.material = flashMaterial;
+
+            // Pause the execution of this function for "duration" seconds.
+            yield return new WaitForSeconds(duration);
+
+            // After the pause, swap back to the original material.
+            meshRenderer.material = originalMaterial;
+
+            // Set the routine to null, signaling that it's finished.
+            flashRoutine = null;
+
+            if (isLooping)
+            {
+                flashRoutine = null;
+                PlayMaterialChange();
+                yield break;
+            }
         }
     }
 }
