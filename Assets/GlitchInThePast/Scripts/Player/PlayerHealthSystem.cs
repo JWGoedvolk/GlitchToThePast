@@ -79,7 +79,7 @@ public class PlayerHealthSystem : MonoBehaviour
             healthUI.UpdateHealth(currentHealth, maxHealth);
     }
 
-    void TakeDamage(int ammount)
+    public void TakeDamage(int ammount)
     {
         currentHealth -= ammount;
         UpdateUI();
