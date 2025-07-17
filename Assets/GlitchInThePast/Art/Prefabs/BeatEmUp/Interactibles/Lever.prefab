@@ -291,7 +291,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5c03268a531b7854881c7975b7f28245, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -363,6 +363,16 @@ MonoBehaviour:
   - Player2
   - Player
   triggeringObjects: []
+  isResetting: 1
+  defaultState: 0
+  isActivated: 0
+  resetAfter: 5
+  spriteRenderer: {fileID: 2511823156540859146}
+  defaultStateMaterial: {fileID: 2100000, guid: 5c03268a531b7854881c7975b7f28245, type: 2}
+  activeStateMaterial: {fileID: 2100000, guid: 664bcec2c8c6b1e40923b05c49438c05, type: 2}
   OnInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+  OnReset:
     m_PersistentCalls:
       m_Calls: []

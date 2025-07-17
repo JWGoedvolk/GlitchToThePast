@@ -48,10 +48,19 @@ namespace Systems.Enemies
         }
         public int HealthMax => healthMax;
         public EnemySpawner spawner; // We hold a reference to our spawner so we can keep track of how many of each enemy is currently alive
-        
-        public void TakeDamage(int damage, PlayerWeaponSystem.WeaponType weaponType)
+
+        public void TestMessage(int num)
         {
-            if (EnemyType == EnemyTypes.Melee && weaponType == PlayerWeaponSystem.WeaponType.Melee)
+            TakeDamage(num);
+        }
+        
+        public void TakeDamage(int damage, PlayerWeaponSystem.WeaponType weaponType = PlayerWeaponSystem.WeaponType.None)
+        {
+            if (EnemyType == EnemyTypes.Boss)
+            {
+                OnDamageTaken?.Invoke();
+            }
+            else if (EnemyType == EnemyTypes.Melee && weaponType == PlayerWeaponSystem.WeaponType.Melee)
             {
                 Health -= damage;
                 OnDamageTaken?.Invoke();

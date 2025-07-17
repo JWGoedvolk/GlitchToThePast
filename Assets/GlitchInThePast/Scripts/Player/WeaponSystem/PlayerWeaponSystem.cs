@@ -13,7 +13,8 @@ namespace GlitchInThePast.Scripts.Player
         public enum WeaponType
         {
             Melee,
-            Ranged
+            Ranged,
+            None
         }
         [Header("General")]
         [SerializeField] private WeaponType weaponType;
