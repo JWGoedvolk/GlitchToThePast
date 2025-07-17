@@ -29,13 +29,13 @@ namespace GlitchInThePast.Scripts.Player
         [Header("Ranged")] 
         [SerializeField] private UnityEvent onRangedAttack;
 
-        [Header("Melee Attack")]
+        // Melee Attack
         [SerializeField] private Transform meleeAttackTransform;
         [SerializeField] private float meleeAttackRange = 3f;
         [SerializeField] private float meleeRechargeTime = 3f;
         [SerializeField] private int meleeDamage = 1;
 
-        [Header("Ranged Attack")] 
+        // Ranged Attack
         [SerializeField] private Transform rangedAttackSpawnPoint;
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private float rangedRechargeTime = 3f;

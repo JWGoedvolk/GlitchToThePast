@@ -1,0 +1,27 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="Vars" style="flex-grow: 1; margin-bottom: 0; margin-top: 0; margin-right: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+        <ui:Foldout text="Health" name="Health" value="false">
+            <uie:PropertyField binding-path="currentHealth" />
+            <uie:PropertyField binding-path="maxHealth" />
+        </ui:Foldout>
+        <ui:Foldout text="Damage Detection" tooltip="settings for what can damage the player" name="DamageDetection" value="false">
+            <uie:PropertyField binding-path="damageableTags" />
+        </ui:Foldout>
+        <ui:Foldout text="Invulnerability" tooltip="settings for what can damage the player" name="Invulnerability" value="false">
+            <uie:PropertyField binding-path="isInvulerable" />
+            <uie:PropertyField binding-path="invulerable" label="Time Invulnerable" />
+        </ui:Foldout>
+        <ui:Foldout text="Respawning" name="Respawning" value="false">
+            <uie:PropertyField name="PropertyField" binding-path="spawningManager" />
+        </ui:Foldout>
+    </ui:VisualElement>
+    <ui:VisualElement name="Events" style="flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+        <ui:Foldout text="Events" name="Events" value="false">
+            <uie:PropertyField binding-path="onDamageTaken" />
+            <uie:PropertyField binding-path="onHealthRegained" />
+            <uie:PropertyField binding-path="onPlayerDeath" />
+            <uie:PropertyField binding-path="onInvulnerabilityStart" />
+            <uie:PropertyField binding-path="onInvulnerabilityEnd" focusable="false" />
+        </ui:Foldout>
+    </ui:VisualElement>
+</ui:UXML>

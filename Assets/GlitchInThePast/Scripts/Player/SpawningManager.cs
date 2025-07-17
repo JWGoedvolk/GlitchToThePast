@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class SpawningManager : MonoBehaviour, IPauseable
@@ -18,6 +19,8 @@ public class SpawningManager : MonoBehaviour, IPauseable
 
     //keeps list of which players are dead
     private HashSet<int> deadplayers = new();
+    
+    [SerializeField] private UnityEvent onRespawn;
 
     void Start()
     {
@@ -89,6 +92,7 @@ public class SpawningManager : MonoBehaviour, IPauseable
 
         PlayerHealthSystem hs = gameObject.GetComponent<PlayerHealthSystem>();
         if (hs != null) hs.ResetHealth();
+        onRespawn?.Invoke();
 
         Debug.Log($"Player {playerIndex} respawned at {gameObject.transform.position}");
     }

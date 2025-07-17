@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="Vars" style="flex-grow: 1;">
+        <ui:Foldout text="States" name="States">
+            <uie:PropertyField binding-path="isActive" />
+        </ui:Foldout>
+        <ui:Foldout text="Melee" name="Melee">
+            <ui:VisualElement name="EnemyCount" style="flex-grow: 1; flex-direction: row;">
+                <ui:Label tabindex="-1" text="Melee Enemies Active:" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" binding-path="MeleeEnemyCount" name="Count" />
+            </ui:VisualElement>
+            <uie:PropertyField binding-path="meleeEnemy" label="Enemy Prefab" />
+            <uie:PropertyField binding-path="meleeSpawnPoint" label="Spawn Point" />
+            <ui:VisualElement name="SpawnTimes" style="flex-grow: 1;">
+                <ui:Slider label="Spawn Interval" high-value="20" binding-path="meleeSpawnInterval" show-input-field="true" focusable="true" name="Interval" />
+                <ui:SliderInt label="Max Melee Enemies" high-value="10" binding-path="maxMeleeCount" show-input-field="true" low-value="-1" tooltip="-1 will spawn inifnitely until disabled" name="MaxCount" />
+            </ui:VisualElement>
+        </ui:Foldout>
+        <ui:Foldout text="Melee" name="Ranged">
+            <ui:VisualElement name="EnemyCount" style="flex-grow: 1; flex-direction: row;">
+                <ui:Label tabindex="-1" text="Ranged Enemies Active:" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" binding-path="RangedEnemyCount" name="Count" />
+            </ui:VisualElement>
+            <uie:PropertyField binding-path="rangedEnemy" label="Enemy Prefab" />
+            <uie:PropertyField binding-path="rangedSpawnPoint" label="Spawn Point" />
+            <ui:Slider label="Spawn Interval" high-value="20" binding-path="rangedSpawnInterval" show-input-field="true" focusable="true" />
+            <ui:SliderInt label="Max Ranged Enemies" high-value="10" binding-path="maxRangedCount" show-input-field="true" low-value="-1" tooltip="-1 will spawn inifnitely until disabled" />
+        </ui:Foldout>
+    </ui:VisualElement>
+    <ui:VisualElement name="Events" style="flex-grow: 1;" />
+</ui:UXML>

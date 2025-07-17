@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement name="Vars" style="flex-grow: 1;">
+            <ui:Foldout text="Preview Pop Up">
+                <uie:PropertyField binding-path="interactPrompt" />
+                <uie:PropertyField binding-path="interactPromptText" />
+            </ui:Foldout>
+            <ui:Foldout text="Detection">
+                <uie:PropertyField binding-path="whitelist" />
+            </ui:Foldout>
+        </ui:VisualElement>
+        <ui:VisualElement name="Events" style="flex-grow: 1;">
+            <ui:Foldout text="Events">
+                <uie:PropertyField binding-path="OnEnterRange" />
+                <uie:PropertyField binding-path="OnExitRange" />
+                <uie:PropertyField binding-path="OnInteraction" />
+            </ui:Foldout>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

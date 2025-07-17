@@ -1,28 +1,37 @@
 using System;
+using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Systems.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [Header("States")] 
+        // States
         [SerializeField] private bool isActive = true;
         
-        [Header("Melee")]
+        // Melee
         [SerializeField] private GameObject meleeEnemy;
         [SerializeField] private Transform meleeSpawnPoint;
         [SerializeField] private float meleeSpawnInterval = 1f;
-        private float meleeSpawnTimer = 0f;
-        public int MeleeEnemyCount = 0;
+        [SerializeField] private float meleeSpawnTimer = 0f;
+        [ReadOnly] public int MeleeEnemyCount = 0;
         [SerializeField] private int maxMeleeCount = 5;
     
-        [Header("Ranged")]
+        // Ranged
         [SerializeField] private GameObject rangedEnemy;
         [SerializeField] private Transform rangedSpawnPoint;
         [SerializeField] private float rangedSpawnInterval = 1f;
-        private float rangedSpawnTimer = 0f;
+        [SerializeField] private float rangedSpawnTimer = 0f;
         public int RangedEnemyCount = 0;
         [SerializeField] private int maxRangedCount = 5;
+
+        // Event
+        [SerializeField] private UnityEvent onEnemySpawned;
+        [SerializeField] private UnityEvent onMeleeEnemySpawned;
+        [SerializeField] private UnityEvent onRangedEnemySpawned;
+        [SerializeField] private UnityEvent onSpawnerDisabled;
+        [SerializeField] private UnityEvent onSpawnerEnabled;
 
 
         public void OnReset()

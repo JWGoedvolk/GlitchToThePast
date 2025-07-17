@@ -7,13 +7,13 @@ namespace Systems.Enemies
 {
     public class EnemyRespawner : MonoBehaviour
     {
-        [Header("Transforms")]
+        // Transforms
         public Transform RespawnPoint;
         
-        [Header("Respawn With Delay")]
+        // Delays
         [SerializeField] private float respawnDelay;
         
-        [Header("Events")]
+        // Events
         [SerializeField] private UnityEvent onRespawn;
         
         // Other references

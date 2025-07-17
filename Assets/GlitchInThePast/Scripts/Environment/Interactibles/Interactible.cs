@@ -18,8 +18,10 @@ namespace JW.Roguelike.Objects.Interactibles
         [Header("Detection")] 
         [SerializeField] private List<string> whitelist;
         [SerializeField] private List<GameObject> triggeringObjects;
-        
-        [Header("Events")]
+
+        [Header("Events")] 
+        public UnityEvent OnEnterRange;
+        public UnityEvent OnExitRange;
         public UnityEvent OnInteraction;
 
         private void Update()
@@ -40,6 +42,7 @@ namespace JW.Roguelike.Objects.Interactibles
                     PlayerInteractor playerInteractor = other.GetComponent<PlayerInteractor>();
                     if (playerInteractor != null)
                     {
+                        OnEnterRange?.Invoke();
                         playerInteractor.interactingObject = this;
                         if (playerInteractor.GetComponent<PlayerInput>().currentControlScheme == "Controller")
                         {
@@ -60,6 +63,7 @@ namespace JW.Roguelike.Objects.Interactibles
             {
                 if (triggeringObjects.Contains(other.gameObject))
                 {
+                    OnExitRange?.Invoke();
                     triggeringObjects.Remove(other.gameObject);
                     
                     // Make it so the play can no longer interact with this object

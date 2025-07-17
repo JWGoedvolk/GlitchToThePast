@@ -15,12 +15,12 @@ namespace Systems.Enemies
             Boss
         }
         
-        [Header("Stats")] 
+        // Stats
         [SerializeField] private int healthMax = 3;
         [SerializeField] private int healthCurrent = 3;
         public EnemyTypes EnemyType = EnemyTypes.Melee;
         
-        [Header("Events")]
+        // Events
         [SerializeField] public UnityEvent OnDamageTaken;
         [SerializeField] public UnityEvent OnDeath;
         public int Health

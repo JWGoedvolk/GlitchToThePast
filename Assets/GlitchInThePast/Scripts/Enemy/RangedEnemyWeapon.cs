@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Systems.Enemies
 {
@@ -11,7 +12,10 @@ namespace Systems.Enemies
         [SerializeField] private float reloadTime;
         [SerializeField] private float projectileSpeed;
         [SerializeField] private float attackRange;
-        [SerializeField] private RangedMovement movement;
+        private RangedMovement movement;
+        
+        // Events
+        [SerializeField] private UnityEvent onAttack;
         
         [Header("Tools")]
         [SerializeField] private Color spawnPreviewColor;
@@ -28,6 +32,7 @@ namespace Systems.Enemies
                 reloadTime = 0;
                 var spawnedProjectile = Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation);
                 spawnedProjectile.GetComponent<EnemyProjectile>().Init(projectileSpeed, movement.closestPlayer.position);
+                onAttack?.Invoke();
             }
             else
             {

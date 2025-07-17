@@ -8,7 +8,7 @@ namespace GlitchInThePast.Scripts.Player
     public class PlayerRangedProjectile : CustomTriggerer
     {
         private Rigidbody rb;
-        public int Damage;
+        [HideInInspector] public int Damage;
         public UnityEvent OnEnemyHit;
 
         public void Init(int damage, float speed)
