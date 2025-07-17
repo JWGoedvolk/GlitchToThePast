@@ -75,9 +75,23 @@ public class MainMenuButtons : MonoBehaviour
         bool escapePressed = Keyboard.current?.escapeKey.wasPressedThisFrame == true;
         bool controllerMenuPressed = Gamepad.current?.startButton.wasPressedThisFrame == true;
 
+        
         if ((escapePressed || controllerMenuPressed) && !quitConfirmationPanel.activeSelf)
         {
+            //checks if the pannel is active
+            bool wasSettingsActive = settingsPanel.activeSelf;
+
             settingsPanel.SetActive(!settingsPanel.activeSelf);
+
+            if (!wasSettingsActive) // Panel is now active (was inactive)
+            {
+                sfxManager?.PlayPannelOpeningSFX();
+            }
+            else // Panel is now inactive (was active)
+            {
+                sfxManager?.PlayPannelClosingSFX();
+            }
+
 
             EventSystem.current.SetSelectedGameObject(null);
             if (settingsPanel.activeSelf)
@@ -108,8 +122,14 @@ public class MainMenuButtons : MonoBehaviour
         //sfx managing
         sfxManager?.PlayButtonClickSFX();
 
-        //asumption that the toogle is always open
-        sfxManager?.PlayPannelOpeningSFX();
+        if (settingsActive) //aka pannel opening
+        {
+            sfxManager?.PlayPannelOpeningSFX();
+        }
+        else //when the pannel clsoe
+        {
+            sfxManager?.PlayPannelClosingSFX();
+        }
 
 
         EventSystem.current.SetSelectedGameObject(null);

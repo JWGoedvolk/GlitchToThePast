@@ -9,6 +9,7 @@ public class UISfxManager : MonoBehaviour
 
     [Header("Button Soudn Effects")]
     [SerializeField] private AudioClip buttonCick;
+    [SerializeField] private AudioClip buttonClickExit;
     [SerializeField] private AudioClip panelOpen;
     [SerializeField] private AudioClip pannelClose;
 
@@ -17,6 +18,11 @@ public class UISfxManager : MonoBehaviour
     public void PlayButtonClickSFX()
     {
         PlayTheSoundEffectOfThe(buttonCick);
+    }
+
+    public void PlayExitSFX()
+    {
+        PlayTheSoundEffectOfThe(buttonClickExit);
     }
 
     public void PlayPannelOpeningSFX()
