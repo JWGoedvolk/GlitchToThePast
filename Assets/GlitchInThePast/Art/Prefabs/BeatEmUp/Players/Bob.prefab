@@ -56,6 +56,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnDelay: 10
   deafultCheckpoint: {fileID: 7276517022794321912}
+  onRespawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4486839311755691722
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +450,8 @@ MonoBehaviour:
   dashDistance: 3
   dashCooldown: 1
   dashStartPosition: {x: 0, y: 0, z: 0}
+  jumpForce: 9
+  gravityMultiplier: 2.5
   rotator: {fileID: 0}
   weaponSystem: {fileID: 686190289503579459}
   attackTransformHolder: {fileID: 2280682363573972676}
@@ -582,7 +587,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96dbf1ab8884b44940e732143b7ee4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 0}
   interactingObject: {fileID: 0}
   OnInteract:
     m_PersistentCalls:

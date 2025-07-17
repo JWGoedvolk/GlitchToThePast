@@ -27,6 +27,7 @@ namespace Narrative
         {
             if (other.CompareTag("Player1") || other.CompareTag("Player2"))
             {
+                if (NarrativeManager.Instance is null) return;
                 SubscribeToSequenceEnd();
                 NarrativeManager.Instance.PlaySequence(sequenceToPlay);
                 Destroy(this);
@@ -35,7 +36,7 @@ namespace Narrative
 
         private void Start()
         {
-            if (playSequenceAtStart)
+            if (playSequenceAtStart && NarrativeManager.Instance != null)
             {
                 SubscribeToSequenceEnd();
                 NarrativeManager.Instance.PlaySequence(sequenceToPlay);

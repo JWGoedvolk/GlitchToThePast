@@ -10,7 +10,6 @@ namespace CameraScripts
         [SerializeField] private Camera cameraToDisable;
 
         private HashSet<GameObject> playersInside = new HashSet<GameObject>();
-        private int totalPlayers = 2;
         #endregion
 
         private void OnTriggerEnter(Collider other)

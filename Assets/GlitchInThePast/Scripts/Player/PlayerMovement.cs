@@ -15,7 +15,7 @@ namespace Player.GenericMovement
         public float walkingSpeed = 5f;
         [Tooltip("This number gets multiplied to the walking speed")]
         public float runningSpeed = 1.5f;
-        
+
         // Dashing
         [Tooltip("Dashing speed")]
         [SerializeField] private float dashSpeed = 12f;
@@ -24,6 +24,11 @@ namespace Player.GenericMovement
         [Tooltip("How long till players are premitted to dash again aka dash cooldown (in seconds)")]
         [SerializeField] private float dashCooldown = 1f;
         [SerializeField] private Vector3 dashStartPosition;
+
+        // Jumping
+        [SerializeField] private float jumpForce = 9f;
+        [Tooltip("The higher the number the stronger gravity is when falling")]
+        [SerializeField] private float gravityMultiplier = 2.5f;
 
         public static float MaxXDistance = 16f;
         public static float MaxZDistance = 11f;
@@ -45,7 +50,7 @@ namespace Player.GenericMovement
         // Added by JW
         [SerializeField] private PlayerWeaponSystem weaponSystem;
         [SerializeField] private Transform attackTransformHolder;
-        
+
         // Events
         [SerializeField] private UnityEvent onDashStart;
         [SerializeField] private UnityEvent onDashEnd;
@@ -78,7 +83,7 @@ namespace Player.GenericMovement
         {
             // Update dash cooldown countdown
             dashCooldownTimer -= Time.deltaTime;
-            
+
             // If we are dashing, check if we've reached our end position yet
             if (isDashing)
             {
@@ -113,9 +118,13 @@ namespace Player.GenericMovement
         {
             if (characterController == null) return;
 
-            if (characterController.isGrounded && verticalVel < 0f) verticalVel = -2f;
+            if (characterController.isGrounded && verticalVel < 0f)
+            {
+                verticalVel = -2f;
+            }
 
-            verticalVel += Physics.gravity.y * Time.fixedDeltaTime;
+            verticalVel += Physics.gravity.y * gravityMultiplier * Time.fixedDeltaTime;
+
 
             float speed = walkingSpeed * (isRunning ? runningSpeed : 1f);
             Vector3 horizontal = new Vector3(moveInput.x, 0, moveInput.y).normalized;
@@ -155,27 +164,31 @@ namespace Player.GenericMovement
             #region Player input actions assignment
             if (action["Move"] != null)
             {
-                Debug.Log("Adding 'Move' action to input");
+                // Debug.Log("Adding 'Move' action to input");
                 action["Move"].performed += OnMove;
                 action["Move"].canceled += OnMove;
             }
             if (action["Aim"] != null)
             {
-                Debug.Log("Adding 'Aim' action to input");
+                // Debug.Log("Adding 'Aim' action to input");
                 action["Aim"].performed += OnAim;
                 action["Aim"].canceled += OnAim;
             }
             if (action["Run"] != null)
             {
-                Debug.Log("Adding 'Run' action to input");
+                // Debug.Log("Adding 'Run' action to input");
                 action["Run"].performed += _ => isRunning = true;
                 action["Run"].canceled += _ => isRunning = false;
             }
             if (action["Dash"] != null) action["Dash"].performed += _ => Dash();
             if (action["Attack"] != null)
             {
-                Debug.Log("Adding 'Attack' action to input");
+                // Debug.Log("Adding 'Attack' action to input");
                 action["Attack"].performed += _ => weaponSystem.OnAttack();
+            }
+            if (action["Jump"] != null)
+            {
+                action["Jump"].performed += OnJump;
             }
 
             #endregion
@@ -186,6 +199,7 @@ namespace Player.GenericMovement
             if (playerInput == null) return;
             InputActionAsset action = playerInput.actions;
 
+            #region Player input actions removal
             if (action["Move"] != null)
             {
                 action["Move"].performed -= OnMove;
@@ -207,6 +221,11 @@ namespace Player.GenericMovement
             {
                 action["Attack"].performed -= _ => weaponSystem.OnAttack();
             }
+            if (action["Jump"] != null)
+            {
+                action["Jump"].performed -= OnJump;
+            }
+            #endregion
         }
 
         public void SetupAtSpawn(Vector3 spawnPos)
@@ -260,9 +279,9 @@ namespace Player.GenericMovement
             {
                 isDashing = true;
                 dashCooldownTimer = dashCooldown;
-                
+
                 dashStartPosition = characterController.transform.position;
-                
+
                 onDashStart?.Invoke();
             }
         }
@@ -284,6 +303,14 @@ namespace Player.GenericMovement
             //Gizmos.DrawWireSphere(transform.position + transform.right * dashDistance, 0.1f);
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(dashStartPosition, 0.1f);
+        }
+
+        private void OnJump(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed && characterController.isGrounded)
+            {
+                verticalVel = jumpForce;
+            }
         }
 
         #region IPauseable functions

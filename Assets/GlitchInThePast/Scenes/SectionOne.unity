@@ -9960,6 +9960,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Temp_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8743092934828617689, guid: ee9da33b9e2827548a8bec11f018a705, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -47.67505
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11547,7 +11551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPrefabs:
   - {fileID: 3982303003054045252, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
-  - {fileID: 3982303003054045252, guid: fd83ca4060de4384a9075e0ec350ee4b, type: 3}
+  - {fileID: 3982303003054045252, guid: 89a3a5190ad3dde43ab8dfb40c1c9349, type: 3}
   playerOneSpawn: {fileID: 1858618178}
   playerTwoSpawn: {fileID: 1080483839}
 --- !u!114 &1981149627
@@ -11608,6 +11612,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnDelay: 10
   deafultCheckpoint: {fileID: 0}
+  onRespawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1988233171
 GameObject:
   m_ObjectHideFlags: 0
