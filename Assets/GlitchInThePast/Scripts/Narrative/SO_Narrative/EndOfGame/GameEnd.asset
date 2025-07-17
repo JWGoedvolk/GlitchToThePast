@@ -10,18 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
-  m_Name: Laser_Tooltip
+  m_Name: GameEnd
   m_EditorClassIdentifier: 
-  stepCount: 1
-  isSkippable: 
+  stepCount: 10
+  isSkippable: 01010101010000000000
   narrativeTexts:
-  - This is a laser, avoid touching it!
+  - Hey you!!
+  - You have reached the end!
+  - Thank you for playing A Glitch in the Past.
+  - We appreciate you for giving us your time.
+  - You'll be taken back to main menu in 3...
+  - 2...
+  - 1...
+  - 
+  - ...
+  - 0!
   speakerIcons: []
   optionalImages: []
   voiceOvers: []
-  isTooltip: 01
-  tooltipDurations:
-  - 3
+  isTooltip: 
+  tooltipDurations: []
   OnSequenceEnd:
     m_PersistentCalls:
       m_Calls: []

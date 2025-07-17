@@ -22,7 +22,7 @@ MonoBehaviour:
   voiceOvers: []
   isTooltip: 01
   tooltipDurations:
-  - 5
+  - 3
   OnSequenceEnd:
     m_PersistentCalls:
       m_Calls: []

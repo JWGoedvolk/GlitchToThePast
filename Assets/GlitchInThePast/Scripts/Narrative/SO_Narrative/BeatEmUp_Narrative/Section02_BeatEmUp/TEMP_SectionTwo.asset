@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TEMP_SectionTwo
   m_EditorClassIdentifier: 
   stepCount: 3
-  isSkippable: 000000
+  isSkippable: 010101
   narrativeTexts:
   - Every time I wake up in here, it's like the world has gotten rebooted in grayscale
   - The transition was uncomfortable! I think I can get used to this...
