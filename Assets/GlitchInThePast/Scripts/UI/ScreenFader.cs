@@ -10,6 +10,7 @@ namespace UI.FadingEffect
         #region Variables
         public static ScreenFader Instance;
         public RectTransform blackCircle;
+        [SerializeField] float blackCircleScale = 10f;
         #endregion
 
         private void Awake()
@@ -48,14 +49,19 @@ namespace UI.FadingEffect
             StartCoroutine(DoIrisTransition(sceneName, transitionTime, holdDuration));
         }
 
+        public void OnButtonClickFadeTransition(float transitionTime)
+        {
+            FadeTransition(null, transitionTime, 0f);
+        }
+
         public void HideFade(Action onComplete = null, float transitionTime = 1f, float holdDuration = 0f)
         {
-            StartCoroutine(FadeIris(Vector3.zero, Vector3.one * 30, transitionTime, holdDuration, onComplete));
+            StartCoroutine(FadeIris(Vector3.zero, Vector3.one * blackCircleScale, transitionTime, holdDuration, onComplete));
         }
 
         public void ShowFade(float transitionTime = 1f)
         {
-            StartCoroutine(FadeIris(Vector3.one * 30, Vector3.zero, transitionTime, 0));
+            StartCoroutine(FadeIris(Vector3.one * blackCircleScale, Vector3.zero, transitionTime, 0));
         }
         #endregion
 
@@ -63,7 +69,7 @@ namespace UI.FadingEffect
 
         private IEnumerator DoIrisTransition(string sceneName, float transitionTime, float holdDuration)
         {
-            yield return StartCoroutine(FadeIris(Vector3.zero, Vector3.one * 30, transitionTime, holdDuration));
+            yield return StartCoroutine(FadeIris(Vector3.zero, Vector3.one * blackCircleScale, transitionTime, holdDuration));
 
             #region Load a scene is a scene name was provided, otherwise just apply effect.
             if (!string.IsNullOrEmpty(sceneName))
@@ -73,7 +79,7 @@ namespace UI.FadingEffect
             }
             #endregion
 
-            yield return StartCoroutine(FadeIris(Vector3.one * 30, Vector3.zero, transitionTime, 0));
+            yield return StartCoroutine(FadeIris(Vector3.one * blackCircleScale, Vector3.zero, transitionTime, 0));
         }
 
         private IEnumerator FadeIris(Vector3 from, Vector3 to, float duration, float holdTime = 0f, Action onComplete = null)

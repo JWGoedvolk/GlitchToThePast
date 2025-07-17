@@ -12,75 +12,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
   m_Name: BeatEmUp_PreTutorialNarrative
   m_EditorClassIdentifier: 
-  stepCount: 27
-  isSkippable: 010101010101010101010101010101010101010101010101010101
+  stepCount: 25
+  isSkippable: 01010101010101010101010101010101010101010101010101
   narrativeTexts:
-  - <Bob's Apartment>
-  - Dear Former PixelRise Developer
-  - 'We invite you to assist in fixing some legacy game projects. This is a time-sensitive
-    opportunity with a generous payout and a chance to return to the company. '
-  - Please respond to this email as soon as possible..
-  - Huh...
-  - Did not think I'd ever hear that name again.
-  - Bob starts to scroll through the email to check the legitimacy of it.
-  - Freelancing is a grind, maybe this is the break I need
-  - A pause. Hesitantly, He accepts the offer, but his fingers hover over the send
-    button.
-  - With a deep sigh, He sends an email back.
-  - <Tob's Apartment>
-  - Tob lounges on his couch with a face mask on a tablet in one hand, and his phone
-    starts to buzz. It is a notification from his email.
-  - PixeRise? They want me back? After all that they put me through?  Really?
-  - But money talks. Can't say no to cash when freelancing so damn unstable
+  - "[Bob\u2019s Apartment - At Night]"
+  - 'A dimly lit room cluttered with snack wrappers, empty cans and multiple monitors
+    displaying endless code on them. Bob is shown seated in front of his monitors,
+    scrolling through his freelance work, when he hears his phone ping. '
+  - '[Email Notification] | Urgent: Games Restoration Contract - PixelRise Studios. '
+  - "Bob - (Reads the email aloud, his tone is sarcastic) \u201CDear Former PixelRise
+    Developer, We invite you to assist in restoring several games to their prime
+    condition. This is a time-sensitive opportunity. If you decide to accept the
+    invitation, you will be generously rewarded\u2026 \u201D "
+  - "Bob - (While amused) Didn\u2019t think I'd hear from them ever again. "
+  - He scrolls through his email, checking for signs of spam or forgery.
+  - "Bob - (Murmuring as he looks at the mess beside him) Freelancing is a grind\u2026
+    Maybe this is the break I deserve. "
+  - His fingers hover over the keyboard. A long pause passes before he reluctantly
+    hits Send.
+  - '[Tob''s Apartment - At Night]'
+  - Tob lounges on his couch with a face mask on and a phone in his hand. Suddenly,
+    his phone starts to buzz. It's an email notification.
+  - Tob - PixeRise? They want me back? After all that they put me through?  Really?
+  - Tob - But money talks. Can't say no to cash when freelancing so damn unstable
   - 'Without any hesitation, He accepts the offer. '
-  - <At PixeRise>
-  - '?: Welcome back bob. I knew you''d say yes'
-  - Wait what is this? Where's the founder? Who's running this?
+  - '[At PixeRise]'
+  - '? - Welcome back bob. I knew you''d say yes'
+  - Bob - Wait what is this? Where's the founder? Who's running this?
   - A scoff can be heard from the anonymous speaker before sounding calm.
-  - "?:  You\u2019ll see soon enough. Sit tight. It's all part of the onboarding
+  - "? - You\u2019ll see soon enough. Sit tight. It's all part of the onboarding
     process"
   - Suddenly, the lights flicker, and the room goes dark.
   - Two figures back Bob into sitting in one of the unoccupied machines, causing
     it to shut close on him.
   - 'His screen flashes with a message:'
   - PLAYER VERIFIED. IMMERSION IN PROGRESS
-  - Hey- What is this??? STOP!!!
+  - Bob - Hey- What is this??? STOP!!!
   - The screen displays Bob and Tob seated across from one another, inside separate
     machines that are connected to each other.
-  - '?: You will be prompted soon to choose your characters.'
+  - '? - You will be prompted soon to choose your characters.'
   speakerIcons:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
-  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
   - {fileID: 0}
   - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 21300000, guid: eae943968ccde594e883347e4b5ce339, type: 3}
   - {fileID: 21300000, guid: eae943968ccde594e883347e4b5ce339, type: 3}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 21300000, guid: 1901f3b585191294f9c24755820457ef, type: 3}
+  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 1901f3b585191294f9c24755820457ef, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 1901f3b585191294f9c24755820457ef, type: 3}
   optionalImages:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: f51815eb121ccae4c8e807e014f56366, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

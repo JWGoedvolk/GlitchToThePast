@@ -36,7 +36,7 @@ public class MainMenuButtons : MonoBehaviour
 
     //Music BG
     [SerializeField] public AudioSource backgroundMusic;
-    [SerializeField] [Range(0f, 1f)] private float fadeOutRate = 0.2f;
+    [SerializeField] [Range(0f, 1f)] private float fadeOutRate = 0.4f;
     #endregion
 
     //SFX integration
