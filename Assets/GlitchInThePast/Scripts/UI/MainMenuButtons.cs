@@ -39,6 +39,9 @@ public class MainMenuButtons : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float fadeOutRate = 0.2f;
     #endregion
 
+    //SFX integration
+    [SerializeField] public UISfxManager sfxManager;
+
     private void Start()
     {
         if (isSelectingCharacters)
@@ -89,9 +92,10 @@ public class MainMenuButtons : MonoBehaviour
     #region Start Button
     public void StartGame()
     {
-
         StartCoroutine(MusicAndStart());
 
+        //call the sfx on lcick
+        sfxManager?.PlayButtonClickSFX();
     }
     #endregion
 
@@ -100,6 +104,13 @@ public class MainMenuButtons : MonoBehaviour
     {
         bool settingsActive = !settingsPanel.activeSelf;
         settingsPanel.SetActive(settingsActive);
+
+        //sfx managing
+        sfxManager?.PlayButtonClickSFX();
+
+        //asumption that the toogle is always open
+        sfxManager?.PlayPannelOpeningSFX();
+
 
         EventSystem.current.SetSelectedGameObject(null);
 
@@ -118,14 +129,21 @@ public class MainMenuButtons : MonoBehaviour
 
     public void GoToPreviousSize()
     {
+
+        sfxManager?.PlayButtonClickSFX();
+
         selectedSize = (selectedSize - 1 + sizes.Length) % sizes.Length;
         UpdateSizeLabel();
+
     }
 
     public void GoToNextSize()
     {
+        sfxManager?.PlayButtonClickSFX();
+
         selectedSize = (selectedSize + 1) % sizes.Length;
         UpdateSizeLabel();
+
     }
 
     private void UpdateSizeLabel()
@@ -140,6 +158,9 @@ public class MainMenuButtons : MonoBehaviour
     #region Characters Selection
     public void EnableCharacterSelectionPanel()
     {
+        sfxManager?.PlayButtonClickSFX();
+        sfxManager?.PlayPannelOpeningSFX();
+
         charactersSelectionpanel.SetActive(true);
     }
     #endregion
@@ -148,6 +169,9 @@ public class MainMenuButtons : MonoBehaviour
     // Just a visual changer
     public void OnSubtitlesToggle()
     {
+
+        sfxManager?.PlayButtonClickSFX();
+
         subtitlesOn = !subtitlesOn;
         if (substitlesToggleImage is not null)
         {
@@ -159,6 +183,9 @@ public class MainMenuButtons : MonoBehaviour
     #region Quitting
     public void QuitGame()
     {
+        sfxManager?.PlayButtonClickSFX();
+        sfxManager?.PlayPannelOpeningSFX();
+
         quitConfirmationPanel.SetActive(true);
 
         // Set focus to first button in quit confirmation panel
@@ -171,11 +198,18 @@ public class MainMenuButtons : MonoBehaviour
 
     public void ConfirmQuit()
     {
+
+        sfxManager?.PlayButtonClickSFX();
+
         Application.Quit();
+
     }
 
     public void DismissQuit()
     {
+        sfxManager?.PlayButtonClickSFX();
+        sfxManager?.PlayPannelClosingSFX();
+
         quitConfirmationPanel.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(null);
@@ -211,6 +245,17 @@ public class MainMenuButtons : MonoBehaviour
     {
         bool isLoadFeaturePanel = !loadFeaturePanel.activeSelf;
         loadFeaturePanel.SetActive(isLoadFeaturePanel);
+
+        sfxManager?.PlayButtonClickSFX();
+        if (isLoadFeaturePanel) 
+        {
+            sfxManager?.PlayPannelOpeningSFX();
+        }
+        else 
+        {
+            sfxManager?.PlayPannelClosingSFX();
+        }
+
 
         EventSystem.current.SetSelectedGameObject(null);
 
