@@ -2186,6 +2186,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7772790279045545120, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_fontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772790279045545120, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2301,6 +2309,9 @@ MonoBehaviour:
   sizeLabel: {fileID: 0}
   isSelectingCharacters: 1
   buttonLocker: {fileID: 0}
+  backgroundMusic: {fileID: 0}
+  fadeOutRate: 0.2
+  sfxManager: {fileID: 0}
 --- !u!114 &2121457759
 MonoBehaviour:
   m_ObjectHideFlags: 0
