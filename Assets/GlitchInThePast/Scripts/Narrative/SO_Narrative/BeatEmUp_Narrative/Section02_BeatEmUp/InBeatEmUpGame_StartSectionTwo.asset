@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
+  m_Name: InBeatEmUpGame_StartSectionTwo
+  m_EditorClassIdentifier: 
+  stepCount: 11
+  isSkippable: 0101010101010101010101
+  narrativeTexts:
+  - "Bob  (Groaning) - \u201CEvery time I wake up in here, it's like the world has
+    gotten rebooted in grayscale\u201D"
+  - "Tob - (Standing Searching surroundings) - \u201CThis\u2026. Looks like a test
+    build. But not ours\u201D"
+  - "Bob - \u201CToo polished to be ours. Too lifeless to be whoever is running this\u201D"
+  - ' A glitched enemy pops into existence then despawns. Then reappears upside down. '
+  - Tob(Flat) - Okay. Maybe still theirs
+  - 'They walk forward. The carnival fee is like a level waiting for its purpose:
+    every few blocks, a corrupted enemy gang flickers. '
+  - "Tob - \u201CThese aren't enemies. These are\u2026\u2026 Ghosts "
+  - "Bob - \u201COf what? Bad code?\u201D"
+  - 'Tob - Of everyone you pushed out '
+  - "Bob - \u201CYou're still stuck on this?\""
+  - "Tob - \u201C years of friendship gone to dust , ofcourse I would question it\""
+  speakerIcons:
+  - {fileID: 21300000, guid: 29cea9b28fc5c38429515bdebfac0dd2, type: 3}
+  - {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
+  - {fileID: 21300000, guid: 29cea9b28fc5c38429515bdebfac0dd2, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
+  - {fileID: 21300000, guid: 29cea9b28fc5c38429515bdebfac0dd2, type: 3}
+  - {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
+  - {fileID: 21300000, guid: 29cea9b28fc5c38429515bdebfac0dd2, type: 3}
+  - {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
+  optionalImages: []
+  voiceOvers: []
+  isTooltip: 
+  tooltipDurations: []
+  OnSequenceEnd:
+    m_PersistentCalls:
+      m_Calls: []
