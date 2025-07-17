@@ -16,7 +16,7 @@ namespace UI.FadingEffect.Temp
         [SerializeField] private bool isLooping = false;
         
         // The SpriteRenderer that should flash.
-        private MeshRenderer meshRenderer;
+        private SpriteRenderer spriteRenderer;
         
         // The material that was in use, when the script started.
         private Material originalMaterial;
@@ -28,11 +28,11 @@ namespace UI.FadingEffect.Temp
         {
             // Get the SpriteRenderer to be used,
             // alternatively you could set it from the inspector.
-            meshRenderer = GetComponent<MeshRenderer>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
 
             // Get the material that the SpriteRenderer uses, 
             // so we can switch back to it after the flash ended.
-            originalMaterial = meshRenderer.material;
+            originalMaterial = spriteRenderer.material;
         }
 
         public void PlayMaterialChange()
@@ -54,13 +54,13 @@ namespace UI.FadingEffect.Temp
         private IEnumerator FlashRoutine()
         {
             // Swap to the flashMaterial.
-            meshRenderer.material = flashMaterial;
+            spriteRenderer.material = flashMaterial;
 
             // Pause the execution of this function for "duration" seconds.
             yield return new WaitForSeconds(duration);
 
             // After the pause, swap back to the original material.
-            meshRenderer.material = originalMaterial;
+            spriteRenderer.material = originalMaterial;
 
             // Set the routine to null, signaling that it's finished.
             flashRoutine = null;
