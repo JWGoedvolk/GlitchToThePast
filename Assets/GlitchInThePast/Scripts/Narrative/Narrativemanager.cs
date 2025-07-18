@@ -25,8 +25,13 @@ namespace Narrative
         [Header("Tooltip UI")]
         [Tooltip("Drag the panel that will pop up just as a tooltip to this slot.")]
         public GameObject tooltipPanel;
+
+        [Tooltip("Drag the header text that will appear above the tooltip message.")]
+        public TMP_Text tooltipHeaderText;
         [Tooltip("Drag the text that will display tooltip information to this slot.")]
         public TMP_Text tooltipText;
+        [Tooltip("Drag the image that will appear above the tooltip message.")]
+        public Image tooltipImage;
 
         [Tooltip("Set how many letters in the narrative should appear per second.")]
         public float lettersPerSecond = 20f;
@@ -167,6 +172,14 @@ namespace Narrative
             tooltipPanel.SetActive(true);
             tooltipText.text = message;
 
+            string header = SafelyGet(currentSequence.tooltipHeaders, currentIndex);
+            tooltipHeaderText.text = string.IsNullOrEmpty(header) ? "" : header;
+            tooltipHeaderText.gameObject.SetActive(!string.IsNullOrEmpty(header));
+
+            Sprite tooltipSprite = SafelyGet(currentSequence.tooltipImages, currentIndex);
+            tooltipImage.sprite = tooltipSprite;
+            tooltipImage.gameObject.SetActive(tooltipSprite != null);
+
             yield return new WaitForSeconds(duration);
 
             tooltipPanel.SetActive(false);
@@ -174,6 +187,7 @@ namespace Narrative
             currentIndex++;
             ContinueSequence();
         }
+
 
         private IEnumerator DelayInputEnable()
         {

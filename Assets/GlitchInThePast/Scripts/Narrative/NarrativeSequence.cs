@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,7 +25,8 @@ namespace Narrative
         public List<AudioClip> voiceOvers = new List<AudioClip>();
 
         [Header("Tooltips")]
-        [Tooltip("")]
+        public List<string> tooltipHeaders = new List<string>();
+        public List<Sprite> tooltipImages = new List<Sprite>();
         public List<bool> isTooltip = new List<bool>();
         [Tooltip("")]
         public List<float> tooltipDurations = new List<float>();

@@ -278,7 +278,9 @@ MonoBehaviour:
   speakerIcon: {fileID: 450481940489956}
   optionalImage: {fileID: 8132960877240739819}
   tooltipPanel: {fileID: 8778600292776974092}
+  tooltipHeaderText: {fileID: 9193765704727823650}
   tooltipText: {fileID: 2806036868058464482}
+  tooltipImage: {fileID: 4071478991546803732}
   lettersPerSecond: 20
 --- !u!1 &2905319164246194432
 GameObject:

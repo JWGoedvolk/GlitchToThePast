@@ -12543,6 +12543,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Narrative_Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 388020638224306041, guid: 94f3bb8458c1a314cb3b00509687378d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6632050053985178431, guid: 94f3bb8458c1a314cb3b00509687378d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
