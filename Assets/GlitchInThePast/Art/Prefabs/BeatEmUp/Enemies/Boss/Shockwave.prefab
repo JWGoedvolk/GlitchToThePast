@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c1451447124731042a66aa1385ae40ef, type: 2}
+  - {fileID: 2100000, guid: c1f730cb3c433b4498fbc727ae6c480c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,6 +122,12 @@ MonoBehaviour:
   - Player1
   - Player2
   TriggeringObjects: []
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  onUnTrigger:
+    m_PersistentCalls:
+      m_Calls: []
   startingRange: 0.5
   range: 6
   duration: 1

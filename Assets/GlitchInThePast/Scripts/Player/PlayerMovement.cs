@@ -275,7 +275,7 @@ namespace Player.GenericMovement
 
         private void Dash()
         {
-            if (!isDashing && dashCooldownTimer <= 0f && moveInput.sqrMagnitude > 0.1f)
+            if (!isDashing && dashCooldownTimer <= 0f)
             {
                 isDashing = true;
                 dashCooldownTimer = dashCooldown;
