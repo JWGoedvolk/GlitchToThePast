@@ -102,6 +102,8 @@ GameObject:
   - component: {fileID: 454376389464950027}
   - component: {fileID: 6390355560818189270}
   - component: {fileID: 1378060534460305396}
+  - component: {fileID: 3955292457156952365}
+  - component: {fileID: 6213519400249011976}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -174,6 +176,57 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &3955292457156952365
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7241952801538250997}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &6213519400249011976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7241952801538250997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b8ed9d897545feb4e45f762bac7fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Whitelist: []
+  TriggeringObjects: []
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  onUnTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  Damage: 0
+  OnEnemyHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7544389415627691498
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,7 +681,7 @@ MonoBehaviour:
   meleeRechargeTime: 3
   meleeDamage: 1
   rangedAttackSpawnPoint: {fileID: 454376389464950027}
-  projectilePrefab: {fileID: 2096087822165832043, guid: 13d1f6c998a2d1d469f026d0c02bf817, type: 3}
+  projectilePrefab: {fileID: 7241952801538250997}
   rangedRechargeTime: 3
   rangedDamage: 1
   projectileSpeed: 5
