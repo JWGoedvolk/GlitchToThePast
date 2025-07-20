@@ -76,7 +76,16 @@ namespace Player.GenericMovement
             if (spriteRenderer == null)
                 Debug.LogError("There is no sprite Renderer, can't flip the sprite! ADD ONE NOW");
 
+
             weaponSystem = GetComponent<PlayerWeaponSystem>();
+            if (rotator == null)
+            {
+                rotator = GetComponentInChildren<Rotator>();
+                if (rotator == null)
+                {
+                    Debug.Log("Rotator is not assigned and not found in children!");
+                }
+            }
         }
 
         private void Update()
@@ -270,7 +279,10 @@ namespace Player.GenericMovement
         private void OnAim(InputAction.CallbackContext ctx)
         {
             // Debug.Log("Aiming");
-            rotator.OnAim(ctx.ReadValue<Vector2>());
+            if (rotator != null)
+            {
+                rotator.OnAim(ctx.ReadValue<Vector2>());
+            }
         }
 
         private void Dash()
