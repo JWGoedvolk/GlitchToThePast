@@ -2250,7 +2250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &514019713
 Transform:
   m_ObjectHideFlags: 0
@@ -10927,7 +10927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5543007943047546469, guid: 39b522ae1bb32224a8abf348659aa90d, type: 3}
       propertyPath: m_Name
-      value: TEMP_Button
+      value: TEMP_Button2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11807,7 +11807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button1: {fileID: 7538731288980327583}
-  button2: {fileID: 0}
+  button2: {fileID: 1778309388}
   onBothButtonsPressed:
     m_PersistentCalls:
       m_Calls:
@@ -12642,7 +12642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5543007943047546469, guid: 39b522ae1bb32224a8abf348659aa90d, type: 3}
       propertyPath: m_Name
-      value: TEMP_Button
+      value: TEMP_Button1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

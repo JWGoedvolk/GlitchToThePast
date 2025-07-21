@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 259493851}
   - component: {fileID: 259493852}
+  - component: {fileID: 259493853}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -167,6 +168,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneInt: 0
+--- !u!114 &259493853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259493850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c7186daee46464c875a43358b8fa2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterPrefabs:
+  - {fileID: 3982303003054045252, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+  - {fileID: 3982303003054045252, guid: 89a3a5190ad3dde43ab8dfb40c1c9349, type: 3}
+  playerOneSpawn: {fileID: 341375388}
+  playerTwoSpawn: {fileID: 836272668}
 --- !u!1 &341375387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,8 +1030,8 @@ Transform:
   m_GameObject: {fileID: 1361353636}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.212, y: -1.42, z: 1.307}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.212, y: -1.26, z: 1.307}
+  m_LocalScale: {x: 1.5544202, y: 1.5544202, z: 1.5544202}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

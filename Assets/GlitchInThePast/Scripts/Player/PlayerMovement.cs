@@ -12,9 +12,11 @@ namespace Player.GenericMovement
     {
         #region Variables
         [Tooltip("Walking speed")]
-        public float walkingSpeed = 5f;
+        public float walkingSpeed = 2f;
         [Tooltip("This number gets multiplied to the walking speed")]
         public float runningSpeed = 1.5f;
+        public bool initialiserUnlockedMovement = false;
+        private bool isMovementLocked = true;
 
         // Dashing
         [Tooltip("Dashing speed")]
@@ -76,11 +78,22 @@ namespace Player.GenericMovement
             if (spriteRenderer == null)
                 Debug.LogError("There is no sprite Renderer, can't flip the sprite! ADD ONE NOW");
 
+
             weaponSystem = GetComponent<PlayerWeaponSystem>();
+            if (rotator == null)
+            {
+                rotator = GetComponentInChildren<Rotator>();
+                if (rotator == null)
+                {
+                    Debug.Log("Rotator is not assigned and not found in children!");
+                }
+            }
         }
 
         private void Update()
         {
+            if (isMovementLocked == true) return;
+
             // Update dash cooldown countdown
             dashCooldownTimer -= Time.deltaTime;
 
@@ -95,27 +108,6 @@ namespace Player.GenericMovement
                     isDashing = false; // Stop dashing
                 }
             }
-
-            if (spriteRenderer)
-            {
-                if (moveInput.x > 0.1f)
-                {
-                    spriteRenderer.flipX = false;
-                    FlipAttackTransform(1);
-                }
-                else if (moveInput.x < -0.1f)
-                {
-                    spriteRenderer.flipX = true;
-                    FlipAttackTransform(-1);
-                }
-            }
-
-            // Vector2 aimInput = playerInput.actions["Aim"].ReadValue<Vector2>();
-            // Debug.Log(aimInput);
-        }
-
-        private void FixedUpdate()
-        {
             if (characterController == null) return;
 
             if (characterController.isGrounded && verticalVel < 0f)
@@ -124,7 +116,6 @@ namespace Player.GenericMovement
             }
 
             verticalVel += Physics.gravity.y * gravityMultiplier * Time.fixedDeltaTime;
-
 
             float speed = walkingSpeed * (isRunning ? runningSpeed : 1f);
             Vector3 horizontal = new Vector3(moveInput.x, 0, moveInput.y).normalized;
@@ -153,7 +144,33 @@ namespace Player.GenericMovement
                 }
             }
 
-            characterController.Move(velocity * Time.fixedDeltaTime);
+            characterController.Move(velocity * Time.deltaTime);
+
+            if (spriteRenderer)
+            {
+                if (moveInput.x > 0.1f)
+                {
+                    spriteRenderer.flipX = false;
+                    FlipAttackTransform(1);
+                }
+                else if (moveInput.x < -0.1f)
+                {
+                    spriteRenderer.flipX = true;
+                    FlipAttackTransform(-1);
+                }
+            }
+
+            // Vector2 aimInput = playerInput.actions["Aim"].ReadValue<Vector2>();
+            // Debug.Log(aimInput);
+        }
+
+        private void FixedUpdate()
+        {
+            if (isMovementLocked == false) return;
+            if (initialiserUnlockedMovement == true)
+            {
+                isMovementLocked = false;
+            }
         }
 
         private void OnEnable()
@@ -270,7 +287,10 @@ namespace Player.GenericMovement
         private void OnAim(InputAction.CallbackContext ctx)
         {
             // Debug.Log("Aiming");
-            rotator.OnAim(ctx.ReadValue<Vector2>());
+            if (rotator != null)
+            {
+                rotator.OnAim(ctx.ReadValue<Vector2>());
+            }
         }
 
         private void Dash()

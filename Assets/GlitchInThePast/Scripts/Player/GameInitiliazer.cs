@@ -73,6 +73,9 @@ public class GameInitializer : MonoBehaviour
         PlayerMovement playerMovementTwo = playerTwoGameObject.GetComponent<PlayerMovement>();
 
         playerMovementTwo.SetupAtSpawn(playerTwoSpawn.position);
+
+        playerMovementOne.initialiserUnlockedMovement = true;
+        playerMovementTwo.initialiserUnlockedMovement = true;
         #endregion
     }
 }
