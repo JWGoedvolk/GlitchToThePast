@@ -6,6 +6,7 @@ namespace Systems.Enemies.Boss
 {
     public class BossAttackManager : MonoBehaviour
     {
+        public bool IsSpawnsAlive = true;
         [SerializeField][Range(0f, 5f)] private float attackTimeVariance;
         [SerializeField] private float baseAttackFrequency = 7f;
         float currentTime = 0f;

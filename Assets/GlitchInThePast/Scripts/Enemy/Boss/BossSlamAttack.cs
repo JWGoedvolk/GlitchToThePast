@@ -15,7 +15,11 @@ namespace Systems.Enemies.Boss
                 Instantiate(shockwavePrefab, spawnPoint.position, spawnPoint.rotation);
             }
         }
-        
-        
+
+        public void PhaseTwoAttack()
+        {
+            int index = Random.Range(0, 1);
+            Instantiate(shockwavePrefab, spawnPoints[index].position, spawnPoints[index].rotation);
+        }
     }
 }
