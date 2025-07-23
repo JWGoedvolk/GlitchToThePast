@@ -2443,6 +2443,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 667349589567995244, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 848999276743906647, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: textBackground
+      value: 
+      objectReference: {fileID: 5768098775458684702}
     - target: {fileID: 1386315939072421315, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
       propertyPath: m_Name
       value: NarrativeManagerScript
@@ -2492,6 +2500,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+--- !u!114 &5768098775458684702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8832187875330552234, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+  m_PrefabInstance: {fileID: 5768098775458684701}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

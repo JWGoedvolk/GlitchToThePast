@@ -41,7 +41,7 @@ public class UISfxManager : MonoBehaviour
     {
         if (clip != null && sfxSource != null)
     {
-        Debug.Log("Playing SFX: " + clip.name);
+        // Debug.Log("Playing SFX: " + clip.name);
         sfxSource.PlayOneShot(clip);
     }
     else
