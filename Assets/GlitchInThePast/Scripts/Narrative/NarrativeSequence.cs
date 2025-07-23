@@ -19,6 +19,8 @@ namespace Narrative
 
         [Tooltip("")]
         public List<Sprite> speakerIcons = new List<Sprite>();
+        [Tooltip("Name of the speaker shown under the icon.")]
+        public List<string> speakerNames = new List<string>();
         [Tooltip("")]
         public List<Sprite> optionalImages = new List<Sprite>();
         [Tooltip("")]

@@ -19,6 +19,8 @@ namespace Narrative
         public TMP_Text narrativeText;
         [Tooltip("Drag the Image that will display who is speaking to this slot.")]
         public Image speakerIcon;
+        [Tooltip("Drag the text component that will display the speaker's name.")]
+        public TMP_Text speakerNameText;
         [Tooltip("Drag the Image component that covers the screen and is placed under the narrative speaker icon and narrative text to this slot.")]
         public Image optionalImage;
 
@@ -101,6 +103,7 @@ namespace Narrative
             #region Display whatever the sequence contains
             string text = SafelyGet(currentSequence.narrativeTexts, currentIndex);
             Sprite speaker = SafelyGet(currentSequence.speakerIcons, currentIndex);
+            string speakerName = SafelyGet(currentSequence.speakerNames, currentIndex);
             Sprite image = SafelyGet(currentSequence.optionalImages, currentIndex);
             AudioClip voice = SafelyGet(currentSequence.voiceOvers, currentIndex);
             bool skippable = SafelyGet(currentSequence.isSkippable, currentIndex);
@@ -122,6 +125,9 @@ namespace Narrative
 
             speakerIcon.sprite = speaker;
             speakerIcon.gameObject.SetActive(speaker != null);
+
+            speakerNameText.text = speakerName;
+            speakerNameText.gameObject.SetActive(speaker != null);
 
             optionalImage.sprite = image;
             optionalImage.gameObject.SetActive(image != null);

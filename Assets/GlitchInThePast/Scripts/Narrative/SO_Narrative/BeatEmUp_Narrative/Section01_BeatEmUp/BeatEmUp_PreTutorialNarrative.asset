@@ -12,45 +12,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
   m_Name: BeatEmUp_PreTutorialNarrative
   m_EditorClassIdentifier: 
-  stepCount: 25
-  isSkippable: 01010101010101010101010101010101010101010101010101
+  stepCount: 26
+  isSkippable: 0101010101010101010101010101010101010101010101010101
   narrativeTexts:
   - "[Bob\u2019s Apartment - At Night]"
   - 'A dimly lit room cluttered with snack wrappers, empty cans and multiple monitors
     displaying endless code on them. Bob is shown seated in front of his monitors,
     scrolling through his freelance work, when he hears his phone ping. '
   - '[Email Notification] | Urgent: Games Restoration Contract - PixelRise Studios. '
-  - "Bob - (Reads the email aloud, his tone is sarcastic) \u201CDear Former PixelRise
-    Developer, We invite you to assist in restoring several games to their prime
-    condition. This is a time-sensitive opportunity. If you decide to accept the
-    invitation, you will be generously rewarded\u2026 \u201D "
-  - "Bob - (While amused) Didn\u2019t think I'd hear from them ever again. "
+  - "(Reads the email aloud, his tone is sarcastic) \u201CDear Former PixelRise Developer,
+    We invite you to assist in restoring several games to their prime condition.
+    This is a time-sensitive opportunity. If you decide to accept the invitation,
+    you will be generously rewarded\u2026 \u201D "
+  - "(While amused) Didn\u2019t think I'd hear from them ever again. "
   - He scrolls through his email, checking for signs of spam or forgery.
-  - "Bob - (Murmuring as he looks at the mess beside him) Freelancing is a grind\u2026
+  - "(Murmuring as he looks at the mess beside him) Freelancing is a grind\u2026
     Maybe this is the break I deserve. "
   - His fingers hover over the keyboard. A long pause passes before he reluctantly
     hits Send.
   - '[Tob''s Apartment - At Night]'
-  - Tob lounges on his couch with a face mask on and a phone in his hand. Suddenly,
-    his phone starts to buzz. It's an email notification.
-  - Tob - PixeRise? They want me back? After all that they put me through?  Really?
-  - Tob - But money talks. Can't say no to cash when freelancing so damn unstable
-  - 'Without any hesitation, He accepts the offer. '
-  - '[At PixeRise]'
-  - '? - Welcome back bob. I knew you''d say yes'
-  - Bob - Wait what is this? Where's the founder? Who's running this?
-  - A scoff can be heard from the anonymous speaker before sounding calm.
-  - "? - You\u2019ll see soon enough. Sit tight. It's all part of the onboarding
-    process"
-  - Suddenly, the lights flicker, and the room goes dark.
-  - Two figures back Bob into sitting in one of the unoccupied machines, causing
-    it to shut close on him.
-  - 'His screen flashes with a message:'
-  - PLAYER VERIFIED. IMMERSION IN PROGRESS
-  - Bob - Hey- What is this??? STOP!!!
-  - The screen displays Bob and Tob seated across from one another, inside separate
-    machines that are connected to each other.
-  - '? - You will be prompted soon to choose your characters.'
+  - A sleek minimalist apartment with clean surfaces, soft ambient lights and gentle
+    lo-fi music playing in the background. Tob is sitting on his couch with a face
+    mask on. His sketchpad tossed aside; His phone buzzes.
+  - "(Raises his eyebrows at the notification) PixelRise? You\u2019ve got to be kidding
+    me."
+  - He opens the mail. The font and formatting feels familiar but the wording lacked
+    warmth.
+  - " (Quietly reads the end of the mail) You\u2019ll be generously rewarded. "
+  - A long exhale is heard as he closes his sketchpad.
+  - "Freelancing hasn\u2019t been a safety net\u2026 I\u2019ll have to accept the
+    offer."
+  - Without any hesitation, he accepts the offer.
+  - 'The screen dims before showing the entrance of  [PixelRise headquarters]. '
+  - Bob and Tob arrive at different hours. Neither of them sees the other.
+  - The building they are in looks clean and tidy, decorated with modern furniture
+    and walls full of creative ideas.
+  - "The screen is split as Bob and Tob\u2019s point of views are shown; They are
+    both accompanied by a composed guard in a black blazer who leads them to the
+    Bug testing Lab. "
+  - "Inside of the lab there are two padded chairs facing opposite walls. The walls
+    are soundproof. Above the chairs a diagnostic panel hovers, cyan blue in colour
+    and it displays bold text:  | 2017 Beat-\u2019Em-Up Game - Test environment commencing.
+    |"
+  - 'Both of them sit back to back, not realising each other''s presence.              '
+  - Headsets lower over their eyes. Chair arms lock their hands in place.
+  - "(Distorted, playing from the speakers, clearly pre-recorded) Welcome back, Bo-Former-T-[Audio
+    glitches]-Employees. We\u2019re pleased to have your assistance again. "
+  - 'Bob does not question the distortion, he simply relaxes in his chair. Tob sucks
+    in his left cheek out of nervousness. '
+  - '(A woman speaks, her voice is monotonous) Game initialising, Do not move. Sit
+    still. '
   speakerIcons:
   - {fileID: 0}
   - {fileID: 0}
@@ -59,24 +70,52 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
   - {fileID: 0}
   - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
-  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 21300000, guid: eae943968ccde594e883347e4b5ce339, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: eae943968ccde594e883347e4b5ce339, type: 3}
+  - {fileID: 0}
   - {fileID: 21300000, guid: eae943968ccde594e883347e4b5ce339, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 21300000, guid: 1901f3b585191294f9c24755820457ef, type: 3}
-  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
-  - {fileID: 0}
-  - {fileID: 21300000, guid: 1901f3b585191294f9c24755820457ef, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 21300000, guid: 1901f3b585191294f9c24755820457ef, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 1901f3b585191294f9c24755820457ef, type: 3}
+  speakerNames:
+  - 
+  - 
+  - 
+  - Bob
+  - Bob
+  - 
+  - Bob
+  - 
+  - 
+  - 
+  - Tob
+  - 
+  - Tob
+  - 
+  - Tob
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - '?'
+  - 
+  - <System>
   optionalImages:
   - {fileID: 0}
   - {fileID: 0}
@@ -103,8 +142,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
   voiceOvers:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
