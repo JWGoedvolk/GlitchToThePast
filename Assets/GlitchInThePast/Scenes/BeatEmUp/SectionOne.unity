@@ -1280,7 +1280,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f29e25d05d44a904087ec25f5ea9d67a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2e70c5f79d000384390783d5d238ac22, type: 2}
+      objectReference: {fileID: 2100000, guid: b750ddb4b9cf43b4c8634f528437cabe, type: 2}
     - target: {fileID: 919132149155446097, guid: f29e25d05d44a904087ec25f5ea9d67a, type: 3}
       propertyPath: m_Name
       value: MultipleFence (1)
@@ -1485,7 +1485,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f29e25d05d44a904087ec25f5ea9d67a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2e70c5f79d000384390783d5d238ac22, type: 2}
+      objectReference: {fileID: 2100000, guid: b750ddb4b9cf43b4c8634f528437cabe, type: 2}
     - target: {fileID: 919132149155446097, guid: f29e25d05d44a904087ec25f5ea9d67a, type: 3}
       propertyPath: m_Name
       value: MultipleFence
