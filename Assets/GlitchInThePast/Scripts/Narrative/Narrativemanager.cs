@@ -14,15 +14,17 @@ namespace Narrative
 
         [Header("Narrative UI")]
         [Tooltip("Drag the Panel that parents all the narrative related UI components to this slot.")]
-        public GameObject narrativePanel;
+        [SerializeField] private GameObject narrativePanel;
         [Tooltip("Drag the TMP Text UI that will display the narrative's text to this slot.")]
-        public TMP_Text narrativeText;
+        [SerializeField] private TMP_Text narrativeText;
         [Tooltip("Drag the Image that will display who is speaking to this slot.")]
-        public Image speakerIcon;
+        [SerializeField] private Image speakerIcon;
         [Tooltip("Drag the text component that will display the speaker's name.")]
-        public TMP_Text speakerNameText;
+        [SerializeField] private TMP_Text speakerNameText;
         [Tooltip("Drag the Image component that covers the screen and is placed under the narrative speaker icon and narrative text to this slot.")]
-        public Image optionalImage;
+        [SerializeField] private Image optionalImage;
+        [Tooltip("Drag the text container into this slot")]
+        [SerializeField] private Image textBackground;
 
         [Header("Tooltip UI")]
         [Tooltip("Drag the panel that will pop up just as a tooltip to this slot.")]
@@ -122,6 +124,8 @@ namespace Narrative
             if (typewriterCoroutine != null) StopCoroutine(typewriterCoroutine);
 
             typewriterCoroutine = StartCoroutine(TypeText(text));
+
+            textBackground.gameObject.SetActive(text != null);
 
             speakerIcon.sprite = speaker;
             speakerIcon.gameObject.SetActive(speaker != null);

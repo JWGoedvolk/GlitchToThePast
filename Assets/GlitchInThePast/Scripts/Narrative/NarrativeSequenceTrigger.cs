@@ -8,7 +8,8 @@ namespace Narrative
         public NarrativeSequence sequenceToPlay;
         [SerializeField] private bool playSequenceAtStart = false;
 
-        public UnityEvent OnSequenceEnd;  
+        public UnityEvent OnSequenceEnd;
+        private bool triggeredByPlayer;
 
         private void OnEnable()
         {
@@ -27,10 +28,13 @@ namespace Narrative
         {
             if (other.CompareTag("Player1") || other.CompareTag("Player2"))
             {
-                if (NarrativeManager.Instance is null) return;
-                SubscribeToSequenceEnd();
-                NarrativeManager.Instance.PlaySequence(sequenceToPlay);
-                Destroy(this);
+                if (!triggeredByPlayer)
+                {
+                    if (NarrativeManager.Instance is null) return;
+                    SubscribeToSequenceEnd();
+                    NarrativeManager.Instance.PlaySequence(sequenceToPlay);
+                    triggeredByPlayer = true;
+                }
             }
         }
 
