@@ -101,7 +101,7 @@ namespace Player.GenericMovement
             if (isDashing)
             {
                 float distanceDashed = Vector3.Distance(transform.position, dashStartPosition);
-                Debug.Log(distanceDashed);
+                // Debug.Log(distanceDashed);
                 if (distanceDashed >= dashDistance) // If we are at the end of our dash
                 {
                     onDashEnd?.Invoke();
@@ -139,6 +139,11 @@ namespace Player.GenericMovement
 
                     if ((MaxXDistance > 0 && movingFurtherX && Mathf.Abs(delta.x) > MaxXDistance) || (MaxZDistance > 0 && movingFurtherZ && Mathf.Abs(delta.z) > MaxZDistance))
                     {
+                        if (isDashing)
+                        {
+                            onDashEnd?.Invoke();
+                            isDashing = false;
+                        }
                         return;
                     }
                 }

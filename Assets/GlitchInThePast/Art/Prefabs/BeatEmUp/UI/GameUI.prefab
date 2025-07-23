@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 8711687021903397969}
   - component: {fileID: 6950294541364027469}
   - component: {fileID: 8066151536403949557}
+  - component: {fileID: 9087319065893169248}
   m_Layer: 5
   m_Name: BobbyHealthUI
   m_TagString: Untagged
@@ -211,6 +212,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9087319065893169248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3042915851580805308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281eec713c37e8d438ed3a2a236a8f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerID: 0
+  healthText: {fileID: 2148164215805711723}
 --- !u!1 &4945800184478488385
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +387,7 @@ GameObject:
   - component: {fileID: 861482798377808722}
   - component: {fileID: 8066623182704179749}
   - component: {fileID: 1263403891376116709}
+  - component: {fileID: 761722028189432607}
   m_Layer: 5
   m_Name: TobbyHealthUI
   m_TagString: Untagged
@@ -438,6 +454,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &761722028189432607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344248464813797600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281eec713c37e8d438ed3a2a236a8f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerID: 1
+  healthText: {fileID: 4960120906694656509}
 --- !u!1 &5768878524208626337
 GameObject:
   m_ObjectHideFlags: 0

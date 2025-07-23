@@ -15,7 +15,7 @@ public class HealthDisplayUI : MonoBehaviour
         if (healthText != null)
         {
             string currentPlayer = playerID == PlayerID.P1 ? "P1" : "P2";
-            healthText.text = $"{currentPlayer}: {current} / {max}";
+            healthText.text = $"{current} / {max}";
         }
     }
 }

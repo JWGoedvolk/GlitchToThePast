@@ -28,7 +28,7 @@ namespace JW.Roguelike.Objects.Interactibles
         [SerializeField] [Min(0f)] private float resetAfter = 1f;
         
         [Header("State Materials")]
-        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private Material defaultStateMaterial;
         [SerializeField] private Material activeStateMaterial;
         
@@ -53,7 +53,7 @@ namespace JW.Roguelike.Objects.Interactibles
             // Show a prompt for how to interact with this object
             interactPrompt.SetActive(triggeringObjects.Count > 0);
             
-            spriteRenderer.material = isActivated ? activeStateMaterial : defaultStateMaterial;
+            meshRenderer.material = isActivated ? activeStateMaterial : defaultStateMaterial;
         }
         
         void Reset()

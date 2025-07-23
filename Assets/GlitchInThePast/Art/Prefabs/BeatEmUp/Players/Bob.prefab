@@ -379,6 +379,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8ed789ef-800e-496b-b758-06188669ced5
     m_ActionName: Gameplay/Interact[/XInputControllerWindows/buttonWest,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d1dc4740-1285-4031-9d46-6a0d25a6c7b2
+    m_ActionName: Gameplay/Jump[/XInputControllerWindows/buttonSouth,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -446,12 +450,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 5
   runningSpeed: 1.5
+  initialiserUnlockedMovement: 0
   dashSpeed: 20
   dashDistance: 3
   dashCooldown: 1
   dashStartPosition: {x: 0, y: 0, z: 0}
   jumpForce: 9
-  gravityMultiplier: 2.5
+  gravityMultiplier: 1
   rotator: {fileID: 0}
   weaponSystem: {fileID: 686190289503579459}
   attackTransformHolder: {fileID: 2280682363573972676}

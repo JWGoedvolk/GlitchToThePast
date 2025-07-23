@@ -56,7 +56,7 @@ namespace GlitchInThePast.Scripts.Player
         {
             if (isRecharging || !isWeaponEnabled)
             {
-                Debug.Log($"Recharging or weapon is disabled");
+                // Debug.Log($"Recharging or weapon is disabled");
                 return;
             }
             
