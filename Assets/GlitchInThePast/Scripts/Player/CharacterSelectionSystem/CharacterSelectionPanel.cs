@@ -38,6 +38,8 @@ public class CharacterSelectionPanel : MonoBehaviour
     {
         if (PlayerBarMover.p1Index == 1) return;
 
+        if (p1Confirmed && p2Confirmed)return;
+            
         PlayerBarMover.P1Locked = !PlayerBarMover.P1Locked;
         p1Confirmed = PlayerBarMover.P1Locked;
 
@@ -69,6 +71,8 @@ public class CharacterSelectionPanel : MonoBehaviour
     public void OnPlayer2Confirmed()
     {
         if (PlayerBarMover.p2Index == 1) return;
+
+        if (p1Confirmed && p2Confirmed) return;
 
         PlayerBarMover.P2Locked = !PlayerBarMover.P2Locked;
         p2Confirmed = PlayerBarMover.P2Locked;
