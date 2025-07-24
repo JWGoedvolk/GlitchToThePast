@@ -455,8 +455,8 @@ MonoBehaviour:
   dashDistance: 3
   dashCooldown: 1
   dashStartPosition: {x: 0, y: 0, z: 0}
-  jumpForce: 4
-  gravityMultiplier: 1
+  jumpForce: 9
+  gravityMultiplier: 2.5
   rotator: {fileID: 0}
   weaponSystem: {fileID: 686190289503579459}
   attackTransformHolder: {fileID: 2280682363573972676}
