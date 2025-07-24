@@ -19,6 +19,8 @@ namespace Systems.Enemies.Boss
         public UnityEvent OnDamaged;
         public UnityEvent OnStageChanged;
         public UnityEvent OnMaxHitsReached;
+        
+        public int Stage {get {return stage;}}
 
         public void SetDamagable(bool isDamagable)
         {

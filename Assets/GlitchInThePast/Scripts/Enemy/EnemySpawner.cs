@@ -11,20 +11,27 @@ namespace Systems.Enemies
         [SerializeField] private bool isActive = true;
         
         // Melee
+        public bool IsMeleeBossSpawner = false;
         [SerializeField] private GameObject meleeEnemy;
         [SerializeField] private Transform meleeSpawnPoint;
         [SerializeField] private float meleeSpawnInterval = 1f;
         [SerializeField] private float meleeSpawnTimer = 0f;
         [ReadOnly] public int MeleeEnemyCount = 0;
+        public int MeleeSpawnCount = 0;
+        public int BossMeleeSpawnCount = 5;
         [SerializeField] private int maxMeleeCount = 5;
     
         // Ranged
+        public bool IsRangedBossSpawner = false;
         [SerializeField] private GameObject rangedEnemy;
         [SerializeField] private Transform rangedSpawnPoint;
         [SerializeField] private float rangedSpawnInterval = 1f;
         [SerializeField] private float rangedSpawnTimer = 0f;
         public int RangedEnemyCount = 0;
+        public int RangedSpawnCount = 0;
+        public int BossRangedSpawnCount = 5;
         [SerializeField] private int maxRangedCount = 5;
+        [SerializeField] private Transform rangedCruisingAltitude;
 
         // Event
         [SerializeField] private UnityEvent onEnemySpawned;
@@ -46,36 +53,68 @@ namespace Systems.Enemies
             // Increase timers
             meleeSpawnTimer += Time.deltaTime;
             rangedSpawnTimer += Time.deltaTime;
-
+            
             // Check timers for spawn intervals
+
+            #region Melee Spawning
             if (meleeSpawnTimer >= meleeSpawnInterval)
             {
-                if (MeleeEnemyCount < maxMeleeCount || maxMeleeCount < 0)
+                if (IsMeleeBossSpawner)
                 {
-                    GameObject newMelee = Instantiate(meleeEnemy, meleeSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
-                    EnemyHealth enemyHealth = newMelee.GetComponent<EnemyHealth>(); // Get the health system to set it up
-                    enemyHealth.spawner = this;
-                    enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Melee;
-                
-                    MeleeEnemyCount++;
+                    if (MeleeSpawnCount <= BossMeleeSpawnCount)
+                    {
+                        SpawnMelee();
+                        BossMeleeSpawnCount++;
+                    }
                 }
-                meleeSpawnTimer = 0f;
+                else if (MeleeEnemyCount < maxMeleeCount || maxMeleeCount < 0)
+                {
+                    SpawnMelee();
+                }
             }
+            #endregion
+
+            #region Ranged Spawning
             if (rangedSpawnTimer >= rangedSpawnInterval)
             {
-                if (RangedEnemyCount < maxRangedCount || maxRangedCount < 0)
+                if (IsRangedBossSpawner)
                 {
-                    GameObject newRanged = Instantiate(rangedEnemy, rangedSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
-                    EnemyHealth enemyHealth = newRanged.GetComponent<EnemyHealth>(); // Get the health system to set it up
-                    enemyHealth.spawner = this;
-                    enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Ranged;
-                    RangedMovement movement = newRanged.GetComponent<RangedMovement>();
-                    movement.cruisingAltitude = rangedSpawnPoint.position.y;
-                
-                    RangedEnemyCount++;
+                    if (RangedSpawnCount <= BossRangedSpawnCount)
+                    {
+                        SpawnRanged();
+                        RangedSpawnCount++;
+                    }
                 }
-                rangedSpawnTimer = 0f;
+                else if (RangedEnemyCount < maxRangedCount || maxRangedCount < 0)
+                {
+                    SpawnRanged();
+                }
             }
+            #endregion
+        }
+
+        private void SpawnRanged()
+        {
+            rangedSpawnTimer = 0f;
+            GameObject newRanged = Instantiate(rangedEnemy, rangedSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
+            EnemyHealth enemyHealth = newRanged.GetComponent<EnemyHealth>(); // Get the health system to set it up
+            enemyHealth.spawner = this;
+            enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Ranged;
+            RangedMovement movement = newRanged.GetComponent<RangedMovement>();
+            movement.cruisingAltitude = rangedCruisingAltitude.position.y;
+                
+            RangedEnemyCount++;
+        }
+
+        private void SpawnMelee()
+        {
+            meleeSpawnTimer = 0f;
+            GameObject newMelee = Instantiate(meleeEnemy, meleeSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
+            EnemyHealth enemyHealth = newMelee.GetComponent<EnemyHealth>(); // Get the health system to set it up
+            enemyHealth.spawner = this;
+            enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Melee;
+                
+            MeleeEnemyCount++;
         }
 
         public void DisableSpawner()

@@ -13,26 +13,26 @@ namespace JW.Roguelike.Objects.Interactibles
     [RequireComponent(typeof(BoxCollider))]
     public class Interactible : MonoBehaviour
     {
-        [Header("UI")]
+        // Preview Pop Up
         [SerializeField] private GameObject interactPrompt;
         [SerializeField] private TMP_Text interactPromptText;
 
-        [Header("Detection")] 
+        // Detection
         [SerializeField] private List<string> whitelist;
         [SerializeField] private List<GameObject> triggeringObjects;
         
-        [Header("Resettable Settings")]
+        // Auto Resetting
         [SerializeField] private bool isResetting = false;
         [SerializeField] private bool defaultState = false;
         [SerializeField] private bool isActivated = false;
         [SerializeField] [Min(0f)] private float resetAfter = 1f;
         
-        [Header("State Materials")]
+        // State Materials
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private Material defaultStateMaterial;
         [SerializeField] private Material activeStateMaterial;
         
-        [Header("Events")]
+        // Events
         public UnityEvent OnInteraction;
         public UnityEvent OnDeactivated;
         public UnityEvent OnReset;
@@ -45,6 +45,7 @@ namespace JW.Roguelike.Objects.Interactibles
 
         private void OnEnable()
         {
+            if (meshRenderer == null) meshRenderer = GetComponent<MeshRenderer>();
             isActivated = defaultState;
         }
 

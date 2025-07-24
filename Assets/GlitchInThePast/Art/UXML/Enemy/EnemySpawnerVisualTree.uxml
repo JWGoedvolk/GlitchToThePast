@@ -24,6 +24,7 @@
             <uie:PropertyField binding-path="rangedSpawnPoint" label="Spawn Point" />
             <ui:Slider label="Spawn Interval" high-value="20" binding-path="rangedSpawnInterval" show-input-field="true" focusable="true" />
             <ui:SliderInt label="Max Ranged Enemies" high-value="10" binding-path="maxRangedCount" show-input-field="true" low-value="-1" tooltip="-1 will spawn inifnitely until disabled" />
+            <uie:PropertyField name="CruisingAltitude" binding-path="rangedCruisingAltitude" />
         </ui:Foldout>
     </ui:VisualElement>
     <ui:VisualElement name="Events" style="flex-grow: 1;" />

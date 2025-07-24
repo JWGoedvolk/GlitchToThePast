@@ -13,10 +13,10 @@ namespace JW.Roguelike.Objects.Interactibles
         [SerializeField] private UnityEvent onActivated;
         [SerializeField] private UnityEvent onDeactivated;
 
-        [Header("State Material Display")] 
-        [SerializeField] private SpriteRenderer sr;
-        [SerializeField] private Material activeMaterial;
-        [SerializeField] private Material inactiveMaterial;
+        // [Header("State Material Display")] 
+        // [SerializeField] private SpriteRenderer sr;
+        // [SerializeField] private Material activeMaterial;
+        // [SerializeField] private Material inactiveMaterial;
         
         private void Update()
         {
@@ -48,7 +48,7 @@ namespace JW.Roguelike.Objects.Interactibles
                 isActivated = false;
             }
             
-            sr.material = isActivated ? activeMaterial : inactiveMaterial;
+            //sr.material = isActivated ? activeMaterial : inactiveMaterial;
         }
     }
 }
