@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Laser_Tooltip
   m_EditorClassIdentifier: 
   stepCount: 1
-  isSkippable: 
+  isSkippable: 01
   narrativeTexts:
   - This is a laser, avoid touching it!
   speakerIcons: []
+  speakerNames: []
   optionalImages: []
   voiceOvers: []
   tooltipHeaders:
   - HAZARD
   tooltipImages:
-  - {fileID: 21300000, guid: db46ae20189c5ba438d56ee0e7d52587, type: 3}
+  - {fileID: 21300000, guid: 61e4f327a0f673e4682fbfd52a7fe490, type: 3}
   isTooltip: 01
   tooltipDurations:
   - 3

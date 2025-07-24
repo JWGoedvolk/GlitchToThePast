@@ -28,12 +28,12 @@ namespace Player.GenericMovement
         [SerializeField] private Vector3 dashStartPosition;
 
         // Jumping
-        [SerializeField] private float jumpForce = 9f;
+        [SerializeField] private float jumpForce = 4f;
         [Tooltip("The higher the number the stronger gravity is when falling")]
-        [SerializeField] private float gravityMultiplier = 2.5f;
+        [SerializeField] private float gravityMultiplier = 1.5f;
 
-        public static float MaxXDistance = 16f;
-        public static float MaxZDistance = 11f;
+        public static float MaxXDistance = 14f;
+        public static float MaxZDistance = 9f;
 
         private PlayerMovement otherPlayer;
         private CharacterController characterController;
@@ -83,10 +83,6 @@ namespace Player.GenericMovement
             if (rotator == null)
             {
                 rotator = GetComponentInChildren<Rotator>();
-                if (rotator == null)
-                {
-                    Debug.Log("Rotator is not assigned and not found in children!");
-                }
             }
         }
 
@@ -115,7 +111,7 @@ namespace Player.GenericMovement
                 verticalVel = -2f;
             }
 
-            verticalVel += Physics.gravity.y * gravityMultiplier * Time.fixedDeltaTime;
+            verticalVel += Physics.gravity.y * gravityMultiplier * Time.deltaTime;
 
             float speed = walkingSpeed * (isRunning ? runningSpeed : 1f);
             Vector3 horizontal = new Vector3(moveInput.x, 0, moveInput.y).normalized;
@@ -127,7 +123,7 @@ namespace Player.GenericMovement
 
             if (otherPlayer != null)
             {
-                Vector3 nextPosition = transform.position + (velocity * Time.fixedDeltaTime);
+                Vector3 nextPosition = transform.position + (velocity * Time.deltaTime);
                 Vector3 otherPos = otherPlayer.transform.position;
                 Vector3 delta = nextPosition - otherPos;
 
@@ -270,10 +266,6 @@ namespace Player.GenericMovement
 
         private void OnMove(InputAction.CallbackContext ctx)
         {
-            if (isDashing)
-            {
-                return;
-            }
             moveInput = ctx.ReadValue<Vector2>();
         }
 

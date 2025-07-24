@@ -83,7 +83,7 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         currentHealth -= ammount;
         UpdateUI();
-        Debug.Log("palyer is hit");
+        // Debug.Log("palyer is hit");
 
         if (currentHealth <= 0)
         {
@@ -185,8 +185,6 @@ public class PlayerHealthSystem : MonoBehaviour
         while (currentHealth < maxHealth)
         {
             currentHealth++;
-            Debug.Log("health regan start" + currentHealth);
-
             yield return new WaitForSeconds(11f);
         }
 
