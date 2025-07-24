@@ -15,6 +15,8 @@ namespace Player.GenericMovement
         public float walkingSpeed = 2f;
         [Tooltip("This number gets multiplied to the walking speed")]
         public float runningSpeed = 1.5f;
+        [SerializeField] private Animator animator;
+
         public bool initialiserUnlockedMovement = false;
         private bool isMovementLocked = true;
 
@@ -62,6 +64,10 @@ namespace Player.GenericMovement
         {
             GamePauser.Instance?.RegisterPauseable(this);
             AssignOtherPlayer();
+            if (animator is null)
+            {
+                animator = GetComponent<Animator>();
+            }
         }
 
         void OnDestroy()
@@ -143,6 +149,11 @@ namespace Player.GenericMovement
                         return;
                     }
                 }
+            }
+            bool isMoving = moveInput.magnitude > 0.1f;
+            if (animator != null)
+            {
+                animator.SetBool("isWalking", isMoving);
             }
 
             characterController.Move(velocity * Time.deltaTime);

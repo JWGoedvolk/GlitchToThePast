@@ -20,6 +20,9 @@ public class PlayerHealthSystem : MonoBehaviour
     [Header("Collision Tags")]
     [SerializeField] private List<string> damageableTags = new List<string>();
     [SerializeField] private List<string> healableTags = new List<string>();
+
+    [SerializeField] private Animator animator;
+
     // Regen
     private bool isRegenerating = false;
     private float timeSinceLastDmg;
@@ -30,7 +33,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     //sprite for flashing
     private SpriteRenderer flashingEffect;
-    
+
     //for the spawn and checkpoint
 
     public SpawningManager spawningManager;
@@ -46,6 +49,11 @@ public class PlayerHealthSystem : MonoBehaviour
         currentHealth = maxHealth;
         flashingEffect = GetComponent<SpriteRenderer>();
         OnPlayerSpawned?.Invoke(playerInput.playerIndex, this);
+
+        if (animator is null)
+        {
+            animator = GetComponent<Animator>();
+        }
 
         HealthDisplayUI[] allDisplays = FindObjectsOfType<HealthDisplayUI>();
         foreach (var display in allDisplays)
@@ -84,6 +92,11 @@ public class PlayerHealthSystem : MonoBehaviour
         currentHealth -= ammount;
         UpdateUI();
         // Debug.Log("palyer is hit");
+        if (animator != null)
+        {
+            animator.SetBool("isGettingHit", true);
+            StartCoroutine(ResetHitAnimation());
+        }
 
         if (currentHealth <= 0)
         {
@@ -212,6 +225,11 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         healthUI = ui;
         UpdateUI();
+    }
+    private IEnumerator ResetHitAnimation()
+    {
+        yield return new WaitForSeconds(0.3f); // adjust based on animation length
+        animator.SetBool("isGettingHit", false);
     }
 
 }

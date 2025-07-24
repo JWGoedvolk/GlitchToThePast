@@ -317,6 +317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 42270690061297230}
   - component: {fileID: 8323151278664853343}
+  - component: {fileID: 1434083449806660333}
   m_Layer: 0
   m_Name: TobbySprite
   m_TagString: Untagged
@@ -391,6 +392,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1434083449806660333
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390149993924556420}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e6c605e87e1c52e4ebb03bd1c135e95e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8579127009673012924
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +535,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8ed789ef-800e-496b-b758-06188669ced5
     m_ActionName: Gameplay/Interact[/XInputControllerWindows/buttonWest,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d1dc4740-1285-4031-9d46-6a0d25a6c7b2
+    m_ActionName: Gameplay/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -539,6 +565,7 @@ MonoBehaviour:
   - Hazard
   healableTags:
   - HealthUp
+  animator: {fileID: 1434083449806660333}
   spawningManager: {fileID: 8804729871716658839}
 --- !u!143 &7307085920574121977
 CharacterController:
@@ -580,6 +607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 9
   runningSpeed: 1
+  animator: {fileID: 1434083449806660333}
   initialiserUnlockedMovement: 0
   dashSpeed: 20
   dashDistance: 3

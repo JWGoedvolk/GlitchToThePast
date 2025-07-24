@@ -184,6 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 42270690061297230}
   - component: {fileID: 8323151278664853343}
+  - component: {fileID: 5129144563482037875}
   m_Layer: 0
   m_Name: BobSprite
   m_TagString: Untagged
@@ -258,6 +259,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5129144563482037875
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390149993924556420}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d49c52f6a4501b42aea3c1dfebf72de, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8579127009673012924
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +431,7 @@ MonoBehaviour:
   - Hazard
   healableTags:
   - HealthUp
+  animator: {fileID: 5129144563482037875}
   spawningManager: {fileID: 8804729871716658839}
 --- !u!143 &7307085920574121977
 CharacterController:
@@ -450,6 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 5
   runningSpeed: 1.5
+  animator: {fileID: 5129144563482037875}
   initialiserUnlockedMovement: 0
   dashSpeed: 20
   dashDistance: 3
