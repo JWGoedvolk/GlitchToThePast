@@ -2985,7 +2985,7 @@ MonoBehaviour:
   defaultState: 0
   isActivated: 0
   resetAfter: 1
-  meshRenderer: {fileID: 0}
+  meshRenderer: {fileID: 1492713380}
   defaultStateMaterial: {fileID: 2100000, guid: a1c548ee31b6d36479713912d8f287bf, type: 2}
   activeStateMaterial: {fileID: 2100000, guid: 798137e4697f21048ac1b997c437ba62, type: 2}
   OnInteraction:
@@ -3018,6 +3018,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.04, y: 0.03, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0.01}
+--- !u!23 &1492713380 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 38267436ac2ba16428572bcff2c16e2d, type: 3}
+  m_PrefabInstance: {fileID: 1492713375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1676605221
 GameObject:
   m_ObjectHideFlags: 0
@@ -3673,7 +3678,7 @@ MonoBehaviour:
   defaultState: 0
   isActivated: 0
   resetAfter: 1
-  meshRenderer: {fileID: 0}
+  meshRenderer: {fileID: 2015552934}
   defaultStateMaterial: {fileID: 2100000, guid: a1c548ee31b6d36479713912d8f287bf, type: 2}
   activeStateMaterial: {fileID: 2100000, guid: 798137e4697f21048ac1b997c437ba62, type: 2}
   OnInteraction:
@@ -3706,6 +3711,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.04, y: 0.03, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0.01}
+--- !u!23 &2015552934 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 38267436ac2ba16428572bcff2c16e2d, type: 3}
+  m_PrefabInstance: {fileID: 2015552929}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2041502239
 PrefabInstance:
   m_ObjectHideFlags: 0
