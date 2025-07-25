@@ -199,7 +199,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 63, y: -159}
+  m_AnchoredPosition: {x: 1650, y: -159}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &69167686
@@ -364,7 +364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -800, y: -156}
+  m_AnchoredPosition: {x: -799, y: -156}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &316474219
@@ -669,7 +669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -42.857117, y: -179.86235}
+  m_AnchoredPosition: {x: 24, y: -179.86235}
   m_SizeDelta: {x: -423.354, y: 51.569}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &466536276
@@ -1172,7 +1172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -583, y: 74}
+  m_AnchoredPosition: {x: 573, y: 74}
   m_SizeDelta: {x: -1362.29, y: -406.19397}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &830025647
@@ -1195,7 +1195,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 16d61b322f856e64e9967142becbb65e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1247,7 +1247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -98, y: -160}
+  m_AnchoredPosition: {x: -1656, y: -160}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &877724320
@@ -1869,6 +1869,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 115c150c-3b72-4299-bc51-4625f20ec253
     m_ActionName: Gameplay/Dash[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b6eb2588-4a7d-4ffb-9cce-75c68b8c9c9a
+    m_ActionName: Gameplay/Attack[/Keyboard/f,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f72c216e-470d-4461-a042-54668c8f8c58
+    m_ActionName: Gameplay/Aim[/XInputControllerWindows/rightStick,/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8ed789ef-800e-496b-b758-06188669ced5
+    m_ActionName: Gameplay/Interact[/XInputControllerWindows/buttonWest,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d1dc4740-1285-4031-9d46-6a0d25a6c7b2
+    m_ActionName: Gameplay/Jump[/XInputControllerWindows/buttonSouth,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Gameplay
@@ -1906,7 +1922,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 766, y: -156}
+  m_AnchoredPosition: {x: 760, y: -156}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1554742391
@@ -1944,7 +1960,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 514.6599, y: 63.999947}
+  m_AnchoredPosition: {x: -512, y: 63.999947}
   m_SizeDelta: {x: -1362.29, y: -406.19397}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1554742393
@@ -1967,7 +1983,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6d067c5439dba8e4abe0c490d0b1f8d6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 29cea9b28fc5c38429515bdebfac0dd2, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2636,10 +2652,10 @@ MonoBehaviour:
   - {fileID: 3982303003054045252, guid: 89a3a5190ad3dde43ab8dfb40c1c9349, type: 3}
   p1SpriteRenderer: {fileID: 777582407}
   p2SpriteRenderer: {fileID: 396022269}
-  customColourOne: {r: 0, g: 1, b: 0.99047613, a: 1}
-  customColourTwo: {r: 1, g: 0.04918032, b: 0, a: 1}
-  hoverColourOne: {r: 0, g: 0.5754717, b: 0.57095826, a: 1}
-  hoverColourTwo: {r: 0.6226415, g: 0.03174251, b: 0, a: 1}
+  customColourOne: {r: 1, g: 0.050980397, b: 0, a: 1}
+  customColourTwo: {r: 0, g: 1, b: 0.78781915, a: 1}
+  hoverColourOne: {r: 0.62352943, g: 0.03137255, b: 0, a: 1}
+  hoverColourTwo: {r: 0, g: 0.62352943, b: 0.6092595, a: 1}
 --- !u!114 &2121457757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2698,6 +2714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequenceToPlay: {fileID: 11400000, guid: 59c2ce8c7d384c74cb696abdd061a6bd, type: 2}
   playSequenceAtStart: 1
+  isReplayable: 0
   OnSequenceEnd:
     m_PersistentCalls:
       m_Calls:
