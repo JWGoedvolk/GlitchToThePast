@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 42270690061297230}
   - component: {fileID: 8323151278664853343}
   - component: {fileID: 1434083449806660333}
+  - component: {fileID: 2391166223405889405}
   m_Layer: 0
   m_Name: TobbySprite
   m_TagString: Untagged
@@ -413,6 +414,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2391166223405889405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390149993924556420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f535c2a3e17ae54b83d3e4fa12d5558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 8323151278664853343}
 --- !u!1 &8579127009673012924
 GameObject:
   m_ObjectHideFlags: 0
