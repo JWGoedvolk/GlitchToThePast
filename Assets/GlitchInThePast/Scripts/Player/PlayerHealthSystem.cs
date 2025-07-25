@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerHealthSystem : MonoBehaviour
@@ -39,6 +40,8 @@ public class PlayerHealthSystem : MonoBehaviour
     public SpawningManager spawningManager;
     private PlayerInput playerInput; // changed ID to refer to player index instead
 
+    public UnityEvent onDamageTaken;
+    
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -91,6 +94,7 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         currentHealth -= ammount;
         UpdateUI();
+        onDamageTaken?.Invoke();
         // Debug.Log("palyer is hit");
         if (animator != null)
         {

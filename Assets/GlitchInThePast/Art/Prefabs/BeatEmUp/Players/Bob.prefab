@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7276517022794321912}
   - component: {fileID: 5840512959812250154}
   - component: {fileID: 8804729871716658839}
+  - component: {fileID: 4430170136336589535}
   m_Layer: 0
   m_Name: Bob
   m_TagString: Untagged
@@ -59,6 +60,21 @@ MonoBehaviour:
   onRespawn:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4430170136336589535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3982303003054045252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4246582b94f10a946b131fa1d9b9065b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rumbleDuration: 0.5
+  lowFrequencyIntensity: 0.5
+  highFrequencyIntensity: 0.8
 --- !u!1 &4486839311755691722
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +463,21 @@ MonoBehaviour:
   - HealthUp
   animator: {fileID: 5129144563482037875}
   spawningManager: {fileID: 8804729871716658839}
+  onDamageTaken:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4430170136336589535}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: TriggerRumble
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!143 &7307085920574121977
 CharacterController:
   m_ObjectHideFlags: 0
