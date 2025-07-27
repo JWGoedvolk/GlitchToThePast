@@ -1541,6 +1541,7 @@ GameObject:
   - component: {fileID: 2046329567}
   - component: {fileID: 2046329569}
   - component: {fileID: 2046329568}
+  - component: {fileID: 2046329570}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -1595,6 +1596,24 @@ MonoBehaviour:
   - {fileID: 3982303003054045252, guid: 89a3a5190ad3dde43ab8dfb40c1c9349, type: 3}
   playerOneSpawn: {fileID: 670642967}
   playerTwoSpawn: {fileID: 674815079}
+--- !u!114 &2046329570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046329566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0486e6fdbbd4a449697beddd9891bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sequenceToPlay: {fileID: 11400000, guid: 187bc84c74587bb46a438f093f13c3b7, type: 2}
+  playSequenceAtStart: 1
+  isReplayable: 0
+  OnSequenceEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
