@@ -326,6 +326,7 @@ GameObject:
   - component: {fileID: 1277676373348698392}
   - component: {fileID: 686190289503579459}
   - component: {fileID: 76998860577032550}
+  - component: {fileID: 7475603473411071561}
   m_Layer: 0
   m_Name: BobsCollider
   m_TagString: Player1
@@ -465,19 +466,7 @@ MonoBehaviour:
   spawningManager: {fileID: 8804729871716658839}
   onDamageTaken:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4430170136336589535}
-        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
-        m_MethodName: TriggerRumble
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!143 &7307085920574121977
 CharacterController:
   m_ObjectHideFlags: 0
@@ -665,3 +654,20 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7475603473411071561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579127009673012924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89fe2cb64346d3c479159499ce7e83eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSFX:
+  - {fileID: 8300000, guid: 515fcdcbb784fb2448f5f0b638b1077b, type: 3}
+  - {fileID: 8300000, guid: 55f42c9980ed4484a95de0b5d5d90222, type: 3}
+  deathSFX: {fileID: 8300000, guid: 0f209d7048688e5408bb54da2363a291, type: 3}
+  audioSource: {fileID: 0}
