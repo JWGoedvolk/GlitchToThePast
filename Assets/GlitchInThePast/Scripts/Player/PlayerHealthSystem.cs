@@ -51,11 +51,11 @@ public class PlayerHealthSystem : MonoBehaviour
         sfxManager = FindObjectOfType<SFXManager>();
         if (sfxManager == null)
         {
-            Debug.LogWarning(" No SFXManager found ");
+            Debug.LogWarning($"PlayerHealthSystem: No SFXManager found on player {gameObject.name}");
         }
         else
         {
-            Debug.Log(" Found SFXManager");
+            Debug.Log($"PlayerHealthSystem: Found SFXManager on player {gameObject.name}");
         }
 
 
@@ -116,7 +116,7 @@ public class PlayerHealthSystem : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("sfxManager reference is nada");
+                Debug.LogWarning("PlayerHealthSystem: sfxManager reference is null!");
             }
         }
 
@@ -176,7 +176,9 @@ public class PlayerHealthSystem : MonoBehaviour
         gameObject.SetActive(false);
 
 
-    
+        
+
+
         if (spawningManager != null)
         {
             // No need for hashset, we're now telling it which player to respawn (by their index)
