@@ -14,7 +14,7 @@ namespace Audio
         [Header("Exposed Parameters")]
         public string masterVolumeParam = "MasterVolume";
         public string musicVolumeParam = "MusicVolume";
-        // public string sfxVolumeParam = "SFXVolume";
+        public string sfxVolumeParam = "SFXVolume";
         public string voiceVolumeParam = "VoiceVolume";
         #endregion
 
@@ -32,7 +32,7 @@ namespace Audio
         #region Public Functions
         public void SetTheMasterVolume(float value) => SetVolume(masterVolumeParam, value);
         public void SetTheMusicVolume(float value) => SetVolume(musicVolumeParam, value);
-        // public void SetTheSFXVolume(float value) => SetVolume(sfxVolumeParam, value);
+        public void SetTheSFXVolume(float value) => SetVolume(sfxVolumeParam, value);
         public void SetTheVoiceVolume(float value) => SetVolume(voiceVolumeParam, value);
 
         private void SetVolume(string parameter, float sliderValue)

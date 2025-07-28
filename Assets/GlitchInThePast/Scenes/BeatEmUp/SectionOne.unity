@@ -7504,30 +7504,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 497219697}
     m_Modifications:
-    - target: {fileID: 2689408069564878044, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
-      propertyPath: m_Size.x
-      value: 19.145819
-      objectReference: {fileID: 0}
-    - target: {fileID: 2689408069564878044, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
-      propertyPath: m_Size.y
-      value: 0.9999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 2689408069564878044, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
-      propertyPath: m_Size.z
-      value: 1.7024274
-      objectReference: {fileID: 0}
-    - target: {fileID: 2689408069564878044, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
-      propertyPath: m_Center.x
-      value: 9.0502205
-      objectReference: {fileID: 0}
-    - target: {fileID: 2689408069564878044, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
-      propertyPath: m_Center.z
-      value: -0.3234942
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919840465954670406, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.78351
-      objectReference: {fileID: 0}
     - target: {fileID: 2919840465954670406, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.29
@@ -7568,30 +7544,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4306388210561344862, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
+    - target: {fileID: 4956554871257086752, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 621bb4b9b0dc73c429801d7f090805ce, type: 2}
+      objectReference: {fileID: 2100000, guid: 96e461f5d975be6418d38e2666f10f80, type: 2}
     - target: {fileID: 6153209291302360764, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
       propertyPath: m_Name
-      value: TEMP_Gate
+      value: Gate
       objectReference: {fileID: 0}
-    - target: {fileID: 6839203447796576689, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ac4b2f199f11ebb43bcdd49ced7093d7, type: 2}
-    - target: {fileID: 8247808498164353855, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 621bb4b9b0dc73c429801d7f090805ce, type: 2}
-    - target: {fileID: 9137397350216702268, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ac4b2f199f11ebb43bcdd49ced7093d7, type: 2}
-    - target: {fileID: 9161816241189241829, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2e70c5f79d000384390783d5d238ac22, type: 2}
+    - target: {fileID: 6902263497551059701, guid: 4d900049bf2f5dd4da170dee4395b036, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
