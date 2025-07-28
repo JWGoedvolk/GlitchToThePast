@@ -6054,6 +6054,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: laser
       objectReference: {fileID: 0}
+    - target: {fileID: 1413715865571570551, guid: f3afecdc9d6d88e48bb1639416841d9c, type: 3}
+      propertyPath: m_TagString
+      value: Hazard
+      objectReference: {fileID: 0}
     - target: {fileID: 2934790288876307789, guid: f3afecdc9d6d88e48bb1639416841d9c, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -6872,7 +6876,6 @@ GameObject:
   - component: {fileID: 1981149629}
   - component: {fileID: 1981149630}
   - component: {fileID: 1981149631}
-  - component: {fileID: 1981149632}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -6908,7 +6911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPrefabs:
-  - {fileID: 3982303003054045252, guid: 26939ac3a1fc50a4c99b74958c038f84, type: 3}
+  - {fileID: 3982303003054045252, guid: 89a3a5190ad3dde43ab8dfb40c1c9349, type: 3}
   - {fileID: 3982303003054045252, guid: 89a3a5190ad3dde43ab8dfb40c1c9349, type: 3}
   playerOneSpawn: {fileID: 1858618178}
   playerTwoSpawn: {fileID: 1080483839}
@@ -6974,21 +6977,6 @@ MonoBehaviour:
   onRespawn:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1981149632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1981149624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00bc699719a5c0242bca8a7ab9bf48d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitSFX: []
-  deathSFX: {fileID: 0}
-  audioSource: {fileID: 500298926}
 --- !u!1 &2049063676
 GameObject:
   m_ObjectHideFlags: 0

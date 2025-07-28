@@ -582,6 +582,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &7307085920574121977
 CharacterController:
   m_ObjectHideFlags: 0
@@ -624,6 +627,7 @@ MonoBehaviour:
   runningSpeed: 1
   animator: {fileID: 1434083449806660333}
   initialiserUnlockedMovement: 0
+  isMovementLocked: 1
   dashSpeed: 20
   dashDistance: 3
   dashCooldown: 1
@@ -762,3 +766,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c061a706c432cf14ab5d5c382e12569f, type: 3}
   deathSFX: {fileID: 8300000, guid: 0f209d7048688e5408bb54da2363a291, type: 3}
   audioSource: {fileID: 0}
+  rangedSFX:
+  - {fileID: 8300000, guid: aca59f29711a5f3449733926e8b9ee73, type: 3}
+  - {fileID: 8300000, guid: 055b3a28b7d85d142874471fb9286fdb, type: 3}
+  - {fileID: 8300000, guid: 8e77c3aceab14fc4d8caad32afe2493e, type: 3}

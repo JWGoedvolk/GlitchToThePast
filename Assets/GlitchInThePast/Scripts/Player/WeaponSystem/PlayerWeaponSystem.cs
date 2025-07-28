@@ -42,8 +42,15 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private float rangedRechargeTime = 3f;
         [SerializeField] private int rangedDamage = 1;
         [SerializeField] private float projectileSpeed = 5f;
+
+        //SFX
+        private SFXManager sFXManager;
         void Start()
         {
+            if(sFXManager == null) 
+            {
+                sFXManager = FindAnyObjectByType<SFXManager>();
+            }
             GamePauser.Instance?.RegisterPauseable(this);
         }
 
@@ -80,6 +87,10 @@ namespace GlitchInThePast.Scripts.Player
             {
                 StartCoroutine(Recharge(rangedRechargeTime));
                 onRangedAttack?.Invoke();
+
+                //Sfx
+                sFXManager?.PlayRangedWeaponSFX();
+
                 var projectile = Instantiate(projectilePrefab, rangedAttackSpawnPoint.position, rangedAttackSpawnPoint.rotation);
                 PlayerRangedProjectile projectileScript = projectile.GetComponent<PlayerRangedProjectile>();
                 projectileScript.Init(rangedDamage, projectileSpeed);
