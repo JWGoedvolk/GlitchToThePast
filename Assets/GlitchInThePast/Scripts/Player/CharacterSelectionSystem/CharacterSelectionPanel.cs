@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿using GameData;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using GameData;
 using UnityEngine.UI;
 
 public class CharacterSelectionPanel : MonoBehaviour
@@ -12,8 +13,16 @@ public class CharacterSelectionPanel : MonoBehaviour
     [SerializeField] private Image p1SpriteRenderer;
     [SerializeField] private Image p2SpriteRenderer;
 
-    [SerializeField] private Color lockedColor = Color.green;
-    [SerializeField] private Color unlockedColor = Color.white;
+    [Header("What colours should the bars display when the player locks in slot 0 or 2?")]
+    [SerializeField] private Color customColourOne;
+    [SerializeField] private Color customColourTwo;
+
+    [Header("The hover colour of the bar depending on which slot they are on.")]
+    [SerializeField] private Color hoverColourOne;
+    [SerializeField] private Color hoverColourTwo;
+
+    private Coroutine p1FlashRoutine;
+    private Coroutine p2FlashRoutine;
 
     private bool p1Confirmed, p2Confirmed;
     #endregion
@@ -29,34 +38,109 @@ public class CharacterSelectionPanel : MonoBehaviour
     {
         if (PlayerBarMover.p1Index == 1) return;
 
+        if (p1Confirmed && p2Confirmed)return;
+            
         PlayerBarMover.P1Locked = !PlayerBarMover.P1Locked;
         p1Confirmed = PlayerBarMover.P1Locked;
 
-        if (p1SpriteRenderer != null) p1SpriteRenderer.color = p1Confirmed ? lockedColor : unlockedColor;
+        if (p1Confirmed)
+        {
+            if (p1FlashRoutine != null) StopCoroutine(p1FlashRoutine);
+
+            if (PlayerBarMover.p1Index == 0)
+            {
+                p1FlashRoutine = StartCoroutine(FlashToTargetColor(p1SpriteRenderer, customColourOne));
+            }
+            else if (PlayerBarMover.p1Index == 2)
+            {
+                p1FlashRoutine = StartCoroutine(FlashToTargetColor(p1SpriteRenderer, customColourTwo));
+            }
+        }
+        else
+        {
+            if (p1FlashRoutine != null) StopCoroutine(p1FlashRoutine);
+            {
+                SetBarAndTextColor(p1SpriteRenderer, Color.white);
+            }
+        }
 
         TryStartGame();
     }
+
 
     public void OnPlayer2Confirmed()
     {
         if (PlayerBarMover.p2Index == 1) return;
 
+        if (p1Confirmed && p2Confirmed) return;
+
         PlayerBarMover.P2Locked = !PlayerBarMover.P2Locked;
         p2Confirmed = PlayerBarMover.P2Locked;
 
-        if (p2SpriteRenderer != null) p2SpriteRenderer.color = p2Confirmed ? lockedColor : unlockedColor;
+        if (p2Confirmed)
+        {
+            if (p2FlashRoutine != null) StopCoroutine(p2FlashRoutine);
+
+            if (PlayerBarMover.p2Index == 0)
+            {
+                p2FlashRoutine = StartCoroutine(FlashToTargetColor(p2SpriteRenderer, customColourOne));
+            }
+            else if (PlayerBarMover.p2Index == 2)
+            {
+                p2FlashRoutine = StartCoroutine(FlashToTargetColor(p2SpriteRenderer, customColourTwo));
+            }
+        }
+        else
+        {
+            if (p2FlashRoutine != null) StopCoroutine(p2FlashRoutine);
+            {
+                SetBarAndTextColor(p2SpriteRenderer, Color.white);
+            }
+        }
 
         TryStartGame();
+    }
+    public void UpdateBarColorFromHover(int playerIndex, int slotIndex)
+    {
+        if (playerIndex == 1 && !p1Confirmed)
+        {
+            if (slotIndex == 0)
+            {
+                SetBarAndTextColor(p1SpriteRenderer, hoverColourOne);
+            }
+            else if (slotIndex == 2)
+            {
+                SetBarAndTextColor(p1SpriteRenderer, hoverColourTwo);
+            }
+            else
+            {
+                SetBarAndTextColor(p1SpriteRenderer, Color.white);
+            }
+        }
+        else if (playerIndex == 2 && !p2Confirmed)
+        {
+            if (slotIndex == 0)
+            {
+                SetBarAndTextColor(p2SpriteRenderer, hoverColourOne);
+            }
+            else if (slotIndex == 2)
+            {
+                SetBarAndTextColor(p2SpriteRenderer, hoverColourTwo);
+            }
+            else
+            {
+                SetBarAndTextColor(p2SpriteRenderer, Color.white);
+            }
+        }
     }
     #endregion
 
     #region Private Functions
-    private bool hasStartedFade = false; // Added this because the try start game function was being called by both players
-                                         // since they both confirm their choices causing the fader to duplicate!
+    private bool hasStartedFade = false;
 
     private void TryStartGame()
     {
-        if (hasStartedFade) return; 
+        if (hasStartedFade) return;
 
         if (!p1Confirmed || !p2Confirmed)
             return;
@@ -71,7 +155,7 @@ public class CharacterSelectionPanel : MonoBehaviour
             return;
         }
 
-        hasStartedFade = true; 
+        hasStartedFade = true;
 
         #region Save Selection
         int char1Id = (slot1 == 0) ? 0 : 1;
@@ -106,5 +190,34 @@ public class CharacterSelectionPanel : MonoBehaviour
         }
     }
 
+    private void SetBarAndTextColor(Image bar, Color color)
+    {
+        if (bar == null) return;
+
+        bar.color = color;
+
+        var text = bar.GetComponentInChildren<TMP_Text>();
+        if (text != null)
+        {
+            text.color = color;
+        }
+    }
+
+    private IEnumerator FlashToTargetColor(Image bar, Color targetColor, float flashDuration = 0.1f)
+    {
+        if (bar == null) yield break;
+
+        var text = bar.GetComponentInChildren<TMP_Text>();
+
+        Color flashColor = Color.Lerp(targetColor, Color.black, 0.4f);
+
+        bar.color = flashColor;
+        if (text != null) text.color = flashColor;
+
+        yield return new WaitForSeconds(flashDuration);
+
+        bar.color = targetColor;
+        if (text != null) text.color = targetColor;
+    }
     #endregion
 }

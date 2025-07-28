@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerHealthSystem : MonoBehaviour
@@ -20,6 +21,9 @@ public class PlayerHealthSystem : MonoBehaviour
     [Header("Collision Tags")]
     [SerializeField] private List<string> damageableTags = new List<string>();
     [SerializeField] private List<string> healableTags = new List<string>();
+
+    [SerializeField] private Animator animator;
+
     // Regen
     private bool isRegenerating = false;
     private float timeSinceLastDmg;
@@ -30,12 +34,14 @@ public class PlayerHealthSystem : MonoBehaviour
 
     //sprite for flashing
     private SpriteRenderer flashingEffect;
-    
+
     //for the spawn and checkpoint
 
     public SpawningManager spawningManager;
     private PlayerInput playerInput; // changed ID to refer to player index instead
 
+    public UnityEvent onDamageTaken;
+    
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -46,6 +52,11 @@ public class PlayerHealthSystem : MonoBehaviour
         currentHealth = maxHealth;
         flashingEffect = GetComponent<SpriteRenderer>();
         OnPlayerSpawned?.Invoke(playerInput.playerIndex, this);
+
+        if (animator is null)
+        {
+            animator = GetComponent<Animator>();
+        }
 
         HealthDisplayUI[] allDisplays = FindObjectsOfType<HealthDisplayUI>();
         foreach (var display in allDisplays)
@@ -83,7 +94,13 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         currentHealth -= ammount;
         UpdateUI();
-        Debug.Log("palyer is hit");
+        onDamageTaken?.Invoke();
+        // Debug.Log("palyer is hit");
+        if (animator != null)
+        {
+            animator.SetBool("isGettingHit", true);
+            StartCoroutine(ResetHitAnimation());
+        }
 
         if (currentHealth <= 0)
         {
@@ -185,8 +202,6 @@ public class PlayerHealthSystem : MonoBehaviour
         while (currentHealth < maxHealth)
         {
             currentHealth++;
-            Debug.Log("health regan start" + currentHealth);
-
             yield return new WaitForSeconds(11f);
         }
 
@@ -214,6 +229,11 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         healthUI = ui;
         UpdateUI();
+    }
+    private IEnumerator ResetHitAnimation()
+    {
+        yield return new WaitForSeconds(0.3f); // adjust based on animation length
+        animator.SetBool("isGettingHit", false);
     }
 
 }

@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 259493851}
   - component: {fileID: 259493852}
   - component: {fileID: 259493853}
+  - component: {fileID: 259493854}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -185,6 +186,19 @@ MonoBehaviour:
   - {fileID: 3982303003054045252, guid: 89a3a5190ad3dde43ab8dfb40c1c9349, type: 3}
   playerOneSpawn: {fileID: 341375388}
   playerTwoSpawn: {fileID: 836272668}
+--- !u!114 &259493854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259493850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116ac64a78feea24f972fd0de85f1a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterSelection: {fileID: 0}
 --- !u!1 &341375387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,9 +1064,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequenceToPlay: {fileID: 11400000, guid: 86c1bcac8aa68224c98faf01b069a7f0, type: 2}
   playSequenceAtStart: 0
+  isReplayable: 0
   OnSequenceEnd:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 259493854}
+        m_TargetAssemblyTypeName: GameData.SaveSystemCaller, Assembly-CSharp
+        m_MethodName: DeleteSavedGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 259493852}
         m_TargetAssemblyTypeName: Portal, Assembly-CSharp
         m_MethodName: TakePlayerToScene
@@ -1106,6 +1133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1839280772}
   - component: {fileID: 1839280771}
+  - component: {fileID: 1839280773}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1190,6 +1218,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1839280773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839280770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

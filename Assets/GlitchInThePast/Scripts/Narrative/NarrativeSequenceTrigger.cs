@@ -7,6 +7,7 @@ namespace Narrative
     {
         public NarrativeSequence sequenceToPlay;
         [SerializeField] private bool playSequenceAtStart = false;
+        [SerializeField] private bool isReplayable;
 
         public UnityEvent OnSequenceEnd;
         private bool triggeredByPlayer;
@@ -33,7 +34,8 @@ namespace Narrative
                     if (NarrativeManager.Instance is null) return;
                     SubscribeToSequenceEnd();
                     NarrativeManager.Instance.PlaySequence(sequenceToPlay);
-                    triggeredByPlayer = true;
+                    if (isReplayable) return;
+                    { triggeredByPlayer = true; }
                 }
             }
         }

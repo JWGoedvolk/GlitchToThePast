@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7276517022794321912}
   - component: {fileID: 5840512959812250154}
   - component: {fileID: 8804729871716658839}
+  - component: {fileID: 4430170136336589535}
   m_Layer: 0
   m_Name: Bob
   m_TagString: Untagged
@@ -59,6 +60,21 @@ MonoBehaviour:
   onRespawn:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4430170136336589535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3982303003054045252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4246582b94f10a946b131fa1d9b9065b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rumbleDuration: 0.5
+  lowFrequencyIntensity: 0.5
+  highFrequencyIntensity: 0.8
 --- !u!1 &4486839311755691722
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +200,8 @@ GameObject:
   m_Component:
   - component: {fileID: 42270690061297230}
   - component: {fileID: 8323151278664853343}
+  - component: {fileID: 5129144563482037875}
+  - component: {fileID: 3769143143237481884}
   m_Layer: 0
   m_Name: BobSprite
   m_TagString: Untagged
@@ -258,6 +276,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5129144563482037875
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390149993924556420}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d49c52f6a4501b42aea3c1dfebf72de, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3769143143237481884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390149993924556420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f535c2a3e17ae54b83d3e4fa12d5558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 8323151278664853343}
 --- !u!1 &8579127009673012924
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +461,23 @@ MonoBehaviour:
   - Hazard
   healableTags:
   - HealthUp
+  animator: {fileID: 5129144563482037875}
   spawningManager: {fileID: 8804729871716658839}
+  onDamageTaken:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4430170136336589535}
+        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+        m_MethodName: TriggerRumble
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!143 &7307085920574121977
 CharacterController:
   m_ObjectHideFlags: 0
@@ -448,15 +516,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e48c07a83b47f4badbb1ff2c061aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 5
+  walkingSpeed: 6
   runningSpeed: 1.5
+  animator: {fileID: 5129144563482037875}
   initialiserUnlockedMovement: 0
   dashSpeed: 20
   dashDistance: 3
   dashCooldown: 1
   dashStartPosition: {x: 0, y: 0, z: 0}
   jumpForce: 9
-  gravityMultiplier: 1
+  gravityMultiplier: 2.5
   rotator: {fileID: 0}
   weaponSystem: {fileID: 686190289503579459}
   attackTransformHolder: {fileID: 2280682363573972676}

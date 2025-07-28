@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
+  m_Name: InBeatEmUp_SectionThreeSolved
+  m_EditorClassIdentifier: 
+  stepCount: 4
+  isSkippable: 01010101
+  narrativeTexts:
+  - The spikey platform disappears.
+  - '(Shivers at the sight of the hole left by the platform) Do we have to fall again? '
+  - '(Without any hesitation, jumps into the hole while speaking) Catch you later~
+    (Voice fading as he falls) '
+  - (Sighs before joining Tobby)
+  speakerIcons:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 29cea9b28fc5c38429515bdebfac0dd2, type: 3}
+  - {fileID: 21300000, guid: 19ba4e2a54886bb49892518011cd0d74, type: 3}
+  - {fileID: 1252741623, guid: 9d613a6d6ef8ddd4e925924ed87141e5, type: 3}
+  speakerNames:
+  - 
+  - Bobby
+  - Tobby
+  - Bobby
+  optionalImages: []
+  voiceOvers: []
+  tooltipHeaders: []
+  tooltipImages: []
+  isTooltip: 
+  tooltipDurations: []
+  OnSequenceEnd:
+    m_PersistentCalls:
+      m_Calls: []

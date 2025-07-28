@@ -13,6 +13,7 @@ public class PlayerBarMover : MonoBehaviour
     [Tooltip("0 = Left slot, 1 = Center slot, 2 = Right slot")]
     public RectTransform[] slots;
 
+    [SerializeField] private CharacterSelectionPanel characterSelectionPanel;
     public float glideSpeed = 10f;
     public float shakeDuration = 0.2f;
     public float shakeMagnitude = 10f;
@@ -73,6 +74,8 @@ public class PlayerBarMover : MonoBehaviour
             currentIndex = desired;
             if (player == Player.P1) p1Index = desired; else p2Index = desired;
             targetAnchoredPos = slots[desired].anchoredPosition;
+            if (characterSelectionPanel is not null)
+            { characterSelectionPanel.UpdateBarColorFromHover(player == Player.P1 ? 1 : 2, desired); }
         }
 
         lastDir = dir;

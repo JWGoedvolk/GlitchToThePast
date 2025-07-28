@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4771518856581448826}
   - component: {fileID: 5350059402075724456}
-  - component: {fileID: 6306719461995054897}
   m_Layer: 0
   m_Name: Narrative_Collider
   m_TagString: Untagged
@@ -47,27 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequenceToPlay: {fileID: 0}
   playSequenceAtStart: 0
+  isReplayable: 0
   OnSequenceEnd:
     m_PersistentCalls:
       m_Calls: []
---- !u!65 &6306719461995054897
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6660931284394885504}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.8423309, y: 6.047242, z: 0.63908625}
-  m_Center: {x: 0.42116547, y: 2.523621, z: 0.1804597}

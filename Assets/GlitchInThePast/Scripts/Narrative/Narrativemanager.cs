@@ -97,7 +97,6 @@ namespace Narrative
         {
             if (currentSequence == null || currentIndex >= currentSequence.stepCount)
             {
-                Debug.Log("[Narrative] Reached end of sequence.");
                 EndSequence();
                 return;
             }
