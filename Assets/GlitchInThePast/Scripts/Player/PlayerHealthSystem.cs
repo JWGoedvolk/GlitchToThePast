@@ -40,6 +40,7 @@ public class PlayerHealthSystem : MonoBehaviour
     private PlayerInput playerInput; // changed ID to refer to player index instead
 
     public UnityEvent onDamageTaken;
+    public UnityEvent onDeath;
 
     //sfx
     private SFXManager sfxManager;

@@ -22,23 +22,19 @@ public class SFXManager : MonoBehaviour
 
         audioSource.playOnAwake = false;
 
-        if (audioSource.volume <= 0f)
-        {
-            Debug.LogWarning("SFXManager: AudioSource volume is 0 or muted!");
-        }
     }
 
     public void PlayHitSFX()
     {
         if (audioSource == null)
         {
-            Debug.LogError("SFXManager: AudioSource is missing! Cannot play hit SFX.");
+            Debug.LogError("AudioSource is missing");
             return;
         }
 
         if (hitSFX == null || hitSFX.Count == 0)
         {
-            Debug.LogWarning("SFXManager: No hit SFX assigned!");
+            Debug.LogWarning(" No hit SFX ");
             return;
         }
 
@@ -55,11 +51,11 @@ public class SFXManager : MonoBehaviour
 
         if (clipToPlay == null)
         {
-            Debug.LogWarning("SFXManager: Selected hit SFX clip is null!");
+            Debug.LogWarning("SFXManage missing ");
             return;
         }
 
-        Debug.Log($"SFXManager: Playing hit SFX: {clipToPlay.name}");
+       
         audioSource.PlayOneShot(clipToPlay);
     }
 
@@ -67,17 +63,14 @@ public class SFXManager : MonoBehaviour
     {
         if (audioSource == null)
         {
-            Debug.LogError("SFXManager: AudioSource is missing! Cannot play death SFX.");
             return;
         }
 
         if (deathSFX == null)
         {
-            Debug.LogWarning("SFXManager: No death SFX assigned!");
             return;
         }
 
-        Debug.Log($"SFXManager: Playing death SFX: {deathSFX.name}");
         audioSource.PlayOneShot(deathSFX);
     }
 }
