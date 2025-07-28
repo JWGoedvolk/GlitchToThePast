@@ -467,6 +467,9 @@ MonoBehaviour:
   onDamageTaken:
     m_PersistentCalls:
       m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &7307085920574121977
 CharacterController:
   m_ObjectHideFlags: 0
@@ -509,6 +512,7 @@ MonoBehaviour:
   runningSpeed: 1.5
   animator: {fileID: 5129144563482037875}
   initialiserUnlockedMovement: 0
+  isMovementLocked: 1
   dashSpeed: 20
   dashDistance: 3
   dashCooldown: 1
@@ -671,3 +675,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 55f42c9980ed4484a95de0b5d5d90222, type: 3}
   deathSFX: {fileID: 8300000, guid: 0f209d7048688e5408bb54da2363a291, type: 3}
   audioSource: {fileID: 0}
+  weaponSFX:
+  - {fileID: 8300000, guid: a5a54f585c04cf14f94f0e3d077e440c, type: 3}
+  - {fileID: 8300000, guid: 5ee50fb5470fe8a4ebfff4f4c65445c1, type: 3}
+  - {fileID: 8300000, guid: fc0d70f479fbfb9489c57deda777af5a, type: 3}

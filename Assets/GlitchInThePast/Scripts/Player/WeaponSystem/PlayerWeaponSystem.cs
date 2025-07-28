@@ -51,6 +51,7 @@ namespace GlitchInThePast.Scripts.Player
             {
                 sFXManager = FindAnyObjectByType<SFXManager>();
             }
+
             GamePauser.Instance?.RegisterPauseable(this);
         }
 
@@ -72,6 +73,10 @@ namespace GlitchInThePast.Scripts.Player
             {
                 StartCoroutine(Recharge(meleeRechargeTime));
                 onMeleeAttack?.Invoke();
+
+                //sfx
+                sFXManager?.PlayWeaponSFX();
+
                 var hits = Physics.RaycastAll(meleeAttackTransform.position, meleeAttackTransform.forward, meleeAttackRange);
                 foreach (var hit in hits)
                 {
@@ -89,7 +94,7 @@ namespace GlitchInThePast.Scripts.Player
                 onRangedAttack?.Invoke();
 
                 //Sfx
-                sFXManager?.PlayRangedWeaponSFX();
+                sFXManager?.PlayWeaponSFX();
 
                 var projectile = Instantiate(projectilePrefab, rangedAttackSpawnPoint.position, rangedAttackSpawnPoint.rotation);
                 PlayerRangedProjectile projectileScript = projectile.GetComponent<PlayerRangedProjectile>();

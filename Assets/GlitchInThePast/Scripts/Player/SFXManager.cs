@@ -8,7 +8,7 @@ public class SFXManager : MonoBehaviour
     public AudioClip deathSFX;
     public AudioSource audioSource;
 
-    public List<AudioClip> rangedSFX = new List<AudioClip>();
+    public List<AudioClip> weaponSFX = new List<AudioClip>();
 
     private void Awake()
     {
@@ -81,7 +81,7 @@ public class SFXManager : MonoBehaviour
 
     #region wepaons related sfx
 
-    public void PlayRangedWeaponSFX()
+    public void PlayWeaponSFX()
     {
         if (audioSource == null)
         {
@@ -90,7 +90,7 @@ public class SFXManager : MonoBehaviour
             return;
         }
 
-        if(rangedSFX == null || rangedSFX.Count == 0)
+        if(weaponSFX == null || weaponSFX.Count == 0)
         {
             Debug.Log("no sfx attached");
             return;
@@ -98,8 +98,8 @@ public class SFXManager : MonoBehaviour
 
 
 
-        int randomIndex = Random.Range(0, rangedSFX.Count);
-        AudioClip clipPlay = rangedSFX[randomIndex];
+        int randomIndex = Random.Range(0, weaponSFX.Count);
+        AudioClip clipPlay = weaponSFX[randomIndex];
 
         audioSource.PlayOneShot(clipPlay);
     }
