@@ -18,7 +18,7 @@ namespace Player.GenericMovement
         [SerializeField] private Animator animator;
 
         public bool initialiserUnlockedMovement = false;
-        private bool isMovementLocked = true;
+        [SerializeField] private bool isMovementLocked = true; // Please keep true as default.
 
         // Dashing
         [Tooltip("Dashing speed")]

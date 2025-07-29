@@ -36,15 +36,29 @@ public class PlayerHealthSystem : MonoBehaviour
     private SpriteRenderer flashingEffect;
 
     //for the spawn and checkpoint
-
     public SpawningManager spawningManager;
     private PlayerInput playerInput; // changed ID to refer to player index instead
 
     public UnityEvent onDamageTaken;
-    
+    public UnityEvent onDeath;
+
+    //sfx
+    private SFXManager sfxManager;
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+
+        sfxManager = FindObjectOfType<SFXManager>();
+        if (sfxManager == null)
+        {
+            Debug.LogWarning(" No SFXManager found ");
+        }
+        else
+        {
+            Debug.Log(" Found SFXManager");
+        }
+
+
     }
 
     void Start()
@@ -92,10 +106,25 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public void TakeDamage(int ammount)
     {
+        Debug.Log($"PlayerHealthSystem: TakeDamage called with amount: {ammount}");
+        if (ammount > 0)
+        {
+            if (sfxManager != null)
+            {
+                Debug.Log("PlayerHealthSystem: Calling PlayHitSFX()");
+                sfxManager.PlayHitSFX();
+            }
+            else
+            {
+                Debug.LogWarning("sfxManager reference is nada");
+            }
+        }
+
         currentHealth -= ammount;
         UpdateUI();
         onDamageTaken?.Invoke();
-        // Debug.Log("palyer is hit");
+        Debug.Log("palyer is hit");
+
         if (animator != null)
         {
             animator.SetBool("isGettingHit", true);
@@ -104,7 +133,12 @@ public class PlayerHealthSystem : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();
+            currentHealth = 0;
+            UpdateUI();
+
+            sfxManager?.PlayDeathSFX();
+
+            Die();      
             return;
         }
 
@@ -124,6 +158,14 @@ public class PlayerHealthSystem : MonoBehaviour
 
         invulCour = StartCoroutine(Invulerablity());
 
+        //play sfx when damged
+      
+
+        if(currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+        }
     }
 
     void Die()
@@ -133,16 +175,22 @@ public class PlayerHealthSystem : MonoBehaviour
 
         gameObject.SetActive(false);
 
+
+    
         if (spawningManager != null)
         {
             // No need for hashset, we're now telling it which player to respawn (by their index)
             spawningManager.HandleRespawning(playerInput);
         }
 
+       
+        Debug.Log("player died");
     }
 
     void OnTriggerEnter(Collider collision) // 2.5d game regular works fine :D
     {
+        Debug.Log($"Triggered by: {collision.tag}");
+
         if (!isInvulerable && damageableTags.Contains(collision.tag))
         {
             TakeDamage(1);
