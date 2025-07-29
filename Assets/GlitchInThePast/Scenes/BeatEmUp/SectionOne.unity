@@ -3885,6 +3885,83 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 50, y: 5, z: 1}
   m_Center: {x: 4.4, y: 2.87, z: 13.1}
+--- !u!1 &1013026295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1013026296}
+  - component: {fileID: 1013026298}
+  - component: {fileID: 1013026297}
+  m_Layer: 0
+  m_Name: WeaponDisabler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1013026296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013026295}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2049063677}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1013026297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013026295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754c89aa69e74210be3deea6cd9932af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Whitelist:
+  - Player1
+  - Player2
+  TriggeringObjects: []
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  onUnTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  isEnabler: 0
+--- !u!65 &1013026298
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013026295}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 18.274117, y: 5.7916946, z: 17.813946}
+  m_Center: {x: 0.7607364, y: 2.3958478, z: -2.7685661}
 --- !u!1 &1053000501
 GameObject:
   m_ObjectHideFlags: 0
@@ -7020,6 +7097,7 @@ Transform:
   m_Children:
   - {fileID: 1858618178}
   - {fileID: 1080483839}
+  - {fileID: 1013026296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2071989372

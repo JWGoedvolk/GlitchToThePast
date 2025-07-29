@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Hazard
   - HealthUp
+  - PuzzleBox
   layers:
   - Default
   - TransparentFX

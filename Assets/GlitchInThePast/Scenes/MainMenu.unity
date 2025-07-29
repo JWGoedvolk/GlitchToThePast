@@ -9943,6 +9943,7 @@ GameObject:
   - component: {fileID: 2121457758}
   - component: {fileID: 2121457759}
   - component: {fileID: 2121457760}
+  - component: {fileID: 2121457763}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -10024,7 +10025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0ff219404a06ae4a8f322b8057c020e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneInt: 0
+  sceneInt: 1
 --- !u!114 &2121457761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10058,6 +10059,21 @@ MonoBehaviour:
   musicSlider: {fileID: 80375971}
   sfxSlider: {fileID: 276029266}
   voiceSlider: {fileID: 1480682187}
+--- !u!114 &2121457763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121457753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4246582b94f10a946b131fa1d9b9065b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rumbleDuration: 0.5
+  lowFrequencyIntensity: 0.5
+  highFrequencyIntensity: 0.8
 --- !u!1 &2124540486
 GameObject:
   m_ObjectHideFlags: 0

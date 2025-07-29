@@ -39,6 +39,9 @@ public class PlayerHealthSystem : MonoBehaviour
     public SpawningManager spawningManager;
     private PlayerInput playerInput; // changed ID to refer to player index instead
 
+    // Rumble
+    private RumbleController rumbleController;
+    
     public UnityEvent onDamageTaken;
     public UnityEvent onDeath;
 
@@ -58,7 +61,7 @@ public class PlayerHealthSystem : MonoBehaviour
             Debug.Log(" Found SFXManager");
         }
 
-
+        rumbleController = RumbleController.Instance;
     }
 
     void Start()
@@ -113,6 +116,8 @@ public class PlayerHealthSystem : MonoBehaviour
             {
                 Debug.Log("PlayerHealthSystem: Calling PlayHitSFX()");
                 sfxManager.PlayHitSFX();
+                
+                if (playerInput.currentControlScheme == "Controller") rumbleController.TriggerRumble(rumbleController.rumbleDuration, rumbleController.lowFrequencyIntensity, rumbleController.highFrequencyIntensity);
             }
             else
             {
@@ -173,10 +178,9 @@ public class PlayerHealthSystem : MonoBehaviour
         // die
         Debug.Log($"Player {playerInput.playerIndex} died.");
 
+        if (playerInput.currentControlScheme == "Controller") rumbleController.TriggerRumble(1f, rumbleController.lowFrequencyIntensity, rumbleController.highFrequencyIntensity);
         gameObject.SetActive(false);
-
-
-    
+        
         if (spawningManager != null)
         {
             // No need for hashset, we're now telling it which player to respawn (by their index)

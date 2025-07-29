@@ -478,6 +478,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &7307085920574121977
 CharacterController:
   m_ObjectHideFlags: 0
@@ -519,7 +522,8 @@ MonoBehaviour:
   walkingSpeed: 6
   runningSpeed: 1.5
   animator: {fileID: 5129144563482037875}
-  initialiserUnlockedMovement: 0
+  initialiserUnlockedMovement: 1
+  isMovementLocked: 0
   dashSpeed: 20
   dashDistance: 3
   dashCooldown: 1
