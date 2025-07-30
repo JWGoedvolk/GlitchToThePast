@@ -8,11 +8,12 @@ using UnityEngine.InputSystem;
 public class SpawningManager : MonoBehaviour, IPauseable
 {
     public float respawnDelay = 10f;
-
+    [SerializeField] private SpriteRenderer sr;
+    
     //keeps track of the checkpoints before respawning the player (IF ONLY ONE IS DEAD)
     private Dictionary<int, Transform> currentCheckpoints = new Dictionary<int, Transform>();
 
-    //''    ''     '' which players courtine iswaitign for the respawn
+    //''    ''     '' which players coroutine is waiting for the respawn
     private Dictionary<int, Coroutine> respawnCoroutines = new Dictionary<int, Coroutine>();
 
     public Transform deafultCheckpoint;
@@ -54,7 +55,7 @@ public class SpawningManager : MonoBehaviour, IPauseable
         }
         else
         {
-            //if 1 player died then coniue as normal
+            //if 1 player died then continue as normal
             if (!respawnCoroutines.ContainsKey(playerID))
             {
                 respawnCoroutines[playerID] = StartCoroutine(RespawnCoroutine(playerInput));
@@ -64,6 +65,13 @@ public class SpawningManager : MonoBehaviour, IPauseable
 
     IEnumerator RespawnCoroutine(PlayerInput pi)
     {
+        // Disable character controller and sprite renderer to show the player is dead, and so they can't move
+        if (gameObject.TryGetComponent(out CharacterController cc))
+        {
+            cc.enabled = false;
+        }
+        sr.enabled = false;
+        
         yield return new WaitForSeconds(respawnDelay);
 
         Respawn(pi.playerIndex);
@@ -151,15 +159,18 @@ public class SpawningManager : MonoBehaviour, IPauseable
             cc.enabled = false;
         }
 
-        gameObject.SetActive(false);
+        sr.enabled = false;
+
+        //gameObject.SetActive(false);
         gameObject.transform.position = position;
         gameObject.transform.rotation = Quaternion.identity;
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
 
         if (gameObject.TryGetComponent(out CharacterController ccEnable))
         {
             ccEnable.enabled = true;
         }
+        sr.enabled = true;
     }
 
     #region IPauseable functions

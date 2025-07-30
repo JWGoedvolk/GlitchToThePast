@@ -93,8 +93,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7276517022794321912}
   - component: {fileID: 5840512959812250154}
-  - component: {fileID: 8804729871716658839}
-  - component: {fileID: 3315951950840007766}
   m_Layer: 0
   m_Name: Tob
   m_TagString: Untagged
@@ -126,38 +124,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3982303003054045252}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &8804729871716658839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3982303003054045252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bbaa2d4a4caeda4ba2a0486d0fcac26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnDelay: 10
-  deafultCheckpoint: {fileID: 7276517022794321912}
-  onRespawn:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &3315951950840007766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3982303003054045252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4246582b94f10a946b131fa1d9b9065b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rumbleDuration: 0.5
-  lowFrequencyIntensity: 0.5
-  highFrequencyIntensity: 0.8
 --- !u!1 &4823359507561651016
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +372,7 @@ GameObject:
   - component: {fileID: 1277676373348698392}
   - component: {fileID: 686190289503579459}
   - component: {fileID: 4511008773222892832}
+  - component: {fileID: 988769499152304366}
   m_Layer: 0
   m_Name: TobbysCollider
   m_TagString: Player2
@@ -543,11 +510,12 @@ MonoBehaviour:
   healableTags:
   - HealthUp
   animator: {fileID: 1434083449806660333}
-  spawningManager: {fileID: 8804729871716658839}
+  regenStartTime: 3
+  spawningManager: {fileID: 988769499152304366}
   onDamageTaken:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3315951950840007766}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
         m_MethodName: TriggerRumble
         m_Mode: 1
@@ -561,7 +529,19 @@ MonoBehaviour:
         m_CallState: 2
   onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7214665132144227936}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!143 &7307085920574121977
 CharacterController:
   m_ObjectHideFlags: 0
@@ -726,3 +706,33 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &988769499152304366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579127009673012924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbaa2d4a4caeda4ba2a0486d0fcac26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnDelay: 10
+  sr: {fileID: 8323151278664853343}
+  deafultCheckpoint: {fileID: 0}
+  onRespawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7214665132144227936}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2

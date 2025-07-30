@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GlitchInThePast.Scripts.Player.RespawnTest;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -25,6 +26,7 @@ public class PlayerHealthSystem : MonoBehaviour
     [SerializeField] private Animator animator;
 
     // Regen
+    [SerializeField] private float regenStartTime = 3f;
     private bool isRegenerating = false;
     private float timeSinceLastDmg;
 
@@ -37,6 +39,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     //for the spawn and checkpoint
     public SpawningManager spawningManager;
+    private PlayerRespawner playerRespawner;
     private PlayerInput playerInput; // changed ID to refer to player index instead
 
     // Rumble
@@ -50,7 +53,7 @@ public class PlayerHealthSystem : MonoBehaviour
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-
+        playerRespawner = GetComponent<PlayerRespawner>();
         sfxManager = FindObjectOfType<SFXManager>();
         if (sfxManager == null)
         {
@@ -92,10 +95,10 @@ public class PlayerHealthSystem : MonoBehaviour
     void Update()
     {
         //timer since last dmg
-        timeSinceLastDmg += Time.deltaTime;
+        if (!isRegenerating && !isInvulerable) timeSinceLastDmg += Time.deltaTime;
 
         //starts rgean hlth after last dmg if not full hlth (duration to be changed)
-        if (currentHealth < maxHealth && !isRegenerating && timeSinceLastDmg >= 3f)
+        if (currentHealth < maxHealth && !isRegenerating && !isInvulerable && timeSinceLastDmg >= regenStartTime)
         {
             StartCoroutine(Regan());
         }
@@ -164,13 +167,13 @@ public class PlayerHealthSystem : MonoBehaviour
         invulCour = StartCoroutine(Invulerablity());
 
         //play sfx when damged
-      
-
-        if(currentHealth <= 0)
-        {
-            currentHealth = 0;
-            Die();
-        }
+        //
+        //
+        // if(currentHealth <= 0)
+        // {
+        //     currentHealth = 0;
+        //     Die();
+        // }
     }
 
     void Die()
@@ -179,7 +182,7 @@ public class PlayerHealthSystem : MonoBehaviour
         Debug.Log($"Player {playerInput.playerIndex} died.");
 
         if (playerInput.currentControlScheme == "Controller") rumbleController.TriggerRumble(1f, rumbleController.lowFrequencyIntensity, rumbleController.highFrequencyIntensity);
-        gameObject.SetActive(false);
+        onDeath?.Invoke();
         
         if (spawningManager != null)
         {
