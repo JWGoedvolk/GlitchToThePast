@@ -1,5 +1,6 @@
 using System;
 using GlitchInThePast.Scripts.Player;
+using Player.Health;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -11,57 +12,59 @@ namespace Player.GenericMovement
     public class PlayerMovement : MonoBehaviour, IPauseable
     {
         #region Variables
-        [Tooltip("Walking speed")]
+        [Tooltip("Movement")]
         public float walkingSpeed = 2f;
         [Tooltip("This number gets multiplied to the walking speed")]
         public float runningSpeed = 1.5f;
-        [SerializeField] private Animator animator;
 
         public bool initialiserUnlockedMovement = false;
-        [SerializeField] private bool isMovementLocked = true; // Please keep true as default.
 
-        // Dashing
-        [Tooltip("Dashing speed")]
+        [Header("Dashing")]
         [SerializeField] private float dashSpeed = 12f;
-        [Tooltip("How long it takes players to dash (in seconds)")]
-        [SerializeField] private float dashDistance = 0.2f;
-        [Tooltip("How long till players are premitted to dash again aka dash cooldown (in seconds)")]
+        [SerializeField] private float dashDuration = 0.15f;
         [SerializeField] private float dashCooldown = 1f;
-        [SerializeField] private Vector3 dashStartPosition;
+        private float dashTimer;
+        private float dashCooldownTimer;
+        private bool isDashing;
+        public bool IsDashing => isDashing;
+        private float dashDurationTimer;
+        private Vector3 dashDirection = Vector3.zero;
 
-        // Jumping
+        [Header("Jumping")]
         [SerializeField] private float jumpForce = 4f;
         [Tooltip("The higher the number the stronger gravity is when falling")]
         [SerializeField] private float gravityMultiplier = 1.5f;
 
+        [SerializeField] private Animator animator;
+
         public static float MaxXDistance = 14f;
         public static float MaxZDistance = 9f;
 
+        [SerializeField] private bool isMovementLocked = true; // Please keep true as default.
+        [SerializeField] private PlayerHealthSystem healthSystem;
         private PlayerMovement otherPlayer;
         private CharacterController characterController;
         private PlayerInput playerInput;
         private Vector2 moveInput;
         [SerializeField] private Rotator rotator;
         private bool isRunning;
-        private bool isDashing;
-        public bool IsDashing => isDashing;
-
-        private float dashCooldownTimer;
         private float verticalVel;
 
         private SpriteRenderer spriteRenderer;
 
-        // Added by JW
+        [Header("Weapon Related")]
         [SerializeField] private PlayerWeaponSystem weaponSystem;
         [SerializeField] private Transform attackTransformHolder;
 
-        // Events
+        [Header("Events")]
         [SerializeField] private UnityEvent onDashStart;
         [SerializeField] private UnityEvent onDashEnd;
         #endregion
 
         void Start()
         {
+            healthSystem = GetComponent<PlayerHealthSystem>();
+            dashDirection = Vector3.right;
             GamePauser.Instance?.RegisterPauseable(this);
             AssignOtherPlayer();
             if (animator is null)
@@ -96,20 +99,23 @@ namespace Player.GenericMovement
         {
             if (isMovementLocked == true) return;
 
-            // Update dash cooldown countdown
+            // Update timers
             dashCooldownTimer -= Time.deltaTime;
 
-            // If we are dashing, check if we've reached our end position yet
             if (isDashing)
             {
-                float distanceDashed = Vector3.Distance(transform.position, dashStartPosition);
-                // Debug.Log(distanceDashed);
-                if (distanceDashed >= dashDistance) // If we are at the end of our dash
+                dashTimer -= Time.deltaTime;
+
+                if (dashTimer <= 0f)
                 {
+                    isDashing = false;
+                    animator?.SetBool("isDashing", false);
                     onDashEnd?.Invoke();
-                    isDashing = false; // Stop dashing
+
+                    if (healthSystem != null) healthSystem.isInvincible = false;
                 }
             }
+
             if (characterController == null) return;
 
             if (characterController.isGrounded && verticalVel < 0f)
@@ -121,7 +127,7 @@ namespace Player.GenericMovement
 
             float speed = walkingSpeed * (isRunning ? runningSpeed : 1f);
             Vector3 horizontal = new Vector3(moveInput.x, 0, moveInput.y).normalized;
-            Vector3 velocity = isDashing ? horizontal * dashSpeed : horizontal * speed;
+            Vector3 velocity = isDashing ? dashDirection * dashSpeed : horizontal * speed;
             velocity.y = verticalVel;
 
             if (otherPlayer == null || otherPlayer == this)
@@ -257,6 +263,7 @@ namespace Player.GenericMovement
             #endregion
         }
 
+        #region Public Functions
         public void SetupAtSpawn(Vector3 spawnPos)
         {
             if (characterController == null)
@@ -274,7 +281,9 @@ namespace Player.GenericMovement
             verticalVel = 0f;
             isDashing = false;
         }
+        #endregion
 
+        #region Private Functions
         private void OnMove(InputAction.CallbackContext ctx)
         {
             moveInput = ctx.ReadValue<Vector2>();
@@ -306,13 +315,25 @@ namespace Player.GenericMovement
             if (!isDashing && dashCooldownTimer <= 0f)
             {
                 isDashing = true;
+                if (healthSystem != null) healthSystem.isInvincible = true;
+                dashTimer = dashDuration;
                 dashCooldownTimer = dashCooldown;
 
-                dashStartPosition = characterController.transform.position;
+                Vector3 inputDirection = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
+                if (inputDirection.magnitude > 0.01f)
+                {
+                    dashDirection = inputDirection;
+                }
+                else
+                {
+                    dashDirection = spriteRenderer.flipX ? Vector3.left : Vector3.right;
+                }
 
+                animator?.SetBool("isDashing", true);
                 onDashStart?.Invoke();
             }
         }
+
 
         private void FlipAttackTransform(int direction)
         {
@@ -326,13 +347,6 @@ namespace Player.GenericMovement
             }
         }
 
-        private void OnDrawGizmos()
-        {
-            //Gizmos.DrawWireSphere(transform.position + transform.right * dashDistance, 0.1f);
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(dashStartPosition, 0.1f);
-        }
-
         private void OnJump(InputAction.CallbackContext ctx)
         {
             if (ctx.performed && characterController.isGrounded)
@@ -340,6 +354,7 @@ namespace Player.GenericMovement
                 verticalVel = jumpForce;
             }
         }
+        #endregion
 
         #region IPauseable functions
         public void OnPause()

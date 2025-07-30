@@ -56,7 +56,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnDelay: 10
-  deafultCheckpoint: {fileID: 7276517022794321912}
   onRespawn:
     m_PersistentCalls:
       m_Calls: []
@@ -218,8 +217,8 @@ Transform:
   m_GameObject: {fileID: 8390149993924556420}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.445, z: 0}
-  m_LocalScale: {x: 0.12374473, y: 0.18282317, z: 0.29792404}
+  m_LocalPosition: {x: 0, y: 0.423, z: 0}
+  m_LocalScale: {x: 0.06966548, y: 0.102925286, z: 0.16772446}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6390881012933782396}
@@ -265,12 +264,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 29cea9b28fc5c38429515bdebfac0dd2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8925571b55ed12644bcc26a4ac5e46aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
+  m_Size: {x: 20.491024, y: 18.59}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -455,14 +454,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 3
   maxHealth: 3
-  isInvulerable: 0
-  invulerable: 3
-  damageableTags:
-  - Enemy
-  - Hazard
-  healableTags:
-  - HealthUp
-  animator: {fileID: 5129144563482037875}
   spawningManager: {fileID: 8804729871716658839}
   onDamageTaken:
     m_PersistentCalls:
@@ -470,6 +461,13 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+  damageableTags:
+  - Enemy
+  - Hazard
+  healableTags:
+  - HealthUp
+  damageCooldown: 0.3
+  lastDamageTime: -Infinity
 --- !u!143 &7307085920574121977
 CharacterController:
   m_ObjectHideFlags: 0

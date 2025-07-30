@@ -15,11 +15,11 @@ public class SFXManager : MonoBehaviour
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
-            Debug.Log($"SFXManager: Added AudioSource component to {gameObject.name}");
+            // Debug.Log($"SFXManager: Added AudioSource component to {gameObject.name}");
         }
         else
         {
-            Debug.Log($"SFXManager: Found existing AudioSource on {gameObject.name}");
+            // Debug.Log($"SFXManager: Found existing AudioSource on {gameObject.name}");
         }
 
         audioSource.playOnAwake = false;

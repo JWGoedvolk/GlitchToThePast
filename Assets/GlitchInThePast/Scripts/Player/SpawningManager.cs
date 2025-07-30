@@ -4,18 +4,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Player.Health;
 
 public class SpawningManager : MonoBehaviour, IPauseable
 {
     public float respawnDelay = 10f;
 
-    //keeps track of the checkpoints before respawning the player (IF ONLY ONE IS DEAD)
-    private Dictionary<int, Transform> currentCheckpoints = new Dictionary<int, Transform>();
-
     //''    ''     '' which players courtine iswaitign for the respawn
     private Dictionary<int, Coroutine> respawnCoroutines = new Dictionary<int, Coroutine>();
-
-    public Transform deafultCheckpoint;
 
     //keeps list of which players are dead
     private HashSet<int> deadplayers = new();
@@ -79,15 +75,6 @@ public class SpawningManager : MonoBehaviour, IPauseable
         GameObject gameObject = playerInput.gameObject;
 
         Vector3 respawnPos = gameObject.transform.position;
-        if (currentCheckpoints.TryGetValue(playerIndex, out var savedCp))
-        {
-            respawnPos = savedCp.position;
-        }
-        else if (deafultCheckpoint != null)
-        {
-            respawnPos = deafultCheckpoint.position;
-        }
-
         TeleportPlayer(gameObject, respawnPos);
 
         PlayerHealthSystem hs = gameObject.GetComponent<PlayerHealthSystem>();
@@ -95,11 +82,6 @@ public class SpawningManager : MonoBehaviour, IPauseable
         onRespawn?.Invoke();
 
         Debug.Log($"Player {playerIndex} respawned at {gameObject.transform.position}");
-    }
-
-    public void UpdateCheckpoint(int playerIndex, Transform checkpoint)
-    {
-        currentCheckpoints[playerIndex] = checkpoint;
     }
 
     public void ExplodeRespawnAll(Vector3 explosionPoint, Vector3 offset)
@@ -142,8 +124,9 @@ public class SpawningManager : MonoBehaviour, IPauseable
             healthSystem.ResetHealth();
         }
 
-        Debug.Log($"Player {playerInput.playerIndex} respawned at {position} (Laser hit)");
+        Debug.Log($"Player {playerInput.playerIndex} respawned at {position}");
     }
+
     private void TeleportPlayer(GameObject gameObject, Vector3 position)
     {
         if (gameObject.TryGetComponent(out CharacterController cc))

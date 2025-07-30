@@ -1,37 +1,38 @@
-﻿using UnityEngine;
+﻿using Player.Health;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Laser : MonoBehaviour
 {
-
-    #region Variables
     public Vector3 respawnOffset = new Vector3(-5f, 0f, 0f);
+    public float damageInterval = 0.5f;
 
     private SpawningManager spawningManager;
-    #endregion
 
     private void Start()
     {
         spawningManager = FindObjectOfType<SpawningManager>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+        if (!(other.CompareTag("Player1") || other.CompareTag("Player2"))) return;
+
+        var playerInput = other.GetComponent<PlayerInput>();
+        var movement = other.GetComponent<Player.GenericMovement.PlayerMovement>();
+        var health = other.GetComponent<PlayerHealthSystem>();
+
+        if (health == null || playerInput == null) return;
+        if (health.isInvincible) return; 
+
+        if (Time.time - health.lastDamageTime >= damageInterval && health.currentHealth >= 0)
         {
-            var playerInput = other.GetComponent<PlayerInput>();
-            var movement = other.GetComponent<Player.GenericMovement.PlayerMovement>();
-
-            if (movement != null && movement.IsDashing)
-            {
-                return;
-            }
-
-            if (playerInput != null && spawningManager != null)
-            {
-                Vector3 spawnPos = transform.position + respawnOffset;
-                spawningManager.RespawnSinglePlayerAtPosition(playerInput, spawnPos);
-            }
+            health.lastDamageTime = Time.time;
+            health.TakeDamage(1);
+        }
+        else if (health.currentHealth <= 0 && spawningManager != null)
+        {
+            Vector3 spawnPos = transform.position + respawnOffset;
         }
     }
 }

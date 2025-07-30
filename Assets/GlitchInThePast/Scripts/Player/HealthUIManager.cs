@@ -1,28 +1,31 @@
 using UnityEngine;
 
-public class HealthUIManager : MonoBehaviour
+namespace Player.Health
 {
-    [SerializeField] private HealthDisplayUI[] healthUIs;
-
-    private void OnEnable()
+    public class HealthUIManager : MonoBehaviour
     {
-        PlayerHealthSystem.OnPlayerSpawned += HandlePlayerSpawned;
-    }
+        [SerializeField] private HealthDisplayUI[] healthUIs;
 
-    private void OnDisable()
-    {
-        PlayerHealthSystem.OnPlayerSpawned -= HandlePlayerSpawned;
-    }
-
-    private void HandlePlayerSpawned(int index, PlayerHealthSystem healthSystem)
-    {
-        foreach (var ui in healthUIs)
+        private void OnEnable()
         {
-            if ((int)ui.playerID == index)
+            PlayerHealthSystem.OnPlayerSpawned += HandlePlayerSpawned;
+        }
+
+        private void OnDisable()
+        {
+            PlayerHealthSystem.OnPlayerSpawned -= HandlePlayerSpawned;
+        }
+
+        private void HandlePlayerSpawned(int index, PlayerHealthSystem healthSystem)
+        {
+            foreach (var ui in healthUIs)
             {
-                healthSystem.AssignUI(ui);
-                ui.UpdateHealth(healthSystem.currentHealth, healthSystem.maxHealth);
-                break;
+                if ((int)ui.playerID == index)
+                {
+                    healthSystem.AssignUI(ui);
+                    ui.UpdateHealth(healthSystem.currentHealth, healthSystem.maxHealth);
+                    break;
+                }
             }
         }
     }
