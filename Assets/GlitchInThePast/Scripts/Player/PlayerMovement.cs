@@ -257,7 +257,7 @@ namespace Player.GenericMovement
             #endregion
         }
 
-        public void SetupAtSpawn(Vector3 spawnPos)
+        public void SetupAtSpawn(Transform spawnPos)
         {
             if (characterController == null)
             {
@@ -266,8 +266,13 @@ namespace Player.GenericMovement
 
             characterController.enabled = false;
 
-            transform.position = spawnPos;
+            transform.position = spawnPos.position;
             transform.rotation = Quaternion.identity;
+            SpawningManager spawningManager = GetComponent<SpawningManager>();
+            if (spawningManager != null)
+            {
+                spawningManager.deafultCheckpoint = spawnPos;
+            }
 
             characterController.enabled = true;
 

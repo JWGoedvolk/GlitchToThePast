@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using GlitchInThePast.Scripts.Player.RespawnTest;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -8,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerHealthSystem : MonoBehaviour
 {
     public static System.Action<int, PlayerHealthSystem> OnPlayerSpawned;
-    private HealthDisplayUI healthUI;
+    public HealthDisplayUI healthUI;
 
     //Player info
     [Header("Health")]
@@ -39,7 +38,6 @@ public class PlayerHealthSystem : MonoBehaviour
 
     //for the spawn and checkpoint
     public SpawningManager spawningManager;
-    private PlayerRespawner playerRespawner;
     private PlayerInput playerInput; // changed ID to refer to player index instead
 
     // Rumble
@@ -53,7 +51,6 @@ public class PlayerHealthSystem : MonoBehaviour
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        playerRespawner = GetComponent<PlayerRespawner>();
         sfxManager = FindObjectOfType<SFXManager>();
         if (sfxManager == null)
         {
@@ -78,17 +75,19 @@ public class PlayerHealthSystem : MonoBehaviour
             animator = GetComponent<Animator>();
         }
 
-        HealthDisplayUI[] allDisplays = FindObjectsOfType<HealthDisplayUI>();
-        foreach (var display in allDisplays)
-        {
-            if ((int)display.playerID == playerInput.playerIndex)
-            {
-                healthUI = display;
-                break;
-            }
-        }
-
-        UpdateUI();
+        // HealthDisplayUI[] allDisplays = FindObjectsOfType<HealthDisplayUI>();
+        // foreach (var display in allDisplays)
+        // {
+        //     if ((int)display.playerID == playerInput.playerIndex)
+        //     {
+        //         healthUI = display;
+        //         healthUI.playerHealthSystem = this;
+        //         healthUI.SetUp(flashingEffect.sprite);
+        //         break;
+        //     }
+        // }
+        //
+        // UpdateUI();
     }
 
 
@@ -120,7 +119,7 @@ public class PlayerHealthSystem : MonoBehaviour
                 Debug.Log("PlayerHealthSystem: Calling PlayHitSFX()");
                 sfxManager.PlayHitSFX();
                 
-                if (playerInput.currentControlScheme == "Controller") rumbleController.TriggerRumble(rumbleController.rumbleDuration, rumbleController.lowFrequencyIntensity, rumbleController.highFrequencyIntensity);
+//                if (playerInput.currentControlScheme == "Controller") rumbleController.TriggerRumble(rumbleController.rumbleDuration, rumbleController.lowFrequencyIntensity, rumbleController.highFrequencyIntensity);
             }
             else
             {
@@ -181,7 +180,7 @@ public class PlayerHealthSystem : MonoBehaviour
         // die
         Debug.Log($"Player {playerInput.playerIndex} died.");
 
-        if (playerInput.currentControlScheme == "Controller") rumbleController.TriggerRumble(1f, rumbleController.lowFrequencyIntensity, rumbleController.highFrequencyIntensity);
+        //if (playerInput.currentControlScheme == "Controller") rumbleController.TriggerRumble(1f, rumbleController.lowFrequencyIntensity, rumbleController.highFrequencyIntensity);
         onDeath?.Invoke();
         
         if (spawningManager != null)
@@ -196,14 +195,15 @@ public class PlayerHealthSystem : MonoBehaviour
 
     void OnTriggerEnter(Collider collision) // 2.5d game regular works fine :D
     {
-        Debug.Log($"Triggered by: {collision.tag}");
 
         if (!isInvulerable && damageableTags.Contains(collision.tag))
         {
+            Debug.Log($"Player damage/heal triggered by: {collision.tag}");
             TakeDamage(1);
         }
         else if (healableTags.Contains(collision.tag))
         {
+            Debug.Log($"Player damage/heal triggered by: {collision.tag}");
             TakeDamage(-1); // Heal by 1
         }
     }
@@ -283,6 +283,12 @@ public class PlayerHealthSystem : MonoBehaviour
     public void AssignUI(HealthDisplayUI ui)
     {
         healthUI = ui;
+        ui.playerHealthSystem = this;
+        // SpriteRenderer sr = ui.GetComponentInChildren<SpriteRenderer>();
+        // healthUI.SetUp(sr.sprite);
+
+        Debug.Log($"{healthUI} was assigned to {transform.name}");
+        
         UpdateUI();
     }
     private IEnumerator ResetHitAnimation()

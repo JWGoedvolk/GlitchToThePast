@@ -5,7 +5,8 @@ public class Laser : MonoBehaviour
 {
 
     #region Variables
-    public Vector3 respawnOffset = new Vector3(-5f, 0f, 0f);
+    public Transform LeftRespawn;
+    public Transform RightRespawn;
 
     private SpawningManager spawningManager;
     #endregion
@@ -17,20 +18,36 @@ public class Laser : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+        if (other.tag.Contains("Player"))
         {
+            var health = other.GetComponent<PlayerHealthSystem>();
+            var characterController = other.GetComponent<CharacterController>();
             var playerInput = other.GetComponent<PlayerInput>();
             var movement = other.GetComponent<Player.GenericMovement.PlayerMovement>();
-
-            if (movement != null && movement.IsDashing)
+            Debug.Log($"velocity: {characterController.velocity}");
+            if (movement != null && (movement.IsDashing || health.isInvulerable))
             {
                 return;
             }
 
+            //health.TakeDamage(1);
+            
             if (playerInput != null && spawningManager != null)
             {
-                Vector3 spawnPos = transform.position + respawnOffset;
-                spawningManager.RespawnSinglePlayerAtPosition(playerInput, spawnPos);
+                
+                var moveDirection = characterController.velocity;
+                if (moveDirection.x > 0) // Moving towards the right side of the laser
+                {
+                    // Teleport them to the left
+                    spawningManager.RespawnSinglePlayerAtPosition(playerInput, LeftRespawn.position);
+                }
+                else if (moveDirection.x < 0) // Moving towards the left side of the laser
+                {
+                    // Teleport them to the right
+                    spawningManager.RespawnSinglePlayerAtPosition(playerInput, RightRespawn.position);
+                }
+                
+                
             }
         }
     }

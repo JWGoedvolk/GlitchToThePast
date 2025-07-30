@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4244dc4ec515c4641b2991198d21a30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthUI: {fileID: 0}
   currentHealth: 3
   maxHealth: 3
   isInvulerable: 0
@@ -433,11 +434,14 @@ MonoBehaviour:
   spawningManager: {fileID: 4358293446466382460}
   onDamageTaken:
     m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
-        m_MethodName: TriggerRumble
-        m_Mode: 1
+      - m_Target: {fileID: 8323151278664853343}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -446,9 +450,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!143 &7307085920574121977
 CharacterController:
   m_ObjectHideFlags: 0
@@ -649,9 +650,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbaa2d4a4caeda4ba2a0486d0fcac26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnDelay: 10
+  respawnDelay: 3
   sr: {fileID: 8323151278664853343}
   deafultCheckpoint: {fileID: 0}
   onRespawn:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8323151278664853343}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2

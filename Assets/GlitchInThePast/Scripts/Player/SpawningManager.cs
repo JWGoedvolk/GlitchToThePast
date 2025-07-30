@@ -145,12 +145,12 @@ public class SpawningManager : MonoBehaviour, IPauseable
 
         TeleportPlayer(gameObject, position);
 
-        if (gameObject.TryGetComponent(out PlayerHealthSystem healthSystem))
-        {
-            healthSystem.ResetHealth();
-        }
+        // if (gameObject.TryGetComponent(out PlayerHealthSystem healthSystem))
+        // {
+        //     healthSystem.ResetHealth();
+        // }
 
-        Debug.Log($"Player {playerInput.playerIndex} respawned at {position} (Laser hit)");
+        Debug.Log($"Player {playerInput.playerIndex} respawned at {position} from {gameObject.transform.position} (Laser hit)");
     }
     private void TeleportPlayer(GameObject gameObject, Vector3 position)
     {
