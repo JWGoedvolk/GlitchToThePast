@@ -122,17 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &15071282 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9087319065893169248, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
-  m_PrefabInstance: {fileID: 7887192983161431167}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 281eec713c37e8d438ed3a2a236a8f83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &45412294
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,17 +334,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 724915363}
   m_LocalEulerAnglesHint: {x: -3.824, y: 0, z: 0}
---- !u!114 &83915597 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 761722028189432607, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
-  m_PrefabInstance: {fileID: 7887192983161431167}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 281eec713c37e8d438ed3a2a236a8f83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &97420478
 GameObject:
   m_ObjectHideFlags: 0
@@ -6872,7 +6850,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1981149625}
   - component: {fileID: 1981149626}
-  - component: {fileID: 1981149627}
   - component: {fileID: 1981149629}
   - component: {fileID: 1981149630}
   - component: {fileID: 1981149631}
@@ -6915,21 +6892,6 @@ MonoBehaviour:
   - {fileID: 3982303003054045252, guid: 89a3a5190ad3dde43ab8dfb40c1c9349, type: 3}
   playerOneSpawn: {fileID: 1858618178}
   playerTwoSpawn: {fileID: 1080483839}
---- !u!114 &1981149627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1981149624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6485a1dec967a25489fb7bac3d2a467b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthUIs:
-  - {fileID: 15071282}
-  - {fileID: 83915597}
 --- !u!114 &1981149629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6973,6 +6935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnDelay: 10
+  sr: {fileID: 0}
   onRespawn:
     m_PersistentCalls:
       m_Calls: []
@@ -7530,22 +7493,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 861482798377808722, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 861482798377808722, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 861482798377808722, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 861482798377808722, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1186657788664978243, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7629,22 +7576,6 @@ PrefabInstance:
     - target: {fileID: 5768878524208626337, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
       propertyPath: m_Name
       value: GameUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8711687021903397969, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8711687021903397969, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8711687021903397969, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8711687021903397969, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

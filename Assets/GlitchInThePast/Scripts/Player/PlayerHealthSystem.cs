@@ -150,7 +150,7 @@ namespace Player.Health
 
         void Die()
         {
-            gameObject.SetActive(false);
+            onDeath?.Invoke();
 
             if (spawningManager != null)
             {
@@ -170,6 +170,11 @@ namespace Player.Health
         public void AssignUI(HealthDisplayUI ui)
         {
             healthUI = ui;
+            // SpriteRenderer sr = ui.GetComponentInChildren<SpriteRenderer>();
+            // healthUI.SetUp(sr.sprite);
+
+            // Debug.Log($"{healthUI} was assigned to {transform.name}");
+
             UpdateUI();
         }
         #region Private Functions
