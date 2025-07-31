@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -150,14 +149,13 @@ namespace Player.Health
 
         void Die()
         {
-            onDeath?.Invoke();
-
             if (spawningManager != null)
             {
+                spawningManager.SaveDeathLocation(playerInput.playerIndex, transform.position);
                 spawningManager.HandleRespawning(playerInput);
             }
 
-            // Debug.Log("player died");
+            onDeath?.Invoke();
         }
 
         public void ResetHealth()

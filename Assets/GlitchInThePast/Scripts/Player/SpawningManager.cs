@@ -15,10 +15,13 @@ namespace Player.Health
         public float respawnDelay = 10f;
 
         [SerializeField] private UnityEvent onRespawn;
+        private Dictionary<int, Transform> currentCheckpoints = new();
+        public Transform deafultCheckpoint;
 
         // which players courtine is waiting for the respawn
         private Dictionary<int, Coroutine> respawnCoroutines = new Dictionary<int, Coroutine>();
         private Dictionary<int, SpriteRenderer> spriteRenderers = new();
+        private Dictionary<int, Vector3> lastDeathPositions = new();
 
         // Keeps list of which players are dead
         private HashSet<int> deadplayers = new();
@@ -51,6 +54,7 @@ namespace Player.Health
             GamePauser.Instance?.UnregisterPauseable(this);
         }
 
+        #region Public Functions
         public void HandleRespawning(PlayerInput playerInput)
         {
             int playerID = playerInput.playerIndex;
@@ -59,16 +63,13 @@ namespace Player.Health
             // if *both* are dead, cancel timers & immediately respawn both
             if (deadplayers.Count == 2)
             {
+                lastDeathPositions.Clear();
                 foreach (var ct in respawnCoroutines.Values)
                     if (ct != null) StopCoroutine(ct);
 
-                // Clear all stored coroutines
-                respawnCoroutines.Clear();
-
-                //Respawn both player immediately
+                lastDeathPositions.Clear();
                 Respawn(0);
                 Respawn(1);
-
                 deadplayers.Clear();
             }
             else
@@ -124,28 +125,54 @@ namespace Player.Health
 
             Debug.Log($"Player {playerInput.playerIndex} respawned at {position}");
         }
+        public void SaveDeathLocation(int playerIndex, Vector3 pos)
+        {
+            lastDeathPositions[playerIndex] = pos;
+        }
 
+        public void UpdateCheckpoint(int playerIndex, Transform checkpoint)
+        {
+            currentCheckpoints[playerIndex] = checkpoint;
+        }
+        #endregion
+
+        #region Private Functions
         private void Respawn(int playerIndex)
         {
             PlayerInput playerInput = PlayerInput.all.FirstOrDefault(p => p.playerIndex == playerIndex);
             if (playerInput == null) return;
 
-            GameObject gameObject = playerInput.gameObject;
+            GameObject go = playerInput.gameObject;
+            Vector3 respawnPos;
 
-            Vector3 respawnPos = gameObject.transform.position;
-            TeleportPlayer(gameObject, respawnPos, playerIndex);
+            bool useCheckpoint = !lastDeathPositions.ContainsKey(playerIndex); // checkpoint if no saved death
 
-            PlayerHealthSystem hs = gameObject.GetComponent<PlayerHealthSystem>();
-            if (hs != null) hs.ResetHealth();
+            if (useCheckpoint)
+            {
+                if (currentCheckpoints.TryGetValue(playerIndex, out var savedCp))
+                    respawnPos = savedCp.position;
+                else if (deafultCheckpoint != null)
+                    respawnPos = deafultCheckpoint.position;
+                else
+                    respawnPos = go.transform.position;
+            }
+            else
+            {
+                respawnPos = lastDeathPositions[playerIndex];
+            }
+
+            TeleportPlayer(go, respawnPos, playerIndex);
+
+            if (go.TryGetComponent(out PlayerHealthSystem hs)) hs.ResetHealth();
             onRespawn?.Invoke();
 
-            Debug.Log($"Player {playerIndex} respawned at {gameObject.transform.position}");
+            Debug.Log($"Player {playerIndex} respawned at {respawnPos}");
         }
 
         private IEnumerator RespawnCoroutine(PlayerInput pi)
         {
-            // Disable character controller and sprite renderer to show the player is dead, and so they can't move
-            if (gameObject.TryGetComponent(out CharacterController cc))
+            GameObject go = pi.gameObject;
+            if (go.TryGetComponent(out CharacterController cc))
             {
                 cc.enabled = false;
             }
@@ -177,7 +204,7 @@ namespace Player.Health
             }
             spriteRenderers[playerIndex].enabled = true;
         }
-
+        #endregion
         #region IPauseable functions
         public void OnPause()
         {
