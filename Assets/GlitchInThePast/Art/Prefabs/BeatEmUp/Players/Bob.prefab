@@ -56,7 +56,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnDelay: 10
-  deafultCheckpoint: {fileID: 7276517022794321912}
   onRespawn:
     m_PersistentCalls:
       m_Calls: []
@@ -84,7 +83,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 437504406459891655}
-  - component: {fileID: 2708663959711780557}
   - component: {fileID: 8198089907360906393}
   m_Layer: 0
   m_Name: GameObject
@@ -108,14 +106,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2280682363573972676}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2708663959711780557
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4486839311755691722}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8198089907360906393
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -218,8 +208,8 @@ Transform:
   m_GameObject: {fileID: 8390149993924556420}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.445, z: 0}
-  m_LocalScale: {x: 0.12374473, y: 0.18282317, z: 0.29792404}
+  m_LocalPosition: {x: 0, y: 0.423, z: 0}
+  m_LocalScale: {x: 0.06966548, y: 0.102925286, z: 0.16772446}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6390881012933782396}
@@ -265,12 +255,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 29cea9b28fc5c38429515bdebfac0dd2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8925571b55ed12644bcc26a4ac5e46aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
+  m_Size: {x: 20.491024, y: 18.59}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -455,21 +445,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 3
   maxHealth: 3
-  isInvulerable: 0
-  invulerable: 3
-  damageableTags:
-  - Enemy
-  - Hazard
-  healableTags:
-  - HealthUp
-  animator: {fileID: 5129144563482037875}
   spawningManager: {fileID: 8804729871716658839}
+  isInvincible: 0
   onDamageTaken:
     m_PersistentCalls:
       m_Calls: []
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+  damageableTags:
+  - Enemy
+  - Hazard
+  healableTags:
+  - HealthUp
+  damageCooldown: 0.3
+  lastDamageTime: -Infinity
 --- !u!143 &7307085920574121977
 CharacterController:
   m_ObjectHideFlags: 0
@@ -510,15 +500,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 6
   runningSpeed: 1.5
-  animator: {fileID: 5129144563482037875}
   initialiserUnlockedMovement: 0
-  isMovementLocked: 1
   dashSpeed: 20
-  dashDistance: 3
+  dashDuration: 0.15
   dashCooldown: 1
-  dashStartPosition: {x: 0, y: 0, z: 0}
   jumpForce: 9
   gravityMultiplier: 2.5
+  animator: {fileID: 5129144563482037875}
+  isMovementLocked: 1
+  healthSystem: {fileID: 0}
   rotator: {fileID: 0}
   weaponSystem: {fileID: 686190289503579459}
   attackTransformHolder: {fileID: 2280682363573972676}

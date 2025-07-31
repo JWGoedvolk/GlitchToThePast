@@ -5,172 +5,189 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class SpawningManager : MonoBehaviour, IPauseable
+
+namespace Player.Health
 {
-    public float respawnDelay = 10f;
-
-    //keeps track of the checkpoints before respawning the player (IF ONLY ONE IS DEAD)
-    private Dictionary<int, Transform> currentCheckpoints = new Dictionary<int, Transform>();
-
-    //''    ''     '' which players courtine iswaitign for the respawn
-    private Dictionary<int, Coroutine> respawnCoroutines = new Dictionary<int, Coroutine>();
-
-    public Transform deafultCheckpoint;
-
-    //keeps list of which players are dead
-    private HashSet<int> deadplayers = new();
-    
-    [SerializeField] private UnityEvent onRespawn;
-
-    void Start()
+    public class SpawningManager : MonoBehaviour, IPauseable
     {
-        GamePauser.Instance?.RegisterPauseable(this);
-    }
+        #region Variables
+        [Header("How long it takes for the player to respawn.")]
+        public float respawnDelay = 10f;
 
-    void OnDestroy()
-    {
-        GamePauser.Instance?.UnregisterPauseable(this);
-    }
+        [SerializeField] private UnityEvent onRespawn;
 
-    public void HandleRespawning(PlayerInput playerInput)
-    {
-        int playerID = playerInput.playerIndex;
-        deadplayers.Add(playerID);
+        // which players courtine is waiting for the respawn
+        private Dictionary<int, Coroutine> respawnCoroutines = new Dictionary<int, Coroutine>();
+        private Dictionary<int, SpriteRenderer> spriteRenderers = new();
 
-        // if *both* are dead, cancel timers & immediately respawn both
-        if (deadplayers.Count == 2)
+        // Keeps list of which players are dead
+        private HashSet<int> deadplayers = new();
+        #endregion
+
+        private void Start()
         {
-            foreach (var ct in respawnCoroutines.Values)
-                if (ct != null) StopCoroutine(ct);
+            GamePauser.Instance?.RegisterPauseable(this);
 
-            //clar all stored coroutines
-            respawnCoroutines.Clear();
-
-            //Respawn both player immediately
-            Respawn(0);
-            Respawn(1);
-
-            deadplayers.Clear();
-        }
-        else
-        {
-            //if 1 player died then coniue as normal
-            if (!respawnCoroutines.ContainsKey(playerID))
+            foreach (PlayerInput player in PlayerInput.all)
             {
-                respawnCoroutines[playerID] = StartCoroutine(RespawnCoroutine(playerInput));
+                if (player.TryGetComponent(out SpriteRenderer sr))
+                {
+                    spriteRenderers[player.playerIndex] = sr;
+                }
+                else if (player.GetComponentInChildren<SpriteRenderer>() is SpriteRenderer childSR)
+                {
+                    spriteRenderers[player.playerIndex] = childSR;
+                }
+                else
+                {
+                    Debug.LogWarning($"Couldn't find a sprite renderer for Player {player.playerIndex}");
+                }
             }
         }
-    }
 
-    IEnumerator RespawnCoroutine(PlayerInput pi)
-    {
-        yield return new WaitForSeconds(respawnDelay);
 
-        Respawn(pi.playerIndex);
-        deadplayers.Remove(pi.playerIndex);
-        respawnCoroutines.Remove(pi.playerIndex);
-    }
-
-    void Respawn(int playerIndex)
-    {
-        PlayerInput playerInput = PlayerInput.all.FirstOrDefault(p => p.playerIndex == playerIndex);
-        if (playerInput == null) return;
-
-        GameObject gameObject = playerInput.gameObject;
-
-        Vector3 respawnPos = gameObject.transform.position;
-        if (currentCheckpoints.TryGetValue(playerIndex, out var savedCp))
+        private void OnDestroy()
         {
-            respawnPos = savedCp.position;
-        }
-        else if (deafultCheckpoint != null)
-        {
-            respawnPos = deafultCheckpoint.position;
+            GamePauser.Instance?.UnregisterPauseable(this);
         }
 
-        TeleportPlayer(gameObject, respawnPos);
-
-        PlayerHealthSystem hs = gameObject.GetComponent<PlayerHealthSystem>();
-        if (hs != null) hs.ResetHealth();
-        onRespawn?.Invoke();
-
-        Debug.Log($"Player {playerIndex} respawned at {gameObject.transform.position}");
-    }
-
-    public void UpdateCheckpoint(int playerIndex, Transform checkpoint)
-    {
-        currentCheckpoints[playerIndex] = checkpoint;
-    }
-
-    public void ExplodeRespawnAll(Vector3 explosionPoint, Vector3 offset)
-    {
-        deadplayers.Clear();
-
-        foreach (Coroutine coroutine in respawnCoroutines.Values)
+        public void HandleRespawning(PlayerInput playerInput)
         {
-            if (coroutine != null) StopCoroutine(coroutine);
+            int playerID = playerInput.playerIndex;
+            deadplayers.Add(playerID);
+
+            // if *both* are dead, cancel timers & immediately respawn both
+            if (deadplayers.Count == 2)
+            {
+                foreach (var ct in respawnCoroutines.Values)
+                    if (ct != null) StopCoroutine(ct);
+
+                // Clear all stored coroutines
+                respawnCoroutines.Clear();
+
+                //Respawn both player immediately
+                Respawn(0);
+                Respawn(1);
+
+                deadplayers.Clear();
+            }
+            else
+            {
+                // if 1 player died then continue as normal
+                if (!respawnCoroutines.ContainsKey(playerID))
+                {
+                    respawnCoroutines[playerID] = StartCoroutine(RespawnCoroutine(playerInput));
+                }
+            }
         }
 
-        respawnCoroutines.Clear();
-
-        Vector3 basePosition = explosionPoint + offset;
-
-        int i = 0;
-        foreach (PlayerInput pi in PlayerInput.all.OrderBy(p => p.playerIndex))
+        public void ExplodeRespawnAll(Vector3 explosionPoint, Vector3 offset)
         {
-            GameObject go = pi.gameObject;
+            deadplayers.Clear();
 
-            Vector3 spawnPos = basePosition + new Vector3(i * 1.2f, 0f, 0f);
-            i++;
+            foreach (Coroutine coroutine in respawnCoroutines.Values)
+            {
+                if (coroutine != null) StopCoroutine(coroutine);
+            }
 
-            TeleportPlayer(go, spawnPos);
+            respawnCoroutines.Clear();
 
-            PlayerHealthSystem healthSystem = go.GetComponent<PlayerHealthSystem>();
-            if (healthSystem != null) healthSystem.ResetHealth();
-        }
-    }
-    public void RespawnSinglePlayerAtPosition(PlayerInput playerInput, Vector3 position)
-    {
-        if (playerInput == null) return;
+            Vector3 basePosition = explosionPoint + offset;
 
-        GameObject gameObject = playerInput.gameObject;
+            int i = 0;
+            foreach (PlayerInput pi in PlayerInput.all.OrderBy(p => p.playerIndex))
+            {
+                GameObject go = pi.gameObject;
 
-        TeleportPlayer(gameObject, position);
+                Vector3 spawnPos = basePosition + new Vector3(i * 1.2f, 0f, 0f);
+                i++;
 
-        if (gameObject.TryGetComponent(out PlayerHealthSystem healthSystem))
-        {
-            healthSystem.ResetHealth();
+                TeleportPlayer(go, spawnPos, pi.playerIndex);
+
+                PlayerHealthSystem healthSystem = go.GetComponent<PlayerHealthSystem>();
+                if (healthSystem != null) healthSystem.ResetHealth();
+            }
         }
 
-        Debug.Log($"Player {playerInput.playerIndex} respawned at {position} (Laser hit)");
-    }
-    private void TeleportPlayer(GameObject gameObject, Vector3 position)
-    {
-        if (gameObject.TryGetComponent(out CharacterController cc))
+        public void RespawnSinglePlayerAtPosition(PlayerInput playerInput, Vector3 position)
         {
-            cc.enabled = false;
+            if (playerInput == null) return;
+
+            GameObject gameObject = playerInput.gameObject;
+
+            TeleportPlayer(gameObject, position, playerInput.playerIndex);
+
+            if (gameObject.TryGetComponent(out PlayerHealthSystem healthSystem))
+            {
+                healthSystem.ResetHealth();
+            }
+
+            Debug.Log($"Player {playerInput.playerIndex} respawned at {position}");
         }
 
-        gameObject.SetActive(false);
-        gameObject.transform.position = position;
-        gameObject.transform.rotation = Quaternion.identity;
-        gameObject.SetActive(true);
-
-        if (gameObject.TryGetComponent(out CharacterController ccEnable))
+        private void Respawn(int playerIndex)
         {
-            ccEnable.enabled = true;
+            PlayerInput playerInput = PlayerInput.all.FirstOrDefault(p => p.playerIndex == playerIndex);
+            if (playerInput == null) return;
+
+            GameObject gameObject = playerInput.gameObject;
+
+            Vector3 respawnPos = gameObject.transform.position;
+            TeleportPlayer(gameObject, respawnPos, playerIndex);
+
+            PlayerHealthSystem hs = gameObject.GetComponent<PlayerHealthSystem>();
+            if (hs != null) hs.ResetHealth();
+            onRespawn?.Invoke();
+
+            Debug.Log($"Player {playerIndex} respawned at {gameObject.transform.position}");
         }
-    }
 
-    #region IPauseable functions
-    public void OnPause()
-    {
-        enabled = false;
-    }
+        private IEnumerator RespawnCoroutine(PlayerInput pi)
+        {
+            // Disable character controller and sprite renderer to show the player is dead, and so they can't move
+            if (gameObject.TryGetComponent(out CharacterController cc))
+            {
+                cc.enabled = false;
+            }
+            spriteRenderers[pi.playerIndex].enabled = false;
 
-    public void OnUnpause()
-    {
-        enabled = true;
+            yield return new WaitForSeconds(respawnDelay);
+
+            Respawn(pi.playerIndex);
+            deadplayers.Remove(pi.playerIndex);
+            respawnCoroutines.Remove(pi.playerIndex);
+        }
+
+        private void TeleportPlayer(GameObject gameObject, Vector3 position, int playerIndex)
+        {
+            if (gameObject.TryGetComponent(out CharacterController cc))
+            {
+                cc.enabled = false;
+            }
+            spriteRenderers[playerIndex].enabled = false;
+
+            // gameObject.SetActive(false);
+            gameObject.transform.position = position;
+            gameObject.transform.rotation = Quaternion.identity;
+            gameObject.SetActive(true);
+
+            if (gameObject.TryGetComponent(out CharacterController ccEnable))
+            {
+                ccEnable.enabled = true;
+            }
+            spriteRenderers[playerIndex].enabled = true;
+        }
+
+        #region IPauseable functions
+        public void OnPause()
+        {
+            enabled = false;
+        }
+
+        public void OnUnpause()
+        {
+            enabled = true;
+        }
+        #endregion
     }
-    #endregion
 }

@@ -1,36 +1,42 @@
-﻿using UnityEngine;
+﻿using Player.Health;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Laser : MonoBehaviour
+namespace Hazard.Laser
 {
-
-    #region Variables
-    public Vector3 respawnOffset = new Vector3(-5f, 0f, 0f);
-
-    private SpawningManager spawningManager;
-    #endregion
-
-    private void Start()
+    public class Laser : MonoBehaviour
     {
-        spawningManager = FindObjectOfType<SpawningManager>();
-    }
+        #region Variables
+        [SerializeField] private Vector3 respawnOffset = new Vector3(-5f, 0f, 0f);
+        [SerializeField] private float damageInterval = 0.5f;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+        private SpawningManager spawningManager;
+        #endregion
+
+        private void Start()
         {
+            spawningManager = FindObjectOfType<SpawningManager>();
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (!(other.CompareTag("Player1") || other.CompareTag("Player2"))) return;
+
             var playerInput = other.GetComponent<PlayerInput>();
             var movement = other.GetComponent<Player.GenericMovement.PlayerMovement>();
+            var health = other.GetComponent<PlayerHealthSystem>();
 
-            if (movement != null && movement.IsDashing)
+            if (health == null || playerInput == null) return;
+            if (health.isInvincible) return;
+
+            if (Time.time - health.lastDamageTime >= damageInterval && health.currentHealth >= 0)
             {
-                return;
+                health.lastDamageTime = Time.time;
+                health.TakeDamage(1);
             }
-
-            if (playerInput != null && spawningManager != null)
+            else if (health.currentHealth <= 0 && spawningManager != null)
             {
                 Vector3 spawnPos = transform.position + respawnOffset;
-                spawningManager.RespawnSinglePlayerAtPosition(playerInput, spawnPos);
             }
         }
     }

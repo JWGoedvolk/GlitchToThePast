@@ -38,8 +38,8 @@ public class GameInitializer : MonoBehaviour
         int i1 = System.Array.FindIndex(characterPrefabs, prefab => prefab != null && prefab.name == save.Player1Character);
         int i2 = System.Array.FindIndex(characterPrefabs, prefab => prefab != null && prefab.name == save.Player2Character);
 
-        if (i1 < 0) { Debug.LogWarning("Couldn't find player one's selected character, defaulting to int 0 prefab"); i1 = 0;}
-        if (i2 < 0) { Debug.LogWarning("Couldn't find player two's selected character, defaulting to int 1 prefab"); i2 = 1;}
+        if (i1 < 0) { Debug.LogWarning("Couldn't find player one's selected character, defaulting to int 0 prefab"); i1 = 0; }
+        if (i2 < 0) { Debug.LogWarning("Couldn't find player two's selected character, defaulting to int 1 prefab"); i2 = 1; }
 
         InputConnectionManager.InputType firstType, secondType;
         if (!System.Enum.TryParse(save.Player1Input, out firstType)) firstType = InputConnectionManager.InputType.Keyboard;
@@ -64,15 +64,21 @@ public class GameInitializer : MonoBehaviour
         }
 
         #region Players' instantiation
+        #region Instantiating & Setting up Player 1
         PlayerInput playerOneGameobject = PlayerInput.Instantiate(characterPrefabs[i1], controlScheme: (firstType == InputConnectionManager.InputType.Keyboard) ? keyboardScheme : gamepadScheme, pairWithDevices: firstDevice);
         PlayerMovement playerMovementOne = playerOneGameobject.GetComponent<PlayerMovement>();
 
+        playerOneGameobject.tag = "Player1";
         playerMovementOne.SetupAtSpawn(playerOneSpawn.position);
+        #endregion
 
+        #region Instantiating & Setting up Player 2
         PlayerInput playerTwoGameObject = PlayerInput.Instantiate(characterPrefabs[i2], controlScheme: (secondType == InputConnectionManager.InputType.Keyboard) ? keyboardScheme : gamepadScheme, pairWithDevices: secondDevice);
         PlayerMovement playerMovementTwo = playerTwoGameObject.GetComponent<PlayerMovement>();
 
+        playerTwoGameObject.tag = "Player2";
         playerMovementTwo.SetupAtSpawn(playerTwoSpawn.position);
+        #endregion
 
         playerMovementOne.initialiserUnlockedMovement = true;
         playerMovementTwo.initialiserUnlockedMovement = true;
