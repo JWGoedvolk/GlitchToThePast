@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1000523015109541832}
-  - component: {fileID: 528718877032180565}
-  - component: {fileID: 6468362090555628091}
   m_Layer: 7
   m_Name: Pie bomb(explodes)
   m_TagString: Untagged
@@ -34,54 +32,6 @@ Transform:
   - {fileID: 6259176174038693599}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &528718877032180565
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7250809274719199661}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6468362090555628091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7250809274719199661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34e81f2fc04249e6913d164c03a1be3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Whitelist:
-  - Player1
-  - Player2
-  TriggeringObjects: []
-  onTrigger:
-    m_PersistentCalls:
-      m_Calls: []
-  onUnTrigger:
-    m_PersistentCalls:
-      m_Calls: []
-  explosionRange: 2
-  damage: 1
-  cookTime: 3
 --- !u!1001 &5861354565421977908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -149,10 +99,69 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 69b545470aedb2748a956d10cfe4a977, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8771255596685440078}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 69b545470aedb2748a956d10cfe4a977, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3130597633672900374}
   m_SourcePrefab: {fileID: 100100000, guid: 69b545470aedb2748a956d10cfe4a977, type: 3}
 --- !u!4 &6259176174038693599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 69b545470aedb2748a956d10cfe4a977, type: 3}
   m_PrefabInstance: {fileID: 5861354565421977908}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6743822948384795749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 69b545470aedb2748a956d10cfe4a977, type: 3}
+  m_PrefabInstance: {fileID: 5861354565421977908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8771255596685440078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6743822948384795749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e81f2fc04249e6913d164c03a1be3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Whitelist:
+  - Player1
+  - Player2
+  TriggeringObjects: []
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  onUnTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  explosionRange: 2
+  damage: 1
+  cookTime: 2
+--- !u!136 &3130597633672900374
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6743822948384795749}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.019306736
+  m_Height: 0.03861348
+  m_Direction: 1
+  m_Center: {x: -0.00041936873, y: 3.4053005e-10, z: 0.0057131457}

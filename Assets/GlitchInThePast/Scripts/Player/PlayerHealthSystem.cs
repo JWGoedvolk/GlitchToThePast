@@ -73,7 +73,7 @@ namespace Player.Health
 
         private void OnTriggerEnter(Collider collision)
         {
-            Debug.Log($"Triggered by: {collision.tag}");
+            // Debug.Log($"Triggered by: {collision.tag}");
 
             if (damageableTags.Contains(collision.tag))
             {

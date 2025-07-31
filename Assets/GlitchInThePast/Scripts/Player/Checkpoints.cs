@@ -14,7 +14,7 @@ namespace Player.Health.Checkpoint
             {
                 int playerIndex = pi.playerIndex;
                 playerHealthSystem.spawningManager.UpdateCheckpoint(playerIndex, transform); 
-                Debug.Log($"Checkpoint updated for Player {playerIndex} at {transform.position}");
+                // Debug.Log($"Checkpoint updated for Player {playerIndex} at {transform.position}");
             }
         }
     }

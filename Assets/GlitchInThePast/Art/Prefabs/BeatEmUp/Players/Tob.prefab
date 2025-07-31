@@ -130,7 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7276517022794321912}
   - component: {fileID: 5840512959812250154}
-  - component: {fileID: 8804729871716658839}
   - component: {fileID: 3315951950840007766}
   m_Layer: 0
   m_Name: Tob
@@ -163,22 +162,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3982303003054045252}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &8804729871716658839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3982303003054045252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bbaa2d4a4caeda4ba2a0486d0fcac26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnDelay: 10
-  onRespawn:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3315951950840007766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,6 +391,7 @@ GameObject:
   - component: {fileID: 7307085920574121977}
   - component: {fileID: 5923738833927002674}
   - component: {fileID: 1277676373348698392}
+  - component: {fileID: 3309280108719559094}
   - component: {fileID: 686190289503579459}
   - component: {fileID: 4511008773222892832}
   - component: {fileID: 8131832470733077970}
@@ -540,7 +524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 3
   maxHealth: 3
-  spawningManager: {fileID: 8804729871716658839}
+  spawningManager: {fileID: 3309280108719559094}
   isInvincible: 0
   onDamageTaken:
     m_PersistentCalls:
@@ -676,6 +660,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3309280108719559094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579127009673012924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbaa2d4a4caeda4ba2a0486d0fcac26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnDelay: 5
+  onRespawn:
+    m_PersistentCalls:
+      m_Calls: []
+  deafultCheckpoint: {fileID: 0}
 --- !u!114 &686190289503579459
 MonoBehaviour:
   m_ObjectHideFlags: 0

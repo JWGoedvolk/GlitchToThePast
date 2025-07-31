@@ -12,7 +12,7 @@ namespace Player.Health
     {
         #region Variables
         [Header("How long it takes for the player to respawn.")]
-        public float respawnDelay = 10f;
+        public float respawnDelay = 5f;
 
         [SerializeField] private UnityEvent onRespawn;
         private Dictionary<int, Transform> currentCheckpoints = new();
@@ -63,7 +63,6 @@ namespace Player.Health
             // if *both* are dead, cancel timers & immediately respawn both
             if (deadplayers.Count == 2)
             {
-                lastDeathPositions.Clear();
                 foreach (var ct in respawnCoroutines.Values)
                     if (ct != null) StopCoroutine(ct);
 
@@ -84,6 +83,8 @@ namespace Player.Health
 
         public void ExplodeRespawnAll(Vector3 explosionPoint, Vector3 offset)
         {
+            // This function is causing player animation to get iffy and stuck
+
             deadplayers.Clear();
 
             foreach (Coroutine coroutine in respawnCoroutines.Values)
@@ -123,7 +124,7 @@ namespace Player.Health
                 healthSystem.ResetHealth();
             }
 
-            Debug.Log($"Player {playerInput.playerIndex} respawned at {position}");
+            // Debug.Log($"Player {playerInput.playerIndex} respawned at {position}");
         }
         public void SaveDeathLocation(int playerIndex, Vector3 pos)
         {
@@ -166,7 +167,7 @@ namespace Player.Health
             if (go.TryGetComponent(out PlayerHealthSystem hs)) hs.ResetHealth();
             onRespawn?.Invoke();
 
-            Debug.Log($"Player {playerIndex} respawned at {respawnPos}");
+            // Debug.Log($"Player {playerIndex} respawned at {respawnPos}");
         }
 
         private IEnumerator RespawnCoroutine(PlayerInput pi)

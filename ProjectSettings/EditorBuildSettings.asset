@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/GlitchInThePast/Scenes/BeatEmUp/SectionOne.unity
     guid: e2e24f995ce5c3f4cacd6a34eebb527c
   - enabled: 1
+    path: Assets/GlitchInThePast/Scenes/BeatEmUp/SectionTwo.unity
+    guid: 3dd219b8ac3566b43ba2521f35602024
+  - enabled: 1
     path: Assets/GlitchInThePast/Scenes/Rhythm/SectionOne_Rhythm.unity
     guid: 49c66231f916a3d4ebb6fdd84161152f
   m_configObjects:

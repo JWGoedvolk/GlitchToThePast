@@ -7103,7 +7103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbaa2d4a4caeda4ba2a0486d0fcac26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnDelay: 10
+  respawnDelay: 5
   onRespawn:
     m_PersistentCalls:
       m_Calls: []

@@ -156,10 +156,12 @@ namespace Player.GenericMovement
                     }
                 }
             }
+
             bool isMoving = moveInput.magnitude > 0.1f;
             if (animator != null)
             {
                 animator.SetBool("isWalking", isMoving);
+                animator.SetBool("isRunning", isMoving && isRunning);
             }
 
             characterController.Move(velocity * Time.deltaTime);
