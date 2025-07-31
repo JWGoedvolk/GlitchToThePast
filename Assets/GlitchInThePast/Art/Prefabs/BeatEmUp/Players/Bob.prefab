@@ -83,7 +83,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 437504406459891655}
-  - component: {fileID: 2708663959711780557}
   - component: {fileID: 8198089907360906393}
   m_Layer: 0
   m_Name: GameObject
@@ -107,14 +106,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2280682363573972676}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2708663959711780557
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4486839311755691722}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8198089907360906393
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -455,6 +446,7 @@ MonoBehaviour:
   currentHealth: 3
   maxHealth: 3
   spawningManager: {fileID: 8804729871716658839}
+  isInvincible: 0
   onDamageTaken:
     m_PersistentCalls:
       m_Calls: []
@@ -508,15 +500,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 6
   runningSpeed: 1.5
-  animator: {fileID: 5129144563482037875}
   initialiserUnlockedMovement: 0
-  isMovementLocked: 1
   dashSpeed: 20
-  dashDistance: 3
+  dashDuration: 0.15
   dashCooldown: 1
-  dashStartPosition: {x: 0, y: 0, z: 0}
   jumpForce: 9
   gravityMultiplier: 2.5
+  animator: {fileID: 5129144563482037875}
+  isMovementLocked: 1
+  healthSystem: {fileID: 0}
   rotator: {fileID: 0}
   weaponSystem: {fileID: 686190289503579459}
   attackTransformHolder: {fileID: 2280682363573972676}
