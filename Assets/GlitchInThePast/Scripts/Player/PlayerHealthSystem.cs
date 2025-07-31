@@ -4,297 +4,195 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerHealthSystem : MonoBehaviour
+namespace Player.Health
 {
-    public static System.Action<int, PlayerHealthSystem> OnPlayerSpawned;
-    public HealthDisplayUI healthUI;
-
-    //Player info
-    [Header("Health")]
-    public int currentHealth;
-    public int maxHealth;
-
-    [Header("Invulnerability")]
-    public bool isInvulerable = false;
-    public float invulerable = 3f;
-
-    [Header("Collision Tags")]
-    [SerializeField] private List<string> damageableTags = new List<string>();
-    [SerializeField] private List<string> healableTags = new List<string>();
-
-    [SerializeField] private Animator animator;
-
-    // Regen
-    [SerializeField] private float regenStartTime = 3f;
-    private bool isRegenerating = false;
-    private float timeSinceLastDmg;
-
-    //coroutine
-    private Coroutine reganCour;
-    private Coroutine invulCour;
-
-    //sprite for flashing
-    private SpriteRenderer flashingEffect;
-
-    //for the spawn and checkpoint
-    public SpawningManager spawningManager;
-    private PlayerInput playerInput; // changed ID to refer to player index instead
-
-    // Rumble
-    private RumbleController rumbleController;
-    
-    public UnityEvent onDamageTaken;
-    public UnityEvent onDeath;
-
-    //sfx
-    private SFXManager sfxManager;
-    void Awake()
+    public class PlayerHealthSystem : MonoBehaviour
     {
-        playerInput = GetComponent<PlayerInput>();
-        sfxManager = FindObjectOfType<SFXManager>();
-        if (sfxManager == null)
+        #region Variables
+        public static System.Action<int, PlayerHealthSystem> OnPlayerSpawned;
+
+        [Header("Player Information")]
+        public int currentHealth;
+        public int maxHealth;
+        public SpawningManager spawningManager;
+        [HideInInspector] public bool isInvincible = false;
+
+        [Header("Unity Events")]
+        public UnityEvent onDamageTaken;
+        public UnityEvent onDeath;
+
+        [Header("Collision Tags")]
+        [SerializeField] private List<string> damageableTags = new List<string>();
+        [SerializeField] private List<string> healableTags = new List<string>();
+
+        [HideInInspector] private Animator animator;
+
+        [SerializeField] private float damageCooldown = 0.3f;
+        [HideInInspector] public float lastDamageTime = -Mathf.Infinity;
+
+        private PlayerInput playerInput;
+        private HealthDisplayUI healthUI;
+
+        //sfx
+        private SFXManager sfxManager;
+        #endregion
+
+        void Awake()
         {
-            Debug.LogWarning(" No SFXManager found ");
-        }
-        else
-        {
-            Debug.Log(" Found SFXManager");
+            if (playerInput is null) playerInput = GetComponent<PlayerInput>();
+            if (sfxManager is null) sfxManager = FindObjectOfType<SFXManager>();
         }
 
-        rumbleController = RumbleController.Instance;
-    }
-
-    void Start()
-    {
-        currentHealth = maxHealth;
-        flashingEffect = GetComponent<SpriteRenderer>();
-        OnPlayerSpawned?.Invoke(playerInput.playerIndex, this);
-
-        if (animator is null)
+        void Start()
         {
-            animator = GetComponent<Animator>();
-        }
+            #region Make sure these tags exist in DamageableTag List
+            AddToDamageableTag("Enemy");
+            AddToDamageableTag("Hazard");
+            AddToDamageableTag("Laser");
+            #endregion
 
-        // HealthDisplayUI[] allDisplays = FindObjectsOfType<HealthDisplayUI>();
-        // foreach (var display in allDisplays)
-        // {
-        //     if ((int)display.playerID == playerInput.playerIndex)
-        //     {
-        //         healthUI = display;
-        //         healthUI.playerHealthSystem = this;
-        //         healthUI.SetUp(flashingEffect.sprite);
-        //         break;
-        //     }
-        // }
-        //
-        // UpdateUI();
-    }
+            currentHealth = maxHealth;
+            OnPlayerSpawned?.Invoke(playerInput.playerIndex, this);
 
-
-    void Update()
-    {
-        //timer since last dmg
-        if (!isRegenerating && !isInvulerable) timeSinceLastDmg += Time.deltaTime;
-
-        //starts rgean hlth after last dmg if not full hlth (duration to be changed)
-        if (currentHealth < maxHealth && !isRegenerating && !isInvulerable && timeSinceLastDmg >= regenStartTime)
-        {
-            StartCoroutine(Regan());
-        }
-
-    }
-    private void UpdateUI()
-    {
-        if (healthUI != null)
-            healthUI.UpdateHealth(currentHealth, maxHealth);
-    }
-
-    public void TakeDamage(int ammount)
-    {
-        Debug.Log($"PlayerHealthSystem: TakeDamage called with amount: {ammount}");
-        if (ammount > 0)
-        {
-            if (sfxManager != null)
+            if (animator is null)
             {
-                Debug.Log("PlayerHealthSystem: Calling PlayHitSFX()");
-                sfxManager.PlayHitSFX();
-                
-//                if (playerInput.currentControlScheme == "Controller") rumbleController.TriggerRumble(rumbleController.rumbleDuration, rumbleController.lowFrequencyIntensity, rumbleController.highFrequencyIntensity);
+                animator = GetComponentInChildren<Animator>();
             }
-            else
+
+            HealthDisplayUI[] allDisplays = FindObjectsOfType<HealthDisplayUI>();
+            foreach (var display in allDisplays)
             {
-                Debug.LogWarning("sfxManager reference is nada");
+                if ((int)display.playerID == playerInput.playerIndex)
+                {
+                    healthUI = display;
+                    break;
+                }
             }
-        }
 
-        currentHealth -= ammount;
-        UpdateUI();
-        onDamageTaken?.Invoke();
-        Debug.Log("palyer is hit");
-
-        if (animator != null)
-        {
-            animator.SetBool("isGettingHit", true);
-            StartCoroutine(ResetHitAnimation());
-        }
-
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
             UpdateUI();
-
-            sfxManager?.PlayDeathSFX();
-
-            Die();      
-            return;
         }
 
-        //resets the regan timer , stops and regan 
-        timeSinceLastDmg = 0f;
-
-        if (reganCour != null)
+        private void OnTriggerEnter(Collider collision)
         {
-            StopCoroutine(reganCour);
-            isRegenerating = false;
-        }
+            Debug.Log($"Triggered by: {collision.tag}");
 
-        if (invulCour != null)
-        {
-            StopCoroutine(invulCour);
-        }
-
-        invulCour = StartCoroutine(Invulerablity());
-
-        //play sfx when damged
-        //
-        //
-        // if(currentHealth <= 0)
-        // {
-        //     currentHealth = 0;
-        //     Die();
-        // }
-    }
-
-    void Die()
-    {
-        // die
-        Debug.Log($"Player {playerInput.playerIndex} died.");
-
-        //if (playerInput.currentControlScheme == "Controller") rumbleController.TriggerRumble(1f, rumbleController.lowFrequencyIntensity, rumbleController.highFrequencyIntensity);
-        onDeath?.Invoke();
-        
-        if (spawningManager != null)
-        {
-            // No need for hashset, we're now telling it which player to respawn (by their index)
-            spawningManager.HandleRespawning(playerInput);
-        }
-
-       
-        Debug.Log("player died");
-    }
-
-    void OnTriggerEnter(Collider collision) // 2.5d game regular works fine :D
-    {
-
-        if (!isInvulerable && damageableTags.Contains(collision.tag))
-        {
-            Debug.Log($"Player damage/heal triggered by: {collision.tag}");
-            TakeDamage(1);
-        }
-        else if (healableTags.Contains(collision.tag))
-        {
-            Debug.Log($"Player damage/heal triggered by: {collision.tag}");
-            TakeDamage(-1); // Heal by 1
-        }
-    }
-
-    public void StartInvulnerability()
-    {
-        isInvulerable = true;
-    }
-
-    public void StopInvulnerability()
-    {
-        isInvulerable = false;
-    }
-
-    IEnumerator Invulerablity()
-    {
-        isInvulerable = true;
-
-        float flashInterval = 0.2f;
-        float timer = 0f;
-
-
-
-        while (timer < invulerable)
-        {
-            if (flashingEffect != null)
+            if (damageableTags.Contains(collision.tag))
             {
-                flashingEffect.enabled = false;
-                yield return new WaitForSeconds(flashInterval);
-                flashingEffect.enabled = true;
-                yield return new WaitForSeconds(flashInterval);
+                if (Time.time - lastDamageTime >= damageCooldown)
+                {
+                    lastDamageTime = Time.time;
+                    TakeDamage(1);
+                }
             }
+            else if (healableTags.Contains(collision.tag))
+            {
+                TakeDamage(-1); // Heal by 1
+            }
+        }
+
+        private void OnTriggerExit(Collider collision)
+        {
+            if (damageableTags.Contains(collision.tag))
+            {
+                Invoke("StopHitAnimation", 0.3f);
+            }
+        }
+
+        private void UpdateUI()
+        {
+            if (healthUI != null)
+                healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
+
+        public void TakeDamage(int ammount)
+        {
+            if (isInvincible) return;
+            if (currentHealth > 0)
+            {
+                // Debug.Log($"PlayerHealthSystem: TakeDamage called with amount: {ammount}");
+                if (ammount > 0)
+                {
+                    if (sfxManager != null)
+                    {
+                        //Debug.Log("PlayerHealthSystem: Calling PlayHitSFX()");
+                        sfxManager.PlayHitSFX();
+                        if (animator != null)
+                        {
+                            animator.SetBool("isGettingHit", true);
+                        }
+                    }
+                    else
+                    {
+                        //Debug.LogWarning("PlayerHealthSystem: sfxManager reference is null!");
+                    }
+                }
+
+                currentHealth -= ammount;
+                UpdateUI();
+
+                onDamageTaken?.Invoke();
+                // Debug.Log("player is hit");
+
+                if (currentHealth <= 0)
+                {
+                    currentHealth = 0;
+                    UpdateUI();
+
+                    sfxManager?.PlayDeathSFX();
+                    animator.SetBool("isGettingHit", true);
+
+                    Invoke("Die", 0.5f);
+                    return;
+                }
+            }
+            //play sfx when damged
+        }
+
+        void Die()
+        {
+            onDeath?.Invoke();
+
+            if (spawningManager != null)
+            {
+                spawningManager.HandleRespawning(playerInput);
+            }
+
+            // Debug.Log("player died");
+        }
+
+        public void ResetHealth()
+        {
+            currentHealth = maxHealth;
+            UpdateUI();
+            // if (flashingEffect != null) flashingEffect.enabled = true;
+        }
+
+        public void AssignUI(HealthDisplayUI ui)
+        {
+            healthUI = ui;
+            // SpriteRenderer sr = ui.GetComponentInChildren<SpriteRenderer>();
+            // healthUI.SetUp(sr.sprite);
+
+            // Debug.Log($"{healthUI} was assigned to {transform.name}");
+
+            UpdateUI();
+        }
+        #region Private Functions
+        private void AddToDamageableTag(string tagName)
+        {
+            if (damageableTags.Contains(tagName))
+                return;
             else
-            {
-                yield return new WaitForSeconds(invulerable);
-                break;
-            }
-
-            timer += flashInterval * 2;
+                damageableTags.Add(tagName);
         }
 
-        isInvulerable = false;
-
-    }
-
-    IEnumerator Regan()
-    {
-        isRegenerating = true;
-        UpdateUI();
-
-        while (currentHealth < maxHealth)
+        private void StopHitAnimation()
         {
-            currentHealth++;
-            yield return new WaitForSeconds(11f);
+            if (animator != null)
+            {
+                animator.SetBool("isGettingHit", false);
+            }
         }
-
-        isRegenerating = false;
-        reganCour = null;
+        #endregion
     }
-
-    public void ResetHealth()
-    {
-        currentHealth = maxHealth;
-        UpdateUI();
-
-        isInvulerable = false;
-        timeSinceLastDmg = 0f;
-        if (invulCour != null) StopCoroutine(invulCour);
-        if (reganCour != null) StopCoroutine(reganCour);
-        isRegenerating = false;
-        reganCour = null;
-        invulCour = null;
-
-        // if (flashingEffect != null) flashingEffect.enabled = true;
-    }
-
-    public void AssignUI(HealthDisplayUI ui)
-    {
-        healthUI = ui;
-        ui.playerHealthSystem = this;
-        // SpriteRenderer sr = ui.GetComponentInChildren<SpriteRenderer>();
-        // healthUI.SetUp(sr.sprite);
-
-        Debug.Log($"{healthUI} was assigned to {transform.name}");
-        
-        UpdateUI();
-    }
-    private IEnumerator ResetHitAnimation()
-    {
-        yield return new WaitForSeconds(0.3f); // adjust based on animation length
-        animator.SetBool("isGettingHit", false);
-    }
-
 }

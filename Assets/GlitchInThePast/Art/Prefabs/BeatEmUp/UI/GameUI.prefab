@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3/3
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278197957
-  m_fontColor: {r: 0.7735849, g: 0.11778073, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 8066151536403949557}
   - component: {fileID: 9087319065893169248}
   m_Layer: 5
-  m_Name: BobbyHealthUI
+  m_Name: PlayerOneHealthUi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 4973873676915647743}
   - component: {fileID: 9111587053696804194}
   m_Layer: 5
-  m_Name: BobbyIcon
+  m_Name: PlayerOneIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 9095368403283431937}
   - component: {fileID: 737753760421361553}
   m_Layer: 5
-  m_Name: TobbyIcon
+  m_Name: PlayerTwoIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 1263403891376116709}
   - component: {fileID: 761722028189432607}
   m_Layer: 5
-  m_Name: TobbyHealthUI
+  m_Name: PlayerTwoHealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 1339351321656485039}
   - component: {fileID: 7081444033304219996}
   - component: {fileID: 7311959221583421879}
+  - component: {fileID: 1682735182603837652}
   m_Layer: 5
   m_Name: GameUI
   m_TagString: Untagged
@@ -570,6 +571,29 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1682735182603837652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768878524208626337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6485a1dec967a25489fb7bac3d2a467b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthUIs:
+  - {fileID: 9087319065893169248}
+  - {fileID: 761722028189432607}
+  P1Image: {fileID: 9111587053696804194}
+  P2Image: {fileID: 737753760421361553}
+  P1Text: {fileID: 2148164215805711723}
+  P2Text: {fileID: 4960120906694656509}
+  BobSprite: {fileID: 21300000, guid: 8925571b55ed12644bcc26a4ac5e46aa, type: 3}
+  TobSprite: {fileID: 21300000, guid: 8438527333cbdb546a8b3c7635da91fb, type: 3}
+  BobColor: {r: 0.68733144, g: 0, b: 0, a: 1}
+  TobColor: {r: 0, g: 0.5503076, b: 0.61725056, a: 1}
 --- !u!1 &5979581532059171004
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +659,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3/3
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -644,8 +668,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4290777856
-  m_fontColor: {r: 0, g: 0.073130265, b: 0.754717, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

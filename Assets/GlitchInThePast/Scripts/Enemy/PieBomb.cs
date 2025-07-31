@@ -1,6 +1,6 @@
 using System;
 using JW.Roguelike.Objects;
-using UI.FadingEffect.Temp;
+using Player.Health;
 using UnityEngine;
 
 namespace Systems.Enemies

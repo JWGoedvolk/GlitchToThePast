@@ -1,48 +1,53 @@
 using System.Collections;
 using UnityEngine;
 
-public class LaserRoutine : MonoBehaviour
+namespace Hazard.Laser
 {
-    #region Variables
-    [Tooltip("How long the laser stays on for")]
-    public float activeTime = 3f;
-
-    [Tooltip("How long the laser stays off for")]
-    public float inactiveTime = 2f;
-    
-    public GameObject laserVisual;
-
-    [SerializeField] private Laser laser;
-    #endregion
-
-    private void Awake()
+    public class LaserRoutine : MonoBehaviour
     {
-        if (laserVisual != null) laserVisual.SetActive(false);
-    }
-    private void Start()
-    {
-        StartCoroutine(LaserCoroutine());
-    }
+        #region Variables
+        [Tooltip("How long the laser stays on for")]
+        public float activeTime = 3f;
 
-    private IEnumerator LaserCoroutine()
-    {
-        while (true)
+        [Tooltip("How long the laser stays off for")]
+        public float inactiveTime = 2f;
+
+        public GameObject laserVisual;
+
+        [SerializeField] private Laser laser;
+        #endregion
+
+        private void Awake()
         {
-            #region Laser ON
-            SetLaserState(true);
-            yield return new WaitForSeconds(activeTime);
-            #endregion
-
-            #region Laser Off
-            SetLaserState(false);
-            yield return new WaitForSeconds(inactiveTime);
-            #endregion
+            if (laserVisual != null) laserVisual.SetActive(false);
         }
-    }
+        private void Start()
+        {
+            StartCoroutine(LaserCoroutine());
+        }
 
-    private void SetLaserState(bool active)
-    {
-        // laser.isLaserActive = active;
-        if (laserVisual != null) laserVisual.SetActive(active);
+        #region Private Functions
+        private IEnumerator LaserCoroutine()
+        {
+            while (true)
+            {
+                #region Laser ON
+                SetLaserState(true);
+                yield return new WaitForSeconds(activeTime);
+                #endregion
+
+                #region Laser Off
+                SetLaserState(false);
+                yield return new WaitForSeconds(inactiveTime);
+                #endregion
+            }
+        }
+
+        private void SetLaserState(bool active)
+        {
+            // laser.isLaserActive = active;
+            if (laserVisual != null) laserVisual.SetActive(active);
+        }
+        #endregion
     }
 }

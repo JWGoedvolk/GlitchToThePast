@@ -52,11 +52,6 @@ namespace GlitchInThePast.Scripts.Player
             aimInput = aim;
         }
 
-        public void OnDeviceChanged(PlayerInput playerInput)
-        {
-            isGamepad = playerInput.currentControlScheme == "Controller";
-        }
-
         void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;

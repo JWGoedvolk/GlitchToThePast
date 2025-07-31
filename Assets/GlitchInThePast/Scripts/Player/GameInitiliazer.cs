@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -22,8 +21,6 @@ public class GameInitializer : MonoBehaviour
 
     void Awake()
     {
-
-        #region Load Save And Error Check
         GameSaveData save = GameSaveSystem.LoadGame();
         if (save == null)
         {
@@ -37,19 +34,16 @@ public class GameInitializer : MonoBehaviour
             Debug.LogError("Make sure there are two character prefabs assigned.");
             return;
         }
-        #endregion
 
-        // Get the index of the player prefabs. i1 = player 1 index, i2 = player 2 index
         int i1 = System.Array.FindIndex(characterPrefabs, prefab => prefab != null && prefab.name == save.Player1Character);
         int i2 = System.Array.FindIndex(characterPrefabs, prefab => prefab != null && prefab.name == save.Player2Character);
 
-        if (i1 < 0) { Debug.LogWarning("Couldn't find player one's selected character, defaulting to int 0 prefab"); i1 = 0;}
-        if (i2 < 0) { Debug.LogWarning("Couldn't find player two's selected character, defaulting to int 1 prefab"); i2 = 1;}
+        if (i1 < 0) { Debug.LogWarning("Couldn't find player one's selected character, defaulting to int 0 prefab"); i1 = 0; }
+        if (i2 < 0) { Debug.LogWarning("Couldn't find player two's selected character, defaulting to int 1 prefab"); i2 = 1; }
 
-        #region Assign Inputs
         InputConnectionManager.InputType firstType, secondType;
-        if (!Enum.TryParse(save.Player1Input, out firstType)) firstType = InputConnectionManager.InputType.Keyboard; // Assign P1 keyboard if null
-        if (!Enum.TryParse(save.Player2Input, out secondType)) secondType = InputConnectionManager.InputType.Controller1; // Assign P2 controller if null
+        if (!System.Enum.TryParse(save.Player1Input, out firstType)) firstType = InputConnectionManager.InputType.Keyboard;
+        if (!System.Enum.TryParse(save.Player2Input, out secondType)) secondType = InputConnectionManager.InputType.Controller1;
 
         var pads = Gamepad.all.Where(g => g.added && g.description.interfaceName == "XInput").Take(2).ToList();
 
@@ -68,18 +62,23 @@ public class GameInitializer : MonoBehaviour
             Gamepad gamepad = pads[0];
             secondDevice = new[] { gamepad };
         }
-        #endregion
 
         #region Players' instantiation
+        #region Instantiating & Setting up Player 1
         PlayerInput playerOneGameobject = PlayerInput.Instantiate(characterPrefabs[i1], controlScheme: (firstType == InputConnectionManager.InputType.Keyboard) ? keyboardScheme : gamepadScheme, pairWithDevices: firstDevice);
         PlayerMovement playerMovementOne = playerOneGameobject.GetComponent<PlayerMovement>();
-        playerOneGameobject.tag = "Player1";
-        playerMovementOne.SetupAtSpawn(playerOneSpawn);
 
+        playerOneGameobject.tag = "Player1";
+        playerMovementOne.SetupAtSpawn(playerOneSpawn.position);
+        #endregion
+
+        #region Instantiating & Setting up Player 2
         PlayerInput playerTwoGameObject = PlayerInput.Instantiate(characterPrefabs[i2], controlScheme: (secondType == InputConnectionManager.InputType.Keyboard) ? keyboardScheme : gamepadScheme, pairWithDevices: secondDevice);
         PlayerMovement playerMovementTwo = playerTwoGameObject.GetComponent<PlayerMovement>();
+
         playerTwoGameObject.tag = "Player2";
-        playerMovementTwo.SetupAtSpawn(playerTwoSpawn);
+        playerMovementTwo.SetupAtSpawn(playerTwoSpawn.position);
+        #endregion
 
         playerMovementOne.initialiserUnlockedMovement = true;
         playerMovementTwo.initialiserUnlockedMovement = true;

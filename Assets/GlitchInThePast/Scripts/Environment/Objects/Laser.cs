@@ -1,53 +1,42 @@
-﻿using UnityEngine;
+﻿using Player.Health;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Laser : MonoBehaviour
+namespace Hazard.Laser
 {
-
-    #region Variables
-    public Transform LeftRespawn;
-    public Transform RightRespawn;
-
-    private SpawningManager spawningManager;
-    #endregion
-
-    private void Start()
+    public class Laser : MonoBehaviour
     {
-        spawningManager = FindObjectOfType<SpawningManager>();
-    }
+        #region Variables
+        [SerializeField] private Vector3 respawnOffset = new Vector3(-5f, 0f, 0f);
+        [SerializeField] private float damageInterval = 0.5f;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag.Contains("Player"))
+        private SpawningManager spawningManager;
+        #endregion
+
+        private void Start()
         {
-            var health = other.GetComponent<PlayerHealthSystem>();
-            var characterController = other.GetComponent<CharacterController>();
+            spawningManager = FindObjectOfType<SpawningManager>();
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (!(other.CompareTag("Player1") || other.CompareTag("Player2"))) return;
+
             var playerInput = other.GetComponent<PlayerInput>();
             var movement = other.GetComponent<Player.GenericMovement.PlayerMovement>();
-            Debug.Log($"velocity: {characterController.velocity}");
-            if (movement != null && (movement.IsDashing || health.isInvulerable))
-            {
-                return;
-            }
+            var health = other.GetComponent<PlayerHealthSystem>();
 
-            //health.TakeDamage(1);
-            
-            if (playerInput != null && spawningManager != null)
+            if (health == null || playerInput == null) return;
+            if (health.isInvincible) return;
+
+            if (Time.time - health.lastDamageTime >= damageInterval && health.currentHealth >= 0)
             {
-                
-                var moveDirection = characterController.velocity;
-                if (moveDirection.x > 0) // Moving towards the right side of the laser
-                {
-                    // Teleport them to the left
-                    spawningManager.RespawnSinglePlayerAtPosition(playerInput, LeftRespawn.position);
-                }
-                else if (moveDirection.x < 0) // Moving towards the left side of the laser
-                {
-                    // Teleport them to the right
-                    spawningManager.RespawnSinglePlayerAtPosition(playerInput, RightRespawn.position);
-                }
-                
-                
+                health.lastDamageTime = Time.time;
+                health.TakeDamage(1);
+            }
+            else if (health.currentHealth <= 0 && spawningManager != null)
+            {
+                Vector3 spawnPos = transform.position + respawnOffset;
             }
         }
     }
