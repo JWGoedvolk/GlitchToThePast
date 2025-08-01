@@ -89,14 +89,6 @@ namespace Player.Health
             }
         }
 
-        private void OnTriggerExit(Collider collision)
-        {
-            if (damageableTags.Contains(collision.tag))
-            {
-                Invoke("StopHitAnimation", 0.3f);
-            }
-        }
-
         private void UpdateUI()
         {
             if (healthUI != null)
@@ -118,6 +110,7 @@ namespace Player.Health
                         if (animator != null)
                         {
                             animator.SetBool("isGettingHit", true);
+                            Invoke("StopHitAnimation", 0.3f);
                         }
                     }
                     else
@@ -139,6 +132,7 @@ namespace Player.Health
 
                     sfxManager?.PlayDeathSFX();
                     animator.SetBool("isGettingHit", true);
+                    Invoke("StopHitAnimation", 0.5f);
 
                     Invoke("Die", 0.5f);
                     return;
