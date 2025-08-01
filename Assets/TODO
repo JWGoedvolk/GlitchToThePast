@@ -1,12 +1,14 @@
 [] Enemy spawner integration
-    [] Section 1 set up
-    [] Section 2 set up
-    [] Section 3 set up
+    [] Section 1 set up & test
+    [] Section 2 set up & test
+    [] Section 3 set up & test
 [] Enemy integration all sections
     [] Boss States implemented
     [] Melee enemy moving to player
     [] Ranged enemy attack player
+        - move to above player heads so that they just do contact damage
 [] puzzle integration
+    [] Pushable boxes attach 
     [] Section 2 pushable boxes
-    [] Section 3 
+    [] Section 3 buttons
     [] Section 4 Stage 2 Lever
