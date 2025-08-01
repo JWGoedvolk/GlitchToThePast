@@ -300,7 +300,6 @@ GameObject:
   - component: {fileID: 7325881295433291189}
   - component: {fileID: 686190289503579459}
   - component: {fileID: 76998860577032550}
-  - component: {fileID: 7475603473411071561}
   m_Layer: 0
   m_Name: BobsCollider
   m_TagString: Player1
@@ -585,6 +584,12 @@ MonoBehaviour:
   weaponType: 0
   isRecharging: 0
   isWeaponEnabled: 0
+  comboCount: 0
+  timeSinceLastAttack: 0
+  comboDuration: 0
+  comboMeleeDamage: 
+  comboRangedDamage: 
+  comboRangedSpeed: 
   onStartRecharge:
     m_PersistentCalls:
       m_Calls:
@@ -621,8 +626,21 @@ MonoBehaviour:
   onMeleeAttack:
     m_PersistentCalls:
       m_Calls: []
+  OnComboIncrease:
+    m_PersistentCalls:
+      m_Calls: []
+  OnComboReset:
+    m_PersistentCalls:
+      m_Calls: []
   onRangedAttack:
     m_PersistentCalls:
+      m_Calls: []
+  OnComboAttacks:
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
       m_Calls: []
   meleeAttackTransform: {fileID: 437504406459891655}
   meleeAttackRange: 1
@@ -649,24 +667,3 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7475603473411071561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8579127009673012924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89fe2cb64346d3c479159499ce7e83eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitSFX:
-  - {fileID: 8300000, guid: 515fcdcbb784fb2448f5f0b638b1077b, type: 3}
-  - {fileID: 8300000, guid: 55f42c9980ed4484a95de0b5d5d90222, type: 3}
-  deathSFX: {fileID: 8300000, guid: 0f209d7048688e5408bb54da2363a291, type: 3}
-  audioSource: {fileID: 0}
-  weaponSFX:
-  - {fileID: 8300000, guid: a5a54f585c04cf14f94f0e3d077e440c, type: 3}
-  - {fileID: 8300000, guid: 5ee50fb5470fe8a4ebfff4f4c65445c1, type: 3}
-  - {fileID: 8300000, guid: fc0d70f479fbfb9489c57deda777af5a, type: 3}
