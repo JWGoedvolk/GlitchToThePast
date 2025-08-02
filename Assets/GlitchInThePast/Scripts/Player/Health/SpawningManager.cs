@@ -29,7 +29,7 @@ namespace Player.Health
 
         private void Start()
         {
-            GamePauser.Instance?.RegisterPauseable(this);
+            InGameButtons.Instance?.RegisterPauseable(this);
 
             foreach (PlayerInput player in PlayerInput.all)
             {
@@ -51,7 +51,7 @@ namespace Player.Health
 
         private void OnDestroy()
         {
-            GamePauser.Instance?.UnregisterPauseable(this);
+            InGameButtons.Instance?.UnregisterPauseable(this);
         }
 
         #region Public Functions

@@ -65,7 +65,7 @@ namespace Player.GenericMovement
         {
             healthSystem = GetComponent<PlayerHealthSystem>();
             dashDirection = Vector3.right;
-            GamePauser.Instance?.RegisterPauseable(this);
+            InGameButtons.Instance?.RegisterPauseable(this);
             AssignOtherPlayer();
             if (animator is null)
             {
@@ -75,7 +75,7 @@ namespace Player.GenericMovement
 
         void OnDestroy()
         {
-            GamePauser.Instance?.UnregisterPauseable(this);
+            InGameButtons.Instance?.UnregisterPauseable(this);
         }
 
         private void Awake()
