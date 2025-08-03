@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GamePauser : MonoBehaviour
+public class InGameButtons : MonoBehaviour
 {
     #region Variables
-    public static GamePauser Instance;
+    public static InGameButtons Instance;
     private readonly List<IPauseable> pauseables = new();
     #endregion
 

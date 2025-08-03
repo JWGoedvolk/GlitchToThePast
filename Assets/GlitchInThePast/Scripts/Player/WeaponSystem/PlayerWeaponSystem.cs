@@ -52,12 +52,12 @@ namespace GlitchInThePast.Scripts.Player
                 sFXManager = FindAnyObjectByType<SFXManager>();
             }
 
-            GamePauser.Instance?.RegisterPauseable(this);
+            InGameButtons.Instance?.RegisterPauseable(this);
         }
 
         void OnDestroy()
         {
-            GamePauser.Instance?.UnregisterPauseable(this);
+            InGameButtons.Instance?.UnregisterPauseable(this);
         }
 
         public void OnAttack()

@@ -19,12 +19,12 @@ namespace GlitchInThePast.Scripts.Player
 
         void Start()
         {
-            GamePauser.Instance?.RegisterPauseable(this);
+            InGameButtons.Instance?.RegisterPauseable(this);
         }
 
         void OnDestroy()
         {
-            GamePauser.Instance?.UnregisterPauseable(this);
+            InGameButtons.Instance?.UnregisterPauseable(this);
         }
 
         private void Awake()
