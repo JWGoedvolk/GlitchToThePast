@@ -34,17 +34,18 @@ namespace GlitchInThePast.Scripts.Player
             {
                 if (Mathf.Abs(aimInput.x) > controllerDeadZone || Mathf.Abs(aimInput.y) > controllerDeadZone)
                 {
-                    Vector3 playerDirection = Vector3.right * aimInput.x + Vector3.up * aimInput.y;
+                    Vector3 playerDirection = Vector3.forward * aimInput.x + Vector3.up * aimInput.y;
 
                     if (playerDirection.sqrMagnitude > 0f)
                     {
-                        Quaternion targetRotation = Quaternion.LookRotation(playerDirection, Vector3.forward);
-                        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, controllerRotationSmoothing * Time.deltaTime);
+                        Quaternion targetRotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+                        Quaternion fixedRotation = new Quaternion(0, 0, targetRotation.x, 1);
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation, fixedRotation, controllerRotationSmoothing * Time.deltaTime);
                     }
                 }
             }
             
-            target.position = transform.position + transform.forward * 1f; // The target transform is the transform from which our projectiles will come so it needs to always be updated
+            //target.position = transform.position + transform.forward * 1f; // The target transform is the transform from which our projectiles will come so it needs to always be updated
         }
 
         public void OnAim(Vector2 aim)
