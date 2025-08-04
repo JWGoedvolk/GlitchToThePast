@@ -305,12 +305,12 @@ namespace Player.GenericMovement
 
         private void OnAim(InputAction.CallbackContext ctx)
         {
-            // Debug.Log("Aiming");
             if (rotator != null)
             {
-                rotator.OnAim(ctx.ReadValue<Vector2>());
+                rotator.OnAim(ctx);
             }
         }
+
 
         private void Dash()
         {
@@ -339,6 +339,7 @@ namespace Player.GenericMovement
 
         private void FlipAttackTransform(int direction)
         {
+            if (attackTransformHolder == null) return;
             if (direction == 1)
             {
                 attackTransformHolder.localRotation = Quaternion.Euler(0, 90, 0);

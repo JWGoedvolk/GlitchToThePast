@@ -1,4 +1,4 @@
-using JW.Roguelike.Objects;
+using JW.BeatEmUp.Objects;
 using UnityEngine;
 
 namespace Systems.Enemies

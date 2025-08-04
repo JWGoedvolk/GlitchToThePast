@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace JW.Roguelike.Objects
+namespace JW.BeatEmUp.Objects
 {
     public class CustomTriggerer : MonoBehaviour
     {
