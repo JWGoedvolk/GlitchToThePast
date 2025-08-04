@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8b27c7dd75f2429449b3392f131e435e
+guid: 35388c79979379c44abb5b9f1a976b9e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -110,76 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_1
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 540
-        width: 320
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f4aa073078e74648b065e06ab7dc289
-      internalID: 578786401
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_2
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 540
-        width: 320
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b3da4bf727eded48a637b0ae0e1f9b0
-      internalID: -328807161
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_3
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 540
-        width: 320
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0145e03f649f36c4f91b2f85b44dc1ed
-      internalID: 694144454
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_4
+      name: bobbyMelee_Combo_2_SpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 360
-        width: 320
-        height: 180
+        y: 480
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f86cb6ef25a6bd448833e0cbe18035d
-      internalID: -790146368
+      spriteID: f136e8dc583021f45a3a75e02d4122ee
+      internalID: 1442818733
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_5
+      name: bobbyMelee_Combo_2_SpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 320
-        y: 360
-        width: 320
-        height: 180
+        x: 426
+        y: 480
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32328f757804427489d6b85fed961eef
-      internalID: -1699708250
+      spriteID: d9d77340b7f86d34ca2c9138a1116aae
+      internalID: -655084764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_6
+      name: bobbyMelee_Combo_2_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 640
-        y: 360
-        width: 320
-        height: 180
+        x: 852
+        y: 480
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,41 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9c19a75cf2bbf24b96cf1611c5c49a3
-      internalID: -332050860
+      spriteID: 075bb3fa89eda2d46b94bce075c3dec5
+      internalID: 1739722225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_7
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 360
-        width: 320
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dedff77bea99fc04fae872723f93b2ec
-      internalID: -1649145289
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_8
+      name: bobbyMelee_Combo_2_SpriteSheet_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 180
-        width: 320
-        height: 180
+        y: 240
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d575f98117d39734a9d17af2165cc572
-      internalID: 1388538091
+      spriteID: b79c1b4e7a0d41641b618a56ad577696
+      internalID: -193530961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_9
+      name: bobbyMelee_Combo_2_SpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 320
-        y: 180
-        width: 320
-        height: 180
+        x: 426
+        y: 240
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b563ecbbbcc0dc4299de03b048c9bd5
-      internalID: -268361478
+      spriteID: a94048a45d91f5f438273cfb115163aa
+      internalID: 150458985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_10
+      name: bobbyMelee_Combo_2_SpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 640
-        y: 180
-        width: 320
-        height: 180
+        x: 852
+        y: 240
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -313,41 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e194100285b5de243b63596ef8d042c9
-      internalID: -105331586
+      spriteID: 351e19d898a2e0444859307bece80a7b
+      internalID: -1787846668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_11
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 180
-        width: 320
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c02cff36bbd54a34f9222ad01f7233cf
-      internalID: 1094444901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_12
+      name: bobbyMelee_Combo_2_SpriteSheet_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 320
-        height: 180
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -355,41 +250,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6073b6353056d841bda5be8bba41e12
-      internalID: -1026952433
+      spriteID: 3d66537fea7119745993690ab5ebac6b
+      internalID: -1812318517
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_0
+      name: bobbyMelee_Combo_2_SpriteSheet_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 540
-        width: 320
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69c32edda5bebb944978fc4c6b05126c
-      internalID: -477766557
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TobbyShooting_SpriteSheet_13
-      rect:
-        serializedVersion: 2
-        x: 320
+        x: 426
         y: 0
-        width: 320
-        height: 180
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -397,8 +271,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 437d55b9c090f784d96ff6d495f68c44
-      internalID: -1279141944
+      spriteID: c555f42ed9369ea4bae32661dcb26d52
+      internalID: 14053779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bobbyMelee_Combo_2_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 0
+        width: 426.66666
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c80ece4f45ec65941b56044c6ed4ffbc
+      internalID: -1252101085
       vertices: []
       indices: 
       edges: []
@@ -406,7 +301,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 660925f8fea92a341a95a1cfab940712
+    spriteID: 84da4cfaf6caf2643b8b633762d46c6a
     internalID: 0
     vertices: []
     indices: 
@@ -414,20 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TobbyShooting_SpriteSheet_0: -477766557
-      TobbyShooting_SpriteSheet_1: 578786401
-      TobbyShooting_SpriteSheet_10: -105331586
-      TobbyShooting_SpriteSheet_11: 1094444901
-      TobbyShooting_SpriteSheet_12: -1026952433
-      TobbyShooting_SpriteSheet_13: -1279141944
-      TobbyShooting_SpriteSheet_2: -328807161
-      TobbyShooting_SpriteSheet_3: 694144454
-      TobbyShooting_SpriteSheet_4: -790146368
-      TobbyShooting_SpriteSheet_5: -1699708250
-      TobbyShooting_SpriteSheet_6: -332050860
-      TobbyShooting_SpriteSheet_7: -1649145289
-      TobbyShooting_SpriteSheet_8: 1388538091
-      TobbyShooting_SpriteSheet_9: -268361478
+      bobbyMelee_Combo_2_SpriteSheet_0: 1442818733
+      bobbyMelee_Combo_2_SpriteSheet_1: -655084764
+      bobbyMelee_Combo_2_SpriteSheet_2: 1739722225
+      bobbyMelee_Combo_2_SpriteSheet_3: -193530961
+      bobbyMelee_Combo_2_SpriteSheet_4: 150458985
+      bobbyMelee_Combo_2_SpriteSheet_5: -1787846668
+      bobbyMelee_Combo_2_SpriteSheet_6: -1812318517
+      bobbyMelee_Combo_2_SpriteSheet_7: 14053779
+      bobbyMelee_Combo_2_SpriteSheet_8: -1252101085
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
