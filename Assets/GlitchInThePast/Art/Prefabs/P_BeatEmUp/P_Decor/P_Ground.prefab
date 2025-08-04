@@ -58,6 +58,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 72e9eddcfbc127f4c9186a352b17bc01, type: 3}
       propertyPath: m_Name
+      value: P_Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 72e9eddcfbc127f4c9186a352b17bc01, type: 3}
+      propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []

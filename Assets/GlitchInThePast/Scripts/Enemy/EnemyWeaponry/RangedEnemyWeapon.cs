@@ -31,7 +31,7 @@ namespace Systems.Enemies
             {
                 reloadTime = 0;
                 var spawnedProjectile = Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation);
-                spawnedProjectile.GetComponent<EnemyProjectile>().Init(projectileSpeed, movement.closestPlayer.position);
+                spawnedProjectile.GetComponent<EnemyProjectile>().Init(projectileSpeed, movement.TargetPlayer.position);
                 onAttack?.Invoke();
             }
             else
@@ -42,7 +42,7 @@ namespace Systems.Enemies
 
         bool isPlayerInRange()
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, movement.closestPlayer.position);
+            float distanceToPlayer = Vector3.Distance(transform.position, movement.TargetPlayer.position);
             return distanceToPlayer <= attackRange;
         }
 

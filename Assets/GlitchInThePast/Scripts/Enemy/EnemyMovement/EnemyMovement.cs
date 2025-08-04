@@ -11,6 +11,7 @@ namespace Systems.Enemies
         public GameObject Player1;
         public GameObject Player2;
         protected Transform ClosestPlayer;
+        protected Vector3 DirectionToPlayer;
 
         protected virtual void Awake()
         {
@@ -36,6 +37,8 @@ namespace Systems.Enemies
             else if (Player2 != null) target = Player2;
 
             ClosestPlayer = target.transform;
+            
+            DirectionToPlayer = ClosestPlayer.position - transform.position;
         }
     }
 }

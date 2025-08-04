@@ -1,3 +1,8 @@
+[] Boss State Management
+    [] Idle | not attacking
+    [] Attacking | from idle, after some time not attacking
+    [] Stage 2 | after losing all stage 1 health
+
 [] Enemy spawner integration
     [] Section 1 set up & test
     [] Section 2 set up & test
