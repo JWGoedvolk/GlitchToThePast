@@ -17,7 +17,9 @@ namespace Systems.Enemies.Boss
         [Header("Events")]
         public UnityEvent OnDeath;
         public UnityEvent OnDamaged;
+        public Action OnDamagedAction;
         public UnityEvent OnStageChanged;
+        public Action OnStageChangedAction;
         public UnityEvent OnMaxHitsReached;
         
         public int Stage {get {return stage;}}
@@ -55,11 +57,13 @@ namespace Systems.Enemies.Boss
             
             healths[stage]--;
             OnDamaged?.Invoke();
+            OnDamagedAction?.Invoke();
             
             if (healths[stage] <= 0)
             {
                 stage++;
                 OnStageChanged?.Invoke();
+                OnStageChangedAction?.Invoke();
                 
                 if (stage >= healths.Count)
                 {
