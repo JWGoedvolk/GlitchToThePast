@@ -6487,7 +6487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7360929696301477468, guid: 706d0ccc746eec942b064cab7530a538, type: 3}
       propertyPath: maxRangedCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7360929696301477468, guid: 706d0ccc746eec942b064cab7530a538, type: 3}
       propertyPath: rangedSpawnInterval

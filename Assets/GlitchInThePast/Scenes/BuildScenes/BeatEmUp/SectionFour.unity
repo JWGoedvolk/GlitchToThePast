@@ -495,6 +495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 258873982}
+  - component: {fileID: 258873983}
   m_Layer: 0
   m_Name: EnemySpawners
   m_TagString: Untagged
@@ -519,6 +520,47 @@ Transform:
   - {fileID: 1360038219}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &258873983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258873981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3fbe3488784cb3a951512bbe3b1397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 1
+  meleeEnemy: {fileID: 6650723071496413354, guid: 47554c9d585059d4ba172b99d2e0136b, type: 3}
+  meleeSpawnPoint: {fileID: 1360038219}
+  meleeSpawnInterval: 1
+  meleeSpawnTimer: 0
+  MeleeEnemyCount: 0
+  maxMeleeCount: 5
+  rangedEnemy: {fileID: 6650723071496413354, guid: d3426c2fbb091b4469ad08cabaddde94, type: 3}
+  rangedSpawnPoint: {fileID: 1385643171}
+  cruisingAltitude: 5
+  rangedSpawnInterval: 1
+  rangedSpawnTimer: 0
+  RangedEnemyCount: 0
+  maxRangedCount: 5
+  onEnemySpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  onMeleeEnemySpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  onRangedEnemySpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  onSpawnerDisabled:
+    m_PersistentCalls:
+      m_Calls: []
+  onSpawnerEnabled:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &269938401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1486,7 +1528,7 @@ GameObject:
   - component: {fileID: 793815709}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -2752,7 +2794,7 @@ Transform:
   m_GameObject: {fileID: 1360038218}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.42261827, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: 7, y: 1.26, z: -0.03}
+  m_LocalPosition: {x: 9.39, y: 1.26, z: -0.03}
   m_LocalScale: {x: 0.18683, y: 0.18683, z: 0.18683}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2826,7 +2868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1385643171
 Transform:
   m_ObjectHideFlags: 0
@@ -2836,7 +2878,7 @@ Transform:
   m_GameObject: {fileID: 1385643170}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.42261827, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -7.11, y: 1.26, z: 0.1}
+  m_LocalPosition: {x: -8.9, y: 3.95, z: 0.1}
   m_LocalScale: {x: 0.18683, y: 0.18683, z: 0.18683}
   m_ConstrainProportionsScale: 0
   m_Children: []

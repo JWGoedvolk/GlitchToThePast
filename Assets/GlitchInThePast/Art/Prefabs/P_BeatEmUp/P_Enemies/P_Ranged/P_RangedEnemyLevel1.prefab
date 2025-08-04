@@ -285,7 +285,7 @@ MonoBehaviour:
   movDir: {x: 0, y: 0, z: 0}
   CruisingAltitude: 0
   CruisingAltitudeError: 0.1
-  attackAltitude: 2.8
+  attackAltitude: 3.4
   AttackSize: {x: 5, y: 2, z: 5}
   strafePoint: {fileID: 6367841708610329689}
   strafeDistance: 1.5
