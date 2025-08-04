@@ -65,7 +65,7 @@ namespace Player.GenericMovement
         {
             healthSystem = GetComponent<PlayerHealthSystem>();
             dashDirection = Vector3.right;
-            GamePauser.Instance?.RegisterPauseable(this);
+            InGameButtons.Instance?.RegisterPauseable(this);
             AssignOtherPlayer();
             if (animator is null)
             {
@@ -75,7 +75,7 @@ namespace Player.GenericMovement
 
         void OnDestroy()
         {
-            GamePauser.Instance?.UnregisterPauseable(this);
+            InGameButtons.Instance?.UnregisterPauseable(this);
         }
 
         private void Awake()
@@ -156,10 +156,12 @@ namespace Player.GenericMovement
                     }
                 }
             }
+
             bool isMoving = moveInput.magnitude > 0.1f;
             if (animator != null)
             {
                 animator.SetBool("isWalking", isMoving);
+                animator.SetBool("isRunning", isMoving && isRunning);
             }
 
             characterController.Move(velocity * Time.deltaTime);
