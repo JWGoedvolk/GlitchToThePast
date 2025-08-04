@@ -21,6 +21,7 @@ namespace Systems.Enemies
         // Ranged
         [SerializeField] private GameObject rangedEnemy;
         [SerializeField] private Transform rangedSpawnPoint;
+        [SerializeField] private float cruisingAltitude = 5f;
         [SerializeField] private float rangedSpawnInterval = 1f;
         [SerializeField] private float rangedSpawnTimer = 0f;
         public int RangedEnemyCount = 0;
@@ -52,7 +53,7 @@ namespace Systems.Enemies
             {
                 if (MeleeEnemyCount < maxMeleeCount || maxMeleeCount < 0)
                 {
-                    GameObject newMelee = Instantiate(meleeEnemy, meleeSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
+                    GameObject newMelee = Instantiate(meleeEnemy, meleeSpawnPoint.position, meleeSpawnPoint.rotation); // Spawn melee enemy at the melee spawn point as child of the spawn point
                     EnemyHealth enemyHealth = newMelee.GetComponent<EnemyHealth>(); // Get the health system to set it up
                     enemyHealth.spawner = this;
                     enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Melee;
@@ -65,12 +66,12 @@ namespace Systems.Enemies
             {
                 if (RangedEnemyCount < maxRangedCount || maxRangedCount < 0)
                 {
-                    GameObject newRanged = Instantiate(rangedEnemy, rangedSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
+                    GameObject newRanged = Instantiate(rangedEnemy, rangedSpawnPoint.position, rangedSpawnPoint.rotation); // Spawn melee enemy at the melee spawn point as child of the spawn point
                     EnemyHealth enemyHealth = newRanged.GetComponent<EnemyHealth>(); // Get the health system to set it up
                     enemyHealth.spawner = this;
                     enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Ranged;
                     RangedMovement movement = newRanged.GetComponent<RangedMovement>();
-                    movement.cruisingAltitude = rangedSpawnPoint.position.y;
+                    movement.CruisingAltitude = cruisingAltitude;
                 
                     RangedEnemyCount++;
                 }
@@ -93,10 +94,8 @@ namespace Systems.Enemies
             
             // Cruising altitude visual
             RangedMovement movement = rangedEnemy.GetComponent<RangedMovement>();
-            float cruisingVariance = movement.cruisingAltitudeError;
-            Debug.DrawRay(rangedSpawnPoint.position, Vector3.left * 100, Color.green);
-            Debug.DrawRay(rangedSpawnPoint.position + Vector3.up * cruisingVariance, Vector3.left * 100, new Color(0, 1, 0, 0.1f));
-            Debug.DrawRay(rangedSpawnPoint.position - Vector3.up * cruisingVariance, Vector3.left * 100, new Color(0, 1, 0, 0.1f));
+            float cruisingVariance = movement.CruisingAltitudeError;
+            Debug.DrawRay(new Vector3(rangedSpawnPoint.position.x, cruisingAltitude, rangedSpawnPoint.position.z), Vector3.left * 100f, Color.green);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Player.Health;
 using UnityEngine;
 
 namespace Systems.Enemies
@@ -6,35 +7,61 @@ namespace Systems.Enemies
     public class MeleeMovement : EnemyMovement
     {
         [Header("Melee Movement")]
-        [SerializeField] private float standOffDistance;
+        [SerializeField] private Vector3 standOffDistance;
+        private Vector3 direction = Vector3.zero;
+
+        [Header("Melee Damage")] 
+        [SerializeField] private float damageInterval = 3f;
+        private float damageTimer;
         protected override void Update()
         {
             base.Update();
+            direction = DirectionToPlayer;
             
-            float distance = Vector2.Distance(transform.position, ClosestPlayer.transform.position);
+            bool isInStandoff = false;
+            var hits = Physics.OverlapBox(transform.position, standOffDistance/2f);
+            if (hits.Length > 0)
+            {
+                foreach (var hit in hits)
+                {
+                    if (hit.tag.Contains("Player"))
+                    {
+                        isInStandoff = true;
+                        break;
+                    }
+                }
+            }
             
-            if (distance > standOffDistance)
+            // Standoff from the player
+            if (!isInStandoff) // We are outside the standoff distance
             {
-                float direction = 0f;
-                if (ClosestPlayer.transform.position.x < transform.position.x) // Player is to the left
-                {
-                    direction = 1;
-                }
-                else
-                {
-                    direction = -1;
-                }
-                RB.velocity = new Vector2(direction * MoveSpeed, RB.velocity.y);
+                direction = new Vector3(Mathf.Sign(DirectionToPlayer.x), RB.velocity.y, DirectionToPlayer.z);
+                damageTimer = 0f;
             }
-            else
+            else // We are inside the standoff distance
             {
-                RB.velocity = new Vector2(0f, RB.velocity.y);
+                direction.x = 0;
+                direction.y = RB.velocity.y;
+                direction.z = 0;
+                
+                damageTimer += Time.deltaTime;
+                if (damageTimer >= damageInterval)
+                {
+                    ClosestPlayer.GetComponent<PlayerHealthSystem>().TakeDamage(1);
+                    damageTimer = 0f;
+                }
             }
+        }
+
+        private void FixedUpdate()
+        {
+            direction = direction.normalized * MoveSpeed;
+            RB.velocity = direction;
         }
 
         private void OnDrawGizmosSelected()
         {
-            Gizmos.DrawWireSphere(transform.position, standOffDistance);
+            Gizmos.DrawWireCube(transform.position, standOffDistance);
         }
     }
 }

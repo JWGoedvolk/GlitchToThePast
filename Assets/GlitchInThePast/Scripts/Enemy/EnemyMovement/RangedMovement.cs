@@ -10,13 +10,13 @@ namespace Systems.Enemies
     {
         [SerializeField] private Vector3 movDir;
         [Header("Cruising Altitude")]
-        public float cruisingAltitude; // This is the y position the enemies will try to fly at
-        public float cruisingAltitudeError = 0.1f;
+        public float CruisingAltitude; // This is the y position the enemies will try to fly at
+        public float CruisingAltitudeError = 0.1f;
         [Header("Attack Altitude")] 
         [SerializeField] private float attackAltitude = 1f;
         [Header("Player Detection")]
-        public PlayerDetector playerDetection;
-        public Vector3 AttackSize = Vector3.one;
+        private PlayerDetector playerDetection;
+        [SerializeField] private Vector3 AttackSize = Vector3.one;
 
         [Header("Strafing")] 
         [SerializeField] private Transform strafePoint;
@@ -42,6 +42,8 @@ namespace Systems.Enemies
             base.Awake();
             SphereCollider circleCollider = GetComponent<SphereCollider>();
             circleCollider.isTrigger = true;
+            
+            playerDetection = GetComponentInChildren<PlayerDetector>();
         }
 
         private void OnEnable()
@@ -71,7 +73,7 @@ namespace Systems.Enemies
                     }
                     
                     // Set the player detector's position to be on the ground
-                    playerDetection.transform.position = new Vector3(playerDetection.transform.position.x, hit.transform.position.y, playerDetection.transform.position.z);
+                    playerDetection.transform.position = new Vector3(playerDetection.transform.position.x, hit.transform.position.y + .5f, playerDetection.transform.position.z);
                 }
             }
             
@@ -86,11 +88,11 @@ namespace Systems.Enemies
                     movDir.y = 0; // move towards the player while staying at the current height
                     break;
                 case State.AltitudeAdjustment: // Move up or down to the desired cruising altitude, still moves towards closest player horizontally
-                    if (transform.position.y < cruisingAltitude - cruisingAltitudeError) // rise up if too low
+                    if (transform.position.y < CruisingAltitude - CruisingAltitudeError) // rise up if too low
                     {
                         movDir.y = 1f;
                     }
-                    else if (transform.position.y > cruisingAltitude + cruisingAltitudeError) // Drop down if too high
+                    else if (transform.position.y > CruisingAltitude + CruisingAltitudeError) // Drop down if too high
                     {
                         movDir.y = -1f;
                     }
@@ -102,36 +104,6 @@ namespace Systems.Enemies
                     Strafe();
                     break;
             }
-            
-            // Strafing thresholds
-            /*float distanceFromCenter = transform.position.x - ClosestPlayer.position.x;
-            
-            // Custom PingPong based off distance and strafe direction
-            if (isStrafingLeft)
-            {
-                if (distanceFromCenter < -strafeDistance)
-                {
-                    isStrafingLeft = false;
-                }
-            }
-            else
-            {
-                if (distanceFromCenter > strafeDistance)
-                {
-                    isStrafingLeft = true;
-                }
-            }
-            
-            // Moving in the strafe direction
-            if (isStrafingLeft)
-            {
-                movDir.x = -1f;
-            }
-            else
-            {
-                movDir.x = 1f;
-            }
-            */
         }
 
         /// <summary>
@@ -203,8 +175,9 @@ namespace Systems.Enemies
             {
                 newState = State.Attack;
                 
-                // Check if the player is in strafing distance
-                if (Mathf.Abs(Vector3.Distance(strafePoint.position, playerDetection.ClosestPlayerInRange.transform.position)) <= startStrafeDistance)
+                // Check if the player is in strafing distance and that we are at the attack altitude
+                if (Mathf.Abs(Vector3.Distance(strafePoint.position, playerDetection.ClosestPlayerInRange.transform.position)) <= strafeDistance + startStrafeDistance &&
+                    transform.position.y <= attackAltitude)
                 {
                     if (currentState == State.Strafing)
                     {
@@ -216,6 +189,8 @@ namespace Systems.Enemies
                     {
                         currentState = newState;
                         playerDetection.SetDetectionSize(AttackSize);
+                        Debug.Log($"{name} switched to Strafing mode");
+
                         if (playerDetection.ClosestPlayerInRange.transform.position.x < strafePoint.position.x) // if the player is to the left of us
                         {
                             strafeDirection = -1; // Strafe left
@@ -239,8 +214,8 @@ namespace Systems.Enemies
             else
             {
                 // If we ar not in range, are we at cruising altitude?
-                if (transform.position.y < cruisingAltitude - cruisingAltitudeError || 
-                    transform.position.y > cruisingAltitude + cruisingAltitudeError)
+                if (transform.position.y < CruisingAltitude - CruisingAltitudeError || 
+                    transform.position.y > CruisingAltitude + CruisingAltitudeError)
                 {
                     newState = State.AltitudeAdjustment;
                     if (newState != currentState)
@@ -267,8 +242,8 @@ namespace Systems.Enemies
         {
             // if (ClosestPlayer != null)
             // {
-            //     Debug.DrawLine(ClosestPlayer.position + Vector3.up * cruisingAltitude, ClosestPlayer.position + Vector3.left * strafeDistance + Vector3.up * cruisingAltitude, Color.red);
-            //     Debug.DrawLine(ClosestPlayer.position + Vector3.up * cruisingAltitude, ClosestPlayer.position - Vector3.left * strafeDistance + Vector3.up * cruisingAltitude, Color.red);
+            //     Debug.DrawLine(ClosestPlayer.position + Vector3.up * CruisingAltitude, ClosestPlayer.position + Vector3.left * strafeDistance + Vector3.up * CruisingAltitude, Color.red);
+            //     Debug.DrawLine(ClosestPlayer.position + Vector3.up * CruisingAltitude, ClosestPlayer.position - Vector3.left * strafeDistance + Vector3.up * CruisingAltitude, Color.red);
             // }
 
             // Move in this direction
@@ -278,7 +253,7 @@ namespace Systems.Enemies
             if (ClosestPlayer != null) Debug.DrawLine(transform.position, ClosestPlayer.position, Color.green);
             
             // Cruising altitude difference
-            Debug.DrawLine(Vector3.up * transform.position.y, Vector3.up * cruisingAltitude, Color.red);
+            Debug.DrawLine(Vector3.up * transform.position.y, Vector3.up * CruisingAltitude, Color.red);
             
             // Strafing markers
             Debug.DrawLine(strafePoint.position, strafePoint.position + Vector3.left * strafeDistance, Color.yellow);
