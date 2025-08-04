@@ -20,9 +20,6 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private Sprite rightSprite;
         [SerializeField] private Sprite leftSprite;
 
-        [Header("Attack")]
-        [SerializeField] private Transform attackTransformHolder;
-
         public int FacingDirection { get; private set; } = 1;
         private int lastAppliedFacing = 1;
         #endregion
