@@ -54,7 +54,6 @@ namespace Player.GenericMovement
 
         [Header("Weapon Related")]
         [SerializeField] private PlayerWeaponSystem weaponSystem;
-        [SerializeField] private Transform attackTransformHolder;
 
         [Header("Events")]
         [SerializeField] private UnityEvent onDashStart;
@@ -171,12 +170,10 @@ namespace Player.GenericMovement
                 if (moveInput.x > 0.1f)
                 {
                     spriteRenderer.flipX = false;
-                    FlipAttackTransform(1);
                 }
                 else if (moveInput.x < -0.1f)
                 {
                     spriteRenderer.flipX = true;
-                    FlipAttackTransform(-1);
                 }
             }
 
@@ -311,7 +308,6 @@ namespace Player.GenericMovement
             }
         }
 
-
         private void Dash()
         {
             if (!isDashing && dashCooldownTimer <= 0f)
@@ -333,20 +329,6 @@ namespace Player.GenericMovement
 
                 animator?.SetBool("isDashing", true);
                 onDashStart?.Invoke();
-            }
-        }
-
-
-        private void FlipAttackTransform(int direction)
-        {
-            if (attackTransformHolder == null) return;
-            if (direction == 1)
-            {
-                attackTransformHolder.localRotation = Quaternion.Euler(0, 90, 0);
-            }
-            else if (direction == -1)
-            {
-                attackTransformHolder.localRotation = Quaternion.Euler(0, -90, 0);
             }
         }
 

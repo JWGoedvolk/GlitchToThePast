@@ -28,10 +28,11 @@ Transform:
   m_GameObject: {fileID: 2929214977873594108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.283, y: 0, z: 0}
+  m_LocalPosition: {x: 0.346, y: 0, z: 0}
   m_LocalScale: {x: 0.016963039, y: 0.016963039, z: 0.016963039}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 2025892952744937449}
   m_Father: {fileID: 874621403081017318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &4857729404156320131
@@ -226,6 +227,41 @@ MonoBehaviour:
   isGamepad: 0
   controllerDeadZone: 0
   controllerRotationSmoothing: 1000
+  spriteRenderer: {fileID: 4245184345691448312}
+  rightSprite: {fileID: 21300000, guid: 580167f2a85909947b125d79516fd125, type: 3}
+  leftSprite: {fileID: 21300000, guid: 219fbe280d5177745aa090a385f0b0f5, type: 3}
+  attackTransformHolder: {fileID: 874621403081017318}
+--- !u!1 &8134715591524518181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2025892952744937449}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2025892952744937449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134715591524518181}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.88, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8834217309014185563}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8390149993924556420
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,7 +606,6 @@ MonoBehaviour:
   healthSystem: {fileID: 0}
   rotator: {fileID: 0}
   weaponSystem: {fileID: 686190289503579459}
-  attackTransformHolder: {fileID: 0}
   onDashStart:
     m_PersistentCalls:
       m_Calls:
@@ -679,7 +714,7 @@ MonoBehaviour:
   meleeAttackRange: 2
   meleeRechargeTime: 3
   meleeDamage: 1
-  rangedAttackSpawnPoint: {fileID: 8834217309014185563}
+  rangedAttackSpawnPoint: {fileID: 2025892952744937449}
   projectilePrefab: {fileID: 1662423977701543809, guid: 9a7e98309550f934abb9b10bab6842ac, type: 3}
   rangedRechargeTime: 3
   rangedDamage: 1

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +5,7 @@ namespace GlitchInThePast.Scripts.Player
 {
     public class Rotator : MonoBehaviour
     {
+        #region Variables
         [Header("General")]
         private Vector2 aimInput;
         [SerializeField] private Transform target;
@@ -15,8 +15,29 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private float controllerDeadZone = 0.01f;
         [SerializeField] private float controllerRotationSmoothing = 1000f;
 
+        [Header("Visual / Facing")]
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Sprite rightSprite;
+        [SerializeField] private Sprite leftSprite;
+
+        [Header("Attack")]
+        [SerializeField] private Transform attackTransformHolder;
+
+        public int FacingDirection { get; private set; } = 1;
+        private int lastAppliedFacing = 1;
+        #endregion
+
         private void Update()
         {
+            int derivedFacing = DeriveFacingDirection();
+
+            if (derivedFacing != lastAppliedFacing)
+            {
+                FacingDirection = derivedFacing;
+                UpdateSpriteVisuals(FacingDirection);
+                lastAppliedFacing = FacingDirection;
+            }
+
             if (!isGamepad)
             {
                 if (aimInput == Vector2.zero)
@@ -50,11 +71,59 @@ namespace GlitchInThePast.Scripts.Player
                 target.position = transform.position + transform.right * 1f;
         }
 
+        #region Public Functions
         public void OnAim(InputAction.CallbackContext ctx)
         {
             Vector2 aimValue = ctx.ReadValue<Vector2>();
             aimInput = aimValue;
             isGamepad = ctx.control.device is Gamepad;
+        }
+        #endregion
+
+        #region Private Functions
+        /// <summary>
+        /// Derives left/right facing from input: stick horizontal or mouse position.
+        /// </summary>
+        private int DeriveFacingDirection()
+        {
+            if (isGamepad && Mathf.Abs(aimInput.x) > controllerDeadZone)
+            {
+                return aimInput.x > 0f ? 1 : -1;
+            }
+
+            if (!isGamepad && aimInput != Vector2.zero)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(aimInput);
+                Plane groundPlane = new Plane(Vector3.back, Vector3.zero);
+                if (groundPlane.Raycast(ray, out float rayDistance))
+                {
+                    Vector3 worldPoint = ray.GetPoint(rayDistance);
+                    float dx = worldPoint.x - transform.position.x;
+                    if (Mathf.Abs(dx) > 0.01f)
+                        return dx > 0f ? 1 : -1;
+                }
+            }
+
+            return FacingDirection;
+        }
+
+        /// <summary>
+        /// Updates sprite visuals to suit the direction the player is facing.
+        /// </summary>
+        private void UpdateSpriteVisuals(int direction)
+        {
+            if (spriteRenderer == null) return;
+
+            if (direction == 1)
+            {
+                if (spriteRenderer.sprite != rightSprite)
+                    spriteRenderer.sprite = rightSprite;
+            }
+            else if (direction == -1)
+            {
+                if (spriteRenderer.sprite != leftSprite)
+                    spriteRenderer.sprite = leftSprite;
+            }
         }
 
         private void OnDrawGizmos()
@@ -64,5 +133,6 @@ namespace GlitchInThePast.Scripts.Player
             if (target != null)
                 Gizmos.DrawRay(target.position, target.right * 1.5f);
         }
+        #endregion
     }
 }
