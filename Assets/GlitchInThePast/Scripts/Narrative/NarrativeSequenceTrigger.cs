@@ -27,7 +27,7 @@ namespace Narrative
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+            if (other.CompareTag("Player1") && other.CompareTag("Player2"))
             {
                 if (!triggeredByPlayer)
                 {
@@ -37,6 +37,10 @@ namespace Narrative
                     if (isReplayable) return;
                     { triggeredByPlayer = true; }
                 }
+            }
+            else
+                { 
+                // display amount of layers required for the tooltip to appear
             }
         }
 
