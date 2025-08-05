@@ -1,5 +1,5 @@
 using UnityEngine;
-using JW.Roguelike.Objects;
+using JW.Objects;
 using Systems.Enemies;
 using UnityEngine.Events;
 

@@ -167,7 +167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2216830309735857936, guid: bb8c21d400e15c54e9bf15841ce6d758, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0607
+      value: 0.0737
       objectReference: {fileID: 0}
     - target: {fileID: 2216830309735857936, guid: bb8c21d400e15c54e9bf15841ce6d758, type: 3}
       propertyPath: m_LocalRotation.w
@@ -187,11 +187,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2216830309735857936, guid: bb8c21d400e15c54e9bf15841ce6d758, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0618
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2216830309735857936, guid: bb8c21d400e15c54e9bf15841ce6d758, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.43
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2216830309735857936, guid: bb8c21d400e15c54e9bf15841ce6d758, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -212,6 +212,22 @@ PrefabInstance:
     - target: {fileID: 3365024511025194179, guid: bb8c21d400e15c54e9bf15841ce6d758, type: 3}
       propertyPath: m_Name
       value: InteractPrompt
+      objectReference: {fileID: 0}
+    - target: {fileID: 7081356060590312646, guid: bb8c21d400e15c54e9bf15841ce6d758, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7081356060590312646, guid: bb8c21d400e15c54e9bf15841ce6d758, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7081356060590312646, guid: bb8c21d400e15c54e9bf15841ce6d758, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7081356060590312646, guid: bb8c21d400e15c54e9bf15841ce6d758, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

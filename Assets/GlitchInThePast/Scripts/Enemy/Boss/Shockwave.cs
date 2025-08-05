@@ -1,5 +1,5 @@
 using Player.Health;
-using JW.Roguelike.Objects;
+using JW.Objects;
 using UnityEngine;
 
 namespace Systems.Enemies.Boss

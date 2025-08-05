@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace JW.Roguelike.Objects.Interactibles
+namespace JW.Objects.Interactibles
 {
     public class CoopInteractibles : MonoBehaviour
     {

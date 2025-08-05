@@ -1,5 +1,5 @@
 using System;
-using JW.Roguelike.Objects;
+using JW.Objects;
 using Player.Health;
 using UnityEngine;
 

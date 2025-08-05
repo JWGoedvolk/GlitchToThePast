@@ -5,33 +5,21 @@ using UnityEngine;
 
 public class BossIdleState : StateMachineBehaviour
 {
-    private BossStateManager bossStateManager = FindObjectOfType<BossStateManager>();
-    
-    // Attack times
-    public float AttackFrequency = 10f;
-    private float currentTime = 0f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    // override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+    //     animator.ResetTrigger("Attacking");
+    // }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        currentTime += Time.deltaTime;
-        if (currentTime >= AttackFrequency)
-        {
-            bossStateManager.bossAttackManager.OnAttackAction();
-        }
-    }
+    // override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+    // }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger("Attack");
-        animator.ResetTrigger("EnterPhaseTwo");
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

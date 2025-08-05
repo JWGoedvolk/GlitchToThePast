@@ -8,7 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-namespace JW.Roguelike.Objects.Interactibles
+namespace JW.Objects.Interactibles
 {
     [RequireComponent(typeof(BoxCollider))]
     public class Interactible : MonoBehaviour

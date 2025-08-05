@@ -13,6 +13,8 @@ namespace UI.FadingEffect.Boss
 
         void OnEnable()
         {
+            bossHealth = FindObjectOfType<BossHealth>();
+            
             bossHealth.OnDamagedAction += TakeDamage;
             bossHealth.OnStageChangedAction += OnStageChanged;
             
