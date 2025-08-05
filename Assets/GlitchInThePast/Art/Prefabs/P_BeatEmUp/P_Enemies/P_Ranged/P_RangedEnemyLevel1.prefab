@@ -230,8 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e4a8ad687424941973e94417b7b3614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
-  projectileSpawn: {fileID: 0}
+  projectile: {fileID: 1373999490049649762, guid: b3aaaf7781cd54a45b94947f339d512a, type: 3}
+  projectileSpawn: {fileID: 7193135073888279521}
   fireRate: 0
   reloadTime: 0
   projectileSpeed: 0
