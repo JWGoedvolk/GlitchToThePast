@@ -13,7 +13,6 @@ namespace Systems.Enemies.Boss
         
         // Boss States
         private BossStateManager stateManager => BossStateManager.Instance;
-        public bool CanAttack = false;
         
         // Animation
         [Header("Animation")]
@@ -22,24 +21,6 @@ namespace Systems.Enemies.Boss
         
         public GameObject ShockwavePrefab;
         public List<Transform> spawnPoints;
-
-        private void Awake()
-        {
-            if (stateManager.Phase == 0)
-            {
-                SetCanAttack(true);
-            }
-            else
-            {
-                SetCanAttack(false);
-            }
-        }
-
-        public void SetCanAttack(bool value)
-        {
-            CanAttack = value;
-            stateManager.CanAttack = CanAttack;
-        }
 
         public void AttackLeft()
         {

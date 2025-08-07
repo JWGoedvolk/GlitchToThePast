@@ -11,6 +11,7 @@ namespace Systems.Enemies
         [Header("Melee Movement")]
         [SerializeField] private Vector3 standOffDistance;
         private Vector3 direction = Vector3.zero;
+        [SerializeField] private float groundCheckDistance;
 
         [Header("Melee Damage")]
         [SerializeField] private float damageInterval = 3f;
@@ -69,6 +70,28 @@ namespace Systems.Enemies
 
         private void FixedUpdate()
         {
+
+            #region Grounding Enemy
+            bool isInGround = false;
+            var groundCheck = Physics.RaycastAll(transform.position, Vector3.down * groundCheckDistance);
+            foreach (var hit in groundCheck)
+            {
+                if (hit.transform.tag == "Ground")
+                {
+                    isInGround = true;
+                    break;
+                }
+            }
+            if (!isInGround)
+            {
+                direction.y = -1f;
+            }
+            else
+            {
+                direction.y = 0f;
+            }
+            #endregion
+            
             direction = direction.normalized * MoveSpeed;
             RB.velocity = direction;
         }
@@ -76,6 +99,7 @@ namespace Systems.Enemies
         private void OnDrawGizmosSelected()
         {
             Gizmos.DrawWireCube(transform.position, standOffDistance);
+            Debug.DrawRay(transform.position,  Vector3.down * groundCheckDistance, Color.red);
         }
     }
 }

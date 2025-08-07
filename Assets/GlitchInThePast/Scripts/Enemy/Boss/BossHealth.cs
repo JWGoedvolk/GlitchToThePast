@@ -66,19 +66,25 @@ namespace Systems.Enemies.Boss
                 OnDamaged?.Invoke();
                 OnDamagedAction?.Invoke(1);
 
-                if (healths[BossStateManager.Instance.Phase] <= 0) // If our current phase dies
+                if (healths[BossStateManager.Instance.Phase] == 0) // If our current phase dies
                 {
-                    // Check if was the final phase
-                    if (healths.Count >= BossStateManager.Instance.Phase)
-                    {
-                        OnDeath?.Invoke();
-                        break;
-                    }
-                    
                     // If we still have phase to go through, then go to the next one
                     OnStageChanged?.Invoke();
                     OnStageChangedAction?.Invoke();
                 }
+            }
+            if (healths[BossStateManager.Instance.Phase] <= 0) // If our current phase dies
+            {
+                // Check if was the final phase
+                if (healths.Count >= BossStateManager.Instance.Phase)
+                {
+                    OnDeath?.Invoke();
+                    return;
+                }
+                    
+                // If we still have phase to go through, then go to the next one
+                OnStageChanged?.Invoke();
+                OnStageChangedAction?.Invoke();
             }
         }
 

@@ -287,7 +287,7 @@ MonoBehaviour:
   CruisingAltitude: 0
   CruisingAltitudeError: 0.1
   attackAltitude: 3.4
-  AttackSize: {x: 5, y: 2, z: 5}
+  AttackSize: {x: 7, y: 4, z: 7}
   strafePoint: {fileID: 6367841708610329689}
   strafeDistance: 1.5
   startStrafeDistance: 1.6

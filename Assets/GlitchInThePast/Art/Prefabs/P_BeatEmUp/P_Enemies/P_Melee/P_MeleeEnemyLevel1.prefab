@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 6650723071496413354}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0065744, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.18, y: 0.18, z: 0.18}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -132,6 +132,7 @@ MonoBehaviour:
   Player2Health: {fileID: 0}
   enemySpriteRenderer: {fileID: 1772180890220995112}
   standOffDistance: {x: 2, y: 2, z: 1}
+  groundCheckDistance: 1.62
   damageInterval: 3
 --- !u!54 &7392823627235309436
 Rigidbody:
@@ -214,5 +215,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11.6, y: 11.6, z: 6.1}
+  m_Size: {x: 12.5, y: 12.5, z: 7}
   m_Center: {x: 0, y: 0, z: 0}

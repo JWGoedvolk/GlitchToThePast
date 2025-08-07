@@ -16,7 +16,6 @@ namespace UI.FadingEffect.Boss
             bossHealth = FindObjectOfType<BossHealth>();
             
             bossHealth.OnDamagedAction += TakeDamage;
-            bossHealth.OnStageChangedAction += OnStageChanged;
 
             for (int i = 1; i < bossStageUIs.Count; i++)
             {
@@ -27,7 +26,6 @@ namespace UI.FadingEffect.Boss
         private void OnDisable()
         {
             bossHealth.OnDamagedAction -= TakeDamage;
-            bossHealth.OnStageChangedAction -= OnStageChanged;
         }
         
         public void TakeDamage(int amount)

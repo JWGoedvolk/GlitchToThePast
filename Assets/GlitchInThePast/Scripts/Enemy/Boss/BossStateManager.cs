@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /* Planning area
  * Current task: transition from idle to attacking
@@ -88,6 +90,11 @@ namespace Systems.Enemies.Boss
             
             // Wait for boss intro to finish
             SetTransitionTime();
+        }
+
+        private void OnDisable()
+        {
+            bossHealth.OnStageChangedAction -= NextPhase;
         }
 
         private void Update()

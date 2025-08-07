@@ -45,6 +45,10 @@ namespace Systems.Enemies
         [SerializeField] private UnityEvent onAllEnemiesKilled;
         public bool HasInvokedAllKilled = false;
         public bool HasInvokedAllSpawned = false;
+        
+        [Header("Debugging")]
+        [SerializeField] Vector3 meleeSize = Vector3.one;
+        [SerializeField] Vector3 rangeSize = Vector3.one;
 
         public void OnReset()
         {
@@ -191,13 +195,15 @@ namespace Systems.Enemies
             isActive = false;
         }
 
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
             // Spawn point visuals
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(meleeSpawnPoint.position, 0.1f);
+            Gizmos.DrawWireCube(meleeSpawnPoint.position, meleeSize);
             Gizmos.color = Color.yellow;
             Gizmos.DrawSphere(rangedSpawnPoint.position, 0.1f);
+            Gizmos.DrawWireCube(rangedSpawnPoint.position, rangeSize);
             
             // Cruising altitude visual
             RangedMovement movement = rangedEnemy.GetComponent<RangedMovement>();
