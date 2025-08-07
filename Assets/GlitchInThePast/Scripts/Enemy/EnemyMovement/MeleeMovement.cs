@@ -6,18 +6,27 @@ namespace Systems.Enemies
 {
     public class MeleeMovement : EnemyMovement
     {
+        [SerializeField] private SpriteRenderer enemySpriteRenderer;
+
         [Header("Melee Movement")]
         [SerializeField] private Vector3 standOffDistance;
         private Vector3 direction = Vector3.zero;
 
-        [Header("Melee Damage")] 
+        [Header("Melee Damage")]
         [SerializeField] private float damageInterval = 3f;
         private float damageTimer;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            if (enemySpriteRenderer is null) enemySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
+
         protected override void Update()
         {
             base.Update();
             direction = DirectionToPlayer;
-            
+
             bool isInStandoff = false;
             var hits = Physics.OverlapBox(transform.position, standOffDistance/2f);
             if (hits.Length > 0)
@@ -31,7 +40,7 @@ namespace Systems.Enemies
                     }
                 }
             }
-            
+
             // Standoff from the player
             if (!isInStandoff) // We are outside the standoff distance
             {
@@ -43,13 +52,18 @@ namespace Systems.Enemies
                 direction.x = 0;
                 direction.y = RB.velocity.y;
                 direction.z = 0;
-                
+
                 damageTimer += Time.deltaTime;
                 if (damageTimer >= damageInterval)
                 {
                     ClosestPlayer.GetComponent<PlayerHealthSystem>().TakeDamage(1);
                     damageTimer = 0f;
                 }
+            }
+
+            if (enemySpriteRenderer is not null && direction.x != 0)
+            {
+                enemySpriteRenderer.flipX = direction.x < 0;
             }
         }
 

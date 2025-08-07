@@ -156,14 +156,16 @@ namespace Player.GenericMovement
                 }
             }
 
-            bool isMoving = moveInput.magnitude > 0.1f;
-            if (animator != null)
+            if (healthSystem.currentHealth >= 1)
             {
-                animator.SetBool("isWalking", isMoving);
-                animator.SetBool("isRunning", isMoving && isRunning);
+                bool isMoving = moveInput.magnitude > 0.1f;
+                if (animator != null)
+                {
+                    animator.SetBool("isWalking", isMoving);
+                    animator.SetBool("isRunning", isMoving && isRunning);
+                }
+                characterController.Move(velocity * Time.deltaTime);
             }
-
-            characterController.Move(velocity * Time.deltaTime);
 
             if (spriteRenderer)
             {

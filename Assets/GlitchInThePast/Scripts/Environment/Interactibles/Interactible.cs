@@ -17,21 +17,21 @@ namespace JW.Roguelike.Objects.Interactibles
         [SerializeField] private GameObject interactPrompt;
         [SerializeField] private TMP_Text interactPromptText;
 
-        [Header("Detection")] 
+        [Header("Detection")]
         [SerializeField] private List<string> whitelist;
         [SerializeField] private List<GameObject> triggeringObjects;
-        
+
         [Header("Resettable Settings")]
         [SerializeField] private bool isResetting = false;
         [SerializeField] private bool defaultState = false;
         [SerializeField] private bool isActivated = false;
-        [SerializeField] [Min(0f)] private float resetAfter = 1f;
-        
+        [SerializeField][Min(0f)] private float resetAfter = 1f;
+
         [Header("State Materials")]
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private Material defaultStateMaterial;
         [SerializeField] private Material activeStateMaterial;
-        
+
         [Header("Events")]
         public UnityEvent OnInteraction;
         public UnityEvent OnDeactivated;
@@ -50,12 +50,13 @@ namespace JW.Roguelike.Objects.Interactibles
 
         private void Update()
         {
-            // Show a prompt for how to interact with this object
-            interactPrompt.SetActive(triggeringObjects.Count > 0);
-            
+            if (interactPrompt != null)
+                // Show a prompt for how to interact with this object
+                interactPrompt.SetActive(triggeringObjects.Count > 0);
+
             meshRenderer.material = isActivated ? activeStateMaterial : defaultStateMaterial;
         }
-        
+
         void Reset()
         {
             isActivated = defaultState;
@@ -69,7 +70,7 @@ namespace JW.Roguelike.Objects.Interactibles
                 if (!triggeringObjects.Contains(other.gameObject))
                 {
                     triggeringObjects.Add(other.gameObject);
-                    
+
                     // Set this object as the thing to interact with
                     PlayerInteractor playerInteractor = other.GetComponent<PlayerInteractor>();
                     if (playerInteractor != null)
@@ -95,7 +96,7 @@ namespace JW.Roguelike.Objects.Interactibles
                 if (triggeringObjects.Contains(other.gameObject))
                 {
                     triggeringObjects.Remove(other.gameObject);
-                    
+
                     // Make it so the play can no longer interact with this object
                     PlayerInteractor playerInteractor = other.GetComponent<PlayerInteractor>();
                     if (playerInteractor != null)

@@ -8,25 +8,27 @@ namespace Systems.Enemies
     [RequireComponent(typeof(SphereCollider))]
     public class RangedMovement : EnemyMovement
     {
+        [SerializeField] private SpriteRenderer enemySpriteRenderer;
+
         [SerializeField] private Vector3 movDir;
         [Header("Cruising Altitude")]
         public float CruisingAltitude; // This is the y position the enemies will try to fly at
         public float CruisingAltitudeError = 0.1f;
-        [Header("Attack Altitude")] 
+        [Header("Attack Altitude")]
         [SerializeField] private float attackAltitude = 1f;
         [Header("Player Detection")]
         private PlayerDetector playerDetection;
         [SerializeField] private Vector3 AttackSize = Vector3.one;
 
-        [Header("Strafing")] 
+        [Header("Strafing")]
         [SerializeField] private Transform strafePoint;
-        [Tooltip("This is the total distance of the strafe centered over the closest player's x position")] 
+        [Tooltip("This is the total distance of the strafe centered over the closest player's x position")]
         [SerializeField] private float strafeDistance = 0.5f;
         [SerializeField] private float startStrafeDistance = 0.6f;
         private int strafeDirection = 1;
-        
+
         public Transform TargetPlayer { get { return ClosestPlayer; } }
-        
+
         //[Header("State")]
         public enum State
         {
@@ -42,7 +44,7 @@ namespace Systems.Enemies
             base.Awake();
             SphereCollider circleCollider = GetComponent<SphereCollider>();
             circleCollider.isTrigger = true;
-            
+            if (enemySpriteRenderer is null) enemySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
             playerDetection = GetComponentInChildren<PlayerDetector>();
         }
 
@@ -59,7 +61,7 @@ namespace Systems.Enemies
         {
             // Update the closest player
             base.Update();
-            
+
             // Keep the player detector on the ground
             var hits = Physics.RaycastAll(transform.position, Vector3.down);
             if (hits.Length > 0)
@@ -71,17 +73,17 @@ namespace Systems.Enemies
                     {
                         continue;
                     }
-                    
+
                     // Set the player detector's position to be on the ground
                     playerDetection.transform.position = new Vector3(playerDetection.transform.position.x, hit.transform.position.y + .5f, playerDetection.transform.position.z);
                 }
             }
-            
+
             UpdateState(); // Update what state the enemy is in to know what behaviour to follow
-            
+
             // Always move towards the closest player
             movDir = DirectionToPlayer.normalized;
-            
+
             switch (currentState)
             {
                 case State.Chase: // Move on the same height towards the closest player
@@ -103,6 +105,11 @@ namespace Systems.Enemies
                 case State.Strafing:
                     Strafe();
                     break;
+            }
+
+            if (enemySpriteRenderer is not null && movDir.x != 0f)
+            {
+                enemySpriteRenderer.flipX = movDir.x < 0f;
             }
         }
 
@@ -144,7 +151,7 @@ namespace Systems.Enemies
                     strafeDirection = 1;
                 }
             }
-            
+
             movDir.y = 0f;
             movDir.x = strafeDirection;
         }
@@ -160,7 +167,7 @@ namespace Systems.Enemies
                 strafeDirection = 1; // Strafe right towards the player
             }
         }
-        
+
         private void FixedUpdate()
         {
             // Apply the movement on the normalized move direction
@@ -174,7 +181,7 @@ namespace Systems.Enemies
             if (playerDetection.IsPlayerInRange)
             {
                 newState = State.Attack;
-                
+
                 // Check if the player is in strafing distance and that we are at the attack altitude
                 if (Mathf.Abs(Vector3.Distance(strafePoint.position, playerDetection.ClosestPlayerInRange.transform.position)) <= strafeDistance + startStrafeDistance &&
                     transform.position.y <= attackAltitude)
@@ -183,13 +190,13 @@ namespace Systems.Enemies
                     {
                         return;
                     }
-                    
+
                     newState = State.Strafing;
                     if (newState != currentState) // Switch to strafing if it's not already
                     {
                         currentState = newState;
                         playerDetection.SetDetectionSize(AttackSize);
-                        Debug.Log($"{name} switched to Strafing mode");
+                        // Debug.Log($"{name} switched to Strafing mode");
 
                         if (playerDetection.ClosestPlayerInRange.transform.position.x < strafePoint.position.x) // if the player is to the left of us
                         {
@@ -202,11 +209,11 @@ namespace Systems.Enemies
                         return; // We don't care about continuing more logic for attack state switching so we leave
                     }
                 }
-                
+
                 // Switch to attack state if we are outside strafing distance and not already in attack state
                 if (newState != currentState)
                 {
-                    Debug.Log($"{name} switched to Attack mode");
+                    // Debug.Log($"{name} switched to Attack mode");
                     currentState = newState;
                     playerDetection.SetDetectionSize(AttackSize);
                 }
@@ -214,13 +221,13 @@ namespace Systems.Enemies
             else
             {
                 // If we ar not in range, are we at cruising altitude?
-                if (transform.position.y < CruisingAltitude - CruisingAltitudeError || 
+                if (transform.position.y < CruisingAltitude - CruisingAltitudeError ||
                     transform.position.y > CruisingAltitude + CruisingAltitudeError)
                 {
                     newState = State.AltitudeAdjustment;
                     if (newState != currentState)
                     {
-                        Debug.Log($"{name} switched to Altitude Adjustment mode");
+                        // Debug.Log($"{name} switched to Altitude Adjustment mode");
                         currentState = newState;
                         playerDetection.ResetDetectionSize();
                     }
@@ -230,14 +237,14 @@ namespace Systems.Enemies
                     newState = State.Chase;
                     if (newState != currentState)
                     {
-                        Debug.Log($"{name} switched to Chase mode");
+                        // Debug.Log($"{name} switched to Chase mode");
                         currentState = newState;
                         playerDetection.ResetDetectionSize();
                     }
                 }
             }
         }
-        
+
         private void OnDrawGizmosSelected()
         {
             // if (ClosestPlayer != null)
@@ -248,13 +255,13 @@ namespace Systems.Enemies
 
             // Move in this direction
             Debug.DrawRay(transform.position, movDir.normalized * MoveSpeed, Color.cyan);
-            
+
             // Closest player being targeted
             if (ClosestPlayer != null) Debug.DrawLine(transform.position, ClosestPlayer.position, Color.green);
-            
+
             // Cruising altitude difference
             Debug.DrawLine(Vector3.up * transform.position.y, Vector3.up * CruisingAltitude, Color.red);
-            
+
             // Strafing markers
             Debug.DrawLine(strafePoint.position, strafePoint.position + Vector3.left * strafeDistance, Color.yellow);
             Debug.DrawLine(strafePoint.position, strafePoint.position + -Vector3.left * strafeDistance, Color.yellow);

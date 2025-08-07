@@ -282,6 +282,7 @@ MonoBehaviour:
   Player2: {fileID: 0}
   Player1Health: {fileID: 0}
   Player2Health: {fileID: 0}
+  enemySpriteRenderer: {fileID: 1772180890220995112}
   movDir: {x: 0, y: 0, z: 0}
   CruisingAltitude: 0
   CruisingAltitudeError: 0.1
@@ -351,3 +352,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1772180890220995112}
+  isNotMoving: 0

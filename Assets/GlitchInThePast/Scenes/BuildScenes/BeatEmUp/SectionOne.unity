@@ -1491,6 +1491,7 @@ MonoBehaviour:
   sequenceToPlay: {fileID: 11400000, guid: 2e2a89f25858b1545a759cc8f5f7bc8c, type: 2}
   playSequenceAtStart: 0
   isReplayable: 0
+  requiresBothPlayers: 0
   playerCountText: {fileID: 0}
   OnSequenceEnd:
     m_PersistentCalls:
@@ -3417,6 +3418,7 @@ MonoBehaviour:
   sequenceToPlay: {fileID: 11400000, guid: 817cf1a93bd480147b289771ede298b0, type: 2}
   playSequenceAtStart: 0
   isReplayable: 0
+  requiresBothPlayers: 0
   playerCountText: {fileID: 0}
   OnSequenceEnd:
     m_PersistentCalls:
@@ -3633,6 +3635,7 @@ MonoBehaviour:
   sequenceToPlay: {fileID: 11400000, guid: 07111f867874356498d50a7d308a532f, type: 2}
   playSequenceAtStart: 0
   isReplayable: 0
+  requiresBothPlayers: 0
   playerCountText: {fileID: 0}
   OnSequenceEnd:
     m_PersistentCalls:
@@ -3706,6 +3709,7 @@ MonoBehaviour:
   sequenceToPlay: {fileID: 11400000, guid: aed9d3d116bfa8a4ab91b6ca77f5ca47, type: 2}
   playSequenceAtStart: 0
   isReplayable: 0
+  requiresBothPlayers: 0
   playerCountText: {fileID: 0}
   OnSequenceEnd:
     m_PersistentCalls:
@@ -7558,6 +7562,7 @@ MonoBehaviour:
   sequenceToPlay: {fileID: 11400000, guid: 3b268572fdb152044ad981ee2684a8f3, type: 2}
   playSequenceAtStart: 0
   isReplayable: 0
+  requiresBothPlayers: 0
   playerCountText: {fileID: 0}
   OnSequenceEnd:
     m_PersistentCalls:
@@ -10328,6 +10333,7 @@ MonoBehaviour:
   sequenceToPlay: {fileID: 11400000, guid: ef7104bbe095e4643a27a256e89af75f, type: 2}
   playSequenceAtStart: 1
   isReplayable: 0
+  requiresBothPlayers: 0
   playerCountText: {fileID: 0}
   OnSequenceEnd:
     m_PersistentCalls:
@@ -10934,6 +10940,10 @@ PrefabInstance:
     - target: {fileID: 666752679530851872, guid: cfc19c2ab9d104c48ba255146a2b2aa5, type: 3}
       propertyPath: m_Name
       value: P_TooltipSign
+      objectReference: {fileID: 0}
+    - target: {fileID: 3904256105654857554, guid: cfc19c2ab9d104c48ba255146a2b2aa5, type: 3}
+      propertyPath: requiresBothPlayers
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4156625507051760470, guid: cfc19c2ab9d104c48ba255146a2b2aa5, type: 3}
       propertyPath: m_Size.x

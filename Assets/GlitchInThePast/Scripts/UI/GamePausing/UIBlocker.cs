@@ -4,17 +4,24 @@ using UnityEngine.UI;
 public class UIBlocker : MonoBehaviour
 {
     [SerializeField] public Button[] mainMenuButtons;
+    private bool isButtonLocked;
 
+    private void Update()
+    {
+        if (isButtonLocked && Input.GetKeyDown(KeyCode.KeypadEnter))
+            Debug.Log("Buttons Are Locked!!");
+    }
 
     //lock the buttons reagrdign the ones int he serlized field
-    public void LockButton()
+    public void LockButtons()
     {
         foreach (var button in mainMenuButtons)
         {
             button.interactable = false;
+            isButtonLocked = true;
         }
 
-        Debug.Log("locked being called");
+        Debug.Log("locking the buttons.");
     }
 
     //unlock them
@@ -23,8 +30,9 @@ public class UIBlocker : MonoBehaviour
         foreach (var button in mainMenuButtons)
         {
             button.interactable = true;
+            isButtonLocked = false;
         }
 
-        Debug.Log("unlockign in progress");
+        Debug.Log("Unlocking the buttons.");
     }
 }

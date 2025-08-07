@@ -130,6 +130,7 @@ MonoBehaviour:
   Player2: {fileID: 0}
   Player1Health: {fileID: 0}
   Player2Health: {fileID: 0}
+  enemySpriteRenderer: {fileID: 1772180890220995112}
   standOffDistance: {x: 2, y: 2, z: 1}
   damageInterval: 3
 --- !u!54 &7392823627235309436
@@ -157,7 +158,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &3719590736116006966
 BoxCollider:
@@ -193,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1772180890220995112}
+  isNotMoving: 0
 --- !u!65 &420046438400368573
 BoxCollider:
   m_ObjectHideFlags: 0
