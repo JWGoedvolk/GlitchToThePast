@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4245184345691448312}
+  isNotMoving: 0
 --- !u!1 &3982303003054045252
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +110,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7276517022794321912}
   - component: {fileID: 5840512959812250154}
-  - component: {fileID: 3315951950840007766}
   m_Layer: 0
   m_Name: P_Tob
   m_TagString: Untagged
@@ -141,21 +141,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3982303003054045252}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &3315951950840007766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3982303003054045252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4246582b94f10a946b131fa1d9b9065b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rumbleDuration: 0.5
-  lowFrequencyIntensity: 0.5
-  highFrequencyIntensity: 0.8
 --- !u!1 &7544389415627691498
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 8323151278664853343}
+  isNotMoving: 0
 --- !u!1 &8579127009673012924
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +362,6 @@ GameObject:
   - component: {fileID: 3309280108719559094}
   - component: {fileID: 686190289503579459}
   - component: {fileID: 4511008773222892832}
-  - component: {fileID: 8131832470733077970}
   m_Layer: 0
   m_Name: TobbysCollider
   m_TagString: Player2
@@ -574,33 +559,33 @@ MonoBehaviour:
   onDashStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7183805979929903416}
-        m_TargetAssemblyTypeName: PlayerHealthSystem, Assembly-CSharp
-        m_MethodName: StartInvulnerability
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
   onDashEnd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7183805979929903416}
-        m_TargetAssemblyTypeName: PlayerHealthSystem, Assembly-CSharp
-        m_MethodName: StopInvulnerability
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
 --- !u!54 &1277676373348698392
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -700,21 +685,3 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8131832470733077970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8579127009673012924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89fe2cb64346d3c479159499ce7e83eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitSFX:
-  - {fileID: 8300000, guid: 262447ea514190d41ba4363120c7f281, type: 3}
-  - {fileID: 8300000, guid: c061a706c432cf14ab5d5c382e12569f, type: 3}
-  deathSFX: {fileID: 8300000, guid: 0f209d7048688e5408bb54da2363a291, type: 3}
-  audioSource: {fileID: 0}
-  weaponSFX: []

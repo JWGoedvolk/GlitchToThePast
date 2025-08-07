@@ -15,7 +15,7 @@ namespace Systems.Enemies
         public float CruisingAltitude; // This is the y position the enemies will try to fly at
         public float CruisingAltitudeError = 0.1f;
         [Header("Attack Altitude")]
-        [SerializeField] private float attackAltitude = 1f;
+        [SerializeField] public float AttackAltitude = 1f;
         [Header("Player Detection")]
         private PlayerDetector playerDetection;
         [SerializeField] private Vector3 AttackSize = Vector3.one;
@@ -119,7 +119,7 @@ namespace Systems.Enemies
         /// </summary>
         private void Attack()
         {
-            if (transform.position.y > attackAltitude) // Drop to attack altitude
+            if (transform.position.y > AttackAltitude) // Drop to attack altitude
             {
                 movDir.y = -1f;
             }
@@ -184,7 +184,7 @@ namespace Systems.Enemies
 
                 // Check if the player is in strafing distance and that we are at the attack altitude
                 if (Mathf.Abs(Vector3.Distance(strafePoint.position, playerDetection.ClosestPlayerInRange.transform.position)) <= strafeDistance + startStrafeDistance &&
-                    transform.position.y <= attackAltitude)
+                    transform.position.y <= AttackAltitude)
                 {
                     if (currentState == State.Strafing)
                     {

@@ -34,6 +34,7 @@ namespace Systems.Enemies
         public int BossRangedSpawnCount = 5;
         [SerializeField] private int maxRangedCount = 5;
         [SerializeField] private Transform rangedCruisingAltitude;
+        [SerializeField] private Transform attackAltitude;
 
         // Event
         [SerializeField] private UnityEvent onEnemySpawned;
@@ -169,6 +170,7 @@ namespace Systems.Enemies
             enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Ranged;
             RangedMovement movement = newRanged.GetComponent<RangedMovement>();
             movement.CruisingAltitude = rangedCruisingAltitude.position.y;
+            movement.AttackAltitude = attackAltitude.position.y;
             if (IsRangedBossSpawner)
             {
                 BossRangedSpawnCount--;

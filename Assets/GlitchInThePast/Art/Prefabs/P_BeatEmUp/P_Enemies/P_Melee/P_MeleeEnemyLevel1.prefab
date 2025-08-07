@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 6005246739596911924}
   - component: {fileID: 1712338682114307313}
   - component: {fileID: 7392823627235309436}
-  - component: {fileID: 3719590736116006966}
   - component: {fileID: 6860754596539027840}
   - component: {fileID: 420046438400368573}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: P_MeleeEnemyLevel1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -132,7 +131,6 @@ MonoBehaviour:
   Player2Health: {fileID: 0}
   enemySpriteRenderer: {fileID: 1772180890220995112}
   standOffDistance: {x: 2, y: 2, z: 1}
-  groundCheckDistance: 1.62
   damageInterval: 3
 --- !u!54 &7392823627235309436
 Rigidbody:
@@ -161,27 +159,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!65 &3719590736116006966
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6650723071496413354}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 9.3, y: 17.23, z: 2.13}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6860754596539027840
 MonoBehaviour:
   m_ObjectHideFlags: 0
