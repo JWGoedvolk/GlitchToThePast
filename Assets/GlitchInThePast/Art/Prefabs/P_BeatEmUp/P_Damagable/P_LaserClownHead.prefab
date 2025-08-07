@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4032360055059025354}
   m_Layer: 7
-  m_Name: P_ClownHead
+  m_Name: P_LaserClownHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
