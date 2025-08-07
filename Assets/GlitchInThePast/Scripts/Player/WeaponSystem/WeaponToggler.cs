@@ -1,4 +1,4 @@
-using JW.Objects;
+using JW.BeatEmUp.Objects;
 using UnityEngine;
 
 namespace GlitchInThePast.Scripts.Player

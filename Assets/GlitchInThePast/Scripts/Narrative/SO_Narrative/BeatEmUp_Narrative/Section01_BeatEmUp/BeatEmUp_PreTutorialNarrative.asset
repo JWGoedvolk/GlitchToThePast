@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: BeatEmUp_PreTutorialNarrative
   m_EditorClassIdentifier: 
   stepCount: 26
-  isSkippable: 0101010101010101010101010101010101010101010101010101
+  isSkippable: 01010101010101010101010101010101010101010101010101
   narrativeTexts:
   - "[Bob\u2019s Apartment - At Night]"
-  - 'A dimly lit room cluttered with snack wrappers, empty cans and multiple monitors
-    displaying endless code on them. Bob is shown seated in front of his monitors,
-    scrolling through his freelance work, when he hears his phone ping. '
   - '[Email Notification] | Urgent: Games Restoration Contract - PixelRise Studios. '
   - "(Reads the email aloud, his tone is sarcastic) \u201CDear Former PixelRise Developer,
     We invite you to assist in restoring several games to their prime condition.
@@ -65,7 +62,6 @@ MonoBehaviour:
   speakerIcons:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
   - {fileID: 21300000, guid: d281410516f9eee429f02166d7ff798d, type: 3}
   - {fileID: 0}
@@ -92,7 +88,6 @@ MonoBehaviour:
   speakerNames:
   - 
   - 
-  - 
   - Bob
   - Bob
   - 
@@ -117,22 +112,21 @@ MonoBehaviour:
   - 
   - <System>
   optionalImages:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 28f88809a86d37843978aabd974145cd, type: 3}
   - {fileID: 21300000, guid: f51815eb121ccae4c8e807e014f56366, type: 3}
+  - {fileID: 21300000, guid: 28f88809a86d37843978aabd974145cd, type: 3}
+  - {fileID: 21300000, guid: 28f88809a86d37843978aabd974145cd, type: 3}
+  - {fileID: 21300000, guid: 7c558bd84514fbd40a15a0428223214c, type: 3}
+  - {fileID: 21300000, guid: 7c558bd84514fbd40a15a0428223214c, type: 3}
+  - {fileID: 21300000, guid: 7643258355d7afe4e825d4f464aeeff3, type: 3}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 21300000, guid: 1bdab7708382a7e43b6de62e5c149989, type: 3}
+  - {fileID: 21300000, guid: 1bdab7708382a7e43b6de62e5c149989, type: 3}
+  - {fileID: 21300000, guid: 1bdab7708382a7e43b6de62e5c149989, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: f11644465c7f21b47a10b0c9ca84d1f3, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

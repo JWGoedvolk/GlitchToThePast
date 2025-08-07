@@ -11,7 +11,7 @@ TagManager:
   - Enemy
   - Hazard
   - HealthUp
-  - PuzzleBox
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -46,9 +46,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: New Layer 1
+  - name: BeforeDefault
     uniqueID: 3044805287
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: AfterDefeault
+    uniqueID: 2521449465
     locked: 0

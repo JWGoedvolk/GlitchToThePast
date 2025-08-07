@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8834217309014185563}
-  - component: {fileID: 4857729404156320131}
   - component: {fileID: 4245184345691448312}
   - component: {fileID: 3692559824405975367}
   m_Layer: 0
@@ -28,33 +27,13 @@ Transform:
   m_GameObject: {fileID: 2929214977873594108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.346, y: 0, z: 0}
   m_LocalScale: {x: 0.016963039, y: 0.016963039, z: 0.016963039}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 2025892952744937449}
   m_Father: {fileID: 874621403081017318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &4857729404156320131
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2929214977873594108}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.49999997
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &4245184345691448312
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -177,37 +156,6 @@ MonoBehaviour:
   rumbleDuration: 0.5
   lowFrequencyIntensity: 0.5
   highFrequencyIntensity: 0.8
---- !u!1 &4823359507561651016
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2280682363573972676}
-  m_Layer: 0
-  m_Name: AttackTransforms
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2280682363573972676
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4823359507561651016}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.14, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6390881012933782396}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &7544389415627691498
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 874621403081017318}
-  - component: {fileID: 5416515543891542906}
+  - component: {fileID: 7879771333231696679}
   m_Layer: 0
   m_Name: RangedRotator
   m_TagString: Untagged
@@ -234,14 +182,14 @@ Transform:
   m_GameObject: {fileID: 7544389415627691498}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.382, z: 0}
+  m_LocalPosition: {x: 0, y: 0.301, z: -0.017}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8834217309014185563}
   m_Father: {fileID: 6390881012933782396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5416515543891542906
+--- !u!114 &7879771333231696679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,6 +205,40 @@ MonoBehaviour:
   isGamepad: 0
   controllerDeadZone: 0
   controllerRotationSmoothing: 1000
+  spriteRenderer: {fileID: 4245184345691448312}
+  rightSprite: {fileID: 21300000, guid: 580167f2a85909947b125d79516fd125, type: 3}
+  leftSprite: {fileID: 21300000, guid: 219fbe280d5177745aa090a385f0b0f5, type: 3}
+--- !u!1 &8134715591524518181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2025892952744937449}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2025892952744937449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134715591524518181}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.88, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8834217309014185563}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8390149993924556420
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +398,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 42270690061297230}
-  - {fileID: 2280682363573972676}
   - {fileID: 874621403081017318}
   m_Father: {fileID: 7276517022794321912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -444,7 +425,7 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5416515543891542906}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GlitchInThePast.Scripts.Player.Rotator, Assembly-CSharp
         m_MethodName: OnDeviceChanged
         m_Mode: 0
@@ -528,19 +509,7 @@ MonoBehaviour:
   isInvincible: 0
   onDamageTaken:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3315951950840007766}
-        m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
-        m_MethodName: TriggerRumble
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -600,9 +569,8 @@ MonoBehaviour:
   animator: {fileID: 1434083449806660333}
   isMovementLocked: 1
   healthSystem: {fileID: 0}
-  rotator: {fileID: 5416515543891542906}
+  rotator: {fileID: 0}
   weaponSystem: {fileID: 686190289503579459}
-  attackTransformHolder: {fileID: 2280682363573972676}
   onDashStart:
     m_PersistentCalls:
       m_Calls:
@@ -711,7 +679,7 @@ MonoBehaviour:
   meleeAttackRange: 2
   meleeRechargeTime: 3
   meleeDamage: 1
-  rangedAttackSpawnPoint: {fileID: 8834217309014185563}
+  rangedAttackSpawnPoint: {fileID: 2025892952744937449}
   projectilePrefab: {fileID: 1662423977701543809, guid: 9a7e98309550f934abb9b10bab6842ac, type: 3}
   rangedRechargeTime: 3
   rangedDamage: 1

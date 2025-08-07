@@ -250,7 +250,7 @@ public class MainMenuButtons : MonoBehaviour
         if (anyPannelActive)
         {
             //if they are then call the fucntion from UIBlocker.cs
-            buttonLocker?.LockButton();
+            buttonLocker?.LockButtons();
         }
         else
         {

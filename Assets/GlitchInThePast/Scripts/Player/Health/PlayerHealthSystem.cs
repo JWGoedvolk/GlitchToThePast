@@ -85,7 +85,10 @@ namespace Player.Health
             }
             else if (healableTags.Contains(collision.tag))
             {
-                TakeDamage(-1); // Heal by 1
+                if (currentHealth != maxHealth)
+                {
+                    TakeDamage(-1); // Heal by 1
+                }
             }
         }
 
@@ -110,6 +113,7 @@ namespace Player.Health
                         if (animator != null)
                         {
                             animator.SetBool("isGettingHit", true);
+                            animator.SetBool("isDashing", false);
                             Invoke("StopHitAnimation", 0.3f);
                         }
                     }

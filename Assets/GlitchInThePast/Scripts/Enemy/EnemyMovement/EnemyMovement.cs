@@ -1,3 +1,5 @@
+using Player.Health;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +12,10 @@ namespace Systems.Enemies
         public Rigidbody RB;
         public GameObject Player1;
         public GameObject Player2;
+        public PlayerHealthSystem Player1Health;
+        public PlayerHealthSystem Player2Health;
         protected Transform ClosestPlayer;
+        protected Vector3 DirectionToPlayer;
 
         protected virtual void Awake()
         {
@@ -18,8 +23,16 @@ namespace Systems.Enemies
 
             foreach (var pi in PlayerInput.all)
             {
-                if (pi.playerIndex == 0) Player1 = pi.gameObject;
-                else if (pi.playerIndex == 1) Player2 = pi.gameObject;
+                if (pi.playerIndex == 0)
+                {
+                    Player1 = pi.gameObject;
+                    Player1Health  = Player1.GetComponent<PlayerHealthSystem>();
+                }
+                else if (pi.playerIndex == 1)
+                {
+                    Player2 = pi.gameObject;
+                    Player2Health  = Player2.GetComponent<PlayerHealthSystem>();
+                }
             }
         }
 
@@ -28,14 +41,27 @@ namespace Systems.Enemies
             GameObject target = null;
             if (Player1 != null && Player2 != null)
             {
-                float d1 = Vector2.Distance(transform.position, Player1.transform.position);
-                float d2 = Vector2.Distance(transform.position, Player2.transform.position);
-                target = d1 < d2 ? Player1 : Player2;
+                if (Player1Health.currentHealth == 0) // Player 1 is dead so target player 2
+                {
+                    target = Player2;
+                }
+                else if (Player2Health.currentHealth == 0) // Player 2 is dead so target player 1
+                {
+                    target = Player1;
+                }
+                else
+                {
+                    float d1 = Vector2.Distance(transform.position, Player1.transform.position);
+                    float d2 = Vector2.Distance(transform.position, Player2.transform.position);
+                    target = d1 < d2 ? Player1 : Player2;
+                }
             }
             else if (Player1 != null) target = Player1;
             else if (Player2 != null) target = Player2;
 
             ClosestPlayer = target.transform;
+            
+            DirectionToPlayer = ClosestPlayer.position - transform.position;
         }
     }
 }

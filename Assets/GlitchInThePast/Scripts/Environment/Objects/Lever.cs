@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using JW.Objects.Interactibles;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
+using JW.Roguelike.Objects.Interactibles;
 
-namespace JW.Objects.Objects
+namespace JW.Roguelike.Objects.Objects
 {
     public class Lever : Interactible
     { 

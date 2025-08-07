@@ -1,5 +1,5 @@
 using UnityEngine;
-using JW.Objects;
+using JW.BeatEmUp.Objects;
 using Systems.Enemies;
 using UnityEngine.Events;
 
@@ -15,7 +15,7 @@ namespace GlitchInThePast.Scripts.Player
         {
             Damage = damage;
             rb = GetComponent<Rigidbody>();
-            rb.velocity = transform.forward * speed;
+            rb.velocity = transform.right * speed;
         }
         
         public override void OnTrigger(GameObject other)

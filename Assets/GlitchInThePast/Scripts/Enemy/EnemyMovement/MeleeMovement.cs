@@ -1,40 +1,81 @@
 using System;
+using Player.Health;
 using UnityEngine;
 
 namespace Systems.Enemies
 {
     public class MeleeMovement : EnemyMovement
     {
+        [SerializeField] private SpriteRenderer enemySpriteRenderer;
+
         [Header("Melee Movement")]
-        [SerializeField] private float standOffDistance;
+        [SerializeField] private Vector3 standOffDistance;
+        private Vector3 direction = Vector3.zero;
+
+        [Header("Melee Damage")]
+        [SerializeField] private float damageInterval = 3f;
+        private float damageTimer;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            if (enemySpriteRenderer is null) enemySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
+
         protected override void Update()
         {
             base.Update();
-            
-            float distance = Vector2.Distance(transform.position, ClosestPlayer.transform.position);
-            
-            if (distance > standOffDistance)
+            direction = DirectionToPlayer;
+
+            bool isInStandoff = false;
+            var hits = Physics.OverlapBox(transform.position, standOffDistance/2f);
+            if (hits.Length > 0)
             {
-                float direction = 0f;
-                if (ClosestPlayer.transform.position.x < transform.position.x) // Player is to the left
+                foreach (var hit in hits)
                 {
-                    direction = 1;
+                    if (hit.tag.Contains("Player"))
+                    {
+                        isInStandoff = true;
+                        break;
+                    }
                 }
-                else
-                {
-                    direction = -1;
-                }
-                RB.velocity = new Vector2(direction * MoveSpeed, RB.velocity.y);
             }
-            else
+
+            // Standoff from the player
+            if (!isInStandoff) // We are outside the standoff distance
             {
-                RB.velocity = new Vector2(0f, RB.velocity.y);
+                direction = new Vector3(Mathf.Sign(DirectionToPlayer.x), RB.velocity.y, DirectionToPlayer.z);
+                damageTimer = 0f;
             }
+            else // We are inside the standoff distance
+            {
+                direction.x = 0;
+                direction.y = RB.velocity.y;
+                direction.z = 0;
+
+                damageTimer += Time.deltaTime;
+                if (damageTimer >= damageInterval)
+                {
+                    ClosestPlayer.GetComponent<PlayerHealthSystem>().TakeDamage(1);
+                    damageTimer = 0f;
+                }
+            }
+
+            if (enemySpriteRenderer is not null && direction.x != 0)
+            {
+                enemySpriteRenderer.flipX = direction.x < 0;
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            direction = direction.normalized * MoveSpeed;
+            RB.velocity = direction;
         }
 
         private void OnDrawGizmosSelected()
         {
-            Gizmos.DrawWireSphere(transform.position, standOffDistance);
+            Gizmos.DrawWireCube(transform.position, standOffDistance);
         }
     }
 }

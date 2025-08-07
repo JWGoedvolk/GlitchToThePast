@@ -8,31 +8,31 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-namespace JW.Objects.Interactibles
+namespace JW.Roguelike.Objects.Interactibles
 {
     [RequireComponent(typeof(BoxCollider))]
     public class Interactible : MonoBehaviour
     {
-        // Preview Pop Up
+        [Header("UI")]
         [SerializeField] private GameObject interactPrompt;
         [SerializeField] private TMP_Text interactPromptText;
 
-        // Detection
+        [Header("Detection")]
         [SerializeField] private List<string> whitelist;
         [SerializeField] private List<GameObject> triggeringObjects;
-        
-        // Auto Resetting
+
+        [Header("Resettable Settings")]
         [SerializeField] private bool isResetting = false;
         [SerializeField] private bool defaultState = false;
         [SerializeField] private bool isActivated = false;
-        [SerializeField] [Min(0f)] private float resetAfter = 1f;
-        
-        // State Materials
+        [SerializeField][Min(0f)] private float resetAfter = 1f;
+
+        [Header("State Materials")]
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private Material defaultStateMaterial;
         [SerializeField] private Material activeStateMaterial;
-        
-        // Events
+
+        [Header("Events")]
         public UnityEvent OnInteraction;
         public UnityEvent OnDeactivated;
         public UnityEvent OnReset;
@@ -45,18 +45,18 @@ namespace JW.Objects.Interactibles
 
         private void OnEnable()
         {
-            if (meshRenderer == null) meshRenderer = GetComponent<MeshRenderer>();
             isActivated = defaultState;
         }
 
         private void Update()
         {
-            // Show a prompt for how to interact with this object
-            interactPrompt.SetActive(triggeringObjects.Count > 0);
-            
+            if (interactPrompt != null)
+                // Show a prompt for how to interact with this object
+                interactPrompt.SetActive(triggeringObjects.Count > 0);
+
             meshRenderer.material = isActivated ? activeStateMaterial : defaultStateMaterial;
         }
-        
+
         void Reset()
         {
             isActivated = defaultState;
@@ -70,7 +70,7 @@ namespace JW.Objects.Interactibles
                 if (!triggeringObjects.Contains(other.gameObject))
                 {
                     triggeringObjects.Add(other.gameObject);
-                    
+
                     // Set this object as the thing to interact with
                     PlayerInteractor playerInteractor = other.GetComponent<PlayerInteractor>();
                     if (playerInteractor != null)
@@ -96,7 +96,7 @@ namespace JW.Objects.Interactibles
                 if (triggeringObjects.Contains(other.gameObject))
                 {
                     triggeringObjects.Remove(other.gameObject);
-                    
+
                     // Make it so the play can no longer interact with this object
                     PlayerInteractor playerInteractor = other.GetComponent<PlayerInteractor>();
                     if (playerInteractor != null)

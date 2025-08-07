@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 686190289503579459}
   - component: {fileID: 76998860577032550}
   - component: {fileID: 7475603473411071561}
+  - component: {fileID: 5152040975991687870}
   m_Layer: 0
   m_Name: BobsCollider
   m_TagString: Player1
@@ -639,7 +640,7 @@ MonoBehaviour:
         m_MethodName: set_material
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: 0f97e1e1a0a51944ea828ad1453cb4c5, type: 2}
+          m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -657,7 +658,7 @@ MonoBehaviour:
         m_MethodName: set_material
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: 04375f92910aa964280bdda67f7e53d3, type: 2}
+          m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -716,3 +717,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a5a54f585c04cf14f94f0e3d077e440c, type: 3}
   - {fileID: 8300000, guid: 5ee50fb5470fe8a4ebfff4f4c65445c1, type: 3}
   - {fileID: 8300000, guid: fc0d70f479fbfb9489c57deda777af5a, type: 3}
+--- !u!114 &5152040975991687870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579127009673012924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30c7347ff194e1e8a578d2c5b172c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftPoint: {fileID: 0}
+  RightPoint: {fileID: 0}
