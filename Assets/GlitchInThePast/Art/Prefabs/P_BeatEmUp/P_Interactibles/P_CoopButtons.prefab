@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 7460908779599220504}
   - component: {fileID: 1507452806725202492}
   m_Layer: 0
-  m_Name: Button1
+  m_Name: wda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,7 +229,6 @@ MonoBehaviour:
   Whitelist:
   - Player1
   TriggeringObjects: []
-  IsTriggering: 0
   onTrigger:
     m_PersistentCalls:
       m_Calls:
@@ -274,7 +273,7 @@ GameObject:
   - component: {fileID: 1846848552316220546}
   - component: {fileID: 9080978530645668887}
   m_Layer: 0
-  m_Name: Button2
+  m_Name: wda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,7 +409,6 @@ MonoBehaviour:
   Whitelist:
   - Player2
   TriggeringObjects: []
-  IsTriggering: 0
   onTrigger:
     m_PersistentCalls:
       m_Calls:

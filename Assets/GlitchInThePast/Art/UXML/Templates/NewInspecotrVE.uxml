@@ -1,6 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <ui:VisualElement style="flex-grow: 1;">
-        <ui:VisualElement name="Vars" style="flex-grow: 1;" />
-        <ui:VisualElement name="Events" style="flex-grow: 1;" />
-    </ui:VisualElement>
-</ui:UXML>

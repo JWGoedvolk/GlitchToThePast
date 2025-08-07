@@ -1,13 +1,12 @@
-using System.Runtime.CompilerServices;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace JW.Roguelike.Objects.Interactibles
+namespace JW.BeatEmUp.Objects.Interactibles
 {
     public class CoopButtonsInteractible : MonoBehaviour
     {
-        [Header("Buttons")] 
+        [Header("Buttons")]
         [SerializeField] private CustomTriggerer button1;
         [SerializeField] private CustomTriggerer button2;
 

@@ -110,36 +110,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite01
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2131
-        width: 534
-        height: 488
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ac02628dadb5c4e4c908df31d17072d7
-      internalID: -249430071
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: TobbyShooting_SpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 3796
-        y: 2133
-        width: 534
-        height: 488
+        x: 320
+        y: 540
+        width: 320
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -155,12 +134,12 @@ TextureImporter:
       name: TobbyShooting_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 1244
-        y: 2140
-        width: 534
-        height: 488
+        x: 640
+        y: 540
+        width: 320
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,12 +155,12 @@ TextureImporter:
       name: TobbyShooting_SpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 2522
-        y: 2133
-        width: 534
-        height: 488
+        x: 960
+        y: 540
+        width: 320
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,12 +176,12 @@ TextureImporter:
       name: TobbyShooting_SpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 3789
-        y: 1449
-        width: 534
-        height: 488
+        x: 0
+        y: 360
+        width: 320
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,12 +197,12 @@ TextureImporter:
       name: TobbyShooting_SpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 3785
-        y: 722
-        width: 534
-        height: 488
+        x: 320
+        y: 360
+        width: 320
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -239,12 +218,12 @@ TextureImporter:
       name: TobbyShooting_SpriteSheet_6
       rect:
         serializedVersion: 2
-        x: 2539
-        y: 1443
-        width: 534
-        height: 488
+        x: 640
+        y: 360
+        width: 320
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -260,12 +239,12 @@ TextureImporter:
       name: TobbyShooting_SpriteSheet_7
       rect:
         serializedVersion: 2
-        x: 1247
-        y: 1443
-        width: 534
-        height: 488
+        x: 960
+        y: 360
+        width: 320
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -282,11 +261,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1429
-        width: 534
-        height: 488
+        y: 180
+        width: 320
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -302,12 +281,12 @@ TextureImporter:
       name: TobbyShooting_SpriteSheet_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 708
-        width: 534
-        height: 488
+        x: 320
+        y: 180
+        width: 320
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -323,12 +302,12 @@ TextureImporter:
       name: TobbyShooting_SpriteSheet_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 534
-        height: 488
+        x: 640
+        y: 180
+        width: 320
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -344,12 +323,12 @@ TextureImporter:
       name: TobbyShooting_SpriteSheet_11
       rect:
         serializedVersion: 2
-        x: 1274
-        y: 715
-        width: 534
-        height: 488
+        x: 960
+        y: 180
+        width: 320
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -365,12 +344,12 @@ TextureImporter:
       name: TobbyShooting_SpriteSheet_12
       rect:
         serializedVersion: 2
-        x: 2559
-        y: 706
-        width: 534
-        height: 488
+        x: 0
+        y: 0
+        width: 320
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -378,6 +357,48 @@ TextureImporter:
       bones: []
       spriteID: c6073b6353056d841bda5be8bba41e12
       internalID: -1026952433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TobbyShooting_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 540
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c32edda5bebb944978fc4c6b05126c
+      internalID: -477766557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TobbyShooting_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 437d55b9c090f784d96ff6d495f68c44
+      internalID: -1279141944
       vertices: []
       indices: 
       edges: []
@@ -393,12 +414,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite01: -249430071
       TobbyShooting_SpriteSheet_0: -477766557
       TobbyShooting_SpriteSheet_1: 578786401
       TobbyShooting_SpriteSheet_10: -105331586
       TobbyShooting_SpriteSheet_11: 1094444901
       TobbyShooting_SpriteSheet_12: -1026952433
+      TobbyShooting_SpriteSheet_13: -1279141944
       TobbyShooting_SpriteSheet_2: -328807161
       TobbyShooting_SpriteSheet_3: 694144454
       TobbyShooting_SpriteSheet_4: -790146368

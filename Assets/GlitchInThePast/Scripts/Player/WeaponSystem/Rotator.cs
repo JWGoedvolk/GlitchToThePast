@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,57 +5,131 @@ namespace GlitchInThePast.Scripts.Player
 {
     public class Rotator : MonoBehaviour
     {
+        #region Variables
         [Header("General")]
         private Vector2 aimInput;
         [SerializeField] private Transform target;
-        
+
         [Header("Controller")]
         [SerializeField] private bool isGamepad;
         [SerializeField] private float controllerDeadZone = 0.01f;
         [SerializeField] private float controllerRotationSmoothing = 1000f;
 
+        [Header("Visual / Facing")]
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Sprite rightSprite;
+        [SerializeField] private Sprite leftSprite;
+
+        public int FacingDirection { get; private set; } = 1;
+        private int lastAppliedFacing = 1;
+        #endregion
+
         private void Update()
         {
+            int derivedFacing = DeriveFacingDirection();
+
+            if (derivedFacing != lastAppliedFacing)
+            {
+                FacingDirection = derivedFacing;
+                UpdateSpriteVisuals(FacingDirection);
+                lastAppliedFacing = FacingDirection;
+            }
+
             if (!isGamepad)
             {
-                Ray ray = Camera.main.ScreenPointToRay(aimInput);
-                Plane groundPlane = new Plane(Vector3.forward, Vector3.zero);
-                float rayDistance;
+                if (aimInput == Vector2.zero)
+                    return;
 
-                if (groundPlane.Raycast(ray, out rayDistance))
+                Ray ray = Camera.main.ScreenPointToRay(aimInput);
+                Plane groundPlane = new Plane(Vector3.back, Vector3.zero);
+                if (groundPlane.Raycast(ray, out float rayDistance))
                 {
-                    Vector3 point = ray.GetPoint(rayDistance);
-                    Vector3 heightCorrectedPoint = new Vector3(point.x, point.y, transform.position.z);
-                    transform.LookAt(heightCorrectedPoint, Vector3.forward);
+                    Vector3 worldPoint = ray.GetPoint(rayDistance);
+                    Vector3 playerDirection = worldPoint - transform.position;
+
+                    if (playerDirection.sqrMagnitude > 0.0001f)
+                    {
+                        float angle = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg;
+                        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+                    }
                 }
             }
             else
             {
-                if (Mathf.Abs(aimInput.x) > controllerDeadZone || Mathf.Abs(aimInput.y) > controllerDeadZone)
+                if (aimInput.magnitude > controllerDeadZone)
                 {
-                    Vector3 playerDirection = Vector3.right * aimInput.x + Vector3.up * aimInput.y;
-
-                    if (playerDirection.sqrMagnitude > 0f)
-                    {
-                        Quaternion targetRotation = Quaternion.LookRotation(playerDirection, Vector3.forward);
-                        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, controllerRotationSmoothing * Time.deltaTime);
-                    }
+                    float angle = Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg;
+                    Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, controllerRotationSmoothing * Time.deltaTime);
                 }
             }
-            
-            target.position = transform.position + transform.forward * 1f; // The target transform is the transform from which our projectiles will come so it needs to always be updated
+
+            if (target != null)
+                target.position = transform.position + transform.right * 1f;
         }
 
-        public void OnAim(Vector2 aim)
+        #region Public Functions
+        public void OnAim(InputAction.CallbackContext ctx)
         {
-            aimInput = aim;
+            Vector2 aimValue = ctx.ReadValue<Vector2>();
+            aimInput = aimValue;
+            isGamepad = ctx.control.device is Gamepad;
+        }
+        #endregion
+
+        #region Private Functions
+        /// <summary>
+        /// Derives left/right facing from input: stick horizontal or mouse position.
+        /// </summary>
+        private int DeriveFacingDirection()
+        {
+            if (isGamepad && Mathf.Abs(aimInput.x) > controllerDeadZone)
+            {
+                return aimInput.x > 0f ? 1 : -1;
+            }
+
+            if (!isGamepad && aimInput != Vector2.zero)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(aimInput);
+                Plane groundPlane = new Plane(Vector3.back, Vector3.zero);
+                if (groundPlane.Raycast(ray, out float rayDistance))
+                {
+                    Vector3 worldPoint = ray.GetPoint(rayDistance);
+                    float dx = worldPoint.x - transform.position.x;
+                    if (Mathf.Abs(dx) > 0.01f)
+                        return dx > 0f ? 1 : -1;
+                }
+            }
+
+            return FacingDirection;
         }
 
-        void OnDrawGizmos()
+        /// <summary>
+        /// Updates sprite visuals to suit the direction the player is facing.
+        /// </summary>
+        private void UpdateSpriteVisuals(int direction)
+        {
+            if (spriteRenderer == null) return;
+
+            if (direction == 1)
+            {
+                if (spriteRenderer.sprite != rightSprite)
+                    spriteRenderer.sprite = rightSprite;
+            }
+            else if (direction == -1)
+            {
+                if (spriteRenderer.sprite != leftSprite)
+                    spriteRenderer.sprite = leftSprite;
+            }
+        }
+
+        private void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
-            Debug.DrawRay(transform.position, transform.forward);
-            Debug.DrawRay(target.position, target.forward);
+            Gizmos.DrawRay(transform.position, transform.right * 1.5f);
+            if (target != null)
+                Gizmos.DrawRay(target.position, target.right * 1.5f);
         }
+        #endregion
     }
 }
