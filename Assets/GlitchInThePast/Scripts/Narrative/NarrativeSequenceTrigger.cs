@@ -12,7 +12,8 @@ namespace Narrative
         public NarrativeSequence sequenceToPlay;
         [SerializeField] private bool playSequenceAtStart = false;
         [SerializeField] private bool isReplayable;
-        [SerializeField] private TMP_Text playerCountText; 
+        [SerializeField] private bool requiresBothPlayers;
+        [SerializeField] private TMP_Text playerCountText;
 
         public UnityEvent OnSequenceEnd;
         private bool triggeredByPlayer;
@@ -38,12 +39,19 @@ namespace Narrative
         {
             if (other.CompareTag("Player1") || other.CompareTag("Player2"))
             {
-                if (playersInTrigger.Add(other))
+                if (requiresBothPlayers)
                 {
-                    UpdatePlayerCountText();
-                }
+                    if (playersInTrigger.Add(other))
+                    {
+                        UpdatePlayerCountText();
+                    }
 
-                if (playersInTrigger.Count == 2 && (!triggeredByPlayer || isReplayable))
+                    if (playersInTrigger.Count == 2 && !triggeredByPlayer || isReplayable)
+                    {
+                        PlaySequence();
+                    }
+                }
+                else if (!triggeredByPlayer || isReplayable)
                 {
                     PlaySequence();
                 }
