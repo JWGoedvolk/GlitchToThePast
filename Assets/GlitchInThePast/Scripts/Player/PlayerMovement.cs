@@ -70,6 +70,8 @@ namespace Player.GenericMovement
             {
                 animator = GetComponent<Animator>();
             }
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         void OnDestroy()
@@ -347,11 +349,22 @@ namespace Player.GenericMovement
         public void OnPause()
         {
             enabled = false;
+            animator.SetBool("isDashing", false);
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
+
+            playerInput.enabled = false;
+            moveInput = Vector2.zero;
+            isDashing = false;
+            dashTimer = 0f;
+            dashCooldownTimer = 0f;
+            verticalVel = 0f;
         }
 
         public void OnUnpause()
         {
             enabled = true;
+            playerInput.enabled = true;
         }
         #endregion
     }

@@ -46,12 +46,12 @@ namespace Narrative
                         UpdatePlayerCountText();
                     }
 
-                    if (playersInTrigger.Count == 2 && !triggeredByPlayer || isReplayable)
+                    if (playersInTrigger.Count == 2 && !triggeredByPlayer || playersInTrigger.Count == 2 && isReplayable)
                     {
                         PlaySequence();
                     }
                 }
-                else if (!triggeredByPlayer || isReplayable)
+                else if (!triggeredByPlayer && requiresBothPlayers || isReplayable && requiresBothPlayers)
                 {
                     PlaySequence();
                 }

@@ -12,6 +12,7 @@ TagManager:
   - Hazard
   - HealthUp
   - Ground
+  - Tooltip
   layers:
   - Default
   - TransparentFX
