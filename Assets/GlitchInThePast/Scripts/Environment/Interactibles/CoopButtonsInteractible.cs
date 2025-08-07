@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using JW.BeatEmUp.Objects;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;

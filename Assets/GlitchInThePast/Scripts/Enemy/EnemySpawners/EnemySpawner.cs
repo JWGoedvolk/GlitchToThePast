@@ -164,7 +164,7 @@ namespace Systems.Enemies
             enemyHealth.spawner = this;
             enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Ranged;
             RangedMovement movement = newRanged.GetComponent<RangedMovement>();
-            movement.cruisingAltitude = rangedCruisingAltitude.position.y;
+            movement.CruisingAltitude = rangedCruisingAltitude.position.y;
             if (IsRangedBossSpawner)
             {
                 BossRangedSpawnCount--;
@@ -201,7 +201,7 @@ namespace Systems.Enemies
             
             // Cruising altitude visual
             RangedMovement movement = rangedEnemy.GetComponent<RangedMovement>();
-            float cruisingVariance = movement.cruisingAltitudeError;
+            float cruisingVariance = movement.CruisingAltitudeError;
             Debug.DrawRay(rangedSpawnPoint.position, Vector3.left * 100, Color.green);
             Debug.DrawRay(rangedSpawnPoint.position + Vector3.up * cruisingVariance, Vector3.left * 100, new Color(0, 1, 0, 0.1f));
             Debug.DrawRay(rangedSpawnPoint.position - Vector3.up * cruisingVariance, Vector3.left * 100, new Color(0, 1, 0, 0.1f));
