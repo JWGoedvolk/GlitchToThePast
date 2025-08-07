@@ -70,7 +70,6 @@ namespace Player.GenericMovement
             {
                 animator = GetComponent<Animator>();
             }
-            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
 
