@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,43 +8,46 @@ namespace Systems.Enemies.Boss
 {
     public class BossEnemySpawner : MonoBehaviour
     {
-        [SerializeField] private BossHealth bossHealth;
-        [SerializeField] private bool isSpawning = false;
+        [Header("States")]
+        public bool IsSpawning = false;
+        public bool AllEnemiesSpawned = false;
+        public bool AllEnemiesDead = false;
+        
+        [Header("Prefabs")]
         [SerializeField] private GameObject meleeEnemyPrefab;
         [SerializeField] private GameObject rangedEnemyPrefab;
+        
+        [Header("Spawnpoints")]
         [SerializeField] private Transform meleeSpawnPoint;
         [SerializeField] private Transform rangedSpawnPoint;
-        [SerializeField] private List<int> meleeSpawnCounts;
-        [SerializeField] private List<int> rangedSpawnCounts;
+        
+        [Header("Enemy Counts")]
+        // How many to spawn
+        [SerializeField] private int meleeSpawnCount; 
+        [SerializeField] private int rangedSpawnCount;
+        // Spawn Rates
+        [SerializeField] private float meleeInterval;
+        [SerializeField] private float rangedInterval;
+        // How many have been spawned
         [SerializeField] private int meleeCountSpawned;
         [SerializeField] private int meleeCountKilled;
+        // How many are alive
         [SerializeField] private int rangedCountSpawned;
         [SerializeField] private int rangedCountKilled;
-        
+
+        [Header("Events")]
+        public UnityEvent OnEnemiesSpawningStart;
+        public UnityEvent OnEnemiesSpawningEnd;
         public UnityEvent OnAllEnemiesKilled;
-        private void Update()
+
+        private void OnEnable()
         {
-            if (!isSpawning)
-            {
-                return;
-            }
+            IsSpawning = true;
+        }
 
-            if (meleeCountSpawned <= meleeSpawnCounts[bossHealth.Stage])
-            {
-                Instantiate(meleeEnemyPrefab, meleeSpawnPoint);
-                meleeCountSpawned++;
-            }
-
-            if (rangedCountSpawned <= rangedSpawnCounts[bossHealth.Stage])
-            {
-                Instantiate(rangedEnemyPrefab, rangedSpawnPoint);
-                rangedCountSpawned++;
-            }
-
-            if (meleeCountKilled == meleeSpawnCounts[bossHealth.Stage] && rangedCountKilled == rangedSpawnCounts[bossHealth.Stage])
-            {
-                OnAllEnemiesKilled?.Invoke();
-            }
+        public void StartSpawning()
+        {
+            
         }
     }
 }

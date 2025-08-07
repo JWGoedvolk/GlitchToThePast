@@ -35,12 +35,20 @@ namespace Systems.Enemies
                 {
                     if (EnemyType == EnemyTypes.Melee)
                     {
-                        if (spawner != null) spawner.MeleeEnemyCount--;
+                        if (spawner != null)
+                        {
+                            spawner.MeleeEnemyCount--;
+                            spawner.MeleeKillCount++;
+                        }
                         OnDeath?.Invoke();
                     }
                     else if (EnemyType == EnemyTypes.Ranged)
                     {
-                        if (spawner != null) spawner.RangedEnemyCount--;
+                        if (spawner != null)
+                        {
+                            spawner.RangedEnemyCount--;
+                            spawner.RangedKillCount++;
+                        }
                         OnDeath?.Invoke();
                     }
                 }
@@ -48,11 +56,6 @@ namespace Systems.Enemies
         }
         public int HealthMax => healthMax;
         public EnemySpawner spawner; // We hold a reference to our spawner so we can keep track of how many of each enemy is currently alive
-
-        public void TestMessage(int num)
-        {
-            TakeDamage(num);
-        }
         
         public void TakeDamage(int damage, PlayerWeaponSystem.WeaponType weaponType = PlayerWeaponSystem.WeaponType.None)
         {

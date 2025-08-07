@@ -12,3 +12,49 @@
     [] Section 2 pushable boxes
     [] Section 3 buttons
     [] Section 4 Stage 2 Lever
+[] Boss Integration
+    [x] Phase 1
+        [x] Idle
+        [x] Attacking
+        [x] Vulnerable
+        [x] Health UI Update
+        [x] Phase 2 Transition
+    [] Phase 2
+        [] Spawn a certain amount of enemies and stop
+        [] Detect all enemies killed and invoke methods correctly
+        [] Enraged attack
+            [] Raise arms when all enemies are killed
+            [] Hold the arms up for a few seconds
+            [] Drop one arm at a time and spawn respective shockwave
+            [] Correctly deploys levers when entering phase
+            [] Correctly able to stun boss for a few seconds
+            [] Correctly able to damage boss when stunned
+            [] Correctly dies when phase 2 health is done
+    
+=== BOSS FIGHT ===
+<Loop>
+    {PHASE 1}
+    1. Boss is in idle
+    2. Boss attacks after 5 seconds
+    3. Players activate levers to make boss damageable
+    4. Boss moves to phase 2 after being damaged enough (2 cycles)
+    {PHASE 2}
+    1. Show phase 2 intro
+    2. Spawn 5 melee and ranged enemies
+    3. When all enemies spawned, Idle until all enemies are killed
+    4. Do enraged shockwave attack
+        4.1 Raise arms. Not damageable
+        4.2 Hold arms up for a few seconds
+        IF all levers activated 
+            THEN stun for a few seconds
+            ELSE Drop arms one after the other and create shockwaves when they hit the ground
+        4.3 Start spawning enemies again
+        GOTO step 2 UNTIL death
+    
+<Attacking>
+    1. Boss state manager randomly decided how long to wait
+    2. after this time is over, animator trigger "Attacking" is set, animator bool "IsArmsRaised" set to true
+    3. this sets animator state to RaiseArms
+    4. animator state decides how long to hold the arms up. after this animator bool "IsArmsRaised" set to false. Animator state transitions to ArmDrop
+    5. ArmDrop animation plays. animation events trigger shockwave spawning
+    6. after ArmDrop animation plays, animator trigger "Attack" is reset, animator bool "IsArmsRaised" set to false

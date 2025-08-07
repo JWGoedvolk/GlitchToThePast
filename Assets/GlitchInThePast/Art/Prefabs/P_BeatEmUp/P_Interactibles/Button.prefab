@@ -68,7 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Whitelist:
-  - PuzzleBox
+  - Player1
+  - Player2
   TriggeringObjects: []
   onTrigger:
     m_PersistentCalls:

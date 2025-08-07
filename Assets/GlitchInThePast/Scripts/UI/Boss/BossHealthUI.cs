@@ -17,8 +17,11 @@ namespace UI.FadingEffect.Boss
             
             bossHealth.OnDamagedAction += TakeDamage;
             bossHealth.OnStageChangedAction += OnStageChanged;
-            
-            bossStageUIs[0].StartStage();
+
+            for (int i = 1; i < bossStageUIs.Count; i++)
+            {
+                bossStageUIs[i].Panel.SetActive(false);
+            }
         }
 
         private void OnDisable()
@@ -27,7 +30,7 @@ namespace UI.FadingEffect.Boss
             bossHealth.OnStageChangedAction -= OnStageChanged;
         }
         
-        public void TakeDamage()
+        public void TakeDamage(int amount)
         {
             bossStageUIs[bossStage].TakeDamage();
         }
@@ -37,6 +40,15 @@ namespace UI.FadingEffect.Boss
             bossStageUIs[bossStage].EndStage();
             bossStage++;
             bossStageUIs[bossStage].StartStage();
+        }
+
+        public void AddStageUI(BossStageUI bossStageUI)
+        {
+            if (this.bossStageUIs == null)
+            {
+                this.bossStageUIs = new List<BossStageUI>();
+            }
+            this.bossStageUIs.Add(bossStageUI);
         }
     }
 }

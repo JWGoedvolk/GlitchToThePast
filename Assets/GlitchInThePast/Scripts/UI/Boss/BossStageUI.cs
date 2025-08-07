@@ -8,8 +8,13 @@ namespace UI.FadingEffect.Boss
     {
         public GameObject Panel;
         public List<GameObject> Hearts;
-        public BossStageUI NextStageUI;
 
+        public BossStageUI(GameObject Panel, List<GameObject> Hearts)
+        {
+            this.Panel = Panel;
+            this.Hearts = Hearts;
+        }
+        
         public void TakeDamage()
         {
             for (int i = Hearts.Count - 1; i > 0; i--)
@@ -20,6 +25,7 @@ namespace UI.FadingEffect.Boss
                 }
                 
                 Hearts[i].SetActive(false);
+                break;
             }
         }
 

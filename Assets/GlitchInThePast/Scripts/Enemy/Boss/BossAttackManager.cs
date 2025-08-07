@@ -7,10 +7,39 @@ namespace Systems.Enemies.Boss
 {
     public class BossAttackManager : MonoBehaviour
     {
-        public Action OnAttackAction;
-        public Animator AnimationController;
+        #region Events And Actions
+        public Action OnAttackEndAction;
+        #endregion
+        
+        // Boss States
+        private BossStateManager stateManager => BossStateManager.Instance;
+        public bool CanAttack = false;
+        
+        // Animation
+        [Header("Animation")]
+        [SerializeField] private string armDroParameter;
+        private Animator animator => BossStateManager.Instance.BossAnimator;
+        
         public GameObject ShockwavePrefab;
         public List<Transform> spawnPoints;
+
+        private void Awake()
+        {
+            if (stateManager.Phase == 0)
+            {
+                SetCanAttack(true);
+            }
+            else
+            {
+                SetCanAttack(false);
+            }
+        }
+
+        public void SetCanAttack(bool value)
+        {
+            CanAttack = value;
+            stateManager.CanAttack = CanAttack;
+        }
 
         public void AttackLeft()
         {
@@ -29,8 +58,8 @@ namespace Systems.Enemies.Boss
             {
                 Instantiate(ShockwavePrefab, spawnPoint.position, spawnPoint.rotation);
             }
-            OnAttackAction?.Invoke();
-            AnimationController.SetTrigger("Attack");
+            OnAttackEndAction?.Invoke();
+            BossStateManager.Instance.AttackEnd();
         }
     }
 }
