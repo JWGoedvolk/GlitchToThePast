@@ -42,6 +42,8 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private float rangedRechargeTime = 3f;
         [SerializeField] private int rangedDamage = 1;
         [SerializeField] private float projectileSpeed = 5f;
+        
+        public WeaponType Weapon { get; }
 
         //SFX
         private SFXManager sFXManager;

@@ -362,6 +362,7 @@ GameObject:
   - component: {fileID: 3309280108719559094}
   - component: {fileID: 686190289503579459}
   - component: {fileID: 4511008773222892832}
+  - component: {fileID: 4145624116495809286}
   m_Layer: 0
   m_Name: TobbysCollider
   m_TagString: Player2
@@ -685,3 +686,19 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4145624116495809286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579127009673012924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4340d6e00834496b8390d7197a20a978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceAmount: 1
+  WhiteListTags:
+  - Pushable
+  - PuzzleBox

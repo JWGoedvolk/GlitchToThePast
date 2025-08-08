@@ -14,7 +14,7 @@ namespace Systems.Enemies
         public bool IsMeleeBossSpawner = false;
         public bool isSpawningMelee = true;
         [SerializeField] private GameObject meleeEnemy;
-        [SerializeField] private Transform meleeSpawnPoint;
+        [SerializeField] public Transform meleeSpawnPoint;
         [SerializeField] private float meleeSpawnInterval = 1f;
         [SerializeField] private float meleeSpawnTimer = 0f;
         [ReadOnly] public int MeleeEnemyCount = 0; // For non boss spawners. How many enemies are alive
@@ -26,7 +26,7 @@ namespace Systems.Enemies
         public bool IsRangedBossSpawner = false;
         public bool isSpawningRanged = true;
         [SerializeField] private GameObject rangedEnemy;
-        [SerializeField] private Transform rangedSpawnPoint;
+        [SerializeField] public Transform rangedSpawnPoint;
         [SerializeField] private float rangedSpawnInterval = 1f;
         [SerializeField] private float rangedSpawnTimer = 0f;
         public int RangedEnemyCount = 0;

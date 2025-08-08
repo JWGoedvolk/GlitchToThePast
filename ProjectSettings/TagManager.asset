@@ -12,6 +12,9 @@ TagManager:
   - Hazard
   - HealthUp
   - Ground
+  - Door
+  - PuzzleBox
+  - Pushable
   layers:
   - Default
   - TransparentFX
