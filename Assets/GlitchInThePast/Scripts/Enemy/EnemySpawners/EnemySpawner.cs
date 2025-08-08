@@ -164,7 +164,7 @@ namespace Systems.Enemies
         private void SpawnRanged()
         {
             rangedSpawnTimer = 0f;
-            GameObject newRanged = Instantiate(rangedEnemy, rangedSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
+            GameObject newRanged = Instantiate(rangedEnemy, rangedSpawnPoint.position, Quaternion.identity); // Spawn melee enemy at the melee spawn point as child of the spawn point
             EnemyHealth enemyHealth = newRanged.GetComponent<EnemyHealth>(); // Get the health system to set it up
             enemyHealth.spawner = this;
             enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Ranged;
@@ -190,7 +190,7 @@ namespace Systems.Enemies
         private void SpawnMelee()
         {
             meleeSpawnTimer = 0f;
-            GameObject newMelee = Instantiate(meleeEnemy, meleeSpawnPoint); // Spawn melee enemy at the melee spawn point as child of the spawn point
+            GameObject newMelee = Instantiate(meleeEnemy, meleeSpawnPoint.position, Quaternion.identity); // Spawn melee enemy at the melee spawn point as child of the spawn point
             EnemyHealth enemyHealth = newMelee.GetComponent<EnemyHealth>(); // Get the health system to set it up
             enemyHealth.spawner = this;
             enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Melee;
