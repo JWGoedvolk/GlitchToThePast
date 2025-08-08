@@ -6,19 +6,25 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/GlitchInThePast/Scenes/MainMenu.unity
+    path: Assets/GlitchInThePast/Scenes/BuildScenes/MainMenu.unity
     guid: 66f465a941ec2ea4789c7b55cdd9bd46
   - enabled: 1
-    path: Assets/GlitchInThePast/Scenes/CharacterSelection.unity
+    path: Assets/GlitchInThePast/Scenes/BuildScenes/CharacterSelection.unity
     guid: 3b557a4dd95396540ade3afe98b09824
   - enabled: 1
-    path: Assets/GlitchInThePast/Scenes/BeatEmUp/SectionOne.unity
+    path: Assets/GlitchInThePast/Scenes/BuildScenes/BeatEmUp/SectionOne.unity
     guid: e2e24f995ce5c3f4cacd6a34eebb527c
   - enabled: 1
-    path: Assets/GlitchInThePast/Scenes/BeatEmUp/SectionTwo.unity
+    path: Assets/GlitchInThePast/Scenes/BuildScenes/BeatEmUp/SectionTwo.unity
     guid: 3dd219b8ac3566b43ba2521f35602024
   - enabled: 1
-    path: Assets/GlitchInThePast/Scenes/Rhythm/SectionOne_Rhythm.unity
+    path: Assets/GlitchInThePast/Scenes/BuildScenes/BeatEmUp/SectionThree.unity
+    guid: 1327364f3f5981747bacef694e9301a5
+  - enabled: 1
+    path: Assets/GlitchInThePast/Scenes/BuildScenes/BeatEmUp/SectionFour.unity
+    guid: f357cb2655079484bbd7ba9dee2ae12a
+  - enabled: 1
+    path: Assets/GlitchInThePast/Scenes/BuildScenes/Rhythm/SectionOne_Rhythm.unity
     guid: 49c66231f916a3d4ebb6fdd84161152f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9bdf73248fbe8074dae151792f59c7ef, type: 2}

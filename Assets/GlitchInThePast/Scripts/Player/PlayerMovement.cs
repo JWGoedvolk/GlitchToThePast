@@ -54,7 +54,6 @@ namespace Player.GenericMovement
 
         [Header("Weapon Related")]
         [SerializeField] private PlayerWeaponSystem weaponSystem;
-        [SerializeField] private Transform attackTransformHolder;
 
         [Header("Events")]
         [SerializeField] private UnityEvent onDashStart;
@@ -65,17 +64,18 @@ namespace Player.GenericMovement
         {
             healthSystem = GetComponent<PlayerHealthSystem>();
             dashDirection = Vector3.right;
-            GamePauser.Instance?.RegisterPauseable(this);
+            InGameButtons.Instance?.RegisterPauseable(this);
             AssignOtherPlayer();
             if (animator is null)
             {
                 animator = GetComponent<Animator>();
             }
+            Cursor.visible = false;
         }
 
         void OnDestroy()
         {
-            GamePauser.Instance?.UnregisterPauseable(this);
+            InGameButtons.Instance?.UnregisterPauseable(this);
         }
 
         private void Awake()
@@ -157,26 +157,26 @@ namespace Player.GenericMovement
                 }
             }
 
-            bool isMoving = moveInput.magnitude > 0.1f;
-            if (animator != null)
+            if (healthSystem.currentHealth >= 1)
             {
-                animator.SetBool("isWalking", isMoving);
-                animator.SetBool("isRunning", isMoving && isRunning);
+                bool isMoving = moveInput.magnitude > 0.1f;
+                if (animator != null)
+                {
+                    animator.SetBool("isWalking", isMoving);
+                    animator.SetBool("isRunning", isMoving && isRunning);
+                }
+                characterController.Move(velocity * Time.deltaTime);
             }
-
-            characterController.Move(velocity * Time.deltaTime);
 
             if (spriteRenderer)
             {
                 if (moveInput.x > 0.1f)
                 {
                     spriteRenderer.flipX = false;
-                    FlipAttackTransform(1);
                 }
                 else if (moveInput.x < -0.1f)
                 {
                     spriteRenderer.flipX = true;
-                    FlipAttackTransform(-1);
                 }
             }
 
@@ -305,10 +305,9 @@ namespace Player.GenericMovement
 
         private void OnAim(InputAction.CallbackContext ctx)
         {
-            // Debug.Log("Aiming");
             if (rotator != null)
             {
-                rotator.OnAim(ctx.ReadValue<Vector2>());
+                rotator.OnAim(ctx);
             }
         }
 
@@ -336,19 +335,6 @@ namespace Player.GenericMovement
             }
         }
 
-
-        private void FlipAttackTransform(int direction)
-        {
-            if (direction == 1)
-            {
-                attackTransformHolder.localRotation = Quaternion.Euler(0, 90, 0);
-            }
-            else if (direction == -1)
-            {
-                attackTransformHolder.localRotation = Quaternion.Euler(0, -90, 0);
-            }
-        }
-
         private void OnJump(InputAction.CallbackContext ctx)
         {
             if (ctx.performed && characterController.isGrounded)
@@ -362,11 +348,22 @@ namespace Player.GenericMovement
         public void OnPause()
         {
             enabled = false;
+            animator.SetBool("isDashing", false);
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
+
+            playerInput.enabled = false;
+            moveInput = Vector2.zero;
+            isDashing = false;
+            dashTimer = 0f;
+            dashCooldownTimer = 0f;
+            verticalVel = 0f;
         }
 
         public void OnUnpause()
         {
             enabled = true;
+            playerInput.enabled = true;
         }
         #endregion
     }

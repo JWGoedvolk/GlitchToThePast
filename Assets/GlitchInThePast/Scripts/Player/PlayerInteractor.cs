@@ -1,5 +1,5 @@
 using System;
-using JW.Roguelike.Objects.Interactibles;
+using JW.Objects.Interactibles;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -19,12 +19,12 @@ namespace GlitchInThePast.Scripts.Player
 
         void Start()
         {
-            GamePauser.Instance?.RegisterPauseable(this);
+            InGameButtons.Instance?.RegisterPauseable(this);
         }
 
         void OnDestroy()
         {
-            GamePauser.Instance?.UnregisterPauseable(this);
+            InGameButtons.Instance?.UnregisterPauseable(this);
         }
 
         private void Awake()

@@ -1,35 +1,44 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using JW.BeatEmUp.Objects;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace JW.Roguelike.Objects.Interactibles
+namespace JW.Objects.Interactibles
 {
     public class CoopButtonsInteractible : MonoBehaviour
     {
         [Header("Buttons")] 
-        [SerializeField] private CustomTriggerer button1;
-        [SerializeField] private CustomTriggerer button2;
+        [SerializeField] private List<CustomTriggerer> buttons;
 
         [Header("Events")]
-        [SerializeField] private UnityEvent onBothButtonsPressed;
-        [SerializeField] private UnityEvent onBothButtonsReleased;
-        [SerializeField][ReadOnly] private bool isBothButtonsPressedTriggered = false;
+        public bool AllPressedInvoked = false;
+        [SerializeField] private UnityEvent onAllButtonsPressed;
+        public bool AllReleasedInvoked = false;
+        [SerializeField] private UnityEvent onAllButtonsReleased;
 
         void Update()
         {
-            if (button1.IsTriggering && button2.IsTriggering && !isBothButtonsPressedTriggered)
+            List<CustomTriggerer> triggeredButtons = buttons.Where(button => button.IsTriggering).ToList(); // Get all the buttons which are being triggered
+            if (triggeredButtons.Count == buttons.Count) // If the number of buttons being triggered is the same as the number of buttons, they are all pressed
             {
-                onBothButtonsPressed.Invoke();
-                isBothButtonsPressedTriggered = true;
+                if (!AllPressedInvoked) // The event has not been invoked yet
+                {
+                    onAllButtonsPressed?.Invoke();
+                    AllPressedInvoked = true; // Stops us from invoking the event every frame
+                    AllReleasedInvoked = false;
+                }
             }
-
-            // Check if we have both buttons triggered and step off one of them.
-            // NOTE: ^ is the XOR opperand, it will only return true if one of its inputs are true ie. only one buttons is being triggered
-            if (isBothButtonsPressedTriggered && (button1.IsTriggering ^ button2.IsTriggering))
+            else if (AllPressedInvoked && triggeredButtons.Count < buttons.Count) // All the buttons were recently pressed but now aren't anymore
             {
-                onBothButtonsReleased.Invoke();
-                isBothButtonsPressedTriggered = false;
+                if (!AllReleasedInvoked)
+                {
+                    onAllButtonsReleased?.Invoke();
+                    AllReleasedInvoked = true;
+                    AllPressedInvoked = false;
+                }
             }
         }
     }
