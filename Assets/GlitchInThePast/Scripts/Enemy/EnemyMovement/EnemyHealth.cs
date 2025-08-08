@@ -21,7 +21,7 @@ namespace Systems.Enemies
         public EnemyTypes EnemyType = EnemyTypes.Melee;
         
         // Events
-        [SerializeField] public UnityEvent OnDamageTaken;
+        [SerializeField] public UnityEvent<int> OnDamageTaken;
         [SerializeField] public UnityEvent OnDeath;
         public int Health
         {
@@ -41,6 +41,7 @@ namespace Systems.Enemies
                             spawner.MeleeKillCount++;
                         }
                         OnDeath?.Invoke();
+                        Destroy(gameObject);
                     }
                     else if (EnemyType == EnemyTypes.Ranged)
                     {
@@ -50,6 +51,7 @@ namespace Systems.Enemies
                             spawner.RangedKillCount++;
                         }
                         OnDeath?.Invoke();
+                        Destroy(gameObject);
                     }
                 }
             }
@@ -61,17 +63,17 @@ namespace Systems.Enemies
         {
             if (EnemyType == EnemyTypes.Boss)
             {
-                OnDamageTaken?.Invoke();
+                OnDamageTaken?.Invoke(damage);
             }
             else if (EnemyType == EnemyTypes.Melee && weaponType == PlayerWeaponSystem.WeaponType.Melee)
             {
                 Health -= damage;
-                OnDamageTaken?.Invoke();
+                OnDamageTaken?.Invoke(damage);
             }
             else if (EnemyType == EnemyTypes.Ranged && weaponType == PlayerWeaponSystem.WeaponType.Ranged)
             {
                 Health -= damage;
-                OnDamageTaken?.Invoke();
+                OnDamageTaken?.Invoke(damage);
             }
         }
     }

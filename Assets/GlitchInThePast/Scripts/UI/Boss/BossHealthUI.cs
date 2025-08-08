@@ -37,6 +37,10 @@ namespace UI.FadingEffect.Boss
         {
             bossStageUIs[bossStage].EndStage();
             bossStage++;
+            if (bossStage == bossStageUIs.Count)
+            {
+                return;
+            }
             bossStageUIs[bossStage].StartStage();
         }
 

@@ -18,6 +18,7 @@ namespace JW.Objects.Interactibles
         [SerializeField] private TMP_Text interactPromptText;
 
         [Header("Detection")]
+        public bool IsActivatable = true;
         [SerializeField] private List<string> whitelist;
         [SerializeField] private List<GameObject> triggeringObjects;
 
@@ -76,7 +77,12 @@ namespace JW.Objects.Interactibles
                     if (playerInteractor != null)
                     {
                         playerInteractor.interactingObject = this;
-                        if (playerInteractor.GetComponent<PlayerInput>().currentControlScheme == "Controller")
+                        if (!IsActivatable)
+                        {
+                            interactPromptText.text = "This interactable is not activatable right now";
+                            return;
+                        }
+                        else if (playerInteractor.GetComponent<PlayerInput>().currentControlScheme == "Controller")
                         {
                             interactPromptText.text = "Press 'X' to interact";
                         }
@@ -110,7 +116,7 @@ namespace JW.Objects.Interactibles
 
         public virtual void Interact()
         {
-            if (!isActivated)
+            if (!isActivated || !IsActivatable)
             {
                 OnInteraction?.Invoke();
                 isActivated = true;
@@ -127,6 +133,11 @@ namespace JW.Objects.Interactibles
                 StopCoroutine(ResetCountdown());
                 StartCoroutine(ResetCountdown());
             }
+        }
+
+        public void SetActivatable(bool activatable)
+        {
+            IsActivatable = activatable;
         }
 
         public IEnumerator ResetCountdown()

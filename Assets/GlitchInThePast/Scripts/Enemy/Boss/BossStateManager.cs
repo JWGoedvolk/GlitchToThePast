@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 /* Planning area
@@ -66,6 +67,10 @@ namespace Systems.Enemies.Boss
         public EnemySpawner Spawner;
         public int MeleeSpawnCount = 5;
         public int RangedSpawnCount = 5;
+        
+        [Header("Events")]
+        public List<UnityEvent> OnStunStartEvent;
+        public List<UnityEvent> OnStunEndEvent;
             
         #region Public Getters And Setters
         public int Phase => phase;
@@ -119,6 +124,7 @@ namespace Systems.Enemies.Boss
                     else if (currentState == State.Transition)
                     {
                         currentState = State.SpawningEnemies;
+                        Spawner.StartBossSpawner(MeleeSpawnCount, RangedSpawnCount);
                     }
                 }
                 else
@@ -211,6 +217,9 @@ namespace Systems.Enemies.Boss
             phase++;
             currentState = State.Transition;
             BossAnimator.SetTrigger("NextStage");
+            BossAnimator.SetBool("IsArmsRaised", false);
+            BossAnimator.SetBool("IsStunned", false);
+            BossAnimator.SetInteger("Phase", phase);
         }
 
         public void OnDeath()
@@ -232,9 +241,10 @@ namespace Systems.Enemies.Boss
             }
             
             currentState = State.Stunned;
+            currentTime = 0f;
             BossAnimator.SetBool("IsStunned", true);
             bossHealth.SetDamagable(true);
-            currentTime = 0f;
+            OnStunStartEvent[phase]?.Invoke();
         }
 
         public void StunEnd()
@@ -243,6 +253,7 @@ namespace Systems.Enemies.Boss
             currentTime = 0f;
             BossAnimator.SetBool("IsStunned", false);
             bossHealth.SetDamagable(false);
+            OnStunEndEvent[phase]?.Invoke();
         }
     }
 }
