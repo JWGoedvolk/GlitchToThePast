@@ -31,17 +31,26 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private UnityEvent onRangedAttack;
 
         // Melee Attack
+        [SerializeField] private Animator meleeAnimator;
         [SerializeField] private Transform meleeAttackTransform;
         [SerializeField] private float meleeAttackRange = 3f;
         [SerializeField] private float meleeRechargeTime = 3f;
         [SerializeField] private int meleeDamage = 1;
 
         // Ranged Attack
+        [SerializeField] private Animator rangedAnimator;
         [SerializeField] private Transform rangedAttackSpawnPoint;
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private float rangedRechargeTime = 3f;
         [SerializeField] private int rangedDamage = 1;
         [SerializeField] private float projectileSpeed = 5f;
+
+        [Header("Combos")] 
+        public int ComboCount = 0;
+        [Tooltip("This is how long after the rechagre the player has to continue the combo")]
+        public float ComboWindow = 1f;
+        public float CurrentComboTime = 0f;
+        public bool IsComboing = false;
         
         public WeaponType Weapon { get; }
 
@@ -73,6 +82,16 @@ namespace GlitchInThePast.Scripts.Player
             Debug.Log("Player attacking from weapon system script");
             if (weaponType == WeaponType.Melee)
             {
+                /* COMBO IDEATION
+                 * Check if this player is in a combo "state"
+                 * If they are, are they still within the combo window. if so do the combo attack at the current counter and increment the counter
+                 * If they aren't, start the comboing from this attack on
+                 */
+                if (IsComboing)
+                {
+                    
+                }
+                
                 StartCoroutine(Recharge(meleeRechargeTime));
                 onMeleeAttack?.Invoke();
 

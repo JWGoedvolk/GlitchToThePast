@@ -927,12 +927,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactPrompt: {fileID: 1800099526}
   interactPromptText: {fileID: 783003535}
+  IsActivatable: 1
   whitelist:
   - Player1
   - Player2
   triggeringObjects: []
-  isResetting: 1
-  defaultState: 1
+  isResetting: 0
+  defaultState: 0
   isActivated: 0
   resetAfter: 1
   meshRenderer: {fileID: 191481865}
@@ -1104,39 +1105,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46541fe4d2be48f1913baa27cc5cb9b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button1: {fileID: 982032268}
-  button2: {fileID: 1500378745}
-  onBothButtonsPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_material
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: cb558e25dec58fa4cbb2b0be7bd6682a, type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
-        m_MethodName: set_isTrigger
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  onBothButtonsReleased:
+  buttons: []
+  AllPressedInvoked: 0
+  onAllButtonsPressed:
     m_PersistentCalls:
       m_Calls: []
-  isBothButtonsPressedTriggered: 0
+  AllReleasedInvoked: 0
+  onAllButtonsReleased:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &218555429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,19 +1215,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 1
+  IsMeleeBossSpawner: 0
+  isSpawningMelee: 1
   meleeEnemy: {fileID: 6650723071496413354, guid: 47554c9d585059d4ba172b99d2e0136b, type: 3}
   meleeSpawnPoint: {fileID: 1561888231}
   meleeSpawnInterval: 5
   meleeSpawnTimer: 0
   MeleeEnemyCount: 0
+  MeleeKillCount: 0
+  BossMeleeSpawnCount: 5
   maxMeleeCount: 3
+  IsRangedBossSpawner: 0
+  isSpawningRanged: 1
   rangedEnemy: {fileID: 6650723071496413354, guid: d3426c2fbb091b4469ad08cabaddde94, type: 3}
   rangedSpawnPoint: {fileID: 1055991287}
-  cruisingAltitude: 5
   rangedSpawnInterval: 5
   rangedSpawnTimer: 0
   RangedEnemyCount: 0
+  RangedKillCount: 0
+  BossRangedSpawnCount: 5
   maxRangedCount: 3
+  rangedCruisingAltitude: {fileID: 0}
+  attackAltitude: {fileID: 0}
   onEnemySpawned:
     m_PersistentCalls:
       m_Calls: []
@@ -1266,6 +1252,16 @@ MonoBehaviour:
   onSpawnerEnabled:
     m_PersistentCalls:
       m_Calls: []
+  onAllEnemiesSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  onAllEnemiesKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  HasInvokedAllKilled: 0
+  HasInvokedAllSpawned: 0
+  meleeSize: {x: 1, y: 1, z: 1}
+  rangeSize: {x: 1, y: 1, z: 1}
 --- !u!114 &218555433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4672,6 +4668,7 @@ MonoBehaviour:
   Whitelist:
   - Player1
   - Player2
+  - Pushable
   TriggeringObjects: []
   onTrigger:
     m_PersistentCalls:
@@ -5545,7 +5542,7 @@ GameObject:
   - component: {fileID: 1118610600}
   m_Layer: 7
   m_Name: Box2
-  m_TagString: Untagged
+  m_TagString: Pushable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6422,7 +6419,7 @@ GameObject:
   - component: {fileID: 1371586674}
   m_Layer: 7
   m_Name: Box1
-  m_TagString: Untagged
+  m_TagString: Pushable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7008,6 +7005,7 @@ MonoBehaviour:
   Whitelist:
   - Player1
   - Player2
+  - Pushable
   TriggeringObjects: []
   onTrigger:
     m_PersistentCalls:
@@ -10011,6 +10009,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 970534328}
     m_Modifications:
+    - target: {fileID: 1784454001437011767, guid: 413664577857ffc409922ab5c0253374, type: 3}
+      propertyPath: sceneInt
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4650222055791008725, guid: 413664577857ffc409922ab5c0253374, type: 3}
       propertyPath: m_LocalScale.z
       value: 104.55001
