@@ -1,40 +1,35 @@
-[] Boss State Management
-    [] Idle | not attacking
-    [] Attacking | from idle, after some time not attacking
-    [] Stage 2 | after losing all stage 1 health
-
 [] Enemy spawner integration
     [] Section 1 set up & test
     [] Section 2 set up & test
     [] Section 3 set up & test
-[] Enemy integration all sections
-    [] Boss States implemented
-    [] Melee enemy moving to player
-    [] Ranged enemy attack player
+[x] Enemy integration all sections
+    [x] Boss States implemented
+    [x] Melee enemy moving to player
+    [x] Ranged enemy attack player
         - move to above player heads so that they just do contact damage
 [] puzzle integration
-    [] Pushable boxes attach 
-    [] Section 2 pushable boxes
-    [] Section 3 buttons
-    [] Section 4 Stage 2 Lever
-[] Boss Integration
+    [x] Pushable boxes
+    [x] Section 2 pushable boxes
+    [x] Section 3 buttons
+    [x] Section 4 Stage 2 Lever
+[x] Boss Integration
     [x] Phase 1
         [x] Idle
         [x] Attacking
         [x] Vulnerable
         [x] Health UI Update
         [x] Phase 2 Transition
-    [] Phase 2
-        [] Spawn a certain amount of enemies and stop
-        [] Detect all enemies killed and invoke methods correctly
-        [] Enraged attack
-            [] Raise arms when all enemies are killed
-            [] Hold the arms up for a few seconds
-            [] Drop one arm at a time and spawn respective shockwave
-            [] Correctly deploys levers when entering phase
-            [] Correctly able to stun boss for a few seconds
-            [] Correctly able to damage boss when stunned
-            [] Correctly dies when phase 2 health is done
+    [x] Phase 2
+        [x] Spawn a certain amount of enemies and stop
+        [x] Detect all enemies killed and invoke methods correctly
+        [x] Enraged attack
+            [x] Raise arms when all enemies are killed
+            [x] Hold the arms up for a few seconds
+            [x] Drop one arm at a time and spawn respective shockwave
+            [x] Correctly deploys levers when entering phase
+            [x] Correctly able to stun boss for a few seconds
+            [x] Correctly able to damage boss when stunned
+            [x] Correctly dies when phase 2 health is done
     
 === BOSS FIGHT ===
 <Loop>
