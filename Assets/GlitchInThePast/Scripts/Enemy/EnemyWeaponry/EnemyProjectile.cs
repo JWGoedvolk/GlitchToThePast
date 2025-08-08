@@ -1,4 +1,5 @@
 using JW.BeatEmUp.Objects;
+using JW.Objects;
 using UnityEngine;
 
 namespace Systems.Enemies

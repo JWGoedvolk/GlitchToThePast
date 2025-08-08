@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,29 +7,40 @@ namespace Systems.Enemies.Boss
 {
     public class BossAttackManager : MonoBehaviour
     {
-        public bool IsSpawnsAlive = true;
-        [SerializeField][Range(0f, 5f)] private float attackTimeVariance;
-        [SerializeField] private float baseAttackFrequency = 7f;
-        float currentTime = 0f;
-        private float nextAttackTime;
-        private Animator animator;
+        #region Events And Actions
+        public Action OnAttackEndAction;
+        #endregion
+        
+        // Boss States
+        private BossStateManager stateManager => BossStateManager.Instance;
+        
+        // Animation
+        [Header("Animation")]
+        [SerializeField] private string armDroParameter;
+        private Animator animator => BossStateManager.Instance.BossAnimator;
+        
+        public GameObject ShockwavePrefab;
+        public List<Transform> spawnPoints;
 
-        void OnEnable()
+        public void AttackLeft()
         {
-            animator = GetComponent<Animator>();
+            Transform spawnPoint = spawnPoints[0];
+            Instantiate(ShockwavePrefab, spawnPoint.position, spawnPoint.rotation);
         }
-
-        private void Update()
+        public void AttackRight()
         {
-            currentTime += Time.deltaTime;
-            if (currentTime >= nextAttackTime)
+            Transform spawnPoint = spawnPoints[1];
+            Instantiate(ShockwavePrefab, spawnPoint.position, spawnPoint.rotation);
+        }
+        
+        public void Attack()
+        {
+            foreach (var spawnPoint in spawnPoints)
             {
-                currentTime = 0f;
-                animator.SetTrigger("Attack");
-
-                nextAttackTime = baseAttackFrequency + Random.Range(-attackTimeVariance, attackTimeVariance);
-                Debug.Log($"Next attack in {nextAttackTime}");
+                Instantiate(ShockwavePrefab, spawnPoint.position, spawnPoint.rotation);
             }
+            OnAttackEndAction?.Invoke();
+            BossStateManager.Instance.AttackEnd();
         }
     }
 }

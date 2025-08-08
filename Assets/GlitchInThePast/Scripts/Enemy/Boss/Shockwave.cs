@@ -1,5 +1,6 @@
-using Player.Health;
 using JW.BeatEmUp.Objects;
+using Player.Health;
+using JW.Objects;
 using UnityEngine;
 
 namespace Systems.Enemies.Boss

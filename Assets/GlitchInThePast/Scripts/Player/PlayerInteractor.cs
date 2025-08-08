@@ -1,5 +1,5 @@
 using System;
-using JW.Roguelike.Objects.Interactibles;
+using JW.Objects.Interactibles;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;

@@ -1,6 +1,6 @@
-using JW.Roguelike.Objects.Interactibles;
+using JW.Objects.Interactibles;
 
-namespace JW.Roguelike.Objects.Objects
+namespace JW.Objects.Objects
 {
     public class Lever : Interactible
     { 
