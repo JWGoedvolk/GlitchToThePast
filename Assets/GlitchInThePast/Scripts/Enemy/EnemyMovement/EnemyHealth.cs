@@ -1,8 +1,8 @@
-using System;
+using System.Collections;
 using GlitchInThePast.Scripts.Player;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngineInternal;
 
 namespace Systems.Enemies
 {
@@ -14,22 +14,34 @@ namespace Systems.Enemies
             Ranged,
             Boss
         }
-        
+        #region Variables
         // Stats
         [SerializeField] private int healthMax = 3;
         [SerializeField] private int healthCurrent = 3;
         public EnemyTypes EnemyType = EnemyTypes.Melee;
-        
+
+        // Flash parameters
+        [Tooltip("How long the sprite stays red when hit.")]
+        [SerializeField] private float flashDuration = 0.1f;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        private Color originalColor;
+        private Coroutine flashCoroutine;
+
         // Events
         [SerializeField] public UnityEvent<int> OnDamageTaken;
         [SerializeField] public UnityEvent OnDeath;
+
+        // Spawner counters
+        public EnemySpawner spawner;
+        #endregion
+
         public int Health
         {
             get { return healthCurrent; }
             set
             {
-                healthCurrent = value; 
-                
+                healthCurrent = value;
+
                 // Check if we died
                 if (healthCurrent <= 0)
                 {
@@ -53,28 +65,75 @@ namespace Systems.Enemies
                         OnDeath?.Invoke();
                         Destroy(gameObject);
                     }
+                    else
+                    {
+                        OnDeath?.Invoke();
+                        Destroy(gameObject);
+                    }
                 }
             }
         }
+
         public int HealthMax => healthMax;
-        public EnemySpawner spawner; // We hold a reference to our spawner so we can keep track of how many of each enemy is currently alive
-        
+
+        private void Awake()
+        {
+            if (spriteRenderer == null)
+                spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+            if (spriteRenderer != null)
+                originalColor = spriteRenderer.color;
+        }
+
+        #region Public Functions
         public void TakeDamage(int damage, PlayerWeaponSystem.WeaponType weaponType = PlayerWeaponSystem.WeaponType.None)
         {
+            bool apply = false;
+
             if (EnemyType == EnemyTypes.Boss)
             {
+                // Boss reacts
                 OnDamageTaken?.Invoke(damage);
+                StartFlash();
+                return;
             }
             else if (EnemyType == EnemyTypes.Melee && weaponType == PlayerWeaponSystem.WeaponType.Melee)
             {
-                Health -= damage;
-                OnDamageTaken?.Invoke(damage);
+                apply = true;
             }
             else if (EnemyType == EnemyTypes.Ranged && weaponType == PlayerWeaponSystem.WeaponType.Ranged)
             {
+                apply = true;
+            }
+
+            if (apply)
+            {
                 Health -= damage;
                 OnDamageTaken?.Invoke(damage);
+                StartFlash();
             }
         }
+        #endregion
+
+        #region Private Functions
+        private void StartFlash()
+        {
+            if (spriteRenderer == null) return;
+
+            if (flashCoroutine != null)
+                StopCoroutine(flashCoroutine);
+
+            if (gameObject.activeInHierarchy)
+                flashCoroutine = StartCoroutine(FlashRed());
+        }
+
+        private IEnumerator FlashRed()
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(flashDuration);
+            spriteRenderer.color = originalColor;
+            flashCoroutine = null;
+        }
+        #endregion
     }
 }

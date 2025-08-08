@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,6 +14,8 @@ namespace Player.Health
         [Header("Player Information")]
         public int currentHealth;
         public int maxHealth;
+        [SerializeField] private float respawnInvuln = 1.0f; 
+        private Coroutine invulnRoutine;
         public SpawningManager spawningManager;
         [HideInInspector] public bool isInvincible = false;
 
@@ -142,7 +145,6 @@ namespace Player.Health
                     return;
                 }
             }
-            //play sfx when damged
         }
 
         void Die()
@@ -155,7 +157,24 @@ namespace Player.Health
 
             onDeath?.Invoke();
         }
+        public void BeginRespawnInvulnerability(float seconds = -1f)
+        {
+            if (seconds <= 0f) seconds = respawnInvuln;
 
+            if (invulnRoutine != null) StopCoroutine(invulnRoutine);
+            invulnRoutine = StartCoroutine(RespawnInvuln(seconds));
+        }
+
+        private IEnumerator RespawnInvuln(float seconds)
+        {
+            isInvincible = true;
+            lastDamageTime = Time.time + damageCooldown;
+
+            yield return new WaitForSeconds(seconds);
+
+            isInvincible = false;
+            invulnRoutine = null;
+        }
         public void ResetHealth()
         {
             currentHealth = maxHealth;

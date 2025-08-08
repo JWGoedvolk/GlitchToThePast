@@ -9,7 +9,7 @@ namespace Systems.Enemies
     {
         // States
         [SerializeField] private bool isActive = true;
-        
+
         // Melee
         public bool IsMeleeBossSpawner = false;
         public bool isSpawningMelee = true;
@@ -21,7 +21,7 @@ namespace Systems.Enemies
         public int MeleeKillCount = 0; // For boss spawners. How many have been killed
         public int BossMeleeSpawnCount = 5; // For boss spawners. how many to spawn
         [SerializeField] private int maxMeleeCount = 5; // For non boss spawners. How many enemie can be active in the scene
-    
+
         // Ranged
         public bool IsRangedBossSpawner = false;
         public bool isSpawningRanged = true;
@@ -46,7 +46,7 @@ namespace Systems.Enemies
         [SerializeField] private UnityEvent onAllEnemiesKilled;
         public bool HasInvokedAllKilled = false;
         public bool HasInvokedAllSpawned = false;
-        
+
         [Header("Debugging")]
         [SerializeField] Vector3 meleeSize = Vector3.one;
         [SerializeField] Vector3 rangeSize = Vector3.one;
@@ -57,7 +57,7 @@ namespace Systems.Enemies
             isActive = true;
             HasInvokedAllKilled = false;
             HasInvokedAllSpawned = false;
-            
+
             // Clear kill counts
             MeleeKillCount = 0;
             RangedKillCount = 0;
@@ -66,7 +66,7 @@ namespace Systems.Enemies
         void Update()
         {
             if (!isActive) return; // Will only continue spawning when the lever is not pulled yet
-            
+
             // Check if we have killed all enemies of their respective type
             if (IsMeleeBossSpawner && IsRangedBossSpawner)
             {
@@ -87,7 +87,7 @@ namespace Systems.Enemies
             {
                 rangedSpawnTimer += Time.deltaTime;
             }
-            
+
             // Check timers for spawn intervals
 
             #region Melee Spawning
@@ -139,7 +139,7 @@ namespace Systems.Enemies
                 }
             }
             #endregion
-            
+
             // Check if all enemies have been spawned
             if (IsMeleeBossSpawner && IsRangedBossSpawner)
             {
@@ -169,8 +169,17 @@ namespace Systems.Enemies
             enemyHealth.spawner = this;
             enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Ranged;
             RangedMovement movement = newRanged.GetComponent<RangedMovement>();
-            movement.CruisingAltitude = rangedCruisingAltitude.position.y;
-            movement.AttackAltitude = attackAltitude.position.y;
+            if (rangedCruisingAltitude is not null && attackAltitude is not null)
+            {
+                movement.CruisingAltitude = rangedCruisingAltitude.position.y;
+                movement.AttackAltitude = attackAltitude.position.y;
+            }
+            else
+            {
+                Debug.Log("Null reference found: Enemy Spawner: CruisingAltitude &OR AttackAltitude");
+            }
+
+
             if (IsRangedBossSpawner)
             {
                 BossRangedSpawnCount--;
@@ -206,7 +215,7 @@ namespace Systems.Enemies
             Gizmos.color = Color.yellow;
             Gizmos.DrawSphere(rangedSpawnPoint.position, 0.1f);
             Gizmos.DrawWireCube(rangedSpawnPoint.position, rangeSize);
-            
+
             // Cruising altitude visual
             RangedMovement movement = rangedEnemy.GetComponent<RangedMovement>();
             float cruisingVariance = movement.CruisingAltitudeError;

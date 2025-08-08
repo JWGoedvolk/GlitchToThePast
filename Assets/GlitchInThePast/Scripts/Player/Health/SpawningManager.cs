@@ -122,6 +122,7 @@ namespace Player.Health
             if (gameObject.TryGetComponent(out PlayerHealthSystem healthSystem))
             {
                 healthSystem.ResetHealth();
+                healthSystem.BeginRespawnInvulnerability();
             }
 
             // Debug.Log($"Player {playerInput.playerIndex} respawned at {position}");
@@ -164,7 +165,11 @@ namespace Player.Health
 
             TeleportPlayer(go, respawnPos, playerIndex);
 
-            if (go.TryGetComponent(out PlayerHealthSystem hs)) hs.ResetHealth();
+            if (go.TryGetComponent(out PlayerHealthSystem hs))
+            {
+                hs.ResetHealth();
+                hs.BeginRespawnInvulnerability();  
+            }
             onRespawn?.Invoke();
 
             // Debug.Log($"Player {playerIndex} respawned at {respawnPos}");

@@ -183,7 +183,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.28867453, y: 0.28867453, z: 0.28867453}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4183937027507689170}
@@ -258,6 +258,7 @@ MonoBehaviour:
   healthCurrent: 3
   EnemyType: 1
   flashDuration: 0.1
+  spriteRenderer: {fileID: 0}
   OnDamageTaken:
     m_PersistentCalls:
       m_Calls: []
