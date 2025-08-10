@@ -1,5 +1,6 @@
 using System.Collections;
 using GlitchInThePast.Scripts.Player;
+using GlitchInThePast.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngineInternal;
@@ -33,6 +34,9 @@ namespace Systems.Enemies
 
         // Spawner counters
         public EnemySpawner spawner;
+        
+        [Header("DEBUGGING")]
+        public DamgeDebugger damgeDebugger;
         #endregion
 
         public int Health
@@ -95,6 +99,12 @@ namespace Systems.Enemies
                 // Boss reacts
                 OnDamageTaken?.Invoke(damage);
                 StartFlash();
+                
+                if (damgeDebugger != null)
+                {
+                    damgeDebugger.DipslayDamageDealt(damage);
+                }
+                
                 return;
             }
             else if (EnemyType == EnemyTypes.Melee && weaponType == PlayerWeaponSystem.WeaponType.Melee)
@@ -111,6 +121,11 @@ namespace Systems.Enemies
                 Health -= damage;
                 OnDamageTaken?.Invoke(damage);
                 StartFlash();
+
+                if (damgeDebugger != null)
+                {
+                    damgeDebugger.DipslayDamageDealt(damage);
+                }
             }
         }
         #endregion

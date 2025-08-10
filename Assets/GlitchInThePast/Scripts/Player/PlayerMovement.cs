@@ -173,10 +173,18 @@ namespace Player.GenericMovement
                 if (moveInput.x > 0.1f)
                 {
                     spriteRenderer.flipX = false;
+                    if (weaponSystem.Weapon == PlayerWeaponSystem.WeaponType.Melee)
+                    {
+                        weaponSystem.FlipMeleeTransform(false);
+                    }
                 }
                 else if (moveInput.x < -0.1f)
                 {
                     spriteRenderer.flipX = true;
+                    if (weaponSystem.Weapon == PlayerWeaponSystem.WeaponType.Melee)
+                    {
+                        weaponSystem.FlipMeleeTransform(true);
+                    }
                 }
             }
 

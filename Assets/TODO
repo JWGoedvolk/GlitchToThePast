@@ -7,7 +7,7 @@
     [x] Melee enemy moving to player
     [x] Ranged enemy attack player
         - move to above player heads so that they just do contact damage
-[] puzzle integration
+[x] puzzle integration
     [x] Pushable boxes
     [x] Section 2 pushable boxes
     [x] Section 3 buttons
@@ -30,6 +30,9 @@
             [x] Correctly able to stun boss for a few seconds
             [x] Correctly able to damage boss when stunned
             [x] Correctly dies when phase 2 health is done
+    
+=== COMBO ATTACKS ===
+
     
 === BOSS FIGHT ===
 <Loop>

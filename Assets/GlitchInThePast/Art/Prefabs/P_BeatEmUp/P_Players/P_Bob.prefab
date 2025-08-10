@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2025382852982128882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3912381565481030115}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3912381565481030115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025382852982128882}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2280682363573972676}
+  m_Father: {fileID: 6390881012933782396}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3982303003054045252
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,13 +100,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4486839311755691722}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.6762333, z: 0, w: 0.7366876}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.005, y: -0.106, z: -0}
-  m_LocalScale: {x: 0.045404, y: 0.045404, z: 0.045404}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2280682363573972676}
-  m_LocalEulerAnglesHint: {x: 0, y: -85.1, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!212 &7088996877983646424
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -115,8 +147,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a80f5559fab5d6e479f79be518c23a50, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -1243135393, guid: a9dfa8472d08028419a33a4b327c8dc1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -161,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7088996877983646424}
-  isNotMoving: 0
+  isNotMoving: 1
 --- !u!1 &4823359507561651016
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,12 +219,12 @@ Transform:
   m_GameObject: {fileID: 4823359507561651016}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.442, y: 0.538, z: -0.024}
+  m_LocalPosition: {x: 0.442, y: 0.306, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 437504406459891655}
-  m_Father: {fileID: 6390881012933782396}
+  m_Father: {fileID: 3912381565481030115}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &8390149993924556420
 GameObject:
@@ -355,7 +387,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 42270690061297230}
-  - {fileID: 2280682363573972676}
+  - {fileID: 3912381565481030115}
   m_Father: {fileID: 7276517022794321912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8697966249229336715
@@ -462,6 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 3
   maxHealth: 3
+  respawnInvuln: 1
   spawningManager: {fileID: 7325881295433291189}
   isInvincible: 0
   onDamageTaken:
@@ -517,7 +550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 6
   runningSpeed: 1.5
-  initialiserUnlockedMovement: 0
+  initialiserUnlockedMovement: 1
   dashSpeed: 20
   dashDuration: 0.15
   dashCooldown: 1
@@ -616,50 +649,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   isRecharging: 0
-  isWeaponEnabled: 0
+  isWeaponEnabled: 1
+  meleeFlipperTransform: {fileID: 3912381565481030115}
+  comboCount: 0
+  timeSinceLastAttack: 0
+  comboDuration: 3
+  currentComboDuration: 0
+  comboMeleeDamage: 010000000200000004000000
+  comboMeleeCollider: {fileID: 0}
+  comboRangedDamage: 
+  comboRangedSpeed: 
   onStartRecharge:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_material
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onRecharging:
     m_PersistentCalls:
       m_Calls: []
   onEndRecharge:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_material
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onMeleeAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnComboIncrease:
+    m_PersistentCalls:
+      m_Calls: []
+  OnComboReset:
     m_PersistentCalls:
       m_Calls: []
   onRangedAttack:
     m_PersistentCalls:
       m_Calls: []
+  meleeAnimator: {fileID: 8856713439103715862}
   meleeAttackTransform: {fileID: 437504406459891655}
+  meleeBounds:
+    m_Center: {x: 0.85, y: 0.78, z: 0}
+    m_Extent: {x: 1.29, y: 0.78, z: 0.5}
   meleeAttackRange: 1
   meleeRechargeTime: 1
   meleeDamage: 1
+  rangedAnimator: {fileID: 0}
   rangedAttackSpawnPoint: {fileID: 0}
   projectilePrefab: {fileID: 2096087822165832043, guid: 13d1f6c998a2d1d469f026d0c02bf817, type: 3}
   rangedRechargeTime: 3
