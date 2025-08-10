@@ -228,8 +228,10 @@ namespace Player.GenericMovement
             if (action["Dash"] != null) action["Dash"].performed += _ => Dash();
             if (action["Attack"] != null)
             {
-                // Debug.Log("Adding 'Attack' action to input");
+                action["Attack"].started += _ => weaponSystem.StartCharging();
+                action["Attack"].canceled += _ => weaponSystem.StopCharging();
                 action["Attack"].performed += _ => weaponSystem.OnAttack();
+                
             }
             if (action["Jump"] != null)
             {
@@ -264,6 +266,8 @@ namespace Player.GenericMovement
                 action["Dash"].performed -= _ => Dash();
             if (action["Attack"] != null)
             {
+                action["Attack"].started -= _ => weaponSystem.StartCharging();
+                action["Attack"].canceled -= _ => weaponSystem.StopCharging();
                 action["Attack"].performed -= _ => weaponSystem.OnAttack();
             }
             if (action["Jump"] != null)

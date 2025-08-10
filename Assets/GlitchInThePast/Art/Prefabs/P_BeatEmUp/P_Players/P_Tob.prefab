@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8834217309014185563}
   - component: {fileID: 4245184345691448312}
   - component: {fileID: 3692559824405975367}
+  - component: {fileID: 1228906177923959383}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.346, y: 0, z: 0}
-  m_LocalScale: {x: 0.016963039, y: 0.016963039, z: 0.016963039}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2025892952744937449}
@@ -75,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 580167f2a85909947b125d79516fd125, type: 3}
+  m_Sprite: {fileID: 947190829, guid: 423e7a51af604ef4ca40253092fd031d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 20.491024, y: 18.59}
+  m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -100,6 +101,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4245184345691448312}
   isNotMoving: 0
+--- !u!95 &1228906177923959383
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2929214977873594108}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 711993e2eca774e4f934f590012776fa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3982303003054045252
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +240,7 @@ Transform:
   m_GameObject: {fileID: 8134715591524518181}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.88, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0.75, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -491,6 +513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 3
   maxHealth: 3
+  respawnInvuln: 1
   spawningManager: {fileID: 3309280108719559094}
   isInvincible: 0
   onDamageTaken:
@@ -646,6 +669,11 @@ MonoBehaviour:
   weaponType: 1
   isRecharging: 0
   isWeaponEnabled: 1
+  meleeFlipperTransform: {fileID: 0}
+  comboCount: 0
+  timeSinceLastAttack: 0
+  comboDuration: 0
+  currentComboDuration: 0
   onStartRecharge:
     m_PersistentCalls:
       m_Calls: []
@@ -658,18 +686,40 @@ MonoBehaviour:
   onMeleeAttack:
     m_PersistentCalls:
       m_Calls: []
+  OnComboIncrease:
+    m_PersistentCalls:
+      m_Calls: []
+  OnComboReset:
+    m_PersistentCalls:
+      m_Calls: []
   onRangedAttack:
     m_PersistentCalls:
       m_Calls: []
+  meleeAnimator: {fileID: 0}
   meleeAttackTransform: {fileID: 0}
+  meleeBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   meleeAttackRange: 2
   meleeRechargeTime: 3
   meleeDamage: 1
+  comboMeleeDamage: 
+  comboMeleeCollider: {fileID: 0}
+  rangedAnimator: {fileID: 1228906177923959383}
   rangedAttackSpawnPoint: {fileID: 2025892952744937449}
   projectilePrefab: {fileID: 1662423977701543809, guid: 9a7e98309550f934abb9b10bab6842ac, type: 3}
-  rangedRechargeTime: 3
+  rangedRechargeTime: 5
   rangedDamage: 1
   projectileSpeed: 5
+  IsCharging: 0
+  ChargeThresholds:
+  - 3
+  - 2
+  - 2
+  - 1
+  CurrentChargeTime: 0
+  comboRangedDamage: 010000000200000004000000
+  comboRangedSpeed: 010000000200000003000000
 --- !u!114 &4511008773222892832
 MonoBehaviour:
   m_ObjectHideFlags: 0
