@@ -114,9 +114,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 260
-        width: 411
-        height: 220
+        y: 240
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: S_Weapon_Ranged_Part_1_1
       rect:
         serializedVersion: 2
-        x: 411
-        y: 260
-        width: 411
-        height: 220
+        x: 426
+        y: 240
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,10 +155,10 @@ TextureImporter:
       name: S_Weapon_Ranged_Part_1_2
       rect:
         serializedVersion: 2
-        x: 822
-        y: 260
-        width: 411
-        height: 220
+        x: 852
+        y: 240
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,9 +177,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 40
-        width: 411
-        height: 220
+        y: 0
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: S_Weapon_Ranged_Part_1_4
       rect:
         serializedVersion: 2
-        x: 411
-        y: 40
-        width: 411
-        height: 220
+        x: 426
+        y: 0
+        width: 426.66666
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

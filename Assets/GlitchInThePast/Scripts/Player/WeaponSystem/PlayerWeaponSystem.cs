@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Systems.Enemies;
 using Unity.Collections;
 using UnityEngine;
@@ -28,10 +29,6 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private float timeSinceLastAttack = 0f;
         [SerializeField] private float comboDuration = 0f;
         [ReadOnly][SerializeField] float currentComboDuration = 0f;
-        [SerializeField] private List<int> comboMeleeDamage = new List<int>();
-        [SerializeField] private BoxCollider comboMeleeCollider = null;
-        [SerializeField] private List<int> comboRangedDamage = new List<int>();
-        [SerializeField] private List<int> comboRangedSpeed = new List<int>();
         [Header("Events")]
         [Header("Recharge")]
         [SerializeField] private UnityEvent onStartRecharge;
@@ -45,20 +42,31 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private UnityEvent onRangedAttack;
 
         // Melee Attack
+        [Header("Melee Attack")]
         [SerializeField] private Animator meleeAnimator;
         [SerializeField] private Transform meleeAttackTransform;
         [SerializeField] private Bounds meleeBounds;
         [SerializeField] private float meleeAttackRange = 3f;
         [SerializeField] private float meleeRechargeTime = 3f;
         [SerializeField] private int meleeDamage = 1;
-
+        [Header("Melee Combo")]
+        [SerializeField] private List<int> comboMeleeDamage = new List<int>();
+        [SerializeField] private BoxCollider comboMeleeCollider = null;
+        
         // Ranged Attack
+        [Header("Ranged Attack")]
         [SerializeField] private Animator rangedAnimator;
         [SerializeField] private Transform rangedAttackSpawnPoint;
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private float rangedRechargeTime = 3f;
         [SerializeField] private int rangedDamage = 1;
         [SerializeField] private float projectileSpeed = 5f;
+        [Header("Ranged Combo")] 
+        public bool IsCharging = false;
+        public List<float> ChargeThresholds;
+        public float CurrentChargeTime = 0f;
+        [SerializeField] private List<int> comboRangedDamage = new List<int>();
+        [SerializeField] private List<int> comboRangedSpeed = new List<int>();
         
         public WeaponType Weapon { get; }
 
@@ -85,13 +93,43 @@ namespace GlitchInThePast.Scripts.Player
             {
                 return;
             }
-            
-            timeSinceLastAttack += Time.deltaTime;
-            if (comboCount != 0 && timeSinceLastAttack > currentComboDuration)
-            {
-                ResetComboCounter();
 
-                UpdateAnimatorCounter();
+            switch (weaponType)
+            {
+                case WeaponType.Melee:
+                    timeSinceLastAttack += Time.deltaTime;
+                    if (comboCount != 0 && timeSinceLastAttack > currentComboDuration && weaponType != WeaponType.Ranged) // Rnaged weapons have a charging combo which works differently
+                    {
+                        ResetComboCounter();
+
+                        UpdateAnimatorCounter();
+                    }
+                    break;
+                case WeaponType.Ranged:
+                    if (IsCharging)
+                    {
+                        CurrentChargeTime += Time.deltaTime; // Charge up our shot this frame
+
+                        if (CurrentChargeTime >= ChargeThresholds[comboCount])
+                        {
+                            CurrentChargeTime = 0f;
+                            comboCount++;
+                            OnComboIncrease?.Invoke();
+
+                            if (comboCount == 4)
+                            {
+                                comboCount = 1;
+                            }
+                            
+                            UpdateAnimatorCounter();
+                        }
+                    }
+                    else
+                    {
+                        rangedAnimator.SetBool("IsCharging", false);
+                        rangedAnimator.SetInteger("ComboCount", 0);
+                    }
+                    break;
             }
         }
 
@@ -113,12 +151,13 @@ namespace GlitchInThePast.Scripts.Player
 
             comboCount = 0;
             OnComboReset?.Invoke();
+            UpdateAnimatorCounter();
         }
 
         public void OnAttack()
         {
             // Only allow attacks if our weapon is enabled and not recharging
-            if (isRecharging || !isWeaponEnabled)
+            if (isRecharging || !isWeaponEnabled || weaponType == WeaponType.Ranged)
             {
                 return;
             }
@@ -172,7 +211,6 @@ namespace GlitchInThePast.Scripts.Player
                     }
                 }
                 
-                
                 // Invoke events
                 onMeleeAttack?.Invoke();
 
@@ -184,30 +222,52 @@ namespace GlitchInThePast.Scripts.Player
                 {
                     ResetComboCounter();
                 }
-                
-                /*var hits = Physics.RaycastAll(meleeAttackTransform.position, meleeAttackTransform.forward, meleeAttackRange);
-                foreach (var hit in hits)
-                {
-                    Debug.Log(hit.transform.name);
-                    EnemyHealth enemyHealth = hit.transform.GetComponent<EnemyHealth>();
-                    if (enemyHealth != null)
-                    {
-                        enemyHealth.TakeDamage(comboMeleeDamage[comboCount-1], WeaponType.Melee);
-                    }
-                }*/
             }
-            else if (weaponType == WeaponType.Ranged)
+        }
+
+        public void StartCharging()
+        {
+            if (weaponType != WeaponType.Ranged) return;
+            if (isRecharging || !isWeaponEnabled)
             {
-                StartCoroutine(Recharge(rangedRechargeTime));
-                onRangedAttack?.Invoke();
-
-                //Sfx
-                sFXManager?.PlayWeaponSFX();
-
-                var projectile = Instantiate(projectilePrefab, rangedAttackSpawnPoint.position, rangedAttackSpawnPoint.rotation);
-                PlayerRangedProjectile projectileScript = projectile.GetComponent<PlayerRangedProjectile>();
-                projectileScript.Init(comboRangedDamage[comboCount-1], comboRangedSpeed[comboCount-1]);
+                return;
             }
+
+            Debug.Log("Tobby began a charged attack");
+            IsCharging = true;
+            CurrentChargeTime = 0f;
+            comboCount = 0;
+            UpdateAnimatorCounter();
+            rangedAnimator.SetBool("IsCharging", true);
+        }
+
+        public void StopCharging()
+        {
+            if (weaponType != WeaponType.Ranged) return;
+            
+            // Only continue if we have actually charged something
+            if (comboCount > 0)
+            {
+                // Spawn in the projectile
+                var projectile = Instantiate(projectilePrefab, rangedAttackSpawnPoint.position, rangedAttackSpawnPoint.rotation);
+                PlayerRangedProjectile proj = projectile.GetComponent<PlayerRangedProjectile>();
+                proj.Init(comboRangedDamage[comboCount - 1], comboRangedSpeed[comboCount - 1]);
+
+                // Begin weapon recharging
+                StartCoroutine(Recharge(rangedRechargeTime));
+                
+                // Set animator to play the firing animation
+                rangedAnimator.SetBool("IsCharging", false);
+                rangedAnimator.SetTrigger("Attack");
+
+                // Weapon events
+                onRangedAttack?.Invoke();
+            }
+            
+            // Reset charging and combo everytime regardless of combo level
+            IsCharging = false;
+            CurrentChargeTime = 0f;
+            ResetComboCounter();
         }
 
         private IEnumerator Recharge(float time)
@@ -227,14 +287,7 @@ namespace GlitchInThePast.Scripts.Player
 
         public void FlipMeleeTransform(bool isFlipped)
         {
-            if (isFlipped)
-            {
-                meleeFlipperTransform.rotation = Quaternion.Euler(meleeFlipperTransform.rotation.x, 180f, meleeFlipperTransform.rotation.z);
-            }
-            else
-            {
-                meleeFlipperTransform.rotation = Quaternion.Euler(meleeFlipperTransform.rotation.x, 0f, meleeFlipperTransform.rotation.z);
-            }
+            meleeFlipperTransform.rotation = Quaternion.Euler(meleeFlipperTransform.rotation.x, isFlipped ? 180f : 0f, meleeFlipperTransform.rotation.z);
         }
 
         public int CurrentComboDamage()
