@@ -36,7 +36,7 @@ public class MainMenuButtons : MonoBehaviour
 
     //Music BG
     [SerializeField] public AudioSource backgroundMusic;
-    [SerializeField] [Range(0f, 1f)] private float fadeOutRate = 0.4f;
+    [SerializeField][Range(0f, 1f)] private float fadeOutRate = 0.4f;
     #endregion
 
     //SFX integration
@@ -75,15 +75,10 @@ public class MainMenuButtons : MonoBehaviour
         bool escapePressed = Keyboard.current?.escapeKey.wasPressedThisFrame == true;
         bool controllerMenuPressed = Gamepad.current?.startButton.wasPressedThisFrame == true;
 
-        
+
         if ((escapePressed || controllerMenuPressed) && !quitConfirmationPanel.activeSelf)
         {
-            //checks if the pannel is active
-            bool wasSettingsActive = settingsPanel.activeSelf;
-
-            settingsPanel.SetActive(!settingsPanel.activeSelf);
-
-            if (!wasSettingsActive) // Panel is now active (was inactive)
+            if (settingsPanel.activeSelf == false) // Panel is now active (was inactive)
             {
                 sfxManager?.PlayPannelOpeningSFX();
             }
@@ -267,11 +262,11 @@ public class MainMenuButtons : MonoBehaviour
         loadFeaturePanel.SetActive(isLoadFeaturePanel);
 
         sfxManager?.PlayButtonClickSFX();
-        if (isLoadFeaturePanel) 
+        if (isLoadFeaturePanel)
         {
             sfxManager?.PlayPannelOpeningSFX();
         }
-        else 
+        else
         {
             sfxManager?.PlayPannelClosingSFX();
         }

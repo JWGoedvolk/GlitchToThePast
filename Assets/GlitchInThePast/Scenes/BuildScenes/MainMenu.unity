@@ -253,7 +253,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 80375971}
     m_SelectOnDown: {fileID: 1224132780}
-    m_SelectOnLeft: {fileID: 906319317}
+    m_SelectOnLeft: {fileID: 2074421093}
     m_SelectOnRight: {fileID: 906319317}
   m_Transition: 1
   m_Colors:
@@ -692,7 +692,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1480682187}
-    m_SelectOnDown: {fileID: 2074421093}
+    m_SelectOnDown: {fileID: 276029266}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -1483,8 +1483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Material: {fileID: 2100000, guid: 82fb408fd1e0c1643a8d4aca828f2801, type: 2}
+  m_Color: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2161,7 +2161,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 1480682187}
+    m_SelectOnUp: {fileID: 80375971}
     m_SelectOnDown: {fileID: 2074421093}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -9701,6 +9701,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2034781452}
+  - component: {fileID: 2034781453}
   - component: {fileID: 2034781451}
   - component: {fileID: 2034781450}
   - component: {fileID: 2034781449}
@@ -9772,7 +9773,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &2034781452
 RectTransform:
@@ -9795,6 +9796,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2034781453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034781448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d6a67d783b5da43ac0614a0278ca52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 187950307}
 --- !u!1 &2052456967
 GameObject:
   m_ObjectHideFlags: 0
@@ -10262,10 +10276,10 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 80375971}
+    m_SelectOnUp: {fileID: 276029266}
     m_SelectOnDown: {fileID: 2118715295}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 23488416}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -10872,10 +10886,10 @@ SceneRoots:
   - {fileID: 1671657963}
   - {fileID: 2061955573}
   - {fileID: 1075253056}
+  - {fileID: 2034781452}
   - {fileID: 1522262137}
   - {fileID: 1854935683}
   - {fileID: 1087045515}
   - {fileID: 1384703589}
   - {fileID: 2121457754}
   - {fileID: 1573673406}
-  - {fileID: 2034781452}
