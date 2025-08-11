@@ -10011,7 +10011,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1784454001437011767, guid: 413664577857ffc409922ab5c0253374, type: 3}
       propertyPath: sceneInt
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4650222055791008725, guid: 413664577857ffc409922ab5c0253374, type: 3}
       propertyPath: m_LocalScale.z
