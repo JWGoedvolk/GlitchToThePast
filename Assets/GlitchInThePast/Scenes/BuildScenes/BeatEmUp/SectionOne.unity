@@ -408,7 +408,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 798137e4697f21048ac1b997c437ba62, type: 2}
+  - {fileID: 2100000, guid: 573192bb8b2a7de4f82606f603ba5af7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2009,6 +2009,8 @@ MonoBehaviour:
   healthMax: 3
   healthCurrent: 3
   EnemyType: 1
+  flashDuration: 0.1
+  spriteRenderer: {fileID: 0}
   OnDamageTaken:
     m_PersistentCalls:
       m_Calls: []
@@ -5693,6 +5695,8 @@ MonoBehaviour:
   healthMax: 3
   healthCurrent: 3
   EnemyType: 0
+  flashDuration: 0.1
+  spriteRenderer: {fileID: 0}
   OnDamageTaken:
     m_PersistentCalls:
       m_Calls:
@@ -6151,7 +6155,7 @@ PrefabInstance:
     - target: {fileID: 5021538518293148549, guid: 267c23b6f6a8aed4f87210d4d390a80d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8d2c7ba6025b26d4296a494b58481802, type: 2}
+      objectReference: {fileID: 2100000, guid: 69a19e9ced969ce4fb8b5dff12698713, type: 2}
     - target: {fileID: 6195609973491370218, guid: 267c23b6f6a8aed4f87210d4d390a80d, type: 3}
       propertyPath: m_LocalScale.x
       value: 590.20105
@@ -9392,7 +9396,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 43b19ef72d2983a44b5081ff8dc1ca42, type: 2}
+  - {fileID: 2100000, guid: 573192bb8b2a7de4f82606f603ba5af7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
