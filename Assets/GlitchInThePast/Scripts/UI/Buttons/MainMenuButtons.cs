@@ -111,6 +111,8 @@ public class MainMenuButtons : MonoBehaviour
     #region Settings
     public void SettingsToggler()
     {
+        if (settingsPanel == null) return;
+
         bool settingsActive = !settingsPanel.activeSelf;
         settingsPanel.SetActive(settingsActive);
 

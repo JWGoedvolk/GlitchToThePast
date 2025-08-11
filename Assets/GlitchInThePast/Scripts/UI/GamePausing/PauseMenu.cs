@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
     #region Variables
     public static PauseMenu Instance;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject firstSelectedButton; 
     private bool paused;
     #endregion
 
@@ -44,13 +46,9 @@ public class PauseMenu : MonoBehaviour
 
     private void OnSceneChanged(Scene from, Scene to)
     {
-        if (pauseMenu == null)
-        {
-            var foundCanvas = GameObject.Find("PauseMenuCanvas") ?? FindObjectOfType<Canvas>(true)?.gameObject;
-            if (foundCanvas != null) pauseMenu = foundCanvas;
-        }
-
         if (pauseMenu != null) pauseMenu.SetActive(paused);
+
+        if (paused) ForceSelect(firstSelectedButton);
     }
 
     public void Toggle()
@@ -68,6 +66,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         AudioListener.pause = true;
         Cursor.visible = true;
+
+        ForceSelect(firstSelectedButton);
     }
 
     public void Resume()
@@ -79,5 +79,20 @@ public class PauseMenu : MonoBehaviour
         if (Mathf.Approximately(Time.timeScale, 0f)) Time.timeScale = 1f;
         AudioListener.pause = false;
         Cursor.visible = false;
+
+        if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    private void ForceSelect(GameObject gameObject)
+    {
+        if (gameObject == null || EventSystem.current == null) return;
+        StartCoroutine(SelectNextFrame(gameObject));
+    }
+
+    private System.Collections.IEnumerator SelectNextFrame(GameObject gameObject)
+    {
+        yield return null; 
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(gameObject);
     }
 }
