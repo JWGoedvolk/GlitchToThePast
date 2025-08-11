@@ -54,6 +54,10 @@ namespace JW.Objects.Interactibles
             if (interactPrompt != null)
                 // Show a prompt for how to interact with this object
                 interactPrompt.SetActive(triggeringObjects.Count > 0);
+            if (!IsActivatable)
+            {
+                interactPromptText.text = "Cant interact with this object.";
+            }
 
             meshRenderer.material = isActivated ? activeStateMaterial : defaultStateMaterial;
         }
@@ -116,7 +120,15 @@ namespace JW.Objects.Interactibles
 
         public virtual void Interact()
         {
-            if (!isActivated || !IsActivatable)
+            // Handle our interactibility state
+            if (!IsActivatable)
+            {
+                interactPromptText.text = "This interactable is not activatable right now";
+                return;
+            }
+            
+            // Activate and deactivate the lever
+            if (!isActivated)
             {
                 OnInteraction?.Invoke();
                 isActivated = true;
@@ -138,6 +150,16 @@ namespace JW.Objects.Interactibles
         public void SetActivatable(bool activatable)
         {
             IsActivatable = activatable;
+        }
+
+        public void SetResettable(bool resettable)
+        {
+            isResetting = resettable;
+        }
+
+        public void SetState(bool state)
+        {
+            isActivated = state;
         }
 
         public IEnumerator ResetCountdown()

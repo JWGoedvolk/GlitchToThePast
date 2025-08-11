@@ -129,6 +129,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   startingRange: 0.5
-  range: 5
+  range: 8
   duration: 2
   currentTime: 0

@@ -71,9 +71,15 @@ namespace Systems.Enemies.Boss
                     // If we still have phase to go through, then go to the next one
                     OnStageChanged?.Invoke();
                     OnStageChangedAction?.Invoke();
+
+                    // The boss is finally dead
+                    if (BossStateManager.Instance.Phase >= healths.Count)
+                    {
+                        OnDeath?.Invoke();
+                    }
                 }
             }
-            if (healths[BossStateManager.Instance.Phase] <= 0) // If our current phase dies
+            /*if (healths.Count >= BossStateManager.Instance.Phase) // If our current phase dies
             {
                 // Check if was the final phase
                 if (healths.Count >= BossStateManager.Instance.Phase)
@@ -85,7 +91,7 @@ namespace Systems.Enemies.Boss
                 // If we still have phase to go through, then go to the next one
                 OnStageChanged?.Invoke();
                 OnStageChangedAction?.Invoke();
-            }
+            }*/
         }
 
         public void TakeExcessDamage()

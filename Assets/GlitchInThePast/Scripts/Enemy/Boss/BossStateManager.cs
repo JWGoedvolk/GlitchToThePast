@@ -69,6 +69,8 @@ namespace Systems.Enemies.Boss
         public int RangedSpawnCount = 5;
         
         [Header("Events")]
+        public List<UnityEvent> OnArmsRaise = new List<UnityEvent>();
+        public List<UnityEvent> OnArmsDrop = new List<UnityEvent>();
         public List<UnityEvent> OnStunStartEvent;
         public List<UnityEvent> OnStunEndEvent;
             
@@ -125,6 +127,7 @@ namespace Systems.Enemies.Boss
                     {
                         currentState = State.SpawningEnemies;
                         Spawner.StartBossSpawner(MeleeSpawnCount, RangedSpawnCount);
+                        BossAnimator.ResetTrigger("NextStage");
                     }
                 }
                 else
@@ -153,6 +156,7 @@ namespace Systems.Enemies.Boss
                         currentTime = 0f;
                         currentInterval = 0f;
                         currentState = State.AttackArmRaise; // Arms are raised, now hold them there for a few seconds
+                        OnArmsRaise[phase]?.Invoke();
                     }
                 }
                 else if (phase == 1)
@@ -165,6 +169,7 @@ namespace Systems.Enemies.Boss
                         currentTime = 0f;
                         currentInterval = 0f;
                         currentState = State.AttackArmRaise; // Arms are raised, now hold them there for a few seconds
+                        OnArmsRaise[phase]?.Invoke();
                     }
                 }
             }
@@ -176,6 +181,7 @@ namespace Systems.Enemies.Boss
                     currentTime = 0f;
                     BossAnimator.SetBool("IsArmsRaised", false); // Play animation to drop arms and spawn shockwaves after it ends
                     currentState = State.Attacking;
+                    OnArmsDrop[phase]?.Invoke();
                 }
             }
             else if (currentState == State.Attacking) // Boss is playing arm dropping and shockwave spawning animation so do nothing
@@ -184,8 +190,6 @@ namespace Systems.Enemies.Boss
             }
             else if (currentState == State.Stunned) // All the levers were activated while the boss's arms were raised. Do nothing while in this state other than wait it out
             {
-                Debug.Log("Boss is stunned");
-                
                 // Count down how long we are stunned for
                 currentTime += Time.deltaTime;
                 if (currentTime >= stunnedTime)
@@ -224,7 +228,10 @@ namespace Systems.Enemies.Boss
 
         public void OnDeath()
         {
+            Debug.Log("Boss should be dead");
+            BossAnimator.ResetTrigger("NextStage");
             BossAnimator.SetTrigger("IsDead");
+            BossAnimator.SetBool("Die", true);
             currentState = State.Dead;
         }
 
