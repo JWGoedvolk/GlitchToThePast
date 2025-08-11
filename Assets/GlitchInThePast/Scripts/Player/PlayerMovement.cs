@@ -1,10 +1,8 @@
-using System;
 using GlitchInThePast.Scripts.Player;
 using Player.Health;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace Player.GenericMovement
 {
@@ -87,7 +85,6 @@ namespace Player.GenericMovement
             if (spriteRenderer == null)
                 Debug.LogError("There is no sprite Renderer, can't flip the sprite! ADD ONE NOW");
 
-
             weaponSystem = GetComponent<PlayerWeaponSystem>();
             if (rotator == null)
             {
@@ -108,11 +105,7 @@ namespace Player.GenericMovement
 
                 if (dashTimer <= 0f)
                 {
-                    isDashing = false;
-                    animator?.SetBool("isDashing", false);
-                    onDashEnd?.Invoke();
-
-                    if (healthSystem != null) healthSystem.isInvincible = false;
+                    EndDash(true); 
                 }
             }
 
@@ -149,8 +142,7 @@ namespace Player.GenericMovement
                     {
                         if (isDashing)
                         {
-                            onDashEnd?.Invoke();
-                            isDashing = false;
+                            EndDash(true); 
                         }
                         return;
                     }
@@ -231,7 +223,7 @@ namespace Player.GenericMovement
                 action["Attack"].started += _ => weaponSystem.StartCharging();
                 action["Attack"].canceled += _ => weaponSystem.StopCharging();
                 action["Attack"].performed += _ => weaponSystem.OnAttack();
-                
+
             }
             if (action["Jump"] != null)
             {
@@ -275,6 +267,8 @@ namespace Player.GenericMovement
                 action["Jump"].performed -= OnJump;
             }
             #endregion
+
+            EndDash(false);
         }
 
         #region Public Functions
@@ -293,7 +287,7 @@ namespace Player.GenericMovement
             characterController.enabled = true;
 
             verticalVel = 0f;
-            isDashing = false;
+            EndDash(false); 
         }
         #endregion
 
@@ -347,6 +341,26 @@ namespace Player.GenericMovement
             }
         }
 
+        private void EndDash(bool fireEvent)
+        {
+            if (isDashing == false && animator != null)
+            {
+                animator.SetBool("isDashing", false);
+            }
+
+            isDashing = false;
+            dashTimer = 0f;
+
+            if (animator != null)
+                animator.SetBool("isDashing", false);
+
+            if (healthSystem != null)
+                healthSystem.isInvincible = false;
+
+            if (fireEvent)
+                onDashEnd?.Invoke();
+        }
+
         private void OnJump(InputAction.CallbackContext ctx)
         {
             if (ctx.performed && characterController.isGrounded)
@@ -370,6 +384,8 @@ namespace Player.GenericMovement
             dashTimer = 0f;
             dashCooldownTimer = 0f;
             verticalVel = 0f;
+
+            EndDash(false);
         }
 
         public void OnUnpause()

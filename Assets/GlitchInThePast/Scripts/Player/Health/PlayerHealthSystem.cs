@@ -14,7 +14,7 @@ namespace Player.Health
         [Header("Player Information")]
         public int currentHealth;
         public int maxHealth;
-        [SerializeField] private float respawnInvuln = 1.0f; 
+        [SerializeField] private float respawnInvuln = 1.0f;
         private Coroutine invulnRoutine;
         public SpawningManager spawningManager;
         [HideInInspector] public bool isInvincible = false;
@@ -113,16 +113,12 @@ namespace Player.Health
                     {
                         //Debug.Log("PlayerHealthSystem: Calling PlayHitSFX()");
                         sfxManager.PlayHitSFX();
-                        if (animator != null)
-                        {
-                            animator.SetBool("isGettingHit", true);
-                            animator.SetBool("isDashing", false);
-                            Invoke("StopHitAnimation", 0.3f);
-                        }
                     }
-                    else
+                    if (animator != null)
                     {
-                        //Debug.LogWarning("PlayerHealthSystem: sfxManager reference is null!");
+                        animator.SetBool("isGettingHit", true);
+                        animator.SetBool("isDashing", false);
+                        Invoke("StopHitAnimation", 0.3f);
                     }
                 }
 
