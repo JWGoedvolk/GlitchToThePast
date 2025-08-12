@@ -6,6 +6,7 @@ namespace GlitchInThePast.Scripts.Player
     public class WeaponToggler : CustomTriggerer
     {
         [SerializeField] private bool isEnabler = false;
+        public PlayerWeaponSystem.WeaponType TargetWeaponType = PlayerWeaponSystem.WeaponType.None;
 
         public override void OnTrigger(GameObject other)
         {
@@ -14,11 +15,17 @@ namespace GlitchInThePast.Scripts.Player
             {
                 if (isEnabler)
                 {
-                    weaponSystem.EnableWeapon();
+                    if (weaponSystem.Weapon == TargetWeaponType || TargetWeaponType == PlayerWeaponSystem.WeaponType.None)
+                    {
+                        weaponSystem.EnableWeapon();
+                    }
                 }
                 else
                 {
-                    weaponSystem.DisableWeapon();
+                    if (weaponSystem.Weapon == TargetWeaponType || TargetWeaponType == PlayerWeaponSystem.WeaponType.None)
+                    {
+                        weaponSystem.DisableWeapon();
+                    }
                 }
             }
         }

@@ -29,6 +29,7 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private bool isRecharging = false;
         [SerializeField] private bool isWeaponEnabled = true;
         [SerializeField] private Transform meleeFlipperTransform;
+        [SerializeField] private SpriteRenderer weaponRenderer;
 
         [Header("Combo")]
         [SerializeField] private int comboCount = 0;
@@ -337,6 +338,7 @@ namespace GlitchInThePast.Scripts.Player
         public void EnableWeapon()
         {
             isWeaponEnabled = true;
+            weaponRenderer.enabled = true;
         }
 
         /// <summary>
@@ -345,6 +347,7 @@ namespace GlitchInThePast.Scripts.Player
         public void DisableWeapon()
         {
             isWeaponEnabled = false;
+            weaponRenderer.enabled = false;
         }
 
         private void OnDrawGizmos()
