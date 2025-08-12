@@ -25,8 +25,9 @@ public class EnemyDetectorForAudioSwitch : MonoBehaviour
             return;
         }
 
-        music.EnsureRunning();
-        Poll();
+        _currentCount = Physics.OverlapSphere(transform.position, radius, enemyLayers).Length;
+        _inCombat = _currentCount > enterCombatCount;
+        music.SetCombat(_inCombat);
 
         InvokeRepeating(nameof(Poll), 0.1f, pollInterval);
     }
