@@ -1447,7 +1447,7 @@ GameObject:
   - component: {fileID: 187950311}
   m_Layer: 5
   m_Name: Panel_Settings
-  m_TagString: Untagged
+  m_TagString: PauseMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5968,18 +5968,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1522262138}
-        m_TargetAssemblyTypeName: UI.FadingEffect.ScreenFader, Assembly-CSharp
-        m_MethodName: OnButtonClickFadeTransition
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 1.5
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1500530375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7226,6 +7214,7 @@ GameObject:
   - component: {fileID: 1783700452}
   - component: {fileID: 1783700451}
   - component: {fileID: 1783700450}
+  - component: {fileID: 1783700453}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -7279,15 +7268,40 @@ Transform:
   m_GameObject: {fileID: 1783700449}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -959.99945, y: -540.8558, z: 0}
-  m_LocalScale: {x: 4.564183, y: 4.564183, z: 4.564183}
+  m_LocalPosition: {x: 0.00018310547, y: -0.332016, z: 0}
+  m_LocalScale: {x: 1.4374008, y: 1.4374008, z: 1.4374008}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 138386286}
   - {fileID: 1805354797}
   - {fileID: 2139994961}
-  m_Father: {fileID: 2034781452}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1783700453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783700449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7cdbe67383273841ae3fc9cc15bbd9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  calmSource: {fileID: 138386285}
+  tenseSource: {fileID: 138386285}
+  calmClip: {fileID: 8300000, guid: 59dcea154eb949e458488e4679eb9fd4, type: 3}
+  tenseClip: {fileID: 8300000, guid: ad316d35711fc774b968b98679e9f1c2, type: 3}
+  mixer: {fileID: 24100000, guid: df1224e9df871af47829ab50d27cc1dd, type: 2}
+  calmSnapshot: {fileID: 24500006, guid: df1224e9df871af47829ab50d27cc1dd, type: 2}
+  tenseSnapshot: {fileID: -5794662602836960298, guid: df1224e9df871af47829ab50d27cc1dd, type: 2}
+  snapshotFadeSeconds: 1.5
+  barSyncTransitions: 1
+  bpm: 120
+  beatsPerBar: 4
+  dontDestroyOnLoad: 1
+  autoStart: 0
 --- !u!1 &1792931976
 GameObject:
   m_ObjectHideFlags: 0
@@ -8814,7 +8828,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 187950308}
-  - {fileID: 1783700452}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -9573,6 +9586,8 @@ MonoBehaviour:
   SpritesubtitlesOffImage: {fileID: 21300000, guid: 433c46335ee73dd48934da094b542644, type: 3}
   sizeLabel: {fileID: 1661278458}
   isSelectingCharacters: 0
+  screenFader: {fileID: 1522262138}
+  pauseMenuScript: {fileID: 2034781453}
   buttonLocker: {fileID: 2121457759}
   backgroundMusic: {fileID: 138386285}
   fadeOutRate: 0.4
@@ -9932,3 +9947,4 @@ SceneRoots:
   - {fileID: 1384703589}
   - {fileID: 2121457754}
   - {fileID: 1573673406}
+  - {fileID: 1783700452}

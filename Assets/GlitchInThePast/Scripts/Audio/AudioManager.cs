@@ -107,6 +107,38 @@ namespace Audio
         }
         #endregion
 
+        #region Adaptive Music Bridge
+        // Call this in gameplay scenes to start calm-tense system.
+        public void StartAdaptiveMusic(AudioClip calm, AudioClip tense, bool barSync = true, double bpm = 120.0, int beatsPerBar = 4)
+        {
+            var adaptiveMusicController = global::AdaptiveMusicController.Instance;
+            if (adaptiveMusicController == null)
+            {
+                Debug.LogError("AudioManager.StartAdaptiveMusic: AdaptiveMusicController.Instance not found in scene.");
+                return;
+            }
+
+            // Stop any menu or non-adaptive track.
+            StopMusic(0.15f);
+
+            // Configure the controller.
+            adaptiveMusicController.barSyncTransitions = barSync;
+            adaptiveMusicController.bpm = bpm;
+            adaptiveMusicController.beatsPerBar = beatsPerBar;
+            adaptiveMusicController.ConfigureClips(calm, tense);
+
+            // Start the synced calm-tense loop pair.
+            adaptiveMusicController.Activate();
+        }
+
+        // Call this when leaving gameplay scenes.
+        public void StopAdaptiveMusic()
+        {
+            var adaptiveMusicController = global::AdaptiveMusicController.Instance;
+            if (adaptiveMusicController != null) adaptiveMusicController.Deactivate();
+        }
+        #endregion
+
         #region Private Functions
         private System.Collections.IEnumerator FadeSwap(AudioSource audioSource, AudioClip next, bool loop, float providedTime)
         {

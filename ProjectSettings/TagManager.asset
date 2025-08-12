@@ -16,6 +16,7 @@ TagManager:
   - PuzzleBox
   - Pushable
   - Tooltip
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

@@ -686,13 +686,13 @@ MonoBehaviour:
   onMeleeAttack:
     m_PersistentCalls:
       m_Calls: []
+  onRangedAttack:
+    m_PersistentCalls:
+      m_Calls: []
   OnComboIncrease:
     m_PersistentCalls:
       m_Calls: []
   OnComboReset:
-    m_PersistentCalls:
-      m_Calls: []
-  onRangedAttack:
     m_PersistentCalls:
       m_Calls: []
   meleeAnimator: {fileID: 0}
@@ -704,7 +704,6 @@ MonoBehaviour:
   meleeRechargeTime: 3
   meleeDamage: 1
   comboMeleeDamage: 
-  comboMeleeCollider: {fileID: 0}
   rangedAnimator: {fileID: 1228906177923959383}
   rangedAttackSpawnPoint: {fileID: 2025892952744937449}
   projectilePrefab: {fileID: 1662423977701543809, guid: 9a7e98309550f934abb9b10bab6842ac, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
   m_Name: BeatEmUp_PreTutorialNarrative
   m_EditorClassIdentifier: 
-  stepCount: 26
+  stepCount: 25
   isSkippable: 01010101010101010101010101010101010101010101010101
   narrativeTexts:
   - "[Bob\u2019s Apartment - At Night]"

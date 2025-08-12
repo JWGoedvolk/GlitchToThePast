@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UI.FadingEffect;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class MainMenuButtons : MonoBehaviour
 
     [SerializeField] private bool isSelectingCharacters;
 
+    [SerializeField] private ScreenFader screenFader;
+    [SerializeField] private PauseMenu pauseMenuScript;
     //button locker
     [SerializeField] UIBlocker buttonLocker;
     private bool startingTransition;
@@ -67,6 +70,13 @@ public class MainMenuButtons : MonoBehaviour
         {
             buttonLocker = GetComponent<UIBlocker>();
         }
+
+        if (screenFader == null)
+        {
+            screenFader = FindObjectOfType<ScreenFader>();
+        }
+
+        settingsPanel = pauseMenuScript.pauseMenu;
     }
 
     private void Update()
@@ -108,6 +118,7 @@ public class MainMenuButtons : MonoBehaviour
 
         buttonLocker?.LockButtons();
 
+        screenFader.OnButtonClickFadeTransition(1.5f);
         StartCoroutine(MusicAndStart());
     }
     #endregion
@@ -115,7 +126,18 @@ public class MainMenuButtons : MonoBehaviour
     #region Settings
     public void SettingsToggler()
     {
-        if (settingsPanel == null) return;
+
+        if (pauseMenuScript == null)
+            pauseMenuScript = PauseMenu.Instance;
+
+        if (pauseMenuScript != null)
+            settingsPanel = pauseMenuScript.pauseMenu;
+
+        if (settingsPanel == null)
+        {
+            Debug.Log("Settings panel is missing");
+            return;
+        }
 
         settingsPanel.SetActive(!settingsPanel.activeSelf);
 

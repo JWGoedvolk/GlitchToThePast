@@ -7,8 +7,10 @@ public class PauseMenu : MonoBehaviour
 {
     #region Variables
     public static PauseMenu Instance;
-    [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject firstSelectedButton; 
+
+    public GameObject pauseMenu;
+
+    [SerializeField] private GameObject firstSelectedButton;
     private bool paused;
     #endregion
 
@@ -26,7 +28,12 @@ public class PauseMenu : MonoBehaviour
             return;
         }
 
-        if (pauseMenu != null) pauseMenu.SetActive(false);
+        if (pauseMenu == null)
+        {
+            pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+        }
+        if (pauseMenu != null)
+            pauseMenu.SetActive(false);
     }
 
     void OnDestroy()
@@ -91,7 +98,7 @@ public class PauseMenu : MonoBehaviour
 
     private System.Collections.IEnumerator SelectNextFrame(GameObject gameObject)
     {
-        yield return null; 
+        yield return null;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(gameObject);
     }

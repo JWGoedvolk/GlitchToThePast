@@ -53,9 +53,9 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private Animator meleeAnimator;
         [SerializeField] private Transform meleeAttackTransform;
         [SerializeField] private Bounds meleeBounds;
-        [SerializeField] private float meleeAttackRange = 3f;
+        // [SerializeField] private float meleeAttackRange = 3f;
         [SerializeField] private float meleeRechargeTime = 3f;
-        [SerializeField] private int meleeDamage = 1;
+        // [SerializeField] private int meleeDamage = 1;
         [Header("Melee Combo")]
         [SerializeField] private List<int> comboMeleeDamage = new List<int>();
 
@@ -64,8 +64,8 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private Transform rangedAttackSpawnPoint;
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private float rangedRechargeTime = 3f;
-        [SerializeField] private int rangedDamage = 1;
-        [SerializeField] private float projectileSpeed = 5f;
+        // [SerializeField] private int rangedDamage = 1;
+        // [SerializeField] private float projectileSpeed = 5f;
         [Header("Ranged Combo")]
         public bool IsCharging = false;
         public List<float> ChargeThresholds;

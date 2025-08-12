@@ -366,6 +366,7 @@ GameObject:
   - component: {fileID: 76998860577032550}
   - component: {fileID: 5152040975991687870}
   - component: {fileID: 5043492975442600470}
+  - component: {fileID: 5264739166020127000}
   m_Layer: 0
   m_Name: BobsCollider
   m_TagString: Player1
@@ -718,3 +719,23 @@ MonoBehaviour:
   WhiteListTags:
   - Pushable
   - PuzzleBox
+--- !u!114 &5264739166020127000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579127009673012924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922e57538981d9c4382a7d9da98ed28c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 0}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  radius: 40
+  enterCombatCount: 1
+  exitCombatCount: 0
+  pollInterval: 0.25
