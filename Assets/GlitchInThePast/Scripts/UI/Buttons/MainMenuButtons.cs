@@ -29,6 +29,7 @@ public class MainMenuButtons : MonoBehaviour
 
     //button locker
     [SerializeField] UIBlocker buttonLocker;
+    private bool startingTransition;
 
     private bool subtitlesOn;
     private string[] sizes = new string[3];
@@ -44,6 +45,7 @@ public class MainMenuButtons : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
         if (isSelectingCharacters)
         {
             return;
@@ -65,7 +67,6 @@ public class MainMenuButtons : MonoBehaviour
         {
             buttonLocker = GetComponent<UIBlocker>();
         }
-
     }
 
     private void Update()
@@ -75,10 +76,9 @@ public class MainMenuButtons : MonoBehaviour
         bool escapePressed = Keyboard.current?.escapeKey.wasPressedThisFrame == true;
         bool controllerMenuPressed = Gamepad.current?.startButton.wasPressedThisFrame == true;
 
-
         if ((escapePressed || controllerMenuPressed) && !quitConfirmationPanel.activeSelf)
         {
-            if (settingsPanel.activeSelf == false) // Panel is now active (was inactive)
+            if (settingsPanel.activeSelf == true) // Panel is now active (was inactive)
             {
                 sfxManager?.PlayPannelOpeningSFX();
             }
@@ -86,7 +86,6 @@ public class MainMenuButtons : MonoBehaviour
             {
                 sfxManager?.PlayPannelClosingSFX();
             }
-
 
             EventSystem.current.SetSelectedGameObject(null);
             if (settingsPanel.activeSelf)
@@ -101,10 +100,15 @@ public class MainMenuButtons : MonoBehaviour
     #region Start Button
     public void StartGame()
     {
-        StartCoroutine(MusicAndStart());
+        if (startingTransition) return;
+        startingTransition = true;
 
-        //call the sfx on lcick
+        //call the sfx on click
         sfxManager?.PlayButtonClickSFX();
+
+        buttonLocker?.LockButtons();
+
+        StartCoroutine(MusicAndStart());
     }
     #endregion
 
@@ -113,32 +117,24 @@ public class MainMenuButtons : MonoBehaviour
     {
         if (settingsPanel == null) return;
 
-        bool settingsActive = !settingsPanel.activeSelf;
-        settingsPanel.SetActive(settingsActive);
+        settingsPanel.SetActive(!settingsPanel.activeSelf);
 
         //sfx managing
         sfxManager?.PlayButtonClickSFX();
 
-        if (settingsActive) //aka pannel opening
+        if (settingsPanel.activeSelf == true) // Panel is now active (was inactive)
         {
             sfxManager?.PlayPannelOpeningSFX();
+            AudioListener.pause = true;
         }
-        else //when the pannel clsoe
+        else // Panel is now inactive (was active)
         {
             sfxManager?.PlayPannelClosingSFX();
+            Time.timeScale = 1f;
+            AudioListener.pause = false;
         }
 
-
-        EventSystem.current.SetSelectedGameObject(null);
-
-        if (settingsActive)
-        {
-            EventSystem.current.SetSelectedGameObject(firstSettingsButton);
-        }
-        else
-        {
-            EventSystem.current.SetSelectedGameObject(firstMainMenuButton);
-        }
+        StartCoroutine(SetSelectedNextFrame(settingsPanel.activeSelf ? firstSettingsButton : firstMainMenuButton));
 
         // Calling the function.
         UpdateButtonState();
@@ -242,11 +238,11 @@ public class MainMenuButtons : MonoBehaviour
 
     private void UpdateButtonState()
     {
-        //checks if any pannels are active
-        bool anyPannelActive = settingsPanel.activeSelf || quitConfirmationPanel.activeSelf;
-        if (anyPannelActive)
+        //checks if any panels are active
+        bool anyPanelActive = settingsPanel.activeSelf || quitConfirmationPanel.activeSelf;
+        if (anyPanelActive)
         {
-            //if they are then call the fucntion from UIBlocker.cs
+            //if they are then call the function from UIBlocker.cs
             buttonLocker?.LockButtons();
         }
         else
@@ -292,10 +288,10 @@ public class MainMenuButtons : MonoBehaviour
     #region Music
     IEnumerator MusicFadingOut()
     {
-        //saves og volume so i can rstror later
-        float origonalVolume = backgroundMusic.volume;
+        //saves og volume so i can restore later
+        float originalVolume = backgroundMusic.volume;
 
-        //as long as the volume is 0 , keep the bg music on
+        //As long as the volume is 0 , keep the bg music on
         while (backgroundMusic.volume > 0)
         {
             backgroundMusic.volume -= fadeOutRate * Time.deltaTime;
@@ -304,7 +300,7 @@ public class MainMenuButtons : MonoBehaviour
 
         //once its zero stop THEN reset it next time
         backgroundMusic.Stop();
-        backgroundMusic.volume = origonalVolume;
+        backgroundMusic.volume = originalVolume;
 
     }
 
@@ -315,6 +311,14 @@ public class MainMenuButtons : MonoBehaviour
 
         SceneManager.LoadScene(1);
 
+    }
+
+    private IEnumerator SetSelectedNextFrame(GameObject target)
+    {
+        yield return null;
+        if (EventSystem.current == null) yield break;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(target);
     }
     #endregion
 }
