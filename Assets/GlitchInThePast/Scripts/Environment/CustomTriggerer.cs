@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,6 +12,11 @@ namespace JW.BeatEmUp.Objects
         public bool IsTriggering => TriggeringObjects != null && TriggeringObjects.Count > 0;
         [SerializeField] private UnityEvent onTrigger;
         [SerializeField] private UnityEvent onUnTrigger;
+
+        private void Update()
+        {
+            // TODO: Run through the triggering objects and remove inactive ones
+        }
 
         public void OnTriggerEnter(Collider other)
         {
