@@ -33,7 +33,8 @@ namespace Systems.Enemies
         [SerializeField] public UnityEvent OnDeath;
 
         // Spawner counters
-        public EnemySpawner spawner;
+        public EnemyMeleeSpawner MeleeSpawner;
+        // TODO: Make and implement spawner for ranged enemies
         
         [Header("DEBUGGING")]
         public DamgeDebugger damgeDebugger;
@@ -51,20 +52,21 @@ namespace Systems.Enemies
                 {
                     if (EnemyType == EnemyTypes.Melee)
                     {
-                        if (spawner != null)
+                        if (MeleeSpawner != null)
                         {
-                            spawner.MeleeEnemyCount--;
-                            spawner.MeleeKillCount++;
+                            MeleeSpawner.KillCount++;
                         }
                         OnDeath?.Invoke();
-                        Destroy(gameObject);
+                        MeleeSpawner.Pool.Release(gameObject);
                     }
                     else if (EnemyType == EnemyTypes.Ranged)
                     {
-                        if (spawner != null)
+                        if (MeleeSpawner != null)
                         {
-                            spawner.RangedEnemyCount--;
-                            spawner.RangedKillCount++;
+                            /*
+                            MeleeSpawner.RangedEnemyCount--;
+                            MeleeSpawner.RangedKillCount++;
+                            */
                         }
                         OnDeath?.Invoke();
                         Destroy(gameObject);

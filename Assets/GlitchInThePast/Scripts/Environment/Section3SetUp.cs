@@ -28,7 +28,7 @@ namespace GlitchInThePast.Scripts.Environment
                 Spawner.meleeSpawnPoint  = MeleeSpawnPoints[0];
                 Spawner.rangedSpawnPoint = RangedSpawnPoints[0];
                 
-                // Turn off all unused spawner points
+                // Turn off all unused MeleeSpawner points
                 MeleeSpawnPoints [1].gameObject.SetActive(false);
                 RangedSpawnPoints[1].gameObject.SetActive(false);
             }

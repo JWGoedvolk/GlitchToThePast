@@ -13,7 +13,7 @@ namespace Systems.Enemies
         // Melee
         public bool IsMeleeBossSpawner = false;
         public bool isSpawningMelee = true;
-        [SerializeField] private GameObject meleeEnemy;
+        public GameObject meleeEnemy;
         [SerializeField] public Transform meleeSpawnPoint;
         [SerializeField] private float meleeSpawnInterval = 1f;
         [SerializeField] private float meleeSpawnTimer = 0f;
@@ -25,7 +25,7 @@ namespace Systems.Enemies
         // Ranged
         public bool IsRangedBossSpawner = false;
         public bool isSpawningRanged = true;
-        [SerializeField] private GameObject rangedEnemy;
+        public GameObject rangedEnemy;
         [SerializeField] public Transform rangedSpawnPoint;
         [SerializeField] private float rangedSpawnInterval = 1f;
         [SerializeField] private float rangedSpawnTimer = 0f;
@@ -166,7 +166,7 @@ namespace Systems.Enemies
             rangedSpawnTimer = 0f;
             GameObject newRanged = Instantiate(rangedEnemy, rangedSpawnPoint.position, Quaternion.identity); // Spawn melee enemy at the melee spawn point as child of the spawn point
             EnemyHealth enemyHealth = newRanged.GetComponent<EnemyHealth>(); // Get the health system to set it up
-            enemyHealth.spawner = this;
+            //enemyHealth.MeleeSpawner = this;
             enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Ranged;
             RangedMovement movement = newRanged.GetComponent<RangedMovement>();
             if (rangedCruisingAltitude is not null && attackAltitude is not null)
@@ -192,7 +192,7 @@ namespace Systems.Enemies
             meleeSpawnTimer = 0f;
             GameObject newMelee = Instantiate(meleeEnemy, meleeSpawnPoint.position, Quaternion.identity); // Spawn melee enemy at the melee spawn point as child of the spawn point
             EnemyHealth enemyHealth = newMelee.GetComponent<EnemyHealth>(); // Get the health system to set it up
-            enemyHealth.spawner = this;
+            //enemyHealth.MeleeSpawner = this;
             enemyHealth.EnemyType = EnemyHealth.EnemyTypes.Melee;
             if (IsMeleeBossSpawner)
             {
