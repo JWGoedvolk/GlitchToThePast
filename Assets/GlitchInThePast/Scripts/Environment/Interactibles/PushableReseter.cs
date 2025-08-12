@@ -6,23 +6,15 @@ namespace JW.Objects.Interactibles
     public class PushableReseter : MonoBehaviour
     {
         public List<Transform> Pushables = new List<Transform>();
-        public List<Transform> DefaultPositions = new List<Transform>();
+        public List<Vector3> DefaultPositions = new List<Vector3>();
+        public List<Quaternion> DefaultRotations = new();
 
         void Start()
         {
-            var pushables = FindObjectsOfType<PushableInteractible>();
-            foreach (var pushable in pushables)
+            foreach (var pushable in Pushables)
             {
-                Pushables.Add(pushable.transform);
-                DefaultPositions.Add(pushable.transform);
-            }
-        }
-
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Backspace))
-            {
-                ResetPushables();
+                DefaultPositions.Add(pushable.transform.position);
+                DefaultRotations.Add(pushable.transform.localRotation);
             }
         }
 
@@ -30,8 +22,8 @@ namespace JW.Objects.Interactibles
         {
             for (int i = 0; i < Pushables.Count; i++)
             {
-                Pushables[i].position = DefaultPositions[i].position;
-                Pushables[i].rotation = DefaultPositions[i].rotation;
+                Pushables[i].position = DefaultPositions[i];
+                Pushables[i].rotation = DefaultRotations[i];
             }
         }
     }
