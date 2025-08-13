@@ -1065,6 +1065,8 @@ MonoBehaviour:
   sequenceToPlay: {fileID: 11400000, guid: 86c1bcac8aa68224c98faf01b069a7f0, type: 2}
   playSequenceAtStart: 0
   isReplayable: 0
+  requiresBothPlayers: 1
+  playerCountText: {fileID: 0}
   OnSequenceEnd:
     m_PersistentCalls:
       m_Calls:
