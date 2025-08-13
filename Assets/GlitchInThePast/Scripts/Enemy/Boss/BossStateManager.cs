@@ -53,6 +53,7 @@ namespace Systems.Enemies.Boss
         [Header("Transition")]
         [SerializeField] private float animationTime = 0f;
         [SerializeField] private float animationLength = 0f;
+        public bool IsDead = false;
         [Header("Attacking")]
         public bool CanAttack = true;
         [SerializeField] private float attackInterval = 5f;
@@ -64,13 +65,18 @@ namespace Systems.Enemies.Boss
         [SerializeField] private BossHealth bossHealth;
 
         [Header("Enemy Spawning")] 
-        public EnemySpawner Spawner;
+        public MeleeSpawner SpawnerMelee;
+        public RangedSpawner SpawnerRanged;
         public int MeleeSpawnCount = 5;
         public int RangedSpawnCount = 5;
+        public bool IsAllMeleeKilled = false;
+        public bool IsAllRangedKilled = false;
         
         [Header("Events")]
         public List<UnityEvent> OnStunStartEvent;
         public List<UnityEvent> OnStunEndEvent;
+        public List<UnityEvent> OnArmsRaiseEvent;
+        public List<UnityEvent> OnArmsDropEvent;
             
         #region Public Getters And Setters
         public int Phase => phase;
@@ -120,11 +126,21 @@ namespace Systems.Enemies.Boss
                     if (currentState == State.Attacking)
                     {
                         currentState = State.Idle;
+                        Debug.Log("[BossStateManager] Switching to Idle");
                     }
                     else if (currentState == State.Transition)
                     {
+                        if (IsDead)
+                        {
+                            bossHealth.Death();
+                            currentState = State.Dead;
+                            return;
+                        }
+                        
                         currentState = State.SpawningEnemies;
-                        Spawner.StartBossSpawner(MeleeSpawnCount, RangedSpawnCount);
+                        IsAllMeleeKilled = false;
+                        IsAllRangedKilled = false;
+                        Debug.Log("[BossStateManager] Switching to SpawningEnemies");
                     }
                 }
                 else
@@ -153,18 +169,25 @@ namespace Systems.Enemies.Boss
                         currentTime = 0f;
                         currentInterval = 0f;
                         currentState = State.AttackArmRaise; // Arms are raised, now hold them there for a few seconds
+                        OnArmsRaiseEvent[phase]?.Invoke();
+
+                        Debug.Log("[BossStateManager] Switching to Arms Raise");
                     }
                 }
                 else if (phase == 1)
                 {
-                    if (Spawner.HasInvokedAllKilled) // Do attack when all enemies are killed
+                    if (IsAllMeleeKilled && IsAllRangedKilled) // Do attack when all enemies are killed
                     {
                         // Set the animator to raise arms
                         BossAnimator.SetTrigger("Attack");
                         BossAnimator.SetBool("IsArmsRaised", true);
                         currentTime = 0f;
                         currentInterval = 0f;
+                        OnArmsRaiseEvent[phase]?.Invoke();
                         currentState = State.AttackArmRaise; // Arms are raised, now hold them there for a few seconds
+                        IsAllMeleeKilled = false;
+                        IsAllRangedKilled = false;
+                        Debug.Log("[BossStateManager] Switching to Arms Raise");
                     }
                 }
             }
@@ -176,16 +199,15 @@ namespace Systems.Enemies.Boss
                     currentTime = 0f;
                     BossAnimator.SetBool("IsArmsRaised", false); // Play animation to drop arms and spawn shockwaves after it ends
                     currentState = State.Attacking;
+                    OnArmsDropEvent[phase]?.Invoke();
+                    Debug.Log("[BossStateManager] Switching to Arms Drop");
                 }
             }
             else if (currentState == State.Attacking) // Boss is playing arm dropping and shockwave spawning animation so do nothing
             {
-                Debug.Log("Boss is attacking");
             }
             else if (currentState == State.Stunned) // All the levers were activated while the boss's arms were raised. Do nothing while in this state other than wait it out
             {
-                Debug.Log("Boss is stunned");
-                
                 // Count down how long we are stunned for
                 currentTime += Time.deltaTime;
                 if (currentTime >= stunnedTime)
@@ -196,10 +218,23 @@ namespace Systems.Enemies.Boss
             else if (currentState == State.SpawningEnemies)
             {
                 // Check that all enemies are spawned
-                if (Spawner.HasInvokedAllSpawned)
+                if (SpawnerMelee.CurrentState == PooledEnemySpawner.State.WaitingForKills && SpawnerRanged.CurrentState == PooledEnemySpawner.State.WaitingForKills)
                 {
-                    // Idle until all enemies are killed
+                    // go to idle
                     currentState = State.Idle;
+                }
+                
+                if (IsAllMeleeKilled && IsAllRangedKilled)
+                {
+                    BossAnimator.SetTrigger("Attack");
+                    BossAnimator.SetBool("IsArmsRaised", true);
+                    currentTime = 0f;
+                    currentInterval = 0f;
+                    OnArmsRaiseEvent[phase]?.Invoke();
+                    currentState = State.AttackArmRaise; // Arms are raised, now hold them there for a few seconds
+                    IsAllMeleeKilled = false;
+                    IsAllRangedKilled = false;
+                    Debug.Log("[BossStateManager] Switching to Arms Raise");
                 }
             }
         }
@@ -220,17 +255,27 @@ namespace Systems.Enemies.Boss
             BossAnimator.SetBool("IsArmsRaised", false);
             BossAnimator.SetBool("IsStunned", false);
             BossAnimator.SetInteger("Phase", phase);
+            armHoldTime += armHoldTime;
+            if (phase >= bossHealth.MaxPhase)
+            {
+                IsDead = true;
+                SpawnerMelee.IsEnabled = false;
+                SpawnerRanged.IsEnabled = false;
+                OnDeath();
+            }
         }
 
         public void OnDeath()
         {
             BossAnimator.SetTrigger("IsDead");
-            currentState = State.Dead;
+            SetTransitionTime();
+            currentState = State.Transition;
         }
 
         public void AttackEnd()
         {
             currentState = State.Idle;
+            Debug.Log("[BossStateManager] Switching to Idle");
         }
 
         public void StunStart()
@@ -243,8 +288,8 @@ namespace Systems.Enemies.Boss
             currentState = State.Stunned;
             currentTime = 0f;
             BossAnimator.SetBool("IsStunned", true);
-            bossHealth.SetDamagable(true);
             OnStunStartEvent[phase]?.Invoke();
+            Debug.Log("[BossStateManager] Switching to Stunned");
         }
 
         public void StunEnd()
@@ -252,8 +297,18 @@ namespace Systems.Enemies.Boss
             currentState = State.Idle;
             currentTime = 0f;
             BossAnimator.SetBool("IsStunned", false);
-            bossHealth.SetDamagable(false);
             OnStunEndEvent[phase]?.Invoke();
+            Debug.Log("[BossStateManager] Switching to Idle");
+        }
+
+        public void AllMeleeKilled()
+        {
+            IsAllMeleeKilled = true;
+        }
+
+        public void AllRangedKilled()
+        {
+            IsAllRangedKilled = true;
         }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Pool;
 
 namespace Systems.Enemies
@@ -8,9 +9,9 @@ namespace Systems.Enemies
         public GameObject Prefab;
         public Transform SpawnPoint;
         public ObjectPool<GameObject> Pool;
+        public bool IsEnabled = true;
         [Header("Timers")] [SerializeField] float timer = 0f;
         public float SpawnDuration = 6f;
-
         [Tooltip("This is how long it waits after the previous group is defeated before spawning the new group")]
         public float GroupSpawnDelay = 10f;
 
@@ -29,13 +30,32 @@ namespace Systems.Enemies
         public bool IsSpawning = false;
         public bool IsWaiting = false;
 
+        [Header("Events")] 
+        public UnityEvent OnAllSpawned;
+        public UnityEvent OnAllKilled;
+        
         private void Awake()
         {
             Pool = new ObjectPool<GameObject>(SpawnEnemy, TakeEnemy, ReturnEnemy, DestroyEnemy, true, 10, 15);
         }
+        
+        private void OnDisable()
+        {
+            int enemiesActive = Pool.CountActive;
+            for (int i = 0; i < enemiesActive; i++)
+            {
+                GameObject go = Pool.Get();
+                Pool.Release(go);
+            }
+        }
 
         private void Update()
         {
+            if (!IsEnabled)
+            {
+                return;
+            }
+            
             switch (CurrentState)
             {
                 case State.Spawning:
@@ -48,6 +68,7 @@ namespace Systems.Enemies
                         if (SpawnCount == GroupSize)
                         {
                             CurrentState = State.WaitingForKills;
+                            OnAllSpawned?.Invoke();
                         }
                     }
 
@@ -67,6 +88,7 @@ namespace Systems.Enemies
                         CurrentState = State.SpawnDelay;
                         KillCount = 0;
                         SpawnCount = 0;
+                        OnAllKilled?.Invoke();
                     }
 
                     break;

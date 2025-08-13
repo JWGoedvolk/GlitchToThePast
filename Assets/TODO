@@ -36,9 +36,6 @@
             [x] Correctly able to damage boss when stunned
             [x] Correctly dies when phase 2 health is done
     
-=== COMBO ATTACKS ===
-
-    
 === BOSS FIGHT ===
 <Loop>
     {PHASE 1}
@@ -47,16 +44,16 @@
     3. Players activate levers to make boss damageable
     4. Boss moves to phase 2 after being damaged enough (2 cycles)
     {PHASE 2}
-    1. Show phase 2 intro
-    2. Spawn 5 melee and ranged enemies
-    3. When all enemies spawned, Idle until all enemies are killed
-    4. Do enraged shockwave attack
-        4.1 Raise arms. Not damageable
-        4.2 Hold arms up for a few seconds
+    1. Show phase 2 intro |Transition|
+    2. Spawn 3 melee and ranged enemies |SpawningEnemies|
+    3. When all enemies spawned, Idle until all enemies are killed |Idle|
+    4. Do enraged shockwave attack |ArmsRaise|
+        4.1 Raise arms. Not damageable |ArmsRaise|
+        4.2 Hold arms up for a few seconds ||
         IF all levers activated 
-            THEN stun for a few seconds
-            ELSE Drop arms one after the other and create shockwaves when they hit the ground
-        4.3 Start spawning enemies again
+            THEN stun for a few seconds |Stunned|
+            ELSE Drop arms one after the other and create shockwaves when they hit the ground |ArmsDrop|
+        4.3 Start spawning enemies again |SpawningEnemies|
         GOTO step 2 UNTIL death
     
 <Attacking>

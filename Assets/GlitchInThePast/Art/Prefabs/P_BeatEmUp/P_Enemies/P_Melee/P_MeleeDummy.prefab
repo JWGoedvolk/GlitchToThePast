@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 610848597592670879}
   - component: {fileID: 926776262338713545}
   - component: {fileID: 8577403647564996904}
-  - component: {fileID: 2702836064507516538}
   - component: {fileID: 3324341954683518641}
   m_Layer: 0
   m_Name: P_MeleeDummy
@@ -30,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.20000002, y: 0.20000002, z: 0.20000002}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb9776090f4fe2741a2559e6bcc3c5df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,32 +102,15 @@ MonoBehaviour:
   healthCurrent: 3
   EnemyType: 0
   flashDuration: 0.1
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 926776262338713545}
   OnDamageTaken:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
-  MeleeSpawner: {fileID: 0}
+  spawner: {fileID: 0}
   damgeDebugger: {fileID: 0}
---- !u!114 &2702836064507516538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438464942751790279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de47f9a9432473496989ea837a8aa2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RespawnPoint: {fileID: 0}
-  respawnDelay: 0
-  onRespawn:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!65 &3324341954683518641
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -148,5 +130,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 15.538777, y: 17.961908, z: 1}
+  m_Center: {x: -0.8274102, y: 0.14775181, z: 0}

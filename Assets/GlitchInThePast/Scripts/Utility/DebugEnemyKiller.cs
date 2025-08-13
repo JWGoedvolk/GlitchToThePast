@@ -13,16 +13,27 @@ namespace GlitchInThePast.Scripts.Utility
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                foreach (var enemy in TriggeringObjects)
+                for (int i = TriggeringObjects.Count - 1; i >= 0; i--)
                 {
-                    if (enemy == null)
+                    GameObject go = TriggeringObjects[i];
+
+                    if (go != null)
                     {
-                        continue;
+                        if (!go.activeInHierarchy)
+                        {
+                            TriggeringObjects.Remove(go);
+                        }
+                        else
+                        {
+                            EnemyHealth health = go.GetComponent<EnemyHealth>();
+
+                            if (health != null)
+                            {
+                                health.TakeDamage(Damage, PlayerWeaponSystem.WeaponType.Melee);
+                                health.TakeDamage(Damage, PlayerWeaponSystem.WeaponType.Ranged);
+                            }
+                        }
                     }
-                    
-                    EnemyHealth healh = enemy.GetComponent<EnemyHealth>();
-                    healh.TakeDamage(Damage, PlayerWeaponSystem.WeaponType.Melee);
-                    healh.TakeDamage(Damage, PlayerWeaponSystem.WeaponType.Ranged);
                 }
             }
         }
