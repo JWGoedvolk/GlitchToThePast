@@ -50,5 +50,24 @@ namespace JW.Objects.Interactibles
             
             //sr.material = isActivated ? activeMaterial : inactiveMaterial;
         }
+
+        public void SetAllInteractible(bool newState)
+        {
+            foreach (var interactible in interactibles)
+            {
+                interactible.SetActivatable(newState);
+            }
+        }
+
+        public void SetAllState(bool newState)
+        {
+            foreach (var interactible in interactibles)
+            {
+                if (!interactible.IsActivated == newState) // When we interact with it, we will reach the new state
+                {
+                    interactible.Interact();
+                }
+            }
+        }
     }
 }

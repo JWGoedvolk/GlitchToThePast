@@ -428,6 +428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 258873982}
+  - component: {fileID: 258873984}
   - component: {fileID: 258873983}
   m_Layer: 0
   m_Name: EnemySpawners
@@ -465,57 +466,83 @@ MonoBehaviour:
   m_GameObject: {fileID: 258873981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe3fbe3488784cb3a951512bbe3b1397, type: 3}
+  m_Script: {fileID: 11500000, guid: fdd978e0d3084400b78f38761d80e0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 1
-  IsMeleeBossSpawner: 1
-  isSpawningMelee: 1
-  meleeEnemy: {fileID: 6650723071496413354, guid: 47554c9d585059d4ba172b99d2e0136b, type: 3}
-  meleeSpawnPoint: {fileID: 1360038219}
-  meleeSpawnInterval: 5
-  meleeSpawnTimer: 0
-  MeleeEnemyCount: 0
-  MeleeKillCount: 0
-  BossMeleeSpawnCount: 5
-  maxMeleeCount: 5
-  IsRangedBossSpawner: 1
-  isSpawningRanged: 1
-  rangedEnemy: {fileID: 6650723071496413354, guid: d3426c2fbb091b4469ad08cabaddde94, type: 3}
-  rangedSpawnPoint: {fileID: 1385643171}
-  rangedSpawnInterval: 5
-  rangedSpawnTimer: 0
-  RangedEnemyCount: 0
-  RangedKillCount: 0
-  BossRangedSpawnCount: 5
-  maxRangedCount: 5
-  rangedCruisingAltitude: {fileID: 1101064262}
-  attackAltitude: {fileID: 1774092023}
-  onEnemySpawned:
+  Prefab: {fileID: 6650723071496413354, guid: d3426c2fbb091b4469ad08cabaddde94, type: 3}
+  SpawnPoint: {fileID: 1385643171}
+  IsEnabled: 1
+  timer: 0
+  SpawnDuration: 6
+  GroupSpawnDelay: 10
+  GroupSize: 3
+  SpawnCount: 0
+  KillCount: 0
+  CurrentState: 0
+  IsSpawning: 0
+  IsWaiting: 0
+  OnAllSpawned:
     m_PersistentCalls:
       m_Calls: []
-  onMeleeEnemySpawned:
+  OnAllKilled:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1163375974}
+        m_TargetAssemblyTypeName: Systems.Enemies.Boss.BossStateManager, Assembly-CSharp
+        m_MethodName: AllRangedKilled
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  CruisingAltitudeTransform: {fileID: 1101064262}
+  AttackAltitudeTransform: {fileID: 1774092023}
+--- !u!114 &258873984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258873981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d44d91b2f974a698a90b749f63ee026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 6650723071496413354, guid: 47554c9d585059d4ba172b99d2e0136b, type: 3}
+  SpawnPoint: {fileID: 1360038219}
+  IsEnabled: 1
+  timer: 0
+  SpawnDuration: 6
+  GroupSpawnDelay: 10
+  GroupSize: 3
+  SpawnCount: 0
+  KillCount: 0
+  CurrentState: 0
+  IsSpawning: 0
+  IsWaiting: 0
+  OnAllSpawned:
     m_PersistentCalls:
       m_Calls: []
-  onRangedEnemySpawned:
+  OnAllKilled:
     m_PersistentCalls:
-      m_Calls: []
-  onSpawnerDisabled:
-    m_PersistentCalls:
-      m_Calls: []
-  onSpawnerEnabled:
-    m_PersistentCalls:
-      m_Calls: []
-  onAllEnemiesSpawned:
-    m_PersistentCalls:
-      m_Calls: []
-  onAllEnemiesKilled:
-    m_PersistentCalls:
-      m_Calls: []
-  HasInvokedAllKilled: 0
-  HasInvokedAllSpawned: 0
-  meleeSize: {x: 3.06, y: 3.3, z: 1}
-  rangeSize: {x: 1, y: 1, z: 1}
+      m_Calls:
+      - m_Target: {fileID: 1163375974}
+        m_TargetAssemblyTypeName: Systems.Enemies.Boss.BossStateManager, Assembly-CSharp
+        m_MethodName: AllMeleeKilled
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &269938401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1011,7 +1038,7 @@ MonoBehaviour:
   onUnTrigger:
     m_PersistentCalls:
       m_Calls: []
-  Damage: 3
+  Damage: 7
 --- !u!65 &419380498
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1272,7 +1299,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1537331590532036847, guid: 9d25cc44b22f1c04a887e995dfdc8aa4, type: 3}
       propertyPath: isResetting
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537331590532036847, guid: 9d25cc44b22f1c04a887e995dfdc8aa4, type: 3}
+      propertyPath: IsActivatable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5898901749440832675, guid: 9d25cc44b22f1c04a887e995dfdc8aa4, type: 3}
       propertyPath: m_LocalScale.y
@@ -1592,13 +1623,49 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1511376091903256939, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511376091903256939, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511376091903256939, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511376091903256939, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 493618730}
+      objectReference: {fileID: 1813806540}
+    - target: {fileID: 1511376091903256939, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511376091903256939, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetAllState
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511376091903256939, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511376091903256939, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511376091903256939, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1974773561619295079, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1163375971}
+    - target: {fileID: 1974773561619295079, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2064971019270481983, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1660,9 +1727,57 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 795329687}
+      objectReference: {fileID: 1068171033}
+    - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 493618730}
+    - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetAllState
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JW.Objects.Interactibles.Interactible, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082404215415293164, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6354045571463629204, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1816,7 +1931,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1064275789}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5826409703543649469, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
+    - {fileID: 5167370922822671631, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d736ed2125e1cb44abbafb6dd0a375c4, type: 3}
@@ -1863,7 +1980,6 @@ GameObject:
   - component: {fileID: 793815711}
   - component: {fileID: 793815710}
   - component: {fileID: 793815709}
-  - component: {fileID: 793815713}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Ground
@@ -1957,33 +2073,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 862497244}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &793815713
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 793815708}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1001 &795329685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2010,7 +2099,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1537331590532036847, guid: 9d25cc44b22f1c04a887e995dfdc8aa4, type: 3}
       propertyPath: isResetting
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537331590532036847, guid: 9d25cc44b22f1c04a887e995dfdc8aa4, type: 3}
+      propertyPath: IsActivatable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1537331590532036847, guid: 9d25cc44b22f1c04a887e995dfdc8aa4, type: 3}
       propertyPath: OnInteraction.m_PersistentCalls.m_Calls.Array.size
@@ -2774,7 +2867,7 @@ GameObject:
   - component: {fileID: 1059548887}
   m_Layer: 0
   m_Name: LowerGrund
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3449,18 +3542,6 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1163375974}
-        m_TargetAssemblyTypeName: Systems.Enemies.Boss.BossStateManager, Assembly-CSharp
-        m_MethodName: OnDeath
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1163375968}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -3563,6 +3644,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1813806540}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1813806540}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllInteractible
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnMaxHitsReached:
     m_PersistentCalls:
       m_Calls: []
@@ -3629,27 +3734,18 @@ MonoBehaviour:
   armHoldTime: 3
   stunnedTime: 5
   bossHealth: {fileID: 1163375971}
-  Spawner: {fileID: 258873983}
+  SpawnerMelee: {fileID: 258873984}
+  SpawnerRanged: {fileID: 258873983}
   MeleeSpawnCount: 3
   RangedSpawnCount: 3
+  IsAllMeleeKilled: 0
+  IsAllRangedKilled: 0
   OnStunStartEvent:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 795329687}
-        m_TargetAssemblyTypeName: JW.Objects.Interactibles.Interactible, Assembly-CSharp
-        m_MethodName: SetActivatable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 493618730}
-        m_TargetAssemblyTypeName: JW.Objects.Interactibles.Interactible, Assembly-CSharp
-        m_MethodName: SetActivatable
+      - m_Target: {fileID: 1068171033}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllInteractible
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3661,45 +3757,9 @@ MonoBehaviour:
         m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 795329687}
-        m_TargetAssemblyTypeName: JW.Objects.Interactibles.Interactible, Assembly-CSharp
-        m_MethodName: SetActivatable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 493618730}
-        m_TargetAssemblyTypeName: JW.Objects.Interactibles.Interactible, Assembly-CSharp
-        m_MethodName: SetActivatable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 493618730}
-        m_TargetAssemblyTypeName: JW.Objects.Interactibles.Interactible, Assembly-CSharp
-        m_MethodName: SetActivatable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 493618730}
-        m_TargetAssemblyTypeName: JW.Objects.Interactibles.Interactible, Assembly-CSharp
-        m_MethodName: SetActivatable
+      - m_Target: {fileID: 1813806540}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllInteractible
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3712,9 +3772,9 @@ MonoBehaviour:
   OnStunEndEvent:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 795329687}
-        m_TargetAssemblyTypeName: JW.Objects.Interactibles.Interactible, Assembly-CSharp
-        m_MethodName: SetActivatable
+      - m_Target: {fileID: 1068171033}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllState
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3724,9 +3784,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 493618730}
-        m_TargetAssemblyTypeName: JW.Objects.Interactibles.Interactible, Assembly-CSharp
-        m_MethodName: SetActivatable
+      - m_Target: {fileID: 1068171033}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllInteractible
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3738,9 +3798,9 @@ MonoBehaviour:
         m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 795329687}
-        m_TargetAssemblyTypeName: JW.Objects.Interactibles.Interactible, Assembly-CSharp
-        m_MethodName: SetActivatable
+      - m_Target: {fileID: 1813806540}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllState
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3750,9 +3810,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 493618730}
-        m_TargetAssemblyTypeName: JW.Objects.Interactibles.Interactible, Assembly-CSharp
-        m_MethodName: SetActivatable
+      - m_Target: {fileID: 1813806540}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllInteractible
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3762,9 +3822,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1064275789}
-        m_TargetAssemblyTypeName: JW.Objects.Interactibles.Interactible, Assembly-CSharp
-        m_MethodName: SetActivatable
+  OnArmsRaiseEvent:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1068171033}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllState
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3774,9 +3837,88 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1972372499}
-        m_TargetAssemblyTypeName: JW.Objects.Interactibles.Interactible, Assembly-CSharp
-        m_MethodName: SetActivatable
+      - m_Target: {fileID: 1068171033}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllInteractible
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1813806540}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1813806540}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllInteractible
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnArmsDropEvent:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1068171033}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1068171033}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllInteractible
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1813806540}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1813806540}
+        m_TargetAssemblyTypeName: JW.Objects.Interactibles.CoopInteractibles, Assembly-CSharp
+        m_MethodName: SetAllInteractible
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8899,7 +9041,7 @@ Transform:
   m_GameObject: {fileID: 1360038218}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.53, y: -1.76, z: 0}
+  m_LocalPosition: {x: 11.53, y: 0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9554,6 +9696,7 @@ GameObject:
   - component: {fileID: 1865244267}
   - component: {fileID: 1865244268}
   - component: {fileID: 1865244269}
+  - component: {fileID: 1865244270}
   m_Layer: 0
   m_Name: HeartLocket
   m_TagString: Enemy
@@ -9591,6 +9734,8 @@ MonoBehaviour:
   healthMax: 3
   healthCurrent: 3
   EnemyType: 2
+  flashDuration: 0.1
+  spriteRenderer: {fileID: 0}
   OnDamageTaken:
     m_PersistentCalls:
       m_Calls:
@@ -9610,6 +9755,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   spawner: {fileID: 0}
+  damgeDebugger: {fileID: 0}
 --- !u!65 &1865244269
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9626,6 +9772,27 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.56, y: 4.6, z: 2.18}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &1865244270
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865244266}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
