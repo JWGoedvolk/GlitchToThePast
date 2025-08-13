@@ -10,21 +10,26 @@ namespace GlitchInThePast.Scripts.Player
 
         public override void OnTrigger(GameObject other)
         {
-            PlayerWeaponSystem weaponSystem = other.GetComponent<PlayerWeaponSystem>();
-            if (weaponSystem != null)
+            foreach (GameObject triggeringObject in TriggeringObjects)
             {
-                if (isEnabler)
+                PlayerWeaponSystem weaponSystem = triggeringObject.GetComponent<PlayerWeaponSystem>();
+                if (weaponSystem != null)
                 {
-                    if (weaponSystem.Weapon == TargetWeaponType || TargetWeaponType == PlayerWeaponSystem.WeaponType.None)
+                    if (isEnabler)
                     {
-                        weaponSystem.EnableWeapon();
+                        if (weaponSystem.Weapon == TargetWeaponType || TargetWeaponType == PlayerWeaponSystem.WeaponType.None)
+                        {
+                            weaponSystem.EnableWeapon();
+                            onTrigger?.Invoke();
+                        }
                     }
-                }
-                else
-                {
-                    if (weaponSystem.Weapon == TargetWeaponType || TargetWeaponType == PlayerWeaponSystem.WeaponType.None)
+                    else
                     {
-                        weaponSystem.DisableWeapon();
+                        if (weaponSystem.Weapon == TargetWeaponType || TargetWeaponType == PlayerWeaponSystem.WeaponType.None)
+                        {
+                            weaponSystem.DisableWeapon();
+                            onTrigger?.Invoke();
+                        }
                     }
                 }
             }

@@ -1604,6 +1604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 377635394}
   - component: {fileID: 377635395}
+  - component: {fileID: 377635396}
   m_Layer: 0
   m_Name: WeaponDisabler
   m_TagString: Untagged
@@ -1620,7 +1621,7 @@ Transform:
   m_GameObject: {fileID: 377635393}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.52, y: 0, z: 7.1992}
+  m_LocalPosition: {x: 14.9, y: 0, z: 5.6}
   m_LocalScale: {x: 0.72834, y: 1, z: 0.69201}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1650,6 +1651,27 @@ MonoBehaviour:
       m_Calls: []
   isEnabler: 0
   TargetWeaponType: 2
+--- !u!65 &377635396
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377635393}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 14.484502, y: 9.3525915, z: 15.557097}
+  m_Center: {x: 0.5192061, y: 4.1762958, z: -0.5398718}
 --- !u!1 &397608750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,6 +1954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 438464942751790279, guid: af58f33023fdee14888eced2444343fc, type: 3}
   SpawnPoint: {fileID: 999995847}
+  IsEnabled: 1
   timer: 0
   SpawnDuration: 1
   GroupSpawnDelay: 10
@@ -1941,6 +1964,12 @@ MonoBehaviour:
   CurrentState: 0
   IsSpawning: 0
   IsWaiting: 0
+  OnAllSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAllKilled:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &441050236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1955,6 +1984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 438464942751790279, guid: a81cc9e2f9746b9479829cba0ab529a7, type: 3}
   SpawnPoint: {fileID: 354893209}
+  IsEnabled: 1
   timer: 0
   SpawnDuration: 1
   GroupSpawnDelay: 10
@@ -1964,6 +1994,12 @@ MonoBehaviour:
   CurrentState: 0
   IsSpawning: 0
   IsWaiting: 0
+  OnAllSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAllKilled:
+    m_PersistentCalls:
+      m_Calls: []
   CruisingAltitudeTransform: {fileID: 354893209}
   AttackAltitudeTransform: {fileID: 354893209}
 --- !u!1001 &448849930
@@ -5835,8 +5871,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.989724, y: 12.897373, z: 17.999537}
-  m_Center: {x: -1.1658713, y: -1.4595295, z: 0.24744114}
+  m_Size: {x: 23.582767, y: 20.332806, z: 28.628544}
+  m_Center: {x: -0.68943423, y: 1.6945151, z: -4.597213}
 --- !u!4 &1489535550
 Transform:
   m_ObjectHideFlags: 0
@@ -5865,8 +5901,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Whitelist:
-  - Player2
   - Player1
+  - Player2
   TriggeringObjects: []
   onTrigger:
     m_PersistentCalls:
@@ -8120,7 +8156,7 @@ Transform:
   m_GameObject: {fileID: 2049063676}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.52, y: 0, z: 7.1992}
+  m_LocalPosition: {x: 14.4, y: 0, z: 7.1992}
   m_LocalScale: {x: 0.72834, y: 1, z: 0.69201}
   m_ConstrainProportionsScale: 0
   m_Children:

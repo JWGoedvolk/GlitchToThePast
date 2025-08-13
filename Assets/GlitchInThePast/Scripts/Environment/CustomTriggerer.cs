@@ -10,13 +10,8 @@ namespace JW.BeatEmUp.Objects
         public List<string> Whitelist;
         public List<GameObject> TriggeringObjects;
         public bool IsTriggering => TriggeringObjects != null && TriggeringObjects.Count > 0;
-        [SerializeField] private UnityEvent onTrigger;
-        [SerializeField] private UnityEvent onUnTrigger;
-
-        private void Update()
-        {
-            // TODO: Run through the triggering objects and remove inactive ones
-        }
+        [SerializeField] protected UnityEvent onTrigger;
+        [SerializeField] protected UnityEvent onUnTrigger;
 
         public void OnTriggerEnter(Collider other)
         {
@@ -26,7 +21,6 @@ namespace JW.BeatEmUp.Objects
                 {
                     TriggeringObjects.Add(other.gameObject);
                     OnTrigger(other.gameObject);
-                    onTrigger?.Invoke();
                 }
             }
         }
@@ -46,7 +40,7 @@ namespace JW.BeatEmUp.Objects
 
         public virtual void OnTrigger(GameObject other)
         {
-            
+            onTrigger?.Invoke();
         }
 
         public virtual void OnTriggerExit(GameObject other)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GlitchInThePast.Scripts.Player;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -147,6 +148,11 @@ namespace Player.Health
         {
             if (spawningManager != null)
             {
+                // Stop showing the weapon
+                PlayerWeaponSystem weaponSystem = GetComponent<PlayerWeaponSystem>();
+                weaponSystem.DisableWeapon();
+                
+                // Respawn the player
                 spawningManager.SaveDeathLocation(playerInput.playerIndex, transform.position);
                 spawningManager.HandleRespawning(playerInput);
             }
@@ -155,6 +161,10 @@ namespace Player.Health
         }
         public void BeginRespawnInvulnerability(float seconds = -1f)
         {
+            // Show the weapon again
+            PlayerWeaponSystem weaponSystem = GetComponent<PlayerWeaponSystem>();
+            weaponSystem.EnableWeapon();
+            
             if (seconds <= 0f) seconds = respawnInvuln;
 
             if (invulnRoutine != null) StopCoroutine(invulnRoutine);

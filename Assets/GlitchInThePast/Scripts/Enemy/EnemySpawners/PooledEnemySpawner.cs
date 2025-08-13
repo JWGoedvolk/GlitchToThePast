@@ -34,19 +34,14 @@ namespace Systems.Enemies
         public UnityEvent OnAllSpawned;
         public UnityEvent OnAllKilled;
         
-        private void Awake()
+        protected virtual void Awake()
         {
             Pool = new ObjectPool<GameObject>(SpawnEnemy, TakeEnemy, ReturnEnemy, DestroyEnemy, true, 10, 15);
         }
-        
-        private void OnDisable()
+
+        private void StartPool()
         {
-            int enemiesActive = Pool.CountActive;
-            for (int i = 0; i < enemiesActive; i++)
-            {
-                GameObject go = Pool.Get();
-                Pool.Release(go);
-            }
+            Pool = new ObjectPool<GameObject>(SpawnEnemy, TakeEnemy, ReturnEnemy, DestroyEnemy, true, 10, 15);
         }
 
         private void Update()
@@ -63,9 +58,17 @@ namespace Systems.Enemies
                     if (timer >= SpawnDuration / GroupSize)
                     {
                         timer = 0f;
-                        Pool.Get();
+                        if (Pool == null)
+                        {
+                            StartPool();
+                            Pool.Get();
+                        }
+                        else
+                        {
+                            Pool.Get();
+                        }
                         SpawnCount++;
-                        if (SpawnCount == GroupSize)
+                        if (SpawnCount >= GroupSize)
                         {
                             CurrentState = State.WaitingForKills;
                             OnAllSpawned?.Invoke();
@@ -103,13 +106,13 @@ namespace Systems.Enemies
             return enemy;
         }
 
-        private GameObject SpawnEnemy()
+        protected GameObject SpawnEnemy()
         {
             var enemy = InstantiateEnemy();
             return enemy;
         }
 
-        private void TakeEnemy(GameObject enemy)
+        protected void TakeEnemy(GameObject enemy)
         {
             Debug.Log("[EnemySpawner][Melee] Activating enemy");
             enemy.transform.position = SpawnPoint.position;
@@ -117,13 +120,13 @@ namespace Systems.Enemies
             enemy.SetActive(true);
         }
 
-        private void ReturnEnemy(GameObject enemy)
+        protected void ReturnEnemy(GameObject enemy)
         {
             Debug.Log("[EnemySpawner][Melee] Deactivating enemy");
             enemy.SetActive(false);
         }
 
-        private void DestroyEnemy(GameObject enemy)
+        protected void DestroyEnemy(GameObject enemy)
         {
             Debug.Log("[EnemySpawner][Melee] Destroying enemy");
             Destroy(enemy);
