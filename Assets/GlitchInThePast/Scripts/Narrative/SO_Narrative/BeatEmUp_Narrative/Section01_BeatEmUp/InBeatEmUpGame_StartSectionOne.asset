@@ -58,35 +58,35 @@ MonoBehaviour:
   - 
   - 'Bobby '
   - 'Tobby '
-  - "Bobby (Confused by Tobby\u2019s enthusiasm)"
-  - "Tobby (Reflects Bobby\u2019s question)"
+  - Bobby
+  - 'Tobby '
   - 
-  - Bobby (He Shudders)
-  - Tobby (Immediately agreeing with Bobby)
-  - 'Bobby (Focused) '
+  - 'Bobby '
+  - Tobby
+  - 'Bobby '
   - 'Tobby '
   - 'Tobby '
   - Bobby
-  - Tobby (Confused)
-  - Bobby(Turns defensive)
+  - 'Tobby '
+  - Bobby
   - 'Tobby '
   optionalImages:
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
   voiceOvers: []
   tooltipHeaders: []
   tooltipImages: []

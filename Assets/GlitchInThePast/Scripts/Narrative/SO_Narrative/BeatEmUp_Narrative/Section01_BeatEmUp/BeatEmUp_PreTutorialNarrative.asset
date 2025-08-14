@@ -16,49 +16,39 @@ MonoBehaviour:
   isSkippable: 01010101010101010101010101010101010101010101010101
   narrativeTexts:
   - "[Bob\u2019s Apartment - At Night]"
-  - '[Email Notification] | Urgent: Games Restoration Contract - PixelRise Studios. '
-  - "(Reads the email aloud, his tone is sarcastic) \u201CDear Former PixelRise Developer,
-    We invite you to assist in restoring several games to their prime condition.
-    This is a time-sensitive opportunity. If you decide to accept the invitation,
-    you will be generously rewarded\u2026 \u201D "
-  - "(While amused) Didn\u2019t think I'd hear from them ever again. "
+  - ' Urgent: Games Restoration Contract - PixelRise Studios. '
+  - "\"Dear Former PixelRise Developer, We invite you to assist in restoring several
+    games to their prime condition. This is a time-sensitive opportunity. If you
+    decide to accept the invitation, you will be generously rewarded\u2026 \u201D "
+  - "Didn\u2019t think I'd hear from them ever again. "
   - He scrolls through his email, checking for signs of spam or forgery.
-  - "(Murmuring as he looks at the mess beside him) Freelancing is a grind\u2026
-    Maybe this is the break I deserve. "
+  - "Freelancing is a grind\u2026 Maybe this is the break I deserve. "
   - His fingers hover over the keyboard. A long pause passes before he reluctantly
     hits Send.
   - '[Tob''s Apartment - At Night]'
   - A sleek minimalist apartment with clean surfaces, soft ambient lights and gentle
     lo-fi music playing in the background. Tob is sitting on his couch with a face
     mask on. His sketchpad tossed aside; His phone buzzes.
-  - "(Raises his eyebrows at the notification) PixelRise? You\u2019ve got to be kidding
-    me."
+  - "PixelRise? You\u2019ve got to be kidding me."
   - He opens the mail. The font and formatting feels familiar but the wording lacked
     warmth.
-  - " (Quietly reads the end of the mail) You\u2019ll be generously rewarded. "
+  - "You\u2019ll be generously rewarded. "
   - A long exhale is heard as he closes his sketchpad.
   - "Freelancing hasn\u2019t been a safety net\u2026 I\u2019ll have to accept the
     offer."
   - Without any hesitation, he accepts the offer.
   - 'The screen dims before showing the entrance of  [PixelRise headquarters]. '
   - Bob and Tob arrive at different hours. Neither of them sees the other.
-  - The building they are in looks clean and tidy, decorated with modern furniture
+  - The inside of the building looks clean and tidy, decorated with modern furniture
     and walls full of creative ideas.
-  - "The screen is split as Bob and Tob\u2019s point of views are shown; They are
-    both accompanied by a composed guard in a black blazer who leads them to the
-    Bug testing Lab. "
-  - "Inside of the lab there are two padded chairs facing opposite walls. The walls
-    are soundproof. Above the chairs a diagnostic panel hovers, cyan blue in colour
-    and it displays bold text:  | 2017 Beat-\u2019Em-Up Game - Test environment commencing.
-    |"
+  - 
+  - "| 2017 Beat-\u2019Em-Up Game - Test environment commencing. |"
   - 'Both of them sit back to back, not realising each other''s presence.              '
   - Headsets lower over their eyes. Chair arms lock their hands in place.
-  - "(Distorted, playing from the speakers, clearly pre-recorded) Welcome back, Bo-Former-T-[Audio
-    glitches]-Employees. We\u2019re pleased to have your assistance again. "
-  - 'Bob does not question the distortion, he simply relaxes in his chair. Tob sucks
-    in his left cheek out of nervousness. '
-  - '(A woman speaks, her voice is monotonous) Game initialising, Do not move. Sit
-    still. '
+  - "Welcome back, Bo-Former-T-[Audio glitches]-Employees. We\u2019re pleased to
+    have your assistance again. "
+  - Neither question the distorted voice.
+  - 'Game initialising, Do not move. Sit still. '
   speakerIcons:
   - {fileID: 0}
   - {fileID: 0}
@@ -108,7 +98,7 @@ MonoBehaviour:
   - 
   - 
   - 
-  - '?'
+  - '? (Distorted)'
   - 
   - <System>
   optionalImages:
@@ -119,24 +109,24 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9d8fafb52f6c8ea468cb18bd9085c425, type: 3}
   - {fileID: 21300000, guid: 9d8fafb52f6c8ea468cb18bd9085c425, type: 3}
   - {fileID: 21300000, guid: 28d1f90ef724e1e45900af78355309ce, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 21300000, guid: 1bdab7708382a7e43b6de62e5c149989, type: 3}
-  - {fileID: 21300000, guid: 1bdab7708382a7e43b6de62e5c149989, type: 3}
-  - {fileID: 21300000, guid: 1bdab7708382a7e43b6de62e5c149989, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 21300000, guid: f11644465c7f21b47a10b0c9ca84d1f3, type: 3}
-  - {fileID: 0}
-  - {fileID: 21300000, guid: 1f947921f0e84784186602ed29219427, type: 3}
-  - {fileID: 21300000, guid: a616cb43728265a42a49756509974606, type: 3}
-  - {fileID: 21300000, guid: 65023e6d4e6b052479653788b4c83379, type: 3}
-  - {fileID: 21300000, guid: 65023e6d4e6b052479653788b4c83379, type: 3}
-  - {fileID: 21300000, guid: 2fabd105d0ef5814d8500a3c0259ad0c, type: 3}
-  - {fileID: 21300000, guid: 2fabd105d0ef5814d8500a3c0259ad0c, type: 3}
-  - {fileID: 0}
-  - {fileID: 21300000, guid: a1d5a86fcaa08254c9cce13ad7242743, type: 3}
-  - {fileID: 21300000, guid: 983ac41cd07b0034d8fe180fe8f615c8, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: 1adace29fa846394bbab0266d6350b9a, type: 3}
+  - {fileID: 21300000, guid: 1adace29fa846394bbab0266d6350b9a, type: 3}
+  - {fileID: 21300000, guid: 1adace29fa846394bbab0266d6350b9a, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: 42d11b36635feeb4eb0b24030154e976, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
+  - {fileID: 21300000, guid: ffb6396fe7d33ab43ac0cfc7ad845849, type: 3}
+  - {fileID: 21300000, guid: a1e145fabdbeaf04f81c1052f41434bb, type: 3}
+  - {fileID: 21300000, guid: 549ff5471248e4b4fa62d37734bedb8a, type: 3}
+  - {fileID: 21300000, guid: 549ff5471248e4b4fa62d37734bedb8a, type: 3}
+  - {fileID: 21300000, guid: 11a9738567c44ca4595a819a8a4d98e5, type: 3}
+  - {fileID: 21300000, guid: 11a9738567c44ca4595a819a8a4d98e5, type: 3}
+  - {fileID: 21300000, guid: 87bc3e34de15ac04882a3a4250b9d4b4, type: 3}
+  - {fileID: 21300000, guid: 87bc3e34de15ac04882a3a4250b9d4b4, type: 3}
+  - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
   voiceOvers:
   - {fileID: 0}
   - {fileID: 0}

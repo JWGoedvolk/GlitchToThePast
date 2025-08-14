@@ -101,6 +101,13 @@ public class MainMenuButtons : MonoBehaviour
         }
     }
 
+    #region Set Selected GameObject
+    public void SetSelectedGameObject(GameObject button)
+    {
+        EventSystem.current.SetSelectedGameObject(button);
+    }
+    #endregion
+
     #region Start Button
     public void StartGame()
     {
