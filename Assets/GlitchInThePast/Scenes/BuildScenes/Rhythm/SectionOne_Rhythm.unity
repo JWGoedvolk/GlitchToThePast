@@ -663,7 +663,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1054730837}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: dc9f9fae05958674dabb08f9e44d86d0, type: 3}
       propertyPath: m_LocalScale.x
@@ -679,15 +679,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc9f9fae05958674dabb08f9e44d86d0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.5
+      value: 0.4103241
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc9f9fae05958674dabb08f9e44d86d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.37000036
+      value: -7.4430256
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc9f9fae05958674dabb08f9e44d86d0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.6
+      value: 12.488538
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc9f9fae05958674dabb08f9e44d86d0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -695,7 +695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc9f9fae05958674dabb08f9e44d86d0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc9f9fae05958674dabb08f9e44d86d0, type: 3}
       propertyPath: m_LocalRotation.y
@@ -724,6 +724,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: dc9f9fae05958674dabb08f9e44d86d0, type: 3}
       propertyPath: m_Name
       value: 3DModel_DiscoGround
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dc9f9fae05958674dabb08f9e44d86d0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2109,6 +2113,7 @@ Transform:
   - {fileID: 1329259161}
   - {fileID: 2103618604}
   - {fileID: 449753582}
+  - {fileID: 1138298583}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1058394759
@@ -2282,6 +2287,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5677884539642665132, guid: 79642340563186649838f85cab53e5ed, type: 3}
+--- !u!4 &1138298583 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: dc9f9fae05958674dabb08f9e44d86d0, type: 3}
+  m_PrefabInstance: {fileID: 363162400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &1142802256
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5400,4 +5410,3 @@ SceneRoots:
   - {fileID: 259493851}
   - {fileID: 179307720}
   - {fileID: 1361353640}
-  - {fileID: 363162400}

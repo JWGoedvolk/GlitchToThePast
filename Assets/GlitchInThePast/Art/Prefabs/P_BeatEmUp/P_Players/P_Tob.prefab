@@ -572,9 +572,13 @@ MonoBehaviour:
   walkingSpeed: 6
   runningSpeed: 1
   initialiserUnlockedMovement: 0
+  is3DModel: 0
+  modelRoot: {fileID: 0}
+  rotationSpeed: 720
   dashSpeed: 20
   dashDuration: 0.15
   dashCooldown: 1
+  dashingPlayer: 1
   jumpForce: 9
   gravityMultiplier: 2.5
   animator: {fileID: 1434083449806660333}
@@ -707,7 +711,7 @@ MonoBehaviour:
   rangedAnimator: {fileID: 1228906177923959383}
   rangedAttackSpawnPoint: {fileID: 2025892952744937449}
   projectilePrefab: {fileID: 1662423977701543809, guid: 9a7e98309550f934abb9b10bab6842ac, type: 3}
-  rangedRechargeTime: 5
+  rangedRechargeTime: 2
   IsCharging: 0
   ChargeThresholds:
   - 3

@@ -17,6 +17,13 @@ namespace Player.GenericMovement
 
         public bool initialiserUnlockedMovement = false;
 
+        [Header("Avatar Mode")]
+        [Tooltip("If true, the model will rotate to face movement direction on the Y axis.")]
+        public bool is3DModel = false;
+        [Tooltip("Root to rotate when is3DModel is true. if left null then it'll use the transform of the object the script is attached to.")]
+        public Transform modelRoot;
+        public float rotationSpeed = 720f;
+
         [Header("Dashing")]
         [SerializeField] private float dashSpeed = 12f;
         [SerializeField] private float dashDuration = 0.15f;
@@ -27,6 +34,9 @@ namespace Player.GenericMovement
         public bool IsDashing => isDashing;
         private float dashDurationTimer;
         private Vector3 dashDirection = Vector3.zero;
+
+        [Tooltip("If false, dash inputs are ignored")]
+        public bool dashingPlayer = true;
 
         [Header("Jumping")]
         [SerializeField] private float jumpForce = 4f;
@@ -56,6 +66,8 @@ namespace Player.GenericMovement
         [Header("Events")]
         [SerializeField] private UnityEvent onDashStart;
         [SerializeField] private UnityEvent onDashEnd;
+
+        private Vector3 lastMoveDirection = Vector3.right;
         #endregion
 
         void Start()
@@ -69,6 +81,8 @@ namespace Player.GenericMovement
                 animator = GetComponent<Animator>();
             }
             Cursor.visible = false;
+
+            if (modelRoot == null) modelRoot = transform;
         }
 
         void OnDestroy()
@@ -120,6 +134,18 @@ namespace Player.GenericMovement
 
             float speed = walkingSpeed * (isRunning ? runningSpeed : 1f);
             Vector3 horizontal = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+
+            if (horizontal.sqrMagnitude > 0.0001f)
+            {
+                lastMoveDirection = horizontal;
+            }
+
+            if (is3DModel && lastMoveDirection.sqrMagnitude > 0.0001f)
+            {
+                Quaternion target = Quaternion.LookRotation(lastMoveDirection, Vector3.up);
+                modelRoot.rotation = Quaternion.RotateTowards(modelRoot.rotation, target, rotationSpeed * Time.deltaTime);
+            }
+
             Vector3 velocity = isDashing ? dashDirection * dashSpeed : horizontal * speed;
             velocity.y = verticalVel;
 
@@ -164,10 +190,15 @@ namespace Player.GenericMovement
             }
             else
             {
+                if (animator != null)
+                {
+                    bool isMoving = moveInput.magnitude > 0.1f;
+                    animator.SetBool("isWalking", isMoving);
+                }
                 characterController.Move(velocity * Time.deltaTime);
             }
 
-            if (spriteRenderer)
+            if (!is3DModel && spriteRenderer)
             {
                 if (moveInput.x > 0.1f)
                 {
@@ -326,6 +357,8 @@ namespace Player.GenericMovement
 
         private void Dash()
         {
+            if (!dashingPlayer) return;
+
             if (!isDashing && dashCooldownTimer <= 0f)
             {
                 isDashing = true;
@@ -340,7 +373,13 @@ namespace Player.GenericMovement
                 }
                 else
                 {
-                    dashDirection = spriteRenderer.flipX ? Vector3.left : Vector3.right;
+                    if (is3DModel)
+                        dashDirection = (modelRoot != null ? modelRoot.forward : transform.forward);
+                    else
+                        dashDirection = spriteRenderer != null && spriteRenderer.flipX ? Vector3.left : Vector3.right;
+
+                    if (dashDirection.sqrMagnitude < 0.0001f)
+                        dashDirection = lastMoveDirection.sqrMagnitude > 0.0001f ? lastMoveDirection : Vector3.right;
                 }
 
                 animator?.SetBool("isDashing", true);

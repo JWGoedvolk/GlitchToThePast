@@ -189,9 +189,13 @@ MonoBehaviour:
   walkingSpeed: 2
   runningSpeed: 1.5
   initialiserUnlockedMovement: 0
+  is3DModel: 1
+  modelRoot: {fileID: 0}
+  rotationSpeed: 720
   dashSpeed: 12
   dashDuration: 0.15
   dashCooldown: 1
+  dashingPlayer: 0
   jumpForce: 4
   gravityMultiplier: 1.5
   animator: {fileID: 0}
