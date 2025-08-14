@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 2929214977873594108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.346, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: 0.429, y: 0, z: 0}
+  m_LocalScale: {x: 0.21097216, y: 0.21097216, z: 0.21097216}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2025892952744937449}
@@ -189,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 7544389415627691498}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.301, z: -0.017}
+  m_LocalPosition: {x: 0.062, y: 0.301, z: -0.017}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -714,10 +714,10 @@ MonoBehaviour:
   rangedRechargeTime: 2
   IsCharging: 0
   ChargeThresholds:
-  - 3
-  - 2
-  - 2
+  - 0.5
   - 1
+  - 1.5
+  - 2
   CurrentChargeTime: 0
   comboRangedDamage: 010000000200000004000000
   comboRangedSpeed: 010000000200000003000000

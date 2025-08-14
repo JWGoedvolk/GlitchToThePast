@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
   m_Name: GameEnd
   m_EditorClassIdentifier: 
-  stepCount: 10
-  isSkippable: 01010101010000000000
+  stepCount: 8
+  isSkippable: 0101010101010100
   narrativeTexts:
   - Hey you!!
   - You have reached the end!
@@ -22,12 +22,21 @@ MonoBehaviour:
   - You'll be taken back to main menu in 3...
   - 2...
   - 1...
-  - 
-  - ...
-  - 0!
-  speakerIcons: []
+  - '0... '
+  speakerIcons:
+  - {fileID: 21300000, guid: 265d5422746b1e9449a46f09856d310f, type: 3}
+  - {fileID: 21300000, guid: 265d5422746b1e9449a46f09856d310f, type: 3}
+  - {fileID: 21300000, guid: 265d5422746b1e9449a46f09856d310f, type: 3}
+  - {fileID: 21300000, guid: 265d5422746b1e9449a46f09856d310f, type: 3}
+  - {fileID: 21300000, guid: 265d5422746b1e9449a46f09856d310f, type: 3}
+  - {fileID: 21300000, guid: 265d5422746b1e9449a46f09856d310f, type: 3}
+  - {fileID: 21300000, guid: 265d5422746b1e9449a46f09856d310f, type: 3}
+  - {fileID: 21300000, guid: 265d5422746b1e9449a46f09856d310f, type: 3}
+  speakerNames: []
   optionalImages: []
   voiceOvers: []
+  tooltipHeaders: []
+  tooltipImages: []
   isTooltip: 
   tooltipDurations: []
   OnSequenceEnd:
