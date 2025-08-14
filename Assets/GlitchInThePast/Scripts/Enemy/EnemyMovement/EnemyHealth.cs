@@ -3,7 +3,6 @@ using GlitchInThePast.Scripts.Player;
 using GlitchInThePast.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngineInternal;
 
 namespace Systems.Enemies
 {

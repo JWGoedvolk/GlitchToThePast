@@ -2,10 +2,11 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections;
 using UI.FadingEffect;
+using UnityEngine.SceneManagement;
+using Audio;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -32,19 +33,17 @@ public class MainMenuButtons : MonoBehaviour
     [SerializeField] private PauseMenu pauseMenuScript;
     //button locker
     [SerializeField] UIBlocker buttonLocker;
+
+    //SFX integration
+    [SerializeField] public UISfxManager sfxManager;
+
     private bool startingTransition;
 
     private bool subtitlesOn;
     private string[] sizes = new string[3];
     private int selectedSize = 0;
-
-    //Music BG
-    [SerializeField] public AudioSource backgroundMusic;
-    [SerializeField][Range(0f, 1f)] private float fadeOutRate = 0.4f;
     #endregion
 
-    //SFX integration
-    [SerializeField] public UISfxManager sfxManager;
 
     private void Start()
     {
@@ -52,12 +51,6 @@ public class MainMenuButtons : MonoBehaviour
         if (isSelectingCharacters)
         {
             return;
-        }
-
-        //music only plays once and doesnt restart when somehting else activates
-        if (backgroundMusic != null && !backgroundMusic.isPlaying)
-        {
-            backgroundMusic.Play();
         }
 
         if (sizes is null) return;
@@ -76,7 +69,8 @@ public class MainMenuButtons : MonoBehaviour
             screenFader = FindObjectOfType<ScreenFader>();
         }
 
-        settingsPanel = pauseMenuScript.pauseMenu;
+        if (pauseMenuScript != null)
+            settingsPanel = pauseMenuScript.pauseMenu;
     }
 
     private void Update()
@@ -113,13 +107,9 @@ public class MainMenuButtons : MonoBehaviour
         if (startingTransition) return;
         startingTransition = true;
 
-        //call the sfx on click
-        sfxManager?.PlayButtonClickSFX();
-
         buttonLocker?.LockButtons();
-
         screenFader.OnButtonClickFadeTransition(1.5f);
-        StartCoroutine(MusicAndStart());
+        SceneManager.LoadScene(1);
     }
     #endregion
 
@@ -141,19 +131,14 @@ public class MainMenuButtons : MonoBehaviour
 
         settingsPanel.SetActive(!settingsPanel.activeSelf);
 
-        //sfx managing
-        sfxManager?.PlayButtonClickSFX();
-
         if (settingsPanel.activeSelf == true) // Panel is now active (was inactive)
         {
             sfxManager?.PlayPannelOpeningSFX();
-            AudioListener.pause = true;
         }
         else // Panel is now inactive (was active)
         {
             sfxManager?.PlayPannelClosingSFX();
             Time.timeScale = 1f;
-            AudioListener.pause = false;
         }
 
         StartCoroutine(SetSelectedNextFrame(settingsPanel.activeSelf ? firstSettingsButton : firstMainMenuButton));
@@ -164,21 +149,14 @@ public class MainMenuButtons : MonoBehaviour
 
     public void GoToPreviousSize()
     {
-
-        sfxManager?.PlayButtonClickSFX();
-
         selectedSize = (selectedSize - 1 + sizes.Length) % sizes.Length;
         UpdateSizeLabel();
-
     }
 
     public void GoToNextSize()
     {
-        sfxManager?.PlayButtonClickSFX();
-
         selectedSize = (selectedSize + 1) % sizes.Length;
         UpdateSizeLabel();
-
     }
 
     private void UpdateSizeLabel()
@@ -204,9 +182,6 @@ public class MainMenuButtons : MonoBehaviour
     // Just a visual changer
     public void OnSubtitlesToggle()
     {
-
-        sfxManager?.PlayButtonClickSFX();
-
         subtitlesOn = !subtitlesOn;
         if (substitlesToggleImage is not null)
         {
@@ -218,7 +193,6 @@ public class MainMenuButtons : MonoBehaviour
     #region Quitting
     public void QuitGame()
     {
-        sfxManager?.PlayButtonClickSFX();
         sfxManager?.PlayPannelOpeningSFX();
 
         quitConfirmationPanel.SetActive(true);
@@ -230,19 +204,13 @@ public class MainMenuButtons : MonoBehaviour
         UpdateButtonState();
     }
 
-
     public void ConfirmQuit()
     {
-
-        sfxManager?.PlayButtonClickSFX();
-
         Application.Quit();
-
     }
 
     public void DismissQuit()
     {
-        sfxManager?.PlayButtonClickSFX();
         sfxManager?.PlayPannelClosingSFX();
 
         quitConfirmationPanel.SetActive(false);
@@ -250,33 +218,22 @@ public class MainMenuButtons : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(firstMainMenuButton);
 
-        // calling the fucntion
         UpdateButtonState();
     }
-
     #endregion
 
-    #region UIBlocking
-
-    private void UpdateButtonState()
+    #region Selected Button Setter
+    private IEnumerator SetSelectedNextFrame(GameObject target)
     {
-        //checks if any panels are active
-        bool anyPanelActive = settingsPanel.activeSelf || quitConfirmationPanel.activeSelf;
-        if (anyPanelActive)
-        {
-            //if they are then call the function from UIBlocker.cs
-            buttonLocker?.LockButtons();
-        }
-        else
-        {
-            //if they are not then call........
-            buttonLocker?.UnlockButton();
-        }
+        yield return null;
+        if (EventSystem.current == null) yield break;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(target);
     }
     #endregion
 
-    #region TEMP
-    public void TempFeaturesLoadToggler()
+    #region Load Game Panel
+    public void LoadGameSection()
     {
         bool isLoadFeaturePanel = !loadFeaturePanel.activeSelf;
         loadFeaturePanel.SetActive(isLoadFeaturePanel);
@@ -307,40 +264,18 @@ public class MainMenuButtons : MonoBehaviour
     }
     #endregion
 
-    #region Music
-    IEnumerator MusicFadingOut()
+    #region UIBlocking
+    private void UpdateButtonState()
     {
-        //saves og volume so i can restore later
-        float originalVolume = backgroundMusic.volume;
-
-        //As long as the volume is 0 , keep the bg music on
-        while (backgroundMusic.volume > 0)
+        bool anyPanelActive = settingsPanel.activeSelf || quitConfirmationPanel.activeSelf;
+        if (anyPanelActive)
         {
-            backgroundMusic.volume -= fadeOutRate * Time.deltaTime;
-            yield return null;
+            buttonLocker?.LockButtons();
         }
-
-        //once its zero stop THEN reset it next time
-        backgroundMusic.Stop();
-        backgroundMusic.volume = originalVolume;
-
-    }
-
-    private IEnumerator MusicAndStart()
-    {
-
-        yield return StartCoroutine(MusicFadingOut());
-
-        SceneManager.LoadScene(1);
-
-    }
-
-    private IEnumerator SetSelectedNextFrame(GameObject target)
-    {
-        yield return null;
-        if (EventSystem.current == null) yield break;
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(target);
+        else
+        {
+            buttonLocker?.UnlockButton();
+        }
     }
     #endregion
 }

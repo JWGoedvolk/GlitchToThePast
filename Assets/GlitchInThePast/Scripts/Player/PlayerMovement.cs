@@ -83,9 +83,9 @@ namespace Player.GenericMovement
 
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             if (spriteRenderer == null)
-                Debug.LogError("There is no sprite Renderer, can't flip the sprite! ADD ONE NOW");
+                // Debug.LogError("There is no sprite Renderer, can't flip the sprite! ADD ONE NOW");
 
-            weaponSystem = GetComponent<PlayerWeaponSystem>();
+                weaponSystem = GetComponent<PlayerWeaponSystem>();
             if (rotator == null)
             {
                 rotator = GetComponentInChildren<Rotator>();
@@ -105,7 +105,7 @@ namespace Player.GenericMovement
 
                 if (dashTimer <= 0f)
                 {
-                    EndDash(true); 
+                    EndDash(true);
                 }
             }
 
@@ -142,21 +142,28 @@ namespace Player.GenericMovement
                     {
                         if (isDashing)
                         {
-                            EndDash(true); 
+                            EndDash(true);
                         }
                         return;
                     }
                 }
             }
 
-            if (healthSystem.currentHealth >= 1)
+            if (healthSystem != null)
             {
-                bool isMoving = moveInput.magnitude > 0.1f;
-                if (animator != null)
+                if (healthSystem.currentHealth >= 1)
                 {
-                    animator.SetBool("isWalking", isMoving);
-                    animator.SetBool("isRunning", isMoving && isRunning);
+                    bool isMoving = moveInput.magnitude > 0.1f;
+                    if (animator != null)
+                    {
+                        animator.SetBool("isWalking", isMoving);
+                        animator.SetBool("isRunning", isMoving && isRunning);
+                    }
+                    characterController.Move(velocity * Time.deltaTime);
                 }
+            }
+            else
+            {
                 characterController.Move(velocity * Time.deltaTime);
             }
 
@@ -287,7 +294,7 @@ namespace Player.GenericMovement
             characterController.enabled = true;
 
             verticalVel = 0f;
-            EndDash(false); 
+            EndDash(false);
         }
         #endregion
 

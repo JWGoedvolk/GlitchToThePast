@@ -71,7 +71,7 @@ public class UIBlocker : MonoBehaviour
             }
         }
 
-        Debug.Log("locking the buttons.");
+        // Debug.Log("locking the buttons.");
     }
 
     //unlock them
@@ -112,6 +112,6 @@ public class UIBlocker : MonoBehaviour
             }
         }
 
-        Debug.Log("Unlocking the buttons.");
+        // Debug.Log("Unlocking the buttons.");
     }
 }

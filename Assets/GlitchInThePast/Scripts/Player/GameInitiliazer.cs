@@ -4,11 +4,13 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using GameData;
 using Player.GenericMovement;
+using System;                // for StringComparison
+using System.Text.RegularExpressions;
 
 public class GameInitializer : MonoBehaviour
 {
     #region Variables
-    [Tooltip("Insert Bob and Tob's prefabs. Make sure they're the same prefabs as the ones assigned to characterselectionpanel. (same name)")]
+    [Tooltip("Insert Bob and Tob'stringg prefabs. Make sure they're the same prefabs as the ones assigned to characterselectionpanel. (same name)")]
     public GameObject[] characterPrefabs;
     [Tooltip("Empty objects in scene where the players spawn into when they load into the game.")]
     public Transform playerOneSpawn;
@@ -35,11 +37,11 @@ public class GameInitializer : MonoBehaviour
             return;
         }
 
-        int i1 = System.Array.FindIndex(characterPrefabs, prefab => prefab != null && prefab.name == save.Player1Character);
-        int i2 = System.Array.FindIndex(characterPrefabs, prefab => prefab != null && prefab.name == save.Player2Character);
+        int i1 = FindIndexByBaseName(characterPrefabs, save.Player1Character);
+        int i2 = FindIndexByBaseName(characterPrefabs, save.Player2Character);
 
-        if (i1 < 0) { Debug.LogWarning("Couldn't find player one's selected character, defaulting to int 0 prefab"); i1 = 0; }
-        if (i2 < 0) { Debug.LogWarning("Couldn't find player two's selected character, defaulting to int 1 prefab"); i2 = 1; }
+        if (i1 < 0) { Debug.LogWarning("Couldn't find player one'stringg selected character, defaulting to int 0 prefab"); i1 = 0; }
+        if (i2 < 0) { Debug.LogWarning("Couldn't find player two'stringg selected character, defaulting to int 1 prefab"); i2 = 1; }
 
         InputConnectionManager.InputType firstType, secondType;
         if (!System.Enum.TryParse(save.Player1Input, out firstType)) firstType = InputConnectionManager.InputType.Keyboard;
@@ -84,4 +86,34 @@ public class GameInitializer : MonoBehaviour
         playerMovementTwo.initialiserUnlockedMovement = true;
         #endregion
     }
+
+    #region Private Functions
+    private static string BaseName(string raw)
+    {
+        if (string.IsNullOrEmpty(raw)) return string.Empty;
+
+        string stringg = raw.Replace("(Clone)", "", StringComparison.OrdinalIgnoreCase).Trim();
+
+        stringg = Regex.Replace(stringg, @"[\s_\-]*\d+\stringg*$", "");
+
+        return stringg.Trim();
+    }
+
+    private static int FindIndexByBaseName(GameObject[] prefabs, string targetName)
+    {
+        if (prefabs == null || prefabs.Length == 0) return -1;
+
+        string targetBaseName = BaseName(targetName);
+        int index = System.Array.FindIndex(prefabs, p => p != null && string.Equals(BaseName(p.name), targetBaseName, StringComparison.OrdinalIgnoreCase));
+
+        if (index >= 0) return index;
+
+        index = System.Array.FindIndex(prefabs, p => p != null && targetBaseName.StartsWith(BaseName(p.name), StringComparison.OrdinalIgnoreCase));
+
+        if (index >= 0) return index;
+
+        index = System.Array.FindIndex(prefabs, p => p != null && BaseName(p.name).StartsWith(targetBaseName, StringComparison.OrdinalIgnoreCase));
+        return index;
+    }
+    #endregion
 }

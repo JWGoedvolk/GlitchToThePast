@@ -1,81 +1,136 @@
 using UnityEngine;
+using Audio;
 
 public class EnemyDetectorForAudioSwitch : MonoBehaviour
 {
-    public AdaptiveMusicController music;
+    #region Variables
+    [Header("Audio Clips")]
+    public AudioClip calmClip;
+    public AudioClip tenseClip;
+
+    [Header("Enemy Detection")]
     public LayerMask enemyLayers;
-    public float radius = 18f;
+    public float radius = 8f;
     public int enterCombatCount = 1;
     public int exitCombatCount = 0;
     public float pollInterval = 0.25f;
 
-    private int _currentCount;
-    private bool _inCombat;
+    [Tooltip("Should triggers hitCount as enemies?")]
+    public QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Collide;
 
-    void Awake()
-    {
-        if (music == null) music = AdaptiveMusicController.Instance;
-    }
+    [Header("Audio Behaviour")]
+    [Range(0f, 2f)] public float minSecondsBetweenSwitches = 0.35f;
+
+    [Tooltip("Re-evaluate whether we should change the music or not.")]
+    public bool evaluateInitialState = true;
+
+    [Tooltip("If set to true the detector will only change music on state changes.")]
+    public bool respectSceneMusic = true;
+
+    private bool inCombat;
+    private float lastSwitchTime;
+    private bool running;
+
+    private const int MaxHits = 64;
+    private readonly Collider[] _hits = new Collider[MaxHits];
+    #endregion
 
     private void OnEnable()
     {
-        if (music == null)
-        {
-            StartCoroutine(WaitForMusicThenStart());
-            return;
-        }
-
-        _currentCount = Physics.OverlapSphere(transform.position, radius, enemyLayers).Length;
-        _inCombat = _currentCount > enterCombatCount;
-        music.SetCombat(_inCombat);
-
-        InvokeRepeating(nameof(Poll), 0.1f, pollInterval);
+        running = true;
+        if (evaluateInitialState) EvaluateAndMaybweSwitchInitial();
+        StartCoroutine(PollLoop());
     }
 
     private void OnDisable()
     {
-        CancelInvoke(nameof(Poll));
+        running = false;
         StopAllCoroutines();
     }
 
-    private System.Collections.IEnumerator WaitForMusicThenStart()
+    #region Polling
+    private System.Collections.IEnumerator PollLoop()
     {
-        float timeout = 2f;
-        float timee = 0f;
-
-        while (music == null && timee < timeout)
+        var wait = new WaitForSecondsRealtime(pollInterval);
+        while (running)
         {
-            music = AdaptiveMusicController.Instance;
-            if (music != null) break;
-            timee += Time.unscaledDeltaTime;
-            yield return null;
+            PollOnce();
+            yield return wait;
         }
+    }
+    #endregion
 
-        if (music != null)
+    #region Private Functions
+    private void EvaluateAndMaybweSwitchInitial()
+    {
+        int initial = Physics.OverlapSphereNonAlloc(
+            transform.position, radius, _hits, enemyLayers, triggerInteraction);
+
+        bool desiredCombat = initial >= enterCombatCount;
+
+        var audioManagerScript = AudioManager.Instance;
+        var currentClip = audioManagerScript != null && audioManagerScript.Music != null ? audioManagerScript.Music.clip : null;
+        var desiredClip = desiredCombat ? tenseClip : calmClip;
+
+        bool shouldSwitchNow = desiredClip != null && (currentClip != desiredClip) && (!respectSceneMusic || (respectSceneMusic && currentClip != null));
+
+        inCombat = desiredCombat;
+
+        if (shouldSwitchNow)
         {
-            music.EnsureRunning();
-            Poll(); // first evaluation
-            InvokeRepeating(nameof(Poll), 0.1f, pollInterval);
+            Play(desiredClip);
+            lastSwitchTime = Time.unscaledTime;
         }
     }
 
-    private void Poll()
+    private void PollOnce()
     {
-        if (music == null) return;
-
-        _currentCount = Physics.OverlapSphere(transform.position, radius, enemyLayers).Length;
-
-        if (!_inCombat && _currentCount >= enterCombatCount)
+        var mgr = AudioManager.Instance;
+        if (mgr == null || mgr.Music == null)
         {
-            _inCombat = true;
-            music.SetCombat(true);
+            Debug.LogWarning("AudioManager.Instance or Music source missing. If AudioManager is missing, make sure you are testing the game from the main menu onwards.");
             return;
         }
 
-        if (_inCombat && _currentCount <= exitCombatCount)
+        int hitCount = Physics.OverlapSphereNonAlloc(transform.position, radius, _hits, enemyLayers, triggerInteraction);
+
+
+        if (Time.unscaledTime - lastSwitchTime < minSecondsBetweenSwitches)
+            return;
+
+        if (!inCombat && hitCount >= enterCombatCount)
         {
-            _inCombat = false;
-            music.SetCombat(false);
+            inCombat = true;
+            if (tenseClip != null)
+            {
+                Play(tenseClip);
+                lastSwitchTime = Time.unscaledTime;
+            }
+            else
+            {
+                Debug.LogWarning("Tense clip isn't assigned.");
+            }
+            return;
+        }
+
+        if (inCombat && hitCount <= exitCombatCount)
+        {
+            inCombat = false;
+            if (calmClip != null)
+            {
+                Play(calmClip);
+                lastSwitchTime = Time.unscaledTime;
+            }
+            else
+            {
+                Debug.LogWarning("Calm clip isn't assigned");
+            }
         }
     }
+
+    private static void Play(AudioClip clip)
+    {
+        AudioManager.Instance?.PlayMusic(clip, loop: true, fadeSeconds: 0.3f, restartIfSame: false);
+    }
+#endregion
 }

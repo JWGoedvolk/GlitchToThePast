@@ -17,6 +17,9 @@ TagManager:
   - Pushable
   - Tooltip
   - PauseMenu
+  - Music
+  - SFX
+  - Voice
   layers:
   - Default
   - TransparentFX

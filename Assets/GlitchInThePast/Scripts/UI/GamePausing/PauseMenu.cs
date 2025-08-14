@@ -3,103 +3,119 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class PauseMenu : MonoBehaviour
+namespace Audio
 {
-    #region Variables
-    public static PauseMenu Instance;
-
-    public GameObject pauseMenu;
-
-    [SerializeField] private GameObject firstSelectedButton;
-    private bool paused;
-    #endregion
-
-    void Awake()
+    public class PauseMenu : MonoBehaviour
     {
-        if (Instance == null)
+        #region Variables
+        public static PauseMenu Instance;
+
+        public GameObject pauseMenu;
+
+        [SerializeField] private GameObject firstSelectedButton;
+        private bool paused;
+        #endregion
+
+        void Awake()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            SceneManager.activeSceneChanged += OnSceneChanged;
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+                SceneManager.activeSceneChanged += OnSceneChanged;
+            }
+            else
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            if (pauseMenu == null)
+            {
+                pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+            }
+            if (pauseMenu != null)
+                pauseMenu.SetActive(false);
         }
-        else
+
+        void OnDestroy()
         {
-            Destroy(gameObject);
-            return;
+            if (Instance == this)
+                SceneManager.activeSceneChanged -= OnSceneChanged;
         }
 
-        if (pauseMenu == null)
+        void Update()
         {
-            pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+            bool escapePressed = Keyboard.current?.escapeKey.wasPressedThisFrame == true;
+            bool controllerMenuPressed = Gamepad.current?.startButton.wasPressedThisFrame == true;
+
+            if (escapePressed || controllerMenuPressed)
+                Toggle();
         }
-        if (pauseMenu != null)
-            pauseMenu.SetActive(false);
-    }
 
-    void OnDestroy()
-    {
-        if (Instance == this)
-            SceneManager.activeSceneChanged -= OnSceneChanged;
-    }
+        #region Scene Change Detection
+        private void OnSceneChanged(Scene from, Scene to)
+        {
+            if (pauseMenu != null) pauseMenu.SetActive(paused);
 
-    void Update()
-    {
-        bool escapePressed = Keyboard.current?.escapeKey.wasPressedThisFrame == true;
-        bool controllerMenuPressed = Gamepad.current?.startButton.wasPressedThisFrame == true;
+            if (paused) ForceSelect(firstSelectedButton);
+        }
+        #endregion
 
-        if (escapePressed || controllerMenuPressed)
-            Toggle();
-    }
+        #region Public Functions
+        public void Toggle()
+        {
+            if (pauseMenu.activeSelf)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
 
-    private void OnSceneChanged(Scene from, Scene to)
-    {
-        if (pauseMenu != null) pauseMenu.SetActive(paused);
+        public void Pause()
+        {
+            if (pauseMenu != null)
+                pauseMenu.SetActive(true);
 
-        if (paused) ForceSelect(firstSelectedButton);
-    }
+            Time.timeScale = 0f;
+            Cursor.visible = true;
 
-    public void Toggle()
-    {
-        if (paused) Resume();
-        else Pause();
-    }
+            ForceSelect(firstSelectedButton);
+        }
 
-    public void Pause()
-    {
-        if (paused) return;
-        paused = true;
+        public void Resume()
+        {
+            paused = false;
 
-        if (pauseMenu != null) pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        AudioListener.pause = true;
-        Cursor.visible = true;
+            if (pauseMenu != null)
+                pauseMenu.SetActive(false);
 
-        ForceSelect(firstSelectedButton);
-    }
+            if (Mathf.Approximately(Time.timeScale, 0f))
+                Time.timeScale = 1f;
 
-    public void Resume()
-    {
-        if (!paused) return;
-        paused = false;
+            Cursor.visible = false;
 
-        if (pauseMenu != null) pauseMenu.SetActive(false);
-        if (Mathf.Approximately(Time.timeScale, 0f)) Time.timeScale = 1f;
-        AudioListener.pause = false;
-        Cursor.visible = false;
+            if (EventSystem.current != null)
+                EventSystem.current.SetSelectedGameObject(null);
+        }
+        #endregion
 
-        if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
-    }
+        #region Private Functions
+        private void ForceSelect(GameObject gameObject)
+        {
+            if (gameObject == null || EventSystem.current == null) return;
+            StartCoroutine(SelectNextFrame(gameObject));
+        }
 
-    private void ForceSelect(GameObject gameObject)
-    {
-        if (gameObject == null || EventSystem.current == null) return;
-        StartCoroutine(SelectNextFrame(gameObject));
-    }
-
-    private System.Collections.IEnumerator SelectNextFrame(GameObject gameObject)
-    {
-        yield return null;
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(gameObject);
+        private System.Collections.IEnumerator SelectNextFrame(GameObject gameObject)
+        {
+            yield return null;
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(gameObject);
+        }
+        #endregion
     }
 }
