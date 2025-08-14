@@ -109,6 +109,11 @@ public class MainMenuButtons : MonoBehaviour
 
         buttonLocker?.LockButtons();
         screenFader.OnButtonClickFadeTransition(1.5f);
+        Invoke("LoadCharacterSelectionScene", 1f);
+    }
+
+    private void LoadCharacterSelectionScene()
+    {
         SceneManager.LoadScene(1);
     }
     #endregion

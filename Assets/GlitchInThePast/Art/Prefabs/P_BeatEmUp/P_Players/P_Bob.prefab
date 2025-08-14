@@ -511,6 +511,8 @@ MonoBehaviour:
   - HealthUp
   damageCooldown: 0.3
   lastDamageTime: -Infinity
+  hitClip: {fileID: 8300000, guid: 515fcdcbb784fb2448f5f0b638b1077b, type: 3}
+  deathClip: {fileID: 8300000, guid: 0f209d7048688e5408bb54da2363a291, type: 3}
 --- !u!143 &7307085920574121977
 CharacterController:
   m_ObjectHideFlags: 0
@@ -736,6 +738,7 @@ MonoBehaviour:
   enterCombatCount: 1
   exitCombatCount: 0
   pollInterval: 0.25
+  triggerInteraction: 2
   minSecondsBetweenSwitches: 0.35
   evaluateInitialState: 1
   respectSceneMusic: 1

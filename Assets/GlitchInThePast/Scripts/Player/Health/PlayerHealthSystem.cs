@@ -37,6 +37,12 @@ namespace Player.Health
 
         //sfx
         private SFXManager sfxManager;
+
+        [Header("SFX")]
+        [Tooltip("Played when the player takes damage")]
+        public AudioClip hitClip;
+        [Tooltip("Played when this player dies")]
+        public AudioClip deathClip;
         #endregion
 
         void Awake()
@@ -109,11 +115,20 @@ namespace Player.Health
                 // Debug.Log($"PlayerHealthSystem: TakeDamage called with amount: {ammount}");
                 if (ammount > 0)
                 {
-                    if (sfxManager != null)
+                    // --- Added: prefer central AudioManager for clean routing; fallback to old SFXManager ---
+                    if (Audio.AudioManager.Instance != null && hitClip != null)
                     {
-                        //Debug.Log("PlayerHealthSystem: Calling PlayHitSFX()");
-                        sfxManager.PlayHitSFX();
+                        Audio.AudioManager.Instance.PlaySFXOneShot(hitClip, 1f);
                     }
+                    else
+                    {
+                        if (sfxManager != null)
+                        {
+                            //Debug.Log("PlayerHealthSystem: Calling PlayHitSFX()");
+                            sfxManager.PlayHitSFX();
+                        }
+                    }
+
                     if (animator != null)
                     {
                         animator.SetBool("isGettingHit", true);
@@ -133,7 +148,15 @@ namespace Player.Health
                     currentHealth = 0;
                     UpdateUI();
 
-                    sfxManager?.PlayDeathSFX();
+                    if (Audio.AudioManager.Instance != null && deathClip != null)
+                    {
+                        Audio.AudioManager.Instance.PlaySFXOneShot(deathClip, 1f);
+                    }
+                    else
+                    {
+                        sfxManager?.PlayDeathSFX();
+                    }
+
                     animator.SetBool("isGettingHit", true);
                     Invoke("StopHitAnimation", 0.5f);
 
