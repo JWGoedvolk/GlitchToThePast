@@ -887,11 +887,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109327981}
   m_CullTransparentMesh: 1
---- !u!82 &138386285 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4146741625079595652, guid: 1a05c6a497a41444badbc5b1db9b28e1, type: 3}
-  m_PrefabInstance: {fileID: 3625905548853542439}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &140665989
 GameObject:
   m_ObjectHideFlags: 0
@@ -5746,7 +5741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10974,7 +10969,6 @@ MonoBehaviour:
   screenFader: {fileID: 1522262138}
   pauseMenuScript: {fileID: 2034781453}
   buttonLocker: {fileID: 2121457759}
-  backgroundMusic: {fileID: 138386285}
   sfxManager: {fileID: 2139994959}
 --- !u!114 &2121457759
 MonoBehaviour:
