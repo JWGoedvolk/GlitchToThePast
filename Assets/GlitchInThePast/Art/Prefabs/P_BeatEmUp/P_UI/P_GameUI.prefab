@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9616156, g: 1, b: 0.90880495, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -260,8 +260,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 15.9, y: 3.9905}
-  m_SizeDelta: {x: 90.452, y: 72.547}
+  m_AnchoredPosition: {x: 37.3, y: 4.2132}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4973873676915647743
 CanvasRenderer:
@@ -335,8 +335,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 25.944, y: 15.8}
-  m_SizeDelta: {x: 72.774, y: 114.18}
+  m_AnchoredPosition: {x: 37.5, y: 4.355}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &9095368403283431937
 CanvasRenderer:
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9616156, g: 1, b: 0.90880495, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -590,8 +590,8 @@ MonoBehaviour:
   P2Image: {fileID: 737753760421361553}
   P1Text: {fileID: 2148164215805711723}
   P2Text: {fileID: 4960120906694656509}
-  BobSprite: {fileID: 21300000, guid: 8925571b55ed12644bcc26a4ac5e46aa, type: 3}
-  TobSprite: {fileID: 21300000, guid: 8438527333cbdb546a8b3c7635da91fb, type: 3}
+  BobSprite: {fileID: 21300000, guid: 2d342837180ca994f8eea001859fe2fd, type: 3}
+  TobSprite: {fileID: 21300000, guid: b962b0c6af20514418c0febb07c7f67f, type: 3}
   BobColor: {r: 0.68733144, g: 0, b: 0, a: 1}
   TobColor: {r: 0, g: 0.5503076, b: 0.61725056, a: 1}
 --- !u!1 &5979581532059171004
