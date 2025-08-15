@@ -2780,7 +2780,6 @@ MonoBehaviour:
   screenFader: {fileID: 0}
   pauseMenuScript: {fileID: 0}
   buttonLocker: {fileID: 0}
-  backgroundMusic: {fileID: 0}
   sfxManager: {fileID: 0}
 --- !u!114 &2121457759
 MonoBehaviour:

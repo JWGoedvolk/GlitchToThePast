@@ -97,6 +97,7 @@ namespace Player.Health
                 if (currentHealth != maxHealth)
                 {
                     TakeDamage(-1); // Heal by 1
+                    // disable collided w object.
                 }
             }
         }
