@@ -39,17 +39,13 @@ namespace Systems.Enemies
         }
         private State currentState;
 
-        protected override void Awake()
+        protected override void OnEnable()
         {
-            base.Awake();
+            base.OnEnable();
             SphereCollider circleCollider = GetComponent<SphereCollider>();
             circleCollider.isTrigger = true;
             if (enemySpriteRenderer is null) enemySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
             playerDetection = GetComponentInChildren<PlayerDetector>();
-        }
-
-        private void OnEnable()
-        {
             playerDetection.OnPlayerChanged += ClosestPlayerChanged;
         }
         private void OnDisable()

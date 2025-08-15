@@ -22,6 +22,28 @@ namespace Systems.Enemies.Boss
         public Action OnStageChangedAction;
         public UnityEvent OnMaxHitsReached;
 
+        public int MaxPhase => healths.Count;
+
+        private void Update()
+        {
+            // Set the boss to be damageable when boss is in Stunned state
+            if (BossStateManager.Instance.currentState == BossStateManager.State.Stunned)
+            {
+                // We are Stunned, and we need to not already be damageable
+                if (!isDamagable)
+                {
+                    SetDamagable(true);
+                }
+            }
+            else
+            {
+                if (isDamagable) // We are not Stunned but still damageable so switch once
+                {
+                    SetDamagable(false);
+                }
+            }
+        }
+
         public void SetDamagable(bool isDamagable)
         {
             this.isDamagable = isDamagable;
@@ -60,37 +82,30 @@ namespace Systems.Enemies.Boss
                 return;
             }
             
-            for (int i = 0; i < amount; i++)
+            for (int i = 0; i < amount; i++) // Loop through each point of damage we take
             {
                 healths[BossStateManager.Instance.Phase]--;
                 OnDamaged?.Invoke();
                 OnDamagedAction?.Invoke(1);
 
-                if (healths[BossStateManager.Instance.Phase] == 0) // If our current phase dies
+                if (healths[BossStateManager.Instance.Phase] <= 0) // If our current phase dies
                 {
-                    // If we still have phase to go through, then go to the next one
+                    // Go to next stage
                     OnStageChanged?.Invoke();
                     OnStageChangedAction?.Invoke();
-                }
-            }
-            if (healths[BossStateManager.Instance.Phase] <= 0) // If our current phase dies
-            {
-                // Check if was the final phase
-                if (healths.Count >= BossStateManager.Instance.Phase)
-                {
-                    OnDeath?.Invoke();
-                    return;
-                }
                     
-                // If we still have phase to go through, then go to the next one
-                OnStageChanged?.Invoke();
-                OnStageChangedAction?.Invoke();
+                    // Check if was the final phase
+                    if (BossStateManager.Instance.Phase + 1 > MaxPhase)
+                    {
+                        return;
+                    }
+                }
             }
         }
 
-        public void TakeExcessDamage()
+        public void Death()
         {
-            // NOT YET IMPLEMENTED
+            OnDeath?.Invoke();
         }
     }
 }

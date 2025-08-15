@@ -16,7 +16,7 @@ namespace Systems.Enemies
         protected Transform ClosestPlayer;
         protected Vector3 DirectionToPlayer;
 
-        protected virtual void Awake()
+        protected virtual void OnEnable()
         {
             RB = GetComponent<Rigidbody>();
 

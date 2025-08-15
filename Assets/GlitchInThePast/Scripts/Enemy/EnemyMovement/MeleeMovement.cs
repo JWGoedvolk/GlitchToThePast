@@ -16,9 +16,9 @@ namespace Systems.Enemies
         [SerializeField] private float damageInterval = 3f;
         private float damageTimer;
 
-        protected override void Awake()
+        protected override void OnEnable()
         {
-            base.Awake();
+            base.OnEnable();
             if (enemySpriteRenderer is null) enemySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 

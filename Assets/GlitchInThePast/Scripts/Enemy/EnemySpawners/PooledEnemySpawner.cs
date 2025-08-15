@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Pool;
 
 namespace Systems.Enemies
@@ -8,9 +9,9 @@ namespace Systems.Enemies
         public GameObject Prefab;
         public Transform SpawnPoint;
         public ObjectPool<GameObject> Pool;
+        public bool IsEnabled = true;
         [Header("Timers")] [SerializeField] float timer = 0f;
         public float SpawnDuration = 6f;
-
         [Tooltip("This is how long it waits after the previous group is defeated before spawning the new group")]
         public float GroupSpawnDelay = 10f;
 
@@ -29,13 +30,27 @@ namespace Systems.Enemies
         public bool IsSpawning = false;
         public bool IsWaiting = false;
 
-        private void Awake()
+        [Header("Events")] 
+        public UnityEvent OnAllSpawned;
+        public UnityEvent OnAllKilled;
+        
+        protected virtual void Awake()
+        {
+            Pool = new ObjectPool<GameObject>(SpawnEnemy, TakeEnemy, ReturnEnemy, DestroyEnemy, true, 10, 15);
+        }
+
+        private void StartPool()
         {
             Pool = new ObjectPool<GameObject>(SpawnEnemy, TakeEnemy, ReturnEnemy, DestroyEnemy, true, 10, 15);
         }
 
         private void Update()
         {
+            if (!IsEnabled)
+            {
+                return;
+            }
+            
             switch (CurrentState)
             {
                 case State.Spawning:
@@ -43,11 +58,20 @@ namespace Systems.Enemies
                     if (timer >= SpawnDuration / GroupSize)
                     {
                         timer = 0f;
-                        Pool.Get();
+                        if (Pool == null)
+                        {
+                            StartPool();
+                            Pool.Get();
+                        }
+                        else
+                        {
+                            Pool.Get();
+                        }
                         SpawnCount++;
-                        if (SpawnCount == GroupSize)
+                        if (SpawnCount >= GroupSize)
                         {
                             CurrentState = State.WaitingForKills;
+                            OnAllSpawned?.Invoke();
                         }
                     }
 
@@ -67,6 +91,7 @@ namespace Systems.Enemies
                         CurrentState = State.SpawnDelay;
                         KillCount = 0;
                         SpawnCount = 0;
+                        OnAllKilled?.Invoke();
                     }
 
                     break;
@@ -81,13 +106,13 @@ namespace Systems.Enemies
             return enemy;
         }
 
-        private GameObject SpawnEnemy()
+        protected GameObject SpawnEnemy()
         {
             var enemy = InstantiateEnemy();
             return enemy;
         }
 
-        private void TakeEnemy(GameObject enemy)
+        protected void TakeEnemy(GameObject enemy)
         {
             Debug.Log("[EnemySpawner][Melee] Activating enemy");
             enemy.transform.position = SpawnPoint.position;
@@ -95,13 +120,13 @@ namespace Systems.Enemies
             enemy.SetActive(true);
         }
 
-        private void ReturnEnemy(GameObject enemy)
+        protected void ReturnEnemy(GameObject enemy)
         {
             Debug.Log("[EnemySpawner][Melee] Deactivating enemy");
             enemy.SetActive(false);
         }
 
-        private void DestroyEnemy(GameObject enemy)
+        protected void DestroyEnemy(GameObject enemy)
         {
             Debug.Log("[EnemySpawner][Melee] Destroying enemy");
             Destroy(enemy);

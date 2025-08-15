@@ -58,7 +58,7 @@ namespace JW.Objects.Interactibles
             meshRenderer.material = isActivated ? activeStateMaterial : defaultStateMaterial;
         }
 
-        void Reset()
+        public void Reset()
         {
             isActivated = defaultState;
             OnReset?.Invoke();
@@ -116,7 +116,12 @@ namespace JW.Objects.Interactibles
 
         public virtual void Interact()
         {
-            if (!isActivated || !IsActivatable)
+            if (!IsActivatable)
+            {
+                return;
+            }
+            
+            if (!isActivated)
             {
                 OnInteraction?.Invoke();
                 isActivated = true;

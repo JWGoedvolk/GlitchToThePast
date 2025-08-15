@@ -634,6 +634,7 @@ MonoBehaviour:
   isRecharging: 0
   isWeaponEnabled: 1
   meleeFlipperTransform: {fileID: 3912381565481030115}
+  weaponRenderer: {fileID: 7088996877983646424}
   comboCount: 0
   timeSinceLastAttack: 0
   comboDuration: 3
