@@ -9265,12 +9265,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1263403891376116709, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
+      propertyPath: m_Color.b
+      value: 0.90880495
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263403891376116709, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
       propertyPath: m_Color.g
-      value: 0.9137255
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1263403891376116709, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
       propertyPath: m_Color.r
-      value: 0.8666667
+      value: 0.9616156
       objectReference: {fileID: 0}
     - target: {fileID: 1682735182603837652, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
       propertyPath: BobSprite
@@ -9318,15 +9322,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8066151536403949557, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.90880495
       objectReference: {fileID: 0}
     - target: {fileID: 8066151536403949557, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
       propertyPath: m_Color.g
-      value: 0.91345906
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8066151536403949557, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
       propertyPath: m_Color.r
-      value: 0.86477983
+      value: 0.9616156
       objectReference: {fileID: 0}
     - target: {fileID: 8711687021903397969, guid: 59fbb96dbf7954847a08f42b42501225, type: 3}
       propertyPath: m_AnchorMax.y
