@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 947190829, guid: 423e7a51af604ef4ca40253092fd031d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3692559824405975367
@@ -213,8 +213,10 @@ MonoBehaviour:
   controllerDeadZone: 0
   controllerRotationSmoothing: 1000
   spriteRenderer: {fileID: 4245184345691448312}
-  rightSprite: {fileID: 21300000, guid: 580167f2a85909947b125d79516fd125, type: 3}
-  leftSprite: {fileID: 21300000, guid: 219fbe280d5177745aa090a385f0b0f5, type: 3}
+  clampRightMin: 0
+  clampRightMax: 175
+  clampLeftMin: -175
+  clampLeftMax: 0
 --- !u!1 &8134715591524518181
 GameObject:
   m_ObjectHideFlags: 0

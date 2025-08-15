@@ -88,7 +88,7 @@ public class EnemyDetectorForAudioSwitch : MonoBehaviour
         var mgr = AudioManager.Instance;
         if (mgr == null || mgr.Music == null)
         {
-            Debug.LogWarning("AudioManager.Instance or Music source missing. If AudioManager is missing, make sure you are testing the game from the main menu onwards.");
+            // Debug.LogWarning("AudioManager.Instance or Music source missing. If AudioManager is missing, make sure you are testing the game from the main menu onwards.");
             return;
         }
 
@@ -108,7 +108,7 @@ public class EnemyDetectorForAudioSwitch : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Tense clip isn't assigned.");
+                // Debug.LogWarning("Tense clip isn't assigned.");
             }
             return;
         }
@@ -123,7 +123,7 @@ public class EnemyDetectorForAudioSwitch : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Calm clip isn't assigned");
+                // Debug.LogWarning("Calm clip isn't assigned");
             }
         }
     }

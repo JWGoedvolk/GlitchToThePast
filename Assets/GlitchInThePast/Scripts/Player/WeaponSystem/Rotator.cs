@@ -17,11 +17,18 @@ namespace GlitchInThePast.Scripts.Player
 
         [Header("Visual / Facing")]
         [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField] private Sprite rightSprite;
-        [SerializeField] private Sprite leftSprite;
+
+        [Header("Clamp")]
+        [SerializeField] private float clampRightMin = -0f;
+        [SerializeField] private float clampRightMax = 175f;
+        [SerializeField] private float clampLeftMin = -175f;
+        [SerializeField] private float clampLeftMax = 0f;
 
         public int FacingDirection { get; private set; } = 1;
         private int lastAppliedFacing = 1;
+
+        private int pendingFacing;
+        private bool hasPendingFacing = false;
         #endregion
 
         private void Update()
@@ -31,8 +38,8 @@ namespace GlitchInThePast.Scripts.Player
             if (derivedFacing != lastAppliedFacing)
             {
                 FacingDirection = derivedFacing;
-                UpdateSpriteVisuals(FacingDirection);
-                lastAppliedFacing = FacingDirection;
+                pendingFacing = derivedFacing;
+                hasPendingFacing = true;
             }
 
             if (!isGamepad)
@@ -46,11 +53,11 @@ namespace GlitchInThePast.Scripts.Player
                 {
                     Vector3 worldPoint = ray.GetPoint(rayDistance);
                     Vector3 playerDirection = worldPoint - transform.position;
-
                     if (playerDirection.sqrMagnitude > 0.0001f)
                     {
                         float angle = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg;
-                        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+                        float clamped = ClampToFacingCone(angle);
+                        transform.rotation = Quaternion.Euler(0f, 0f, clamped);
                     }
                 }
             }
@@ -59,13 +66,23 @@ namespace GlitchInThePast.Scripts.Player
                 if (aimInput.magnitude > controllerDeadZone)
                 {
                     float angle = Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg;
-                    Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
+                    float clamped = ClampToFacingCone(angle);
+                    Quaternion targetRotation = Quaternion.Euler(0f, 0f, clamped);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, controllerRotationSmoothing * Time.deltaTime);
                 }
             }
 
             if (target != null)
                 target.position = transform.position + transform.right * 1f;
+        }
+
+        private void LateUpdate()
+        {
+            if (!hasPendingFacing) return;
+
+            UpdateSpriteFlips(pendingFacing);
+            lastAppliedFacing = pendingFacing;
+            hasPendingFacing = false;
         }
 
         #region Public Functions
@@ -104,22 +121,33 @@ namespace GlitchInThePast.Scripts.Player
             return FacingDirection;
         }
 
-        /// <summary>
-        /// Updates sprite visuals to suit the direction the player is facing.
-        /// </summary>
-        private void UpdateSpriteVisuals(int direction)
+        private float ClampToFacingCone(float rawAngleDeg)
         {
-            if (spriteRenderer == null) return;
+            float baseAngle = (FacingDirection == 1) ? 0f : 180f;
+
+            float delta = Mathf.DeltaAngle(baseAngle, rawAngleDeg);
+
+            float min = (FacingDirection == 1) ? clampRightMin : clampLeftMin;
+            float max = (FacingDirection == 1) ? clampRightMax : clampLeftMax;
+
+            float clampedDelta = Mathf.Clamp(delta, min, max);
+            return baseAngle + clampedDelta;
+        }
+
+        private void UpdateSpriteFlips(int direction)
+        {
+            if (spriteRenderer == null)
+            {
+                return;
+            }
 
             if (direction == 1)
             {
-                if (spriteRenderer.sprite != rightSprite)
-                    spriteRenderer.sprite = rightSprite;
+                spriteRenderer.flipY = false;
             }
             else if (direction == -1)
             {
-                if (spriteRenderer.sprite != leftSprite)
-                    spriteRenderer.sprite = leftSprite;
+                spriteRenderer.flipY = true;
             }
         }
 
