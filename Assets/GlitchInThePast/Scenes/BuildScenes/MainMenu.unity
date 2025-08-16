@@ -660,8 +660,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -678,12 +678,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 28
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 30
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -2689,7 +2689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &483274285
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2730,7 +2730,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2761,7 +2761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageFadeDuration: 1
-  holdDuration: 3.5
+  holdDuration: 4.5
   uiBlockerScript: {fileID: 2121457759}
   imageToFade: {fileID: 483274286}
   textToFade: {fileID: 1120562114}
@@ -2777,7 +2777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d68d9c3ff32e6247ae34bffa760c051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blocker: {fileID: 0}
+  blocker: {fileID: 2121457759}
 --- !u!1 &532750444
 GameObject:
   m_ObjectHideFlags: 0
@@ -3245,11 +3245,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.8490566, g: 0.35510847, b: 0.7099566, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.72641504, b: 0.87979007, a: 1}
-    m_PressedColor: {r: 0.7610062, g: 0.25127554, b: 0.6153689, a: 1}
-    m_SelectedColor: {r: 1, g: 0.7254902, b: 0.87843144, a: 1}
-    m_DisabledColor: {r: 0.85098046, g: 0.35686275, b: 0.70980394, a: 0.5019608}
+    m_NormalColor: {r: 1, g: 0.69411516, b: 0.08962262, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.8745099, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0.5604097, b: 0.09019607, a: 1}
+    m_SelectedColor: {r: 1, g: 0.8748325, b: 0, a: 1}
+    m_DisabledColor: {r: 1, g: 0.56078434, b: 0.09019608, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -5034,11 +5034,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.8490566, g: 0.35510847, b: 0.7099566, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.72641504, b: 0.87979007, a: 1}
-    m_PressedColor: {r: 0.7610062, g: 0.25127554, b: 0.6153689, a: 1}
-    m_SelectedColor: {r: 1, g: 0.7254902, b: 0.87843144, a: 1}
-    m_DisabledColor: {r: 0.85098046, g: 0.35686275, b: 0.70980394, a: 0.5019608}
+    m_NormalColor: {r: 1, g: 0.69411516, b: 0.08962262, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.8745099, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0.5604097, b: 0.09019607, a: 1}
+    m_SelectedColor: {r: 1, g: 0.8748325, b: 0, a: 1}
+    m_DisabledColor: {r: 1, g: 0.56078434, b: 0.09019608, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -5815,8 +5815,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5833,13 +5833,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 28
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 17
+  m_fontSizeMax: 30
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

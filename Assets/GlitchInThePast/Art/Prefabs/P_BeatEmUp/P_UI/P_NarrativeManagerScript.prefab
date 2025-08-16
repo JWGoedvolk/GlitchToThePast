@@ -278,6 +278,7 @@ MonoBehaviour:
   speakerIcon: {fileID: 450481940489956}
   speakerNameText: {fileID: 1903736728180489967}
   optionalImage: {fileID: 8132960877240739819}
+  textBackground: {fileID: 0}
   tooltipPanel: {fileID: 8778600292776974092}
   tooltipHeaderText: {fileID: 9193765704727823650}
   tooltipText: {fileID: 2806036868058464482}
@@ -957,7 +958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1487951473534224051
 RectTransform:
   m_ObjectHideFlags: 0

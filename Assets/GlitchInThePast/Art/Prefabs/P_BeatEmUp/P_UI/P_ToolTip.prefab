@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequenceToPlay: {fileID: 11400000, guid: 7750c3ed000030343a63b99335f5f7e3, type: 2}
   playSequenceAtStart: 0
+  isReplayable: 0
+  requiresBothPlayers: 0
+  playerCountText: {fileID: 0}
   OnSequenceEnd:
     m_PersistentCalls:
       m_Calls: []

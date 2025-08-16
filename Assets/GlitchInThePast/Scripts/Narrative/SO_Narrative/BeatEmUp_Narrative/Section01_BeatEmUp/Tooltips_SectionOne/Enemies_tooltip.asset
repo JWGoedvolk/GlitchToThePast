@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
-  m_Name: Eneemies_Tooltip
+  m_Name: Enemies_tooltip
   m_EditorClassIdentifier: 
   stepCount: 1
   isSkippable: 
   narrativeTexts:
-  - Use the weapons you have to take these enemies out! Each player can fight one
-    type of enemy.
+  - Use the weapons you have to take these enemies out! Each player can fight only
+    one type of enemy.
   speakerIcons: []
+  speakerNames: []
   optionalImages: []
   voiceOvers: []
+  tooltipHeaders: []
+  tooltipImages: []
   isTooltip: 01
   tooltipDurations:
   - 3

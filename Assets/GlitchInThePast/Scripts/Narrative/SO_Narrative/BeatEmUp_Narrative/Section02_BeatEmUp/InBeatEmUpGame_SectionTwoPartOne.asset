@@ -18,24 +18,24 @@ MonoBehaviour:
   - 'The colourful carnival''s palette darkens. The atmosphere is not scary but it
     causes players to raise questions over the change. '
   - 'A clown and his pet balloon make it to the scene '
-  - "(dragging every syllable)  Gooood\u2026 eeeeveniiing. "
-  - "(dragging every syllable) Weeelcome\u2026 to theee\u2026 Caaarnivaaaal. "
-  - '(hand on sword, eyes narrow) Oh, you really shouldn''t have. '
-  - ' (lifting his gun slowly, voice lowered) Do we... fight these? '
-  - " (Focused) You ever played a beat \u2019em up? "
-  - "(a pause, then quietly) \u2026I designed one. A long time ago. "
+  - "Gooood\u2026 eeeeveniiing. "
+  - "Weeelcome\u2026 to theee\u2026 Caaarnivaaaal. "
+  - ' Oh, you really shouldn''t have. '
+  - ' Do we... fight these? '
+  - " You ever played a beat \u2019em up? "
+  - "\u2026I designed one. A long time ago. "
   - "The clowns\u2019 eyes flash red. The balloon pets draw tiny, jagged knives.
     Enemies spawn. "
   speakerIcons:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 21300000, guid: bff795810ceddab4897f8ca213c5162c, type: 3}
-  - {fileID: 21300000, guid: bff795810ceddab4897f8ca213c5162c, type: 3}
+  - {fileID: 21300000, guid: 3ed15c8da2e4fde4a8e099fb7c912802, type: 3}
+  - {fileID: 21300000, guid: 3ed15c8da2e4fde4a8e099fb7c912802, type: 3}
   - {fileID: -2117750341, guid: 77f0b229804cc4d4fa2e3e46cee3a06d, type: 3}
   - {fileID: -466449259, guid: f56343b468679ff478e8a540a2dd09dd, type: 3}
   - {fileID: 21300000, guid: 29cea9b28fc5c38429515bdebfac0dd2, type: 3}
   - {fileID: 1632624629, guid: 8f1f774bc33d0ad4b9879eaf346b9d6a, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 3ed15c8da2e4fde4a8e099fb7c912802, type: 3}
   speakerNames:
   - 
   - 
@@ -46,7 +46,16 @@ MonoBehaviour:
   - Bobby
   - Tobby
   - 
-  optionalImages: []
+  optionalImages:
+  - {fileID: 21300000, guid: a8a4783851ffe2a41adfdf720f7b7085, type: 3}
+  - {fileID: 21300000, guid: a8a4783851ffe2a41adfdf720f7b7085, type: 3}
+  - {fileID: 21300000, guid: a8a4783851ffe2a41adfdf720f7b7085, type: 3}
+  - {fileID: 21300000, guid: a8a4783851ffe2a41adfdf720f7b7085, type: 3}
+  - {fileID: 21300000, guid: a8a4783851ffe2a41adfdf720f7b7085, type: 3}
+  - {fileID: 21300000, guid: a8a4783851ffe2a41adfdf720f7b7085, type: 3}
+  - {fileID: 21300000, guid: a8a4783851ffe2a41adfdf720f7b7085, type: 3}
+  - {fileID: 21300000, guid: a8a4783851ffe2a41adfdf720f7b7085, type: 3}
+  - {fileID: 21300000, guid: a8a4783851ffe2a41adfdf720f7b7085, type: 3}
   voiceOvers: []
   tooltipHeaders: []
   tooltipImages: []

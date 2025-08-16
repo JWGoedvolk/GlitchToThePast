@@ -44,7 +44,6 @@ public class MainMenuButtons : MonoBehaviour
     private int selectedSize = 0;
     #endregion
 
-
     private void Start()
     {
         Time.timeScale = 1f;
@@ -114,9 +113,18 @@ public class MainMenuButtons : MonoBehaviour
         if (startingTransition) return;
         startingTransition = true;
 
-        buttonLocker?.LockButtons();
-        screenFader.OnButtonClickFadeTransition(1.5f);
-        Invoke("LoadCharacterSelectionScene", 1f);
+        if (screenFader == null) screenFader = FindObjectOfType<ScreenFader>();
+
+        if (screenFader != null)
+        {
+            buttonLocker?.LockButtons();
+            screenFader.OnButtonClickFadeTransition(1.5f);
+            Invoke("LoadCharacterSelectionScene", 1f);
+        }
+        else
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 
     private void LoadCharacterSelectionScene()

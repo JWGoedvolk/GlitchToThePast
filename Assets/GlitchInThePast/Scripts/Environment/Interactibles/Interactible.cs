@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using GlitchInThePast.Scripts.Player;
@@ -84,7 +84,7 @@ namespace JW.Objects.Interactibles
                         }
                         else if (playerInteractor.GetComponent<PlayerInput>().currentControlScheme == "Controller")
                         {
-                            interactPromptText.text = "Press 'X' to interact";
+                            interactPromptText.text = "Press '△' OR 'Y' to interact";
                         }
                         else
                         {

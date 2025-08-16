@@ -102,7 +102,7 @@ namespace Player.Health
                 if (currentHealth != maxHealth)
                 {
                     TakeDamage(-1); // Heal by 1
-                    // disable collided w object.
+                    DisableHealableObject(collision);
                 }
             }
         }
@@ -237,6 +237,13 @@ namespace Player.Health
             {
                 animator.SetBool("isGettingHit", false);
             }
+        }
+
+        private void DisableHealableObject(Collider col)
+        {
+            GameObject toDisable = col.attachedRigidbody ? col.attachedRigidbody.gameObject : col.gameObject;
+
+            toDisable.SetActive(false);
         }
         #endregion
     }
