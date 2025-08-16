@@ -106,7 +106,10 @@ namespace GlitchInThePast.Scripts.Player
                 return;
             }
 
-            weaponRenderer.color = isRecharging ? Color.red : Color.green;
+            if (weaponRenderer != null && weaponType == WeaponType.Ranged)
+            {
+                weaponRenderer.color = isRecharging ? Color.red : Color.green;
+            }
 
             switch (weaponType) // Weapon behaviours
             {
@@ -124,25 +127,25 @@ namespace GlitchInThePast.Scripts.Player
                 case WeaponType.Ranged:
                     if (IsCharging)
                     {
-                        CurrentChargeTime += Time.deltaTime; // Charge up our shot this frame
+                        int thresholdsCount = (ChargeThresholds != null) ? ChargeThresholds.Count : 0;
+                        int maxStage = Mathf.Max(0, thresholdsCount); 
 
-                        int thresholdsCount = ChargeThresholds != null ? ChargeThresholds.Count : 0; // Added this safeguard to only read the threshold when it exists.
-                        if (thresholdsCount > 0 && comboCount >= 0 && comboCount < thresholdsCount)
+                        CurrentChargeTime += Time.deltaTime;
+
+                        if (thresholdsCount > 0 && comboCount >= 0 && comboCount < maxStage)
                         {
-                            if (CurrentChargeTime >= ChargeThresholds[comboCount]) // Check if we should go to next combo stage
+                            float neededCount = ChargeThresholds[comboCount];  
+                            if (CurrentChargeTime >= neededCount)
                             {
                                 CurrentChargeTime = 0f;
-                                comboCount++;
+                                comboCount = Mathf.Min(comboCount + 1, maxStage); 
                                 OnComboIncrease?.Invoke();
-
-                                if (comboCount == 3) // Loop back after the final stage to the first stage
-                                {
-                                    comboCount = 1;
-                                }
-
                                 UpdateAnimatorCounter();
                             }
                         }
+
+                        rangedAnimator.SetBool("IsCharging", true);
+                        rangedAnimator.SetInteger("ComboCount", comboCount);
                     }
                     else
                     {
@@ -247,7 +250,7 @@ namespace GlitchInThePast.Scripts.Player
                 // If we have reached the max combo count then reset it
                 if (comboCount == 3)
                 {
-                    ResetComboCounter();
+                    Invoke("ResetComboCounter", 1f);
                 }
             }
         }
