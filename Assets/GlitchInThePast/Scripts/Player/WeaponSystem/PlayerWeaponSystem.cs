@@ -24,7 +24,8 @@ namespace GlitchInThePast.Scripts.Player
             None
         }
 
-        [Header("General")] [SerializeField] private WeaponType weaponType;
+        [Header("General")] 
+        [SerializeField] private WeaponType weaponType;
         [SerializeField] private bool isRecharging = false;
         [SerializeField] private bool isWeaponEnabled = true;
         [SerializeField] private Transform meleeFlipperTransform;
@@ -34,29 +35,28 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private float comboDuration = 0f;
         [ReadOnly] [SerializeField] float currentComboDuration = 0f;
 
-        [Header("Events")] [Header("Recharge")] [SerializeField]
-        private UnityEvent onStartRecharge;
-
+        [Header("Events")] 
+        [Header("Recharge")] 
+        [SerializeField] private UnityEvent onStartRecharge;
         [SerializeField] private UnityEvent onRecharging;
         [SerializeField] private UnityEvent onEndRecharge;
-        [Header("Melee")] [SerializeField] private UnityEvent onMeleeAttack;
-        [Header("Ranged")] [SerializeField] private UnityEvent onRangedAttack;
+        [Header("Melee")] 
+        [SerializeField] private UnityEvent onMeleeAttack;
+        [Header("Ranged")] 
+        [SerializeField] private UnityEvent onRangedAttack;
         [Header("Combo")] public UnityEvent OnComboIncrease;
         public UnityEvent OnComboReset;
 
         [Header("Melee Attack")] [SerializeField]
         private Animator meleeAnimator;
-
         [SerializeField] private Transform meleeAttackTransform;
         [SerializeField] private Bounds meleeBounds;
         [SerializeField] private float meleeRechargeTime = 3f;
-
         [Header("Melee Combo")] [SerializeField]
         private List<int> comboMeleeDamage = new List<int>();
 
         [Header("Ranged Attack")] [SerializeField]
         private Animator rangedAnimator;
-
         [SerializeField] private Transform rangedAttackSpawnPoint;
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private float rangedRechargeTime = 3f;

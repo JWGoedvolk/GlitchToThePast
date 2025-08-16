@@ -26,8 +26,8 @@ namespace GlitchInThePast.Scripts.Player
             rb = GetComponent<Rigidbody>();
             rb.velocity = transform.right * speed;
         }
-        
-        public override void OnTrigger(GameObject other)
+
+        protected override void OnTrigger(GameObject other)
         {
             Debug.Log("OnTrigger");
             EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();

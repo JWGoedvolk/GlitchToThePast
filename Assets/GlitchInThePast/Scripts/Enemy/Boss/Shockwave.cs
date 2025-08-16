@@ -32,7 +32,7 @@ namespace Systems.Enemies.Boss
             }
         }
 
-        public override void OnTrigger(GameObject other)
+        protected override void OnTrigger(GameObject other)
         {
             PlayerHealthSystem playerHealthSystem = other.GetComponent<PlayerHealthSystem>();
             if (playerHealthSystem != null)

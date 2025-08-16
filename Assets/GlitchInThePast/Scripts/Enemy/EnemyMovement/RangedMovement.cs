@@ -29,7 +29,7 @@ namespace Systems.Enemies
 
         public Transform TargetPlayer { get { return ClosestPlayer; } }
 
-        //[Header("State")]
+        // States
         public enum State
         {
             Chase,              // At cruising altitude, player not in attack range
@@ -75,7 +75,7 @@ namespace Systems.Enemies
                 }
             }
 
-            UpdateState(); // Update what state the enemy is in to know what behaviour to follow
+            UpdateState(); // Update what state the enemy is in to know what behavior to follow
 
             // Always move towards the closest player
             movDir = DirectionToPlayer.normalized;
@@ -85,7 +85,7 @@ namespace Systems.Enemies
                 case State.Chase: // Move on the same height towards the closest player
                     movDir.y = 0; // move towards the player while staying at the current height
                     break;
-                case State.AltitudeAdjustment: // Move up or down to the desired cruising altitude, still moves towards closest player horizontally
+                case State.AltitudeAdjustment: // Move up or down to the desired cruising altitude, still moves towards the closest player horizontally
                     if (transform.position.y < CruisingAltitude - CruisingAltitudeError) // rise up if too low
                     {
                         movDir.y = 1f;
@@ -179,8 +179,8 @@ namespace Systems.Enemies
                 newState = State.Attack;
 
                 // Check if the player is in strafing distance and that we are at the attack altitude
-                if (Mathf.Abs(Vector3.Distance(strafePoint.position, playerDetection.ClosestPlayerInRange.transform.position)) <= strafeDistance + startStrafeDistance &&
-                    transform.position.y <= AttackAltitude)
+                if (Mathf.Abs(Vector3.Distance(strafePoint.position, playerDetection.ClosestPlayerInRange.transform.position)) <=
+                    strafeDistance + startStrafeDistance && transform.position.y <= AttackAltitude)
                 {
                     if (currentState == State.Strafing)
                     {
@@ -193,7 +193,6 @@ namespace Systems.Enemies
                         currentState = newState;
                         playerDetection.SetDetectionSize(AttackSize);
                         // Debug.Log($"{name} switched to Strafing mode");
-
                         if (playerDetection.ClosestPlayerInRange.transform.position.x < strafePoint.position.x) // if the player is to the left of us
                         {
                             strafeDirection = -1; // Strafe left
@@ -202,6 +201,7 @@ namespace Systems.Enemies
                         {
                             strafeDirection = 1; // Strafe right
                         }
+
                         return; // We don't care about continuing more logic for attack state switching so we leave
                     }
                 }
@@ -217,8 +217,7 @@ namespace Systems.Enemies
             else
             {
                 // If we ar not in range, are we at cruising altitude?
-                if (transform.position.y < CruisingAltitude - CruisingAltitudeError ||
-                    transform.position.y > CruisingAltitude + CruisingAltitudeError)
+                if (transform.position.y < CruisingAltitude - CruisingAltitudeError || transform.position.y > CruisingAltitude + CruisingAltitudeError)
                 {
                     newState = State.AltitudeAdjustment;
                     if (newState != currentState)
