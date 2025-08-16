@@ -101,6 +101,11 @@ namespace Audio
             if (EventSystem.current != null)
                 EventSystem.current.SetSelectedGameObject(null);
         }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
         #endregion
 
         #region Private Functions
