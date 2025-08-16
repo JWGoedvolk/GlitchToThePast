@@ -54,6 +54,7 @@ namespace Systems.Enemies
                         if (spawner != null)
                         {
                             spawner.KillCount++;
+                            Debug.LogWarning($"Enemy {gameObject.name} is destroyed, increasing kill count for {spawner.name}");
                         }
                         OnDeath?.Invoke();
                         spawner.Pool.Release(gameObject);
@@ -117,6 +118,8 @@ namespace Systems.Enemies
             if (apply)
             {
                 Health -= damage;
+                Debug.LogWarning($"Enemy: {gameObject.name} has been dealt {damage} damage with {weaponType}");
+
                 OnDamageTaken?.Invoke(damage);
                 StartFlash();
 
