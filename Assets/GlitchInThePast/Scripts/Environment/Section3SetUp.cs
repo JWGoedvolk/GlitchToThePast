@@ -23,7 +23,7 @@ namespace GlitchInThePast.Scripts.Environment
 
         public void SetUpSpawnPoints()
         {
-            if (PlayerInput.all[0].GetComponent<PlayerWeaponSystem>().Weapon == PlayerWeaponSystem.WeaponType.Melee)
+            if (PlayerInput.all[0].GetComponentInChildren<PlayerWeaponSystem>().Weapon == PlayerWeaponSystem.WeaponType.Melee)
             {
                 Debug.Log("Player 1 is melee");
                 // Set the first set of spawnpoints the used ones

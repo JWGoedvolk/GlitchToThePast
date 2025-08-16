@@ -180,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 24106730}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.96, y: 2.5, z: 0}
+  m_LocalPosition: {x: -8.96, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -381,7 +381,7 @@ Transform:
   m_GameObject: {fileID: 98314043}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.7, y: 2.5, z: 0}
+  m_LocalPosition: {x: 8.7, y: 0.9000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1656,6 +1656,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 632856808}
+  - component: {fileID: 632856809}
   m_Layer: 0
   m_Name: Ranged
   m_TagString: Untagged
@@ -1680,6 +1681,38 @@ Transform:
   - {fileID: 363201759}
   m_Father: {fileID: 1126599355}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &632856809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632856807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd978e0d3084400b78f38761d80e0ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 6650723071496413354, guid: d3426c2fbb091b4469ad08cabaddde94, type: 3}
+  SpawnPoint: {fileID: 0}
+  IsEnabled: 1
+  timer: 0
+  SpawnDuration: 6
+  GroupSpawnDelay: 10
+  GroupSize: 2
+  SpawnCount: 0
+  KillCount: 0
+  CurrentState: 0
+  IsSpawning: 0
+  IsWaiting: 0
+  OnAllSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAllKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  CruisingAltitudeTransform: {fileID: 1464373520}
+  AttackAltitudeTransform: {fileID: 415958314}
 --- !u!1 &670642966
 GameObject:
   m_ObjectHideFlags: 0
@@ -2537,7 +2570,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1126599355}
-  - component: {fileID: 1126599357}
   - component: {fileID: 1126599356}
   m_Layer: 0
   m_Name: EnemySpawners
@@ -2559,11 +2591,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 737404819}
   - {fileID: 1608855120}
+  - {fileID: 415958314}
   - {fileID: 632856808}
   - {fileID: 1464373520}
-  - {fileID: 415958314}
-  - {fileID: 737404819}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1126599356
@@ -2575,59 +2607,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1126599354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd978e0d3084400b78f38761d80e0ad, type: 3}
+  m_Script: {fileID: 11500000, guid: dbecb74aa15648a8a90b43435b87f4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 6650723071496413354, guid: d3426c2fbb091b4469ad08cabaddde94, type: 3}
-  SpawnPoint: {fileID: 0}
-  IsEnabled: 1
-  timer: 0
-  SpawnDuration: 6
-  GroupSpawnDelay: 10
-  GroupSize: 2
-  SpawnCount: 0
-  KillCount: 0
-  CurrentState: 0
-  IsSpawning: 0
-  IsWaiting: 0
-  OnAllSpawned:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAllKilled:
-    m_PersistentCalls:
-      m_Calls: []
-  CruisingAltitudeTransform: {fileID: 1464373520}
-  AttackAltitudeTransform: {fileID: 415958314}
---- !u!114 &1126599357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1126599354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d44d91b2f974a698a90b749f63ee026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Prefab: {fileID: 6650723071496413354, guid: 47554c9d585059d4ba172b99d2e0136b, type: 3}
-  SpawnPoint: {fileID: 0}
-  IsEnabled: 1
-  timer: 0
-  SpawnDuration: 6
-  GroupSpawnDelay: 10
-  GroupSize: 2
-  SpawnCount: 0
-  KillCount: 0
-  CurrentState: 0
-  IsSpawning: 0
-  IsWaiting: 0
-  OnAllSpawned:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAllKilled:
-    m_PersistentCalls:
-      m_Calls: []
+  MeleeSpawner: {fileID: 1608855121}
+  RangedSpawner: {fileID: 632856809}
+  MeleeSpawnPoints:
+  - {fileID: 24106731}
+  - {fileID: 98314044}
+  RangedSpawnPoints:
+  - {fileID: 363201759}
+  - {fileID: 1626532318}
+  SpawnerSprites:
+  - {fileID: 1063793803}
+  - {fileID: 83828327}
+  - {fileID: 1658531575}
+  - {fileID: 2060037857}
 --- !u!1001 &1140508494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4036,6 +4031,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1608855120}
+  - component: {fileID: 1608855121}
   m_Layer: 0
   m_Name: Melee
   m_TagString: Untagged
@@ -4052,7 +4048,7 @@ Transform:
   m_GameObject: {fileID: 1608855119}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4060,6 +4056,36 @@ Transform:
   - {fileID: 98314044}
   m_Father: {fileID: 1126599355}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1608855121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608855119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d44d91b2f974a698a90b749f63ee026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 6650723071496413354, guid: 47554c9d585059d4ba172b99d2e0136b, type: 3}
+  SpawnPoint: {fileID: 0}
+  IsEnabled: 1
+  timer: 0
+  SpawnDuration: 6
+  GroupSpawnDelay: 10
+  GroupSize: 2
+  SpawnCount: 0
+  KillCount: 0
+  CurrentState: 0
+  IsSpawning: 0
+  IsWaiting: 0
+  OnAllSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAllKilled:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1626532317
 GameObject:
   m_ObjectHideFlags: 0
@@ -4793,6 +4819,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 148229192}
     m_Modifications:
+    - target: {fileID: 695693399940709817, guid: 8051e6cab94c71348883f55f6e295b66, type: 3}
+      propertyPath: m_Size.x
+      value: 1.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 695693399940709817, guid: 8051e6cab94c71348883f55f6e295b66, type: 3}
+      propertyPath: m_Size.y
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 695693399940709817, guid: 8051e6cab94c71348883f55f6e295b66, type: 3}
+      propertyPath: m_Size.z
+      value: 1.34
+      objectReference: {fileID: 0}
     - target: {fileID: 897713567431592375, guid: 8051e6cab94c71348883f55f6e295b66, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.612235
@@ -5079,7 +5117,6 @@ GameObject:
   - component: {fileID: 2046329567}
   - component: {fileID: 2046329569}
   - component: {fileID: 2046329568}
-  - component: {fileID: 2046329571}
   - component: {fileID: 2046329572}
   m_Layer: 0
   m_Name: Scripts
@@ -5143,31 +5180,6 @@ MonoBehaviour:
   - {fileID: 3982303003054045252, guid: 89a3a5190ad3dde43ab8dfb40c1c9349, type: 3}
   playerOneSpawn: {fileID: 670642967}
   playerTwoSpawn: {fileID: 674815079}
---- !u!114 &2046329571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2046329566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbecb74aa15648a8a90b43435b87f4a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MeleeSpawner: {fileID: 1126599357}
-  RangedSpawner: {fileID: 1126599356}
-  MeleeSpawnPoints:
-  - {fileID: 24106731}
-  - {fileID: 98314044}
-  RangedSpawnPoints:
-  - {fileID: 363201759}
-  - {fileID: 1626532318}
-  SpawnerSprites:
-  - {fileID: 1063793803}
-  - {fileID: 83828327}
-  - {fileID: 1658531575}
-  - {fileID: 2060037857}
 --- !u!114 &2046329572
 MonoBehaviour:
   m_ObjectHideFlags: 0
