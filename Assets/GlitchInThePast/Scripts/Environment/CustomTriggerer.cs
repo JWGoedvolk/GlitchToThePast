@@ -38,14 +38,8 @@ namespace JW.BeatEmUp.Objects
             }
         }
 
-        public virtual void OnTrigger(GameObject other)
-        {
-            onTrigger?.Invoke();
-        }
+        protected virtual void OnTrigger(GameObject other) { onTrigger?.Invoke(); }
 
-        public virtual void OnTriggerExit(GameObject other)
-        {
-            
-        }
+        protected virtual void OnTriggerExit(GameObject other) { }
     }
 }
