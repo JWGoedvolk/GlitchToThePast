@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.4954, y: 0.7236, z: -0.48315}
-  m_LocalScale: {x: 0.17192332, y: 0.17192332, z: 0.17192332}
+  m_LocalScale: {x: 0.103540815, y: 0.103540815, z: 0.103540815}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 762386611052635397}
@@ -139,6 +139,7 @@ MonoBehaviour:
   OnEnemyHit:
     m_PersistentCalls:
       m_Calls: []
+  maxLife: 3
 --- !u!135 &1460128615973236394
 SphereCollider:
   m_ObjectHideFlags: 0
