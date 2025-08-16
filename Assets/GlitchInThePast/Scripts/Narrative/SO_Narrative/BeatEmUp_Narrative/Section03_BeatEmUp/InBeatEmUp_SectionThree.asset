@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
   m_Name: InBeatEmUp_SectionThree
   m_EditorClassIdentifier: 
-  stepCount: 10
-  isSkippable: 01010101010101010101
+  stepCount: 5
+  isSkippable: 0101010101
   narrativeTexts:
   - 'The players spawn in, falling into the scene. Bobby is situated on the right
     side of the scene while Tobby is on the left side. The space they are in is tight.  '
@@ -21,36 +21,18 @@ MonoBehaviour:
   - "Didn\u2019t the sign say that it was totally safe? What\u2019s safe about this? "
   - 'You- wait, why are you on the other side? '
   - ' It looks like we need to figure out a way out of here. '
-  - 'The person who created this level intended for us to use the buttons. '
-  - 'Okay! '
-  - '(Panicked) Wait! Do not just press it; it could be a trap, maybe the spikes
-    are fake. '
-  - Bobby tries to cross the platform. His health depletes fast, causing him to respawn
-    back to his platform.
-  - '(Catching his breath. Still not used to the respawning experience) Okay, We
-    need to press the buttons. '
   speakerIcons:
   - {fileID: 0}
   - {fileID: 21300000, guid: 2d342837180ca994f8eea001859fe2fd, type: 3}
   - {fileID: 21300000, guid: b962b0c6af20514418c0febb07c7f67f, type: 3}
   - {fileID: 21300000, guid: 2d342837180ca994f8eea001859fe2fd, type: 3}
   - {fileID: 21300000, guid: b962b0c6af20514418c0febb07c7f67f, type: 3}
-  - {fileID: 21300000, guid: 2d342837180ca994f8eea001859fe2fd, type: 3}
-  - {fileID: 21300000, guid: b962b0c6af20514418c0febb07c7f67f, type: 3}
-  - {fileID: 21300000, guid: 2d342837180ca994f8eea001859fe2fd, type: 3}
-  - {fileID: 0}
-  - {fileID: 21300000, guid: 2d342837180ca994f8eea001859fe2fd, type: 3}
   speakerNames:
   - 
   - Bobby
   - Tobby
   - Bobby
   - Tobby
-  - Bobby
-  - Tobby
-  - Bobby
-  - 
-  - Bobby
   optionalImages: []
   voiceOvers: []
   tooltipHeaders: []

@@ -86,14 +86,13 @@ namespace Systems.Enemies
 
                     break;
                 case State.WaitingForKills:
-                    if (KillCount == GroupSize)
+                    if (KillCount >= GroupSize)
                     {
                         CurrentState = State.SpawnDelay;
                         KillCount = 0;
                         SpawnCount = 0;
                         OnAllKilled?.Invoke();
                     }
-
                     break;
             }
         }
