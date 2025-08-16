@@ -635,6 +635,7 @@ MonoBehaviour:
   isWeaponEnabled: 1
   meleeFlipperTransform: {fileID: 3912381565481030115}
   weaponRenderer: {fileID: 7088996877983646424}
+  projectilePool: {fileID: 0}
   comboCount: 0
   timeSinceLastAttack: 0
   comboDuration: 3
@@ -665,7 +666,7 @@ MonoBehaviour:
   meleeBounds:
     m_Center: {x: 0, y: 0.4, z: 0}
     m_Extent: {x: 1.6, y: 1, z: 0.5}
-  meleeRechargeTime: 1
+  meleeRechargeTime: 0.5
   comboMeleeDamage: 010000000200000004000000
   rangedAnimator: {fileID: 0}
   rangedAttackSpawnPoint: {fileID: 0}

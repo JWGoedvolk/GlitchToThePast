@@ -2821,6 +2821,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 450481940489956, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 308388409333380789, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -904.488
+      objectReference: {fileID: 0}
+    - target: {fileID: 308388409333380789, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 88.23309
+      objectReference: {fileID: 0}
+    - target: {fileID: 308388409333380789, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -378.071
+      objectReference: {fileID: 0}
     - target: {fileID: 667349589567995244, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2832,6 +2848,42 @@ PrefabInstance:
     - target: {fileID: 1386315939072421315, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
       propertyPath: m_Name
       value: NarrativeManagerScript
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411631201223365686, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411631201223365686, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411631201223365686, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411631201223365686, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411631201223365686, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.15415707
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411631201223365686, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15415707
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411631201223365686, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.15415707
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411631201223365686, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 489
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411631201223365686, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 161
       objectReference: {fileID: 0}
     - target: {fileID: 5832144095733247329, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
       propertyPath: m_Color.b
@@ -2898,20 +2950,24 @@ PrefabInstance:
       value: 0.75230116
       objectReference: {fileID: 0}
     - target: {fileID: 8832187875330552234, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2c8a1d9d3dda0b844980f690e4b2d688, type: 3}
+    - target: {fileID: 8832187875330552234, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
       propertyPath: m_Color.a
       value: 0.8627451
       objectReference: {fileID: 0}
     - target: {fileID: 8832187875330552234, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
       propertyPath: m_Color.b
-      value: 0.9964444
+      value: 0.9245283
       objectReference: {fileID: 0}
     - target: {fileID: 8832187875330552234, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.8852795
       objectReference: {fileID: 0}
     - target: {fileID: 8832187875330552234, guid: d12991b216507c6418bbdf6076edbce4, type: 3}
       propertyPath: m_Color.r
-      value: 0.98517513
+      value: 0.90871924
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -477766557, guid: 8b27c7dd75f2429449b3392f131e435e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3692559824405975367
@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7276517022794321912}
   - component: {fileID: 5840512959812250154}
+  - component: {fileID: 4329388026981406908}
   m_Layer: 0
   m_Name: P_Tob
   m_TagString: Untagged
@@ -163,6 +164,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3982303003054045252}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &4329388026981406908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3982303003054045252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 631e1b7eeb6da0148b5846f540d8e21b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2713509491776436348, guid: 9a7e98309550f934abb9b10bab6842ac, type: 3}
+  initialSize: 20
 --- !u!1 &7544389415627691498
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 874621403081017318}
-  - component: {fileID: 7879771333231696679}
+  - component: {fileID: 3326803975578365025}
   m_Layer: 0
   m_Name: RangedRotator
   m_TagString: Untagged
@@ -196,7 +211,7 @@ Transform:
   - {fileID: 8834217309014185563}
   m_Father: {fileID: 6390881012933782396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7879771333231696679
+--- !u!114 &3326803975578365025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -585,39 +600,15 @@ MonoBehaviour:
   gravityMultiplier: 2.5
   animator: {fileID: 1434083449806660333}
   isMovementLocked: 1
-  healthSystem: {fileID: 0}
+  healthSystem: {fileID: 7183805979929903416}
   rotator: {fileID: 0}
   weaponSystem: {fileID: 686190289503579459}
   onDashStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 0
+      m_Calls: []
   onDashEnd:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 0
+      m_Calls: []
 --- !u!54 &1277676373348698392
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -678,6 +669,8 @@ MonoBehaviour:
   isRecharging: 0
   isWeaponEnabled: 1
   meleeFlipperTransform: {fileID: 0}
+  weaponRenderer: {fileID: 4245184345691448312}
+  projectilePool: {fileID: 0}
   comboCount: 0
   timeSinceLastAttack: 0
   comboDuration: 0
