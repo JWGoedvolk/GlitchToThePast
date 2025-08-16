@@ -11,7 +11,10 @@ namespace JW.BeatEmUp.Objects
         public List<GameObject> TriggeringObjects;
         public bool IsTriggering => TriggeringObjects != null && TriggeringObjects.Count > 0;
         [SerializeField] protected UnityEvent onTrigger;
+        [SerializeField] protected UnityEvent onTriggerAllPresent;
         [SerializeField] protected UnityEvent onUnTrigger;
+        
+        public bool TriggerOnAllPresent = false;
 
         public void OnTriggerEnter(Collider other)
         {
@@ -21,6 +24,11 @@ namespace JW.BeatEmUp.Objects
                 {
                     TriggeringObjects.Add(other.gameObject);
                     OnTrigger(other.gameObject);
+
+                    if (TriggerOnAllPresent && TriggeringObjects.Count == Whitelist.Count)
+                    {
+                        onTriggerAllPresent?.Invoke();
+                    }
                 }
             }
         }
