@@ -15,7 +15,7 @@ namespace Systems.Enemies
             rb.velocity = dir.normalized * speed;
         }
 
-        protected override void OnTrigger(GameObject other)
+        public override void OnTrigger(GameObject other)
         {
             Destroy(gameObject);
         }

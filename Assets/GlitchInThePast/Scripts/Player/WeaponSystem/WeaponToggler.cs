@@ -8,7 +8,7 @@ namespace GlitchInThePast.Scripts.Player
         [SerializeField] private bool isEnabler = false;
         public PlayerWeaponSystem.WeaponType TargetWeaponType = PlayerWeaponSystem.WeaponType.None;
 
-        protected override void OnTrigger(GameObject other)
+        public override void OnTrigger(GameObject other)
         {
             foreach (GameObject triggeringObject in TriggeringObjects)
             {

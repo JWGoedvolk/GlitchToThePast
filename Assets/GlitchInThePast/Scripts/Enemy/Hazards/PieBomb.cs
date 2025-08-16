@@ -38,7 +38,7 @@ namespace Systems.Enemies
             }
         }
 
-        protected override void OnTrigger(GameObject other)
+        public override void OnTrigger(GameObject other)
         {
             if (!isCooking) // If we aren't cooking, we haven't been triggered yet
             {
