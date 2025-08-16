@@ -374,7 +374,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.03, z: 0.03}
+  m_Size: {x: 0.06, y: 0.05, z: 0.05}
   m_Center: {x: 0, y: 0, z: 0.01}
 --- !u!114 &1537331590532036847
 MonoBehaviour:
@@ -390,6 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactPrompt: {fileID: 3531251551812998054}
   interactPromptText: {fileID: 9076291143292189603}
+  IsActivatable: 1
   whitelist:
   - Player1
   - Player2
