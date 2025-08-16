@@ -2060,7 +2060,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 80375971}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 2118715295}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -4871,9 +4871,9 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 1500530374}
+    m_SelectOnDown: {fileID: 1566151646}
     m_SelectOnLeft: {fileID: 2118715295}
-    m_SelectOnRight: {fileID: 2118715295}
+    m_SelectOnRight: {fileID: 2056050014}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.6148985, g: 0.65435773, b: 0.8867924, a: 1}
@@ -8030,7 +8030,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6dfacd35caee47542a711d81cbf920f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8872,7 +8872,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LOAD FEATURE
+  m_text: LOAD GAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9367,9 +9367,9 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 1500530374}
-    m_SelectOnLeft: {fileID: 2118715295}
+    m_SelectOnUp: {fileID: 276029266}
+    m_SelectOnDown: {fileID: 1566151646}
+    m_SelectOnLeft: {fileID: 1224132780}
     m_SelectOnRight: {fileID: 2118715295}
   m_Transition: 1
   m_Colors:
@@ -9842,10 +9842,10 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 276029266}
     m_SelectOnDown: {fileID: 1566151646}
     m_SelectOnLeft: {fileID: 1224132780}
-    m_SelectOnRight: {fileID: 1224132780}
+    m_SelectOnRight: {fileID: 2056050014}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.6148985, g: 0.65435773, b: 0.8867924, a: 1}
