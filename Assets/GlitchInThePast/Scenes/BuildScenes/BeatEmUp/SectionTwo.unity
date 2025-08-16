@@ -1327,6 +1327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 6650723071496413354, guid: 47554c9d585059d4ba172b99d2e0136b, type: 3}
   SpawnPoint: {fileID: 1561888231}
+  IsEnabled: 1
   timer: 0
   SpawnDuration: 6
   GroupSpawnDelay: 10
@@ -1336,6 +1337,12 @@ MonoBehaviour:
   CurrentState: 0
   IsSpawning: 0
   IsWaiting: 0
+  OnAllSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAllKilled:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &218555435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1350,6 +1357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 6650723071496413354, guid: d3426c2fbb091b4469ad08cabaddde94, type: 3}
   SpawnPoint: {fileID: 1055991287}
+  IsEnabled: 1
   timer: 0
   SpawnDuration: 6
   GroupSpawnDelay: 10
@@ -1359,6 +1367,12 @@ MonoBehaviour:
   CurrentState: 0
   IsSpawning: 0
   IsWaiting: 0
+  OnAllSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAllKilled:
+    m_PersistentCalls:
+      m_Calls: []
   CruisingAltitudeTransform: {fileID: 473163263}
   AttackAltitudeTransform: {fileID: 328787294}
 --- !u!1 &222144545
@@ -1991,7 +2005,7 @@ Transform:
   m_GameObject: {fileID: 328787293}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.12, z: 0}
+  m_LocalPosition: {x: 0, y: -7.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2646,7 +2660,7 @@ Transform:
   m_GameObject: {fileID: 473163262}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.91, z: 0}
+  m_LocalPosition: {x: 0, y: -3.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

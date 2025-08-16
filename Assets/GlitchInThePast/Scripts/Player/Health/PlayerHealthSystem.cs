@@ -11,6 +11,7 @@ namespace Player.Health
     {
         #region Variables
         public static System.Action<int, PlayerHealthSystem> OnPlayerSpawned;
+        [SerializeField] private PlayerWeaponSystem weaponSystem;
 
         [Header("Player Information")]
         public int currentHealth;
@@ -67,7 +68,10 @@ namespace Player.Health
             {
                 animator = GetComponentInChildren<Animator>();
             }
-
+            if (weaponSystem is null)
+            {
+                weaponSystem = GetComponentInChildren<PlayerWeaponSystem>();
+            }
             HealthDisplayUI[] allDisplays = FindObjectsOfType<HealthDisplayUI>();
             foreach (var display in allDisplays)
             {
@@ -172,10 +176,8 @@ namespace Player.Health
         {
             if (spawningManager != null)
             {
-                // Stop showing the weapon
-                PlayerWeaponSystem weaponSystem = GetComponent<PlayerWeaponSystem>();
                 weaponSystem.DisableWeapon();
-                
+
                 // Respawn the player
                 spawningManager.SaveDeathLocation(playerInput.playerIndex, transform.position);
                 spawningManager.HandleRespawning(playerInput);
@@ -185,10 +187,8 @@ namespace Player.Health
         }
         public void BeginRespawnInvulnerability(float seconds = -1f)
         {
-            // Show the weapon again
-            PlayerWeaponSystem weaponSystem = GetComponent<PlayerWeaponSystem>();
             weaponSystem.EnableWeapon();
-            
+
             if (seconds <= 0f) seconds = respawnInvuln;
 
             if (invulnRoutine != null) StopCoroutine(invulnRoutine);

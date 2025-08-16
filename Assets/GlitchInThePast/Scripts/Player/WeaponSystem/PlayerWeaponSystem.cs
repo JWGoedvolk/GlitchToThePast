@@ -79,6 +79,11 @@ namespace GlitchInThePast.Scripts.Player
         //SFX
         private SFXManager sFXManager;
 
+        [Header("Melee Hit Detection")]
+        [Tooltip("Only these layers are damaged by the melee hit")]
+        [SerializeField] private LayerMask enemyLayers = ~0;
+        private Collider[] meleeHitsBuffer = new Collider[16];
+
         void Start()
         {
             if (sFXManager == null)
@@ -128,17 +133,17 @@ namespace GlitchInThePast.Scripts.Player
                     if (IsCharging)
                     {
                         int thresholdsCount = (ChargeThresholds != null) ? ChargeThresholds.Count : 0;
-                        int maxStage = Mathf.Max(0, thresholdsCount); 
+                        int maxStage = Mathf.Max(0, thresholdsCount);
 
                         CurrentChargeTime += Time.deltaTime;
 
                         if (thresholdsCount > 0 && comboCount >= 0 && comboCount < maxStage)
                         {
-                            float neededCount = ChargeThresholds[comboCount];  
+                            float neededCount = ChargeThresholds[comboCount];
                             if (CurrentChargeTime >= neededCount)
                             {
                                 CurrentChargeTime = 0f;
-                                comboCount = Mathf.Min(comboCount + 1, maxStage); 
+                                comboCount = Mathf.Min(comboCount + 1, maxStage);
                                 OnComboIncrease?.Invoke();
                                 UpdateAnimatorCounter();
                             }
@@ -162,6 +167,7 @@ namespace GlitchInThePast.Scripts.Player
         /// </summary>
         private void UpdateAnimatorCounter()
         {
+            if (meleeAnimator is null) return;
             if (weaponType == WeaponType.Melee)
             {
                 meleeAnimator.SetInteger("ComboCount", comboCount);
@@ -225,21 +231,6 @@ namespace GlitchInThePast.Scripts.Player
 
                 // Get an adjusted combo duration window
                 currentComboDuration = comboDuration + meleeRechargeTime; // The combo window is the time after recharging that the player needs to attack in
-
-                // Get all the enemies hit by the attack and deal damage to them based on combo progression
-                var hits = Physics.BoxCastAll(meleeAttackTransform.position + meleeBounds.center, meleeBounds.extents, meleeAttackTransform.localEulerAngles);
-                Debug.Log(hits.Length);
-                foreach (RaycastHit hit in hits)
-                {
-                    if (hit.transform.CompareTag("Enemy"))
-                    {
-                        EnemyHealth eh = hit.transform.gameObject.GetComponent<EnemyHealth>();
-                        if (eh != null)
-                        {
-                            eh.TakeDamage(CurrentComboDamage(), WeaponType.Melee);
-                        }
-                    }
-                }
 
                 // Invoke weapon events
                 onMeleeAttack?.Invoke();
@@ -401,6 +392,33 @@ namespace GlitchInThePast.Scripts.Player
         public void OnUnpause()
         {
             enabled = true;
+        }
+        #endregion
+
+        #region Anim Event Function
+        public void AnimationEventMeleeHit()
+        {
+            if (weaponType != WeaponType.Melee) return;
+            if (meleeAttackTransform == null) return;
+
+            Vector3 center = meleeAttackTransform.position + meleeBounds.center;
+            Vector3 halfBoundExtents = meleeBounds.extents;
+            Quaternion orientation = meleeAttackTransform.rotation;
+
+            int hitCount = Physics.OverlapBoxNonAlloc(center, halfBoundExtents, meleeHitsBuffer, orientation, enemyLayers, QueryTriggerInteraction.Collide);
+
+            for (int i = 0; i < hitCount; i++)
+            {
+                var collider = meleeHitsBuffer[i];
+                if (collider == null) continue;
+
+                var enemyHealth = collider.GetComponent<EnemyHealth>() ?? collider.GetComponentInParent<EnemyHealth>();
+                if (enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage(CurrentComboDamage(), WeaponType.Melee);
+                }
+                meleeHitsBuffer[i] = null;
+            }
         }
         #endregion
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6367841708610329689}
   - component: {fileID: 3283116678319631261}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StrafePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4183937027507689170}
   - component: {fileID: 8275159675058031320}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7142951550990310646}
   - component: {fileID: 58432914922797913}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShadowDecalProjector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 1003585564148252834}
   - component: {fileID: 7392823627235309436}
   - component: {fileID: 2676226429089102526}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: P_RangedEnemyLevel1
   m_TagString: Enemy
   m_Icon: {fileID: 0}

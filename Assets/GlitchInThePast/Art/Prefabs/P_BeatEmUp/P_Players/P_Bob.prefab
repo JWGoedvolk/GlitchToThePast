@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 7088996877983646424}
   - component: {fileID: 8856713439103715862}
   - component: {fileID: 2681687480319765895}
+  - component: {fileID: 2769416436980564431}
   m_Layer: 0
   m_Name: BalloonSword
   m_TagString: Untagged
@@ -194,6 +195,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7088996877983646424}
   isNotMoving: 0
+--- !u!114 &2769416436980564431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4486839311755691722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d01ce8cc734909a722e39b30f7a8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 0
+  isRecharging: 0
+  isWeaponEnabled: 1
+  meleeFlipperTransform: {fileID: 3912381565481030115}
+  weaponRenderer: {fileID: 7088996877983646424}
+  projectilePool: {fileID: 0}
+  comboCount: 0
+  timeSinceLastAttack: 0
+  comboDuration: 3
+  currentComboDuration: 0
+  onStartRecharge:
+    m_PersistentCalls:
+      m_Calls: []
+  onRecharging:
+    m_PersistentCalls:
+      m_Calls: []
+  onEndRecharge:
+    m_PersistentCalls:
+      m_Calls: []
+  onMeleeAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  onRangedAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnComboIncrease:
+    m_PersistentCalls:
+      m_Calls: []
+  OnComboReset:
+    m_PersistentCalls:
+      m_Calls: []
+  meleeAnimator: {fileID: 8856713439103715862}
+  meleeAttackTransform: {fileID: 437504406459891655}
+  meleeBounds:
+    m_Center: {x: 0, y: 0.4, z: 0}
+    m_Extent: {x: 1.6, y: 1, z: 0.8}
+  meleeRechargeTime: 0.5
+  comboMeleeDamage: 010000000200000004000000
+  rangedAnimator: {fileID: 0}
+  rangedAttackSpawnPoint: {fileID: 0}
+  projectilePrefab: {fileID: 2096087822165832043, guid: 13d1f6c998a2d1d469f026d0c02bf817, type: 3}
+  rangedRechargeTime: 3
+  IsCharging: 0
+  ChargeThresholds: []
+  CurrentChargeTime: 0
+  comboRangedDamage: 
+  comboRangedSpeed: 
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &4823359507561651016
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +425,6 @@ GameObject:
   - component: {fileID: 5923738833927002674}
   - component: {fileID: 1277676373348698392}
   - component: {fileID: 7325881295433291189}
-  - component: {fileID: 686190289503579459}
   - component: {fileID: 76998860577032550}
   - component: {fileID: 5152040975991687870}
   - component: {fileID: 5043492975442600470}
@@ -493,6 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4244dc4ec515c4641b2991198d21a30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSystem: {fileID: 0}
   currentHealth: 3
   maxHealth: 3
   respawnInvuln: 1
@@ -567,7 +630,7 @@ MonoBehaviour:
   isMovementLocked: 1
   healthSystem: {fileID: 0}
   rotator: {fileID: 0}
-  weaponSystem: {fileID: 686190289503579459}
+  weaponSystem: {fileID: 2769416436980564431}
   onDashStart:
     m_PersistentCalls:
       m_Calls: []
@@ -618,65 +681,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   deafultCheckpoint: {fileID: 0}
---- !u!114 &686190289503579459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8579127009673012924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9d01ce8cc734909a722e39b30f7a8c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponType: 0
-  isRecharging: 0
-  isWeaponEnabled: 1
-  meleeFlipperTransform: {fileID: 3912381565481030115}
-  weaponRenderer: {fileID: 7088996877983646424}
-  projectilePool: {fileID: 0}
-  comboCount: 0
-  timeSinceLastAttack: 0
-  comboDuration: 3
-  currentComboDuration: 0
-  onStartRecharge:
-    m_PersistentCalls:
-      m_Calls: []
-  onRecharging:
-    m_PersistentCalls:
-      m_Calls: []
-  onEndRecharge:
-    m_PersistentCalls:
-      m_Calls: []
-  onMeleeAttack:
-    m_PersistentCalls:
-      m_Calls: []
-  onRangedAttack:
-    m_PersistentCalls:
-      m_Calls: []
-  OnComboIncrease:
-    m_PersistentCalls:
-      m_Calls: []
-  OnComboReset:
-    m_PersistentCalls:
-      m_Calls: []
-  meleeAnimator: {fileID: 8856713439103715862}
-  meleeAttackTransform: {fileID: 437504406459891655}
-  meleeBounds:
-    m_Center: {x: 0, y: 0.4, z: 0}
-    m_Extent: {x: 1.6, y: 1, z: 0.5}
-  meleeRechargeTime: 0.5
-  comboMeleeDamage: 010000000200000004000000
-  rangedAnimator: {fileID: 0}
-  rangedAttackSpawnPoint: {fileID: 0}
-  projectilePrefab: {fileID: 2096087822165832043, guid: 13d1f6c998a2d1d469f026d0c02bf817, type: 3}
-  rangedRechargeTime: 3
-  IsCharging: 0
-  ChargeThresholds: []
-  CurrentChargeTime: 0
-  comboRangedDamage: 
-  comboRangedSpeed: 
 --- !u!114 &76998860577032550
 MonoBehaviour:
   m_ObjectHideFlags: 0

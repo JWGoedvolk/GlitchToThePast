@@ -528,6 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4244dc4ec515c4641b2991198d21a30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSystem: {fileID: 0}
   currentHealth: 3
   maxHealth: 3
   respawnInvuln: 1
@@ -706,7 +707,7 @@ MonoBehaviour:
   rangedAnimator: {fileID: 1228906177923959383}
   rangedAttackSpawnPoint: {fileID: 2025892952744937449}
   projectilePrefab: {fileID: 1662423977701543809, guid: 9a7e98309550f934abb9b10bab6842ac, type: 3}
-  rangedRechargeTime: 2
+  rangedRechargeTime: 1
   IsCharging: 0
   ChargeThresholds:
   - 0
@@ -715,6 +716,9 @@ MonoBehaviour:
   CurrentChargeTime: 0
   comboRangedDamage: 010000000200000004000000
   comboRangedSpeed: 010000000200000003000000
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &4511008773222892832
 MonoBehaviour:
   m_ObjectHideFlags: 0
