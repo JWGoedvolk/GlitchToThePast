@@ -87,6 +87,11 @@ namespace Systems.Enemies
                 originalColor = spriteRenderer.color;
         }
 
+        private void OnEnable()
+        {
+            Health = healthMax;
+        }
+
         #region Public Functions
         public void TakeDamage(int damage, PlayerWeaponSystem.WeaponType weaponType = PlayerWeaponSystem.WeaponType.None)
         {
