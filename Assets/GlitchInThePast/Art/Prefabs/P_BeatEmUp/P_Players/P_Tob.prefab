@@ -771,7 +771,7 @@ MonoBehaviour:
   - 1
   - 2
   CurrentChargeTime: 0
-  comboRangedDamage: 010000000200000004000000
+  comboRangedDamage: 020000000300000005000000
   comboRangedSpeed: 010000000200000003000000
   enemyLayers:
     serializedVersion: 2

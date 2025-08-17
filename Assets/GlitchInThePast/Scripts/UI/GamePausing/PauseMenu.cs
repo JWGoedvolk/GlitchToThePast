@@ -49,6 +49,16 @@ namespace Audio
             bool escapePressed = Keyboard.current?.escapeKey.wasPressedThisFrame == true;
             bool controllerMenuPressed = Gamepad.current?.startButton.wasPressedThisFrame == true;
 
+            if (pauseMenu.activeSelf == true && !paused)
+            {
+                ForceSelect(firstSelectedButton);
+                paused = true;
+            }
+            else if (pauseMenu.activeSelf == false)
+            {
+                paused = false;
+            }
+
             if (escapePressed || controllerMenuPressed)
                 Toggle();
         }
@@ -97,9 +107,6 @@ namespace Audio
                 Time.timeScale = 1f;
 
             Cursor.visible = false;
-
-            if (EventSystem.current != null)
-                EventSystem.current.SetSelectedGameObject(null);
         }
 
         public void QuitGame()

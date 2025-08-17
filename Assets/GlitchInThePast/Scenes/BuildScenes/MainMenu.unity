@@ -4561,7 +4561,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2034781453}
         m_TargetAssemblyTypeName: Audio.PauseMenu, Assembly-CSharp
-        m_MethodName: Resume
+        m_MethodName: Toggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9504,8 +9504,8 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 276029266}
     m_SelectOnDown: {fileID: 1566151646}
-    m_SelectOnLeft: {fileID: 1224132780}
-    m_SelectOnRight: {fileID: 2056050014}
+    m_SelectOnLeft: {fileID: 2056050014}
+    m_SelectOnRight: {fileID: 1224132780}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.6148985, g: 0.65435773, b: 0.8867924, a: 1}
