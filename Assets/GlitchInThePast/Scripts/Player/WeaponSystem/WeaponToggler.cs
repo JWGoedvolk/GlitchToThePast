@@ -12,7 +12,7 @@ namespace GlitchInThePast.Scripts.Player
         {
             foreach (GameObject triggeringObject in TriggeringObjects)
             {
-                PlayerWeaponSystem weaponSystem = triggeringObject.GetComponent<PlayerWeaponSystem>();
+                PlayerWeaponSystem weaponSystem = triggeringObject.GetComponentInChildren<PlayerWeaponSystem>();
                 if (weaponSystem != null)
                 {
                     if (isEnabler)
