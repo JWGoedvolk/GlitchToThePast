@@ -3707,9 +3707,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_TooltipSign
       objectReference: {fileID: 0}
+    - target: {fileID: 3904256105654857554, guid: cfc19c2ab9d104c48ba255146a2b2aa5, type: 3}
+      propertyPath: sequenceToPlay
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156625507051760470, guid: cfc19c2ab9d104c48ba255146a2b2aa5, type: 3}
+      propertyPath: m_Size.x
+      value: 19.47185
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156625507051760470, guid: cfc19c2ab9d104c48ba255146a2b2aa5, type: 3}
+      propertyPath: m_Size.z
+      value: 11.868378
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156625507051760470, guid: cfc19c2ab9d104c48ba255146a2b2aa5, type: 3}
+      propertyPath: m_Center.x
+      value: -1.541471
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156625507051760470, guid: cfc19c2ab9d104c48ba255146a2b2aa5, type: 3}
+      propertyPath: m_Center.z
+      value: -1.9441912
+      objectReference: {fileID: 0}
     - target: {fileID: 4693860147535169636, guid: cfc19c2ab9d104c48ba255146a2b2aa5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.05
+      value: 27.24
       objectReference: {fileID: 0}
     - target: {fileID: 4693860147535169636, guid: cfc19c2ab9d104c48ba255146a2b2aa5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8775,7 +8795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4983345767067795686, guid: 66db6a3c75a9aeb47b021718ef588f7c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.72
+      value: 11.88
       objectReference: {fileID: 0}
     - target: {fileID: 4983345767067795686, guid: 66db6a3c75a9aeb47b021718ef588f7c, type: 3}
       propertyPath: m_LocalRotation.w

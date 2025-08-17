@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3439c3b71a1f07e4eb4ce7ce14120a5d, type: 3}
   m_Name: BeatEmUp_PreTutorialNarrative
   m_EditorClassIdentifier: 
-  stepCount: 25
-  isSkippable: 01010101010101010101010101010101010101010101010101
+  stepCount: 24
+  isSkippable: 010101010101010101010101010101010101010101010101
   narrativeTexts:
   - "[Bob\u2019s Apartment - At Night]"
   - ' Urgent: Games Restoration Contract - PixelRise Studios. '
@@ -41,7 +41,6 @@ MonoBehaviour:
   - Bob and Tob arrive at different hours. Neither of them sees the other.
   - The inside of the building looks clean and tidy, decorated with modern furniture
     and walls full of creative ideas.
-  - 
   - "| 2017 Beat-\u2019Em-Up Game - Test environment commencing. |"
   - 'Both of them sit back to back, not realising each other''s presence.              '
   - Headsets lower over their eyes. Chair arms lock their hands in place.
@@ -64,7 +63,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 28e2debbc4517ea478c05b802b4506c1, type: 3}
   - {fileID: 0}
   - {fileID: 21300000, guid: 28e2debbc4517ea478c05b802b4506c1, type: 3}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -97,7 +95,6 @@ MonoBehaviour:
   - 
   - 
   - 
-  - 
   - '? (Distorted)'
   - 
   - <System>
@@ -121,39 +118,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ffb6396fe7d33ab43ac0cfc7ad845849, type: 3}
   - {fileID: 21300000, guid: a1e145fabdbeaf04f81c1052f41434bb, type: 3}
   - {fileID: 21300000, guid: 549ff5471248e4b4fa62d37734bedb8a, type: 3}
-  - {fileID: 21300000, guid: 549ff5471248e4b4fa62d37734bedb8a, type: 3}
   - {fileID: 21300000, guid: 11a9738567c44ca4595a819a8a4d98e5, type: 3}
   - {fileID: 21300000, guid: 11a9738567c44ca4595a819a8a4d98e5, type: 3}
   - {fileID: 21300000, guid: 87bc3e34de15ac04882a3a4250b9d4b4, type: 3}
   - {fileID: 21300000, guid: 87bc3e34de15ac04882a3a4250b9d4b4, type: 3}
   - {fileID: 21300000, guid: b4f37c98234a94a448f750aba2e916cd, type: 3}
-  voiceOvers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  voiceOvers: []
   tooltipHeaders: []
   tooltipImages: []
   isTooltip: 
