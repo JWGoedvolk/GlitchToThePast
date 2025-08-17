@@ -5711,7 +5711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0486e6fdbbd4a449697beddd9891bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequenceToPlay: {fileID: 11400000, guid: 7750c3ed000030343a63b99335f5f7e3, type: 2}
+  sequenceToPlay: {fileID: 11400000, guid: 86c1bcac8aa68224c98faf01b069a7f0, type: 2}
   playSequenceAtStart: 0
   isReplayable: 1
   requiresBothPlayers: 1
